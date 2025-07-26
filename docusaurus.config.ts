@@ -96,42 +96,108 @@ const config: Config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "About Us",
             items: [
               {
-                label: "Documentation",
-                to: "/docs/intro",
+                label: "Who We Are",
+                href: "https://rbihub.in/who-we-are/",
+              },
+              {
+                label: "Our Team",
+                href: "https://rbihub.in/our-team/",
+              },
+              {
+                label: "Careers",
+                href: "https://rbihub.in/careers/",
               },
             ],
           },
           {
-            title: "Community",
+            title: "Documentation",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                label: "Get Started",
+                to: "/docs/intro",
               },
               {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus",
+                label: "API Reference",
+                to: "/docs/petstore/swagger-petstore-yaml",
+              },
+              {
+                label: "All Versions",
+                to: "/versions",
+              },
+            ],
+          },
+          {
+            title: "Useful Links",
+            items: [
+              {
+                label: "RBIH Website",
+                href: "https://rbihub.in/",
+              },
+              {
+                label: "Reserve Bank of India",
+                href: "https://www.rbi.org.in/",
+              },
+              {
+                label: "Resources",
+                href: "https://rbihub.in/resources/",
+              },
+              {
+                label: "Contact Us",
+                href: "https://rbihub.in/contact-us/",
+              },
+            ],
+          },
+          {
+            title: "Legal",
+            items: [
+              {
+                label: "Terms of Use",
+                href: "https://rbihub.in/terms-of-use/",
+              },
+              {
+                label: "Privacy Policy",
+                href: "https://rbihub.in/privacy-policy/",
+              },
+              {
+                label: "Whistleblower Policy",
+                href: "https://rbihub.in/whistleblower-policy/",
+              },
+            ],
+          },
+          {
+            title: "Connect",
+            items: [
+              {
+                label: "LinkedIn",
+                href: "https://www.linkedin.com/company/reserve-bank-innovation-hub/",
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/docusaurus",
+                href: "https://x.com/rbihub",
               },
-            ],
-          },
-          {
-            title: "More",
-            items: [
               {
-                label: "GitHub",
-                href: "https://github.com/rbih/rbih-docs",
+                label: "YouTube",
+                href: "https://www.youtube.com/@RBIHub",
+              },
+              {
+                label: "Instagram",
+                href: "https://www.instagram.com/rbihub/",
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Reserve Bank Innovation Hub. All rights reserved.`,
+        copyright: `
+          <div style="margin-bottom: 1rem;">
+            <div><strong>Reserve Bank Innovation Hub (RBIH)</strong></div>
+            <div>Keonics - K Wing, 4th Floor, 27th Main, 1st Sector, HSR Layout, Bengaluru- 560102</div>
+            <div>Email: <a href="mailto:communications@rbihub.in">communications@rbihub.in</a></div>
+            <div>CIN: U72900KA2021NPL178293 | GSTN: 29AAKCR9018A1ZB</div>
+          </div>
+          <div>Copyright © ${new Date().getFullYear()} Reserve Bank Innovation Hub. All Rights Reserved.</div>
+        `,
       },
       prism: {
         additionalLanguages: [
