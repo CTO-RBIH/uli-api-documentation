@@ -25,7 +25,7 @@ function HomepageHeader() {
             </Link>
             <Link
               className={clsx('button button--secondary button--lg', styles.heroButton)}
-              to="/docs/category/rbih-api">
+              to="/docs/petstore/swagger-petstore-yaml">
               API Reference
             </Link>
           </div>

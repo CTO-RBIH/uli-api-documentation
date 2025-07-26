@@ -31,6 +31,15 @@ const config: Config = {
           editUrl:
             "https://github.com/rbih/rbih-docs/tree/main/",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
+          versions: {
+            current: {
+              label: 'Next',
+              path: 'next',
+              badge: true,
+            },
+          },
+          lastVersion: '1.0.0',
+          includeCurrentVersion: true,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -68,7 +77,13 @@ const config: Config = {
           {
             label: "RBIH API",
             position: "left",
-            to: "/docs/category/petstore-api",
+            to: "/docs/petstore/swagger-petstore-yaml",
+          },
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+            dropdownActiveClassDisabled: true,
           },
           {
             href: "https://github.com/rbih/rbih-docs",
@@ -237,8 +252,6 @@ const config: Config = {
           petstore: {
             specPath: "examples/petstore.yaml",
             outputDir: "docs/petstore",
-            downloadUrl:
-              "https://raw.githubusercontent.com/PaloAltoNetworks/docusaurus-template-openapi-docs/main/examples/petstore.yaml",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",
@@ -252,6 +265,4 @@ const config: Config = {
   themes: ["docusaurus-theme-openapi-docs"],
 };
 
-export default async function createConfig() {
-  return config;
-}
+export default config;
