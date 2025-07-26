@@ -6,36 +6,208 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Primary brand colors - RBIH blue theme */
+  --ifm-color-primary: #5a6cd5;
+  --ifm-color-primary-dark: #4d5fc6;
+  --ifm-color-primary-darker: #4152b7;
+  --ifm-color-primary-darkest: #3a4aa8;
+  --ifm-color-primary-light: #6779e4;
+  --ifm-color-primary-lighter: #7486ed;
+  --ifm-color-primary-lightest: #8193f6;
+  
+  /* Background colors */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f8fafc;
+  
+  /* Typography */
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --ifm-font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  --ifm-code-font-size: 90%;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.65;
+  
+  /* Spacing */
+  --ifm-spacing-horizontal: 1rem;
+  --ifm-spacing-vertical: 1rem;
+  
+  /* Navbar */
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.9);
+  --ifm-navbar-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ifm-navbar-height: 4rem;
+  
+  /* Code blocks */
+  --docusaurus-highlighted-code-line-bg: rgba(38, 50, 137, 0.1);
+  
+  /* Additional colors */
+  --openapi-code-blue: #3b82f6;
+  --openapi-code-green: #10b981;
+  --openapi-code-red: #ef4444;
+  --openapi-code-orange: #f59e0b;
+  --openapi-code-purple: #7486ed;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark mode with Tauri-like dark theme */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Primary colors */
+  --ifm-color-primary: #8193f6;
+  --ifm-color-primary-dark: #7486ed;
+  --ifm-color-primary-darker: #6779e4;
+  --ifm-color-primary-darkest: #5a6cd5;
+  --ifm-color-primary-light: #8ea0ff;
+  --ifm-color-primary-lighter: #9baeff;
+  --ifm-color-primary-lightest: #a8bbff;
+  
+  /* Background colors - very dark like Tauri */
+  --ifm-background-color: #0f0f0f;
+  --ifm-background-surface-color: #1a1a1a;
+  
+  /* Text colors */
+  --ifm-font-color-base: #e5e7eb;
+  --ifm-heading-color: #f9fafb;
+  
+  /* Navbar */
+  --ifm-navbar-background-color: rgba(15, 15, 15, 0.9);
+  --ifm-navbar-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.8);
+  
+  /* Code blocks */
+  --docusaurus-highlighted-code-line-bg: rgba(91, 111, 216, 0.15);
+  --ifm-code-background: #1e1e1e;
+  
+  /* Links */
+  --ifm-link-color: #8193f6;
+  --ifm-link-hover-color: #9baeff;
+  
+  /* Cards and surfaces */
+  --ifm-card-background-color: #1a1a1a;
+  --ifm-footer-background-color: #0a0a0a;
 }
 
-/* Sidebar Method labels */
-.api-method>.menu__link {
+/* Global styles */
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--ifm-font-family-base);
+  font-size: var(--ifm-font-size-base);
+  line-height: var(--ifm-line-height-base);
+}
+
+/* Navbar styling */
+.navbar {
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar__title {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+/* Hero section styling */
+.hero {
+  background: linear-gradient(135deg, var(--ifm-color-primary-darkest) 0%, var(--ifm-color-primary) 100%);
+  color: white;
+  padding: 4rem 0;
+}
+
+[data-theme='dark'] .hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+/* Button styling */
+.button {
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.button--primary {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+.button--primary:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(38, 50, 137, 0.3);
+}
+
+/* Card styling */
+.card {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+[data-theme='dark'] .card {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Code styling */
+code {
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.3rem;
+  background-color: rgba(38, 50, 137, 0.1);
+  color: var(--ifm-color-primary-darker);
+}
+
+[data-theme='dark'] code {
+  background-color: rgba(91, 111, 216, 0.1);
+  color: var(--ifm-color-primary-lighter);
+}
+
+/* Sidebar styling */
+.menu {
+  font-weight: 500;
+}
+
+.menu__link {
+  border-radius: 0.375rem;
+  transition: all 0.2s ease;
+}
+
+.menu__link:hover {
+  background-color: rgba(38, 50, 137, 0.05);
+}
+
+[data-theme='dark'] .menu__link:hover {
+  background-color: rgba(91, 111, 216, 0.05);
+}
+
+.menu__link--active {
+  background-color: rgba(38, 50, 137, 0.1);
+  color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .menu__link--active {
+  background-color: rgba(91, 111, 216, 0.1);
+  color: var(--ifm-color-primary);
+}
+
+/* Sidebar Method labels for OpenAPI */
+.api-method > .menu__link {
   align-items: center;
   justify-content: start;
 }
 
-.api-method>.menu__link::before {
+.api-method > .menu__link::before {
   width: 50px;
   height: 20px;
   font-size: 12px;
@@ -43,35 +215,73 @@
   text-transform: uppercase;
   font-weight: 600;
   border-radius: 0.25rem;
-  border: 1px solid;
   margin-right: var(--ifm-spacing-horizontal);
   text-align: center;
   flex-shrink: 0;
-  border-color: transparent;
   color: white;
 }
 
-.get>.menu__link::before {
+.get > .menu__link::before {
   content: "get";
-  background-color: var(--ifm-color-primary);
-}
-
-.put>.menu__link::before {
-  content: "put";
   background-color: var(--openapi-code-blue);
 }
 
-.post>.menu__link::before {
+.put > .menu__link::before {
+  content: "put";
+  background-color: var(--openapi-code-purple);
+}
+
+.post > .menu__link::before {
   content: "post";
   background-color: var(--openapi-code-green);
 }
 
-.delete>.menu__link::before {
+.delete > .menu__link::before {
   content: "del";
   background-color: var(--openapi-code-red);
 }
 
-.patch>.menu__link::before {
+.patch > .menu__link::before {
   content: "patch";
   background-color: var(--openapi-code-orange);
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--ifm-footer-background-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer--dark {
+  background-color: #0a0a0a;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  :root {
+    --ifm-font-size-base: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --ifm-font-size-base: 14px;
+  }
 }

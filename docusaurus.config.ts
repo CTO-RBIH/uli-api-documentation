@@ -7,8 +7,8 @@ import type * as Plugin from "@docusaurus/types/src/plugin";
 import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 
 const config: Config = {
-  title: "RBIH Docs",
-  tagline: "API Documentation for RBIH",
+  title: "RBIH Developer Portal",
+  tagline: "Frictionless Finance for a Billion Indians™",
   url: "https://rbih-docs.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -41,16 +41,22 @@ const config: Config = {
 
   themeConfig:
     {
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
       docs: {
         sidebar: {
           hideable: true,
+          autoCollapseCategories: true,
         },
       },
       navbar: {
-        title: "RBIH Docs",
+        title: "Developer Portal",
         logo: {
-          alt: "RBIH Docs Logo",
-          src: "img/logo.svg",
+          alt: "RBIH Logo",
+          src: "img/rbih-logo.png",
         },
         items: [
           {
@@ -110,7 +116,7 @@ const config: Config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} RBIH. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Reserve Bank Innovation Hub. All rights reserved.`,
       },
       prism: {
         additionalLanguages: [

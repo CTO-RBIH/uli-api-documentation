@@ -4,24 +4,78 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={styles.hero}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            {siteConfig.title}
+          </h1>
+          <p className={styles.heroSubtitle}>
+            {siteConfig.tagline}
+          </p>
+          <div className={styles.heroButtons}>
+            <Link
+              className={clsx('button button--primary button--lg', styles.heroButton)}
+              to="/docs/intro">
+              Get Started
+            </Link>
+            <Link
+              className={clsx('button button--secondary button--lg', styles.heroButton)}
+              to="/docs/category/rbih-api">
+              API Reference
+            </Link>
+          </div>
         </div>
       </div>
     </header>
+  );
+}
+
+function Feature({title, description, icon}) {
+  return (
+    <div className={clsx('col col--4', styles.feature)}>
+      <div className={styles.featureIcon}>{icon}</div>
+      <div className={styles.featureContent}>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+    </div>
+  );
+}
+
+function HomepageFeatures() {
+  const features = [
+    {
+      title: 'RESTful API',
+      icon: '🔌',
+      description: 'Well-designed RESTful API endpoints with comprehensive documentation and examples.',
+    },
+    {
+      title: 'OpenAPI Spec',
+      icon: '📚',
+      description: 'Complete OpenAPI 3.0 specification with interactive API explorer and code generation.',
+    },
+    {
+      title: 'Developer Friendly',
+      icon: '🚀',
+      description: 'Built with developers in mind. Clear documentation, examples, and SDKs for multiple languages.',
+    },
+  ];
+
+  return (
+    <section className={styles.features}>
+      <div className="container">
+        <div className="row">
+          {features.map((feature, idx) => (
+            <Feature key={idx} {...feature} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -29,8 +83,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title} - ${siteConfig.tagline}`}
+      description={siteConfig.tagline}>
       <HomepageHeader />
       <main>
         <HomepageFeatures />
