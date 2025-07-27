@@ -1,0 +1,207 @@
+---
+id: document-verification-service-driving-license-api
+title: "Document Verification Service - Driving License API"
+description: "# Document Verification Service - Driving License API"
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Document Verification Service - Driving License API"}
+>
+</Heading>
+
+<ApiLogo
+  logo={{"url":"/img/rbih-logo.png","altText":"RBIH logo"}}
+  darkLogo={undefined}
+>
+  
+</ApiLogo>
+
+# Document Verification Service - Driving License API
+
+The Driving License API is a digital solution that allows businesses to verify an individual's 
+driving license details online. It offers a paperless, real-time alternative to manual verification, 
+enabling seamless onboarding and identity validation.
+
+## Introduction
+This API is documented in **OpenAPI format** and provides secure access to driving license 
+verification services through the Reserve Bank Innovation Hub (RBIH) platform.
+
+## OpenAPI Specification
+The complete OpenAPI specification for this service is available at:
+- **Current Version**: [document-verification-dl-v1.0.yaml](/examples/document-verification-dl-v1.0.yaml)
+
+## Authentication
+
+This API uses JWT (JSON Web Token) authentication. All requests must include a valid JWT token 
+in the Authorization header. Tokens are valid for:
+- **Sandbox**: 6 hours
+- **Production**: 12 hours
+
+## Prerequisites
+
+Before integrating with this API, ensure the following prerequisites are met:
+
+### 1. IP Whitelisting
+- Lender IPs must be whitelisted with the platform
+- Platform IPs must be whitelisted on the lender side
+- This must be done separately for Sandbox and Production
+
+### 2. URL Whitelisting
+- Platform URLs must be whitelisted in the lender's network
+- Required for both Sandbox and Production environments
+
+### 3. Platform Credentials
+- Public Key
+- Client ID
+- Client Secret
+- User Credentials for Dev Portal
+- Public Certificates
+
+### 4. Service Subscription
+- DL API service must be subscribed in Platform Dev Portal
+- Separate subscription required for Sandbox and Production
+
+## Support
+For technical support, contact: support@rbihub.io
+Response time: Within 2 hours during business hours (8 AM to 8 PM IST)
+
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"BearerAuth"}
+    >
+      
+      
+      JWT token authentication. Include the JWT token in the Authorization header.
+      
+      Token validity:
+      - Sandbox: 6 hours
+      - Production: 12 hours
+      
+      Refer to the Authentication and Authorization API specification for token generation.
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                JWT
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem><TabItem
+      label={"API Key: ApiKeyAuth"}
+      value={"ApiKeyAuth"}
+    >
+      
+      
+      API key authentication (reserved for future use).
+      A unique 24-character alphanumeric string consisting of lowercase letters only.
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                apiKey
+              </td>
+            </tr><tr>
+              <th>
+                Header parameter name:
+              </th><td>
+                api-key
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    RBIH API Support: [support@rbihub.io](mailto:support@rbihub.io)
+  </span><span>
+    URL: [https://rbihub.io/support](https://rbihub.io/support)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://rbihub.io/terms/"}
+  >
+    {'https://rbihub.io/terms/'}
+  </a>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    License
+  </h3><a
+    href={"https://rbihub.io/license"}
+  >
+    Proprietary
+  </a>
+</div>
+      

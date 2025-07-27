@@ -1,49 +1,94 @@
 ---
 sidebar_position: 1
 tags:
-  - test
+  - rbi
+  - api
+  - documentation
 ---
 
-# Tutorial Intro
+# RBI API Documentation
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Welcome to the **Reserve Bank Innovation Hub (RBIH) API Documentation**.
+
+## Overview
+
+The RBIH platform provides a comprehensive suite of financial and verification APIs designed to enable seamless integration for lending institutions and financial service providers.
+
+## Featured API Services
+
+### Document Verification Services
+- **[Driving License Verification](/docs/document-verification/verify-driving-license)** - Real-time verification of driving license details
+- Aadhaar Verification
+- PAN Validation  
+- Voter ID Verification
+- Registration Certificate Verification
+
+### Financial Services
+- **Account Aggregator Services** - Secure financial data aggregation
+- **GSTN Services** - GST Network integration for tax verification
+- **BBPS Services** - Bharat Bill Payment System integration
+
+### Property & Land Services
+- **Land Records Services** - Owner details, lien marking, and property verification
+- **Property Search Reports** - Comprehensive property verification from multiple providers
+
+### Identity & KYC Services
+- **Facematch Services** - Biometric identity verification
+- **Digilocker Integration** - Digital document verification
+- **e-Sign & e-Stamp Services** - Digital signature and stamping
+
+## Quick Start
+
+### Prerequisites
+Before integrating with any RBIH API, ensure you have:
+
+1. **IP Whitelisting** - Both lender and platform IPs must be whitelisted
+2. **Platform Credentials** - Client ID, Secret, and Public Keys
+3. **Service Subscription** - Subscribe to required services via Dev Portal
+4. **JWT Authentication** - Valid tokens for API access
+
+### Authentication
+All APIs use JWT token authentication. Tokens are valid for:
+- **Sandbox**: 6 hours
+- **Production**: 12 hours
+
+### API Specifications
+
+#### Current Version: 1.0.0
+- **[Document Verification API](/docs/document-verification/verify-driving-license)** - Driving License verification and other document services
+- **[API Reference](/examples/document-verification-dl-v1.0.yaml)** (OpenAPI Specification)
+- **[Petstore Example](/examples/petstore.yaml)** (Reference implementation)
+
+## Environment URLs
+
+### Sandbox (Non-Production)
+- **Authentication**: `https://auth.nonprod.rbihub.io/`
+- **Dev Portal**: `https://am.nonprod.rbihub.io/devportal`
+- **API Gateway**: `https://extgw.nonprod.rbihub.io/`
+
+### Production
+- **Authentication**: `https://auth.api.rbihub.io/`
+- **Dev Portal**: `https://am.api.rbihub.io/devportal`
+- **API Gateway**: `https://extgw.api.rbihub.io/`
+
+## Support
+
+For technical support and assistance:
+- **Email**: support@rbihub.io
+- **Response Time**: Within 2 hours during business hours (8 AM to 8 PM IST)
+
+When contacting support, please include:
+- Service name and version
+- Environment (Sandbox/Production)
+- Request headers and payload
+- Error codes and messages
+- Prerequisites status (IP whitelisting, service subscription, etc.)
 
 ## Getting Started
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+1. **Review API Specifications** - Start with the OpenAPI specs for your required services
+2. **Set Up Prerequisites** - Complete IP whitelisting and credential setup
+3. **Subscribe to Services** - Use the Dev Portal to subscribe to required APIs
+4. **Generate Authentication Tokens** - Set up JWT token generation
+5. **Test in Sandbox** - Verify integration in the sandbox environment
+6. **Deploy to Production** - Move to production after successful testing

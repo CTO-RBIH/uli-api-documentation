@@ -1,0 +1,519 @@
+openapi: 3.0.0
+servers:
+  - url: https://extgw.api.rbihub.io/zoop/dl/1.0/en
+    description: Production server
+  - url: https://extgw.nonprod.rbihub.io/zoop/dl/1.0/en
+    description: Sandbox server
+info:
+  description: |
+    # Document Verification Service - Driving License API
+    
+    The Driving License API is a digital solution that allows businesses to verify an individual's 
+    driving license details online. It offers a paperless, real-time alternative to manual verification, 
+    enabling seamless onboarding and identity validation.
+
+    ## Introduction
+    This API is documented in **OpenAPI format** and provides secure access to driving license 
+    verification services through the Reserve Bank Innovation Hub (RBIH) platform.
+
+    ## OpenAPI Specification
+    The complete OpenAPI specification for this service is available at:
+    - **Current Version**: [document-verification-dl-v1.0.yaml](/examples/document-verification-dl-v1.0.yaml)
+
+    ## Authentication
+    
+    This API uses JWT (JSON Web Token) authentication. All requests must include a valid JWT token 
+    in the Authorization header. Tokens are valid for:
+    - **Sandbox**: 6 hours
+    - **Production**: 12 hours
+
+    ## Prerequisites
+    
+    Before integrating with this API, ensure the following prerequisites are met:
+    
+    ### 1. IP Whitelisting
+    - Lender IPs must be whitelisted with the platform
+    - Platform IPs must be whitelisted on the lender side
+    - This must be done separately for Sandbox and Production
+    
+    ### 2. URL Whitelisting
+    - Platform URLs must be whitelisted in the lender's network
+    - Required for both Sandbox and Production environments
+    
+    ### 3. Platform Credentials
+    - Public Key
+    - Client ID
+    - Client Secret
+    - User Credentials for Dev Portal
+    - Public Certificates
+    
+    ### 4. Service Subscription
+    - DL API service must be subscribed in Platform Dev Portal
+    - Separate subscription required for Sandbox and Production
+
+    ## Support
+    For technical support, contact: support@rbihub.io
+    Response time: Within 2 hours during business hours (8 AM to 8 PM IST)
+
+  version: 1.0.0
+  title: Document Verification Service - Driving License API
+  termsOfService: "https://rbihub.io/terms/"
+  contact:
+    name: RBIH API Support
+    email: support@rbihub.io
+    url: https://rbihub.io/support
+  x-logo:
+    url: "/img/rbih-logo.png"
+    altText: RBIH logo
+  license:
+    name: Proprietary
+    url: "https://rbihub.io/license"
+externalDocs:
+  description: Find out more about RBIH Document Verification Services
+  url: "https://rbihub.io/docs"
+tags:
+  - name: document-verification
+    description: Document verification services
+    x-displayName: Document Verification
+  - name: driving-license
+    description: Driving license verification operations
+    x-displayName: Driving License Verification
+x-tagGroups:
+  - name: Verification Services
+    tags:
+      - document-verification
+      - driving-license
+paths:
+  /:
+    post:
+      tags:
+        - driving-license
+      summary: Verify driving license details
+      description: |
+        Verify an individual's driving license details online using the license number 
+        and date of birth. Returns comprehensive license information including validity, 
+        vehicle categories, and holder details.
+      operationId: verifyDrivingLicense
+      security:
+        - BearerAuth: []
+        - ApiKeyAuth: []
+      parameters:
+        - name: client-id
+          in: header
+          description: Base64 encoded Client ID provided by the platform
+          required: true
+          schema:
+            type: string
+          example: "pNRxiviTvgBrf7qMANqBVskDYfEa"
+        - name: provider
+          in: header
+          description: Service provider code
+          required: true
+          schema:
+            type: string
+            enum: ["134"]
+          example: "134"
+        - name: x-env-route
+          in: header
+          description: Header required to access sandbox environment (not required for production)
+          required: false
+          schema:
+            type: string
+            enum: ["/sb"]
+          example: "/sb"
+        - name: x-zoop-api-key
+          in: header
+          description: Unique ZOOP API key generated for each lender
+          required: true
+          schema:
+            type: string
+          example: "HCG997A-4V5MXEM-J40KGVA-E8MN1N1"
+        - name: x-zoop-app-id
+          in: header
+          description: Unique ZOOP App ID generated for each lender
+          required: true
+          schema:
+            type: string
+          example: "681c70a88c0cdd00101457e9"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DLVerificationRequest"
+            example:
+              customer_dl_number: "MH1420110012345"
+              name_to_match: "John Doe"
+              customer_dob: "15-01-1990"
+              consent: "Y"
+              consent_text: "I consent to the verification of my driving license details for loan application processing"
+              task_id: "550e8400-e29b-41d4-a716-446655440000"
+              ts: "2025-07-26T10:30:00Z"
+              txncode: "TXN123456789"
+              ver: "1.0"
+              data: "PGRhdGE+Li4uPC9kYXRhPg=="
+              hmac: "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6"
+      responses:
+        "200":
+          description: Successful verification
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DLVerificationResponse"
+              example:
+                errcode: "E000"
+                status: "success"
+                signature: "abc123def456ghi789"
+                txncode: "TXN123456789"
+                ver: "1.0"
+                ts: "2025-07-26T10:30:15Z"
+                hmac: "x1y2z3a4b5c6d7e8f9g0h1i2j3k4l5m6n7o8p9q0r1s2t3u4v5w6"
+                publickey: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA..."
+                sig-algo: "SHA256withECDSA"
+                data:
+                  dl_number: "MH1420110012345"
+                  user_full_name: "John Doe"
+                  father_or_husband: "Richard Doe"
+                  user_dob: "15-01-1990"
+                  state: "Maharashtra"
+                  status: "Active"
+                  expiry_date: "14-01-2030"
+                  issued_date: "15-01-2010"
+                  user_blood_group: "O+"
+                  user_address: "123 Main St, Mumbai, Maharashtra"
+                  non_transport_validity:
+                    from: "15-01-2010"
+                    to: "14-01-2030"
+                  vehicle_category_details:
+                    - cov: "LMV"
+                      expiryDate: "14-01-2030"
+                      issueDate: "15-01-2010"
+                  name_match_score: "95.5"
+        "400":
+          description: Bad request - Invalid input parameters
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                errcode: "EZP008"
+                status: "failed"
+                message: "Please provide customer DL Number"
+        "401":
+          description: Unauthorized - Invalid or missing authentication
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: Forbidden - Access denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: Not found - Invalid endpoint
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Unprocessable entity - Validation errors
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+              example:
+                errcode: "EZP001"
+                status: "failed"
+                message: "System Error"
+components:
+  schemas:
+    DLVerificationRequest:
+      type: object
+      required:
+        - customer_dl_number
+        - customer_dob
+        - consent
+        - consent_text
+        - task_id
+        - ts
+        - txncode
+        - ver
+        - data
+        - hmac
+      properties:
+        customer_dl_number:
+          type: string
+          description: Driving license number of the customer
+          minLength: 14
+          maxLength: 20
+          example: "MH1420110012345"
+        name_to_match:
+          type: string
+          description: Name to match against license holder name for scoring
+          example: "John Doe"
+        customer_dob:
+          type: string
+          description: Date of birth of the customer in DD-MM-YYYY format
+          pattern: '^\d{2}-\d{2}-\d{4}$'
+          example: "15-01-1990"
+        consent:
+          type: string
+          description: Customer's consent for verification
+          enum: ["Y", "N"]
+          example: "Y"
+        consent_text:
+          type: string
+          description: Text shown to the user while obtaining consent
+          minLength: 20
+          maxLength: 200
+          example: "I consent to the verification of my driving license details"
+        task_id:
+          type: string
+          description: Unique task identifier in UUIDv4 format
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        ts:
+          type: string
+          description: Timestamp in ISO-8601 format indicating request initiation time
+          format: date-time
+          example: "2025-07-26T10:30:00Z"
+        txncode:
+          type: string
+          description: Unique transaction code provided by the lender
+          example: "TXN123456789"
+        ver:
+          type: string
+          description: Version associated with the service
+          example: "1.0"
+        data:
+          type: string
+          description: Base64 encoded XML data
+          format: byte
+          example: "PGRhdGE+Li4uPC9kYXRhPg=="
+        hmac:
+          type: string
+          description: SHA-256 hash of the value under the key "data"
+          example: "a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6"
+
+    DLVerificationResponse:
+      type: object
+      properties:
+        errcode:
+          type: string
+          description: Error code (E000 for success)
+          example: "E000"
+        status:
+          type: string
+          description: Transaction status
+          enum: ["success", "failed"]
+          example: "success"
+        signature:
+          type: string
+          description: Digital signature hash of the data
+          example: "abc123def456ghi789"
+        txncode:
+          type: string
+          description: Unique transaction code provided by the lender
+          example: "TXN123456789"
+        ver:
+          type: string
+          description: JSON response template version
+          example: "1.0"
+        ts:
+          type: string
+          description: Request initiation timestamp in ISO-8601 format
+          format: date-time
+          example: "2025-07-26T10:30:15Z"
+        hmac:
+          type: string
+          description: SHA256 hash of the data value
+          example: "x1y2z3a4b5c6d7e8f9g0h1i2j3k4l5m6n7o8p9q0r1s2t3u4v5w6"
+        publickey:
+          type: string
+          description: Platform public key for source verification
+          example: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA..."
+        sig-algo:
+          type: string
+          description: Algorithm used for data signing
+          example: "SHA256withECDSA"
+        data:
+          $ref: "#/components/schemas/DLVerificationData"
+
+    DLVerificationData:
+      type: object
+      properties:
+        dl_number:
+          type: string
+          description: Driving license number
+          example: "MH1420110012345"
+        user_full_name:
+          type: string
+          description: Full name of the license holder
+          example: "John Doe"
+        father_or_husband:
+          type: string
+          description: Name of the father or husband of the license holder
+          example: "Richard Doe"
+        user_dob:
+          type: string
+          description: Date of birth of the license holder
+          example: "15-01-1990"
+        state:
+          type: string
+          description: Issuing state of the driving license
+          example: "Maharashtra"
+        status:
+          type: string
+          description: Current status of the license
+          example: "Active"
+        expiry_date:
+          type: string
+          description: Overall license expiry date
+          example: "14-01-2030"
+        issued_date:
+          type: string
+          description: Date the license was issued
+          example: "15-01-2010"
+        endorse_date:
+          type: string
+          description: Date of endorsement (if applicable)
+          example: "15-01-2010"
+        endorse_number:
+          type: string
+          description: Endorsement number (if applicable)
+          example: "END123456"
+        user_blood_group:
+          type: string
+          description: Blood group of the license holder
+          example: "O+"
+        user_address:
+          type: string
+          description: Address of the license holder
+          example: "123 Main St, Mumbai, Maharashtra"
+        user_image:
+          type: string
+          description: Base64-encoded image of the license holder
+          format: byte
+        non_transport_validity:
+          $ref: "#/components/schemas/ValidityPeriod"
+        transport_validity:
+          $ref: "#/components/schemas/ValidityPeriod"
+        status_details:
+          $ref: "#/components/schemas/StatusDetails"
+        vehicle_category_details:
+          type: array
+          description: List of vehicle categories the user is licensed to drive
+          items:
+            $ref: "#/components/schemas/VehicleCategory"
+        name_match_score:
+          type: string
+          description: Name match score if name matching addon is requested
+          example: "95.5"
+
+    ValidityPeriod:
+      type: object
+      properties:
+        from:
+          type: string
+          description: Start date of validity period
+          example: "15-01-2010"
+        to:
+          type: string
+          description: End date of validity period
+          example: "14-01-2030"
+
+    StatusDetails:
+      type: object
+      properties:
+        from:
+          type: string
+          description: From date for current status
+          example: "15-01-2010"
+        to:
+          type: string
+          description: To date for current status
+          example: "14-01-2030"
+        remarks:
+          type: string
+          description: Remarks associated with the license status
+          example: "Valid license"
+
+    VehicleCategory:
+      type: object
+      properties:
+        cov:
+          type: string
+          description: Class of Vehicle (e.g., LMV, MCWG)
+          example: "LMV"
+        expiryDate:
+          type: string
+          description: Expiry date for the vehicle class
+          example: "14-01-2030"
+        issueDate:
+          type: string
+          description: Issue date for the vehicle class
+          example: "15-01-2010"
+
+    ErrorResponse:
+      type: object
+      properties:
+        errcode:
+          type: string
+          description: Error code indicating the type of error
+          enum:
+            - "EZP001"  # System Error
+            - "EZP002"  # Invalid request structure
+            - "EZP003"  # Invalid JSON format
+            - "EZP004"  # External service error
+            - "EZP005"  # Network connectivity issue
+            - "EZP006"  # Communication Error
+            - "EZP007"  # Empty response from external service
+            - "EZP008"  # Please provide customer DL Number
+            - "EZP009"  # Please provide customer DOB
+            - "EZP020"  # Please provide consent as Y or N
+            - "EZP021"  # Please provide consent_text
+            - "EZP022"  # Please provide task_id
+          example: "EZP008"
+        status:
+          type: string
+          description: Transaction status
+          enum: ["failed"]
+          example: "failed"
+        message:
+          type: string
+          description: Human readable error message
+          example: "Please provide customer DL Number"
+        timestamp:
+          type: string
+          description: Error occurrence timestamp
+          format: date-time
+          example: "2025-07-26T10:30:00Z"
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT token authentication. Include the JWT token in the Authorization header.
+        
+        Token validity:
+        - Sandbox: 6 hours
+        - Production: 12 hours
+        
+        Refer to the Authentication and Authorization API specification for token generation.
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-key
+      description: |
+        API key authentication (reserved for future use).
+        A unique 24-character alphanumeric string consisting of lowercase letters only.

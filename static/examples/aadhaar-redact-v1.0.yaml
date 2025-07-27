@@ -1,0 +1,266 @@
+openapi: 3.0.3
+info:
+  title: Think360 Aadhaar Redact Service API
+  description: The Aadhaar Redact API allows Lenders to securely mask Aadhaar numbers in documents by redacting the 12-digit identifier from scanned images. This ensures compliance with data privacy norms and protects sensitive personal information during digital KYC and onboarding processes.
+  version: 1.0.0
+  contact:
+    name: Platform Support Center
+    email: support@rbihub.io
+    
+servers:
+  - url: https://extgw.nonprod.rbihub.io
+    description: Sandbox Environment
+  - url: https://extgw.api.rbihub.io
+    description: Production Environment
+
+paths:
+  /kwikid/aadhar-redact/{ver}/{lang}:
+    post:
+      summary: Redact Aadhaar Number from Document Image
+      description: Performs Aadhaar redaction on a document image, masking the 12-digit Aadhaar number while preserving the rest of the document content.
+      operationId: redactAadhaar
+      tags:
+        - Aadhaar Redact
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          description: API version
+          schema:
+            type: string
+            example: "1.0"
+        - name: lang
+          in: path
+          required: true
+          description: Language for response (default en)
+          schema:
+            type: string
+            default: en
+            example: en
+        - name: Authentication
+          in: header
+          required: true
+          description: JSON Web Token (JWT) created and signed by the authentication server
+          schema:
+            type: string
+            example: "EkN-DOsnsuRjRO6BxXemmJDm3HbxrbRzXglbN2S4sOkopdU4IsDxTI8jO19W_A4K8ZPJijNLis4EzsHeY559a4DFOd50_OqgHGuERTqYZyuhtF39yxJPAjUESwxk2J5k_4zM3O-vtd1Ghyo4IbqKKSy6J9mTniYJPenn5-HiirE"
+        - name: api-key
+          in: header
+          required: false
+          description: A unique key provided by the platform (24-character alphanumeric string, lowercase only)
+          schema:
+            type: string
+            example: "434950ee34353tty33463399"
+        - name: client-id
+          in: header
+          required: true
+          description: Base64 encoded Client Id provided during onboarding
+          schema:
+            type: string
+            example: "R3NHRGFzVmJvNmJWRnNuQnRfbDZuOGgxOW13YQ=="
+        - name: provider
+          in: header
+          required: true
+          description: Service provider code
+          schema:
+            type: string
+            example: "132"
+        - name: x-env-route
+          in: header
+          required: false
+          description: Header required to access the sandbox environment (not required for production)
+          schema:
+            type: string
+            example: "/sb"
+        - name: x-kwikid-key
+          in: header
+          required: true
+          description: KwikID partner identification key
+          schema:
+            type: string
+            example: "123123805123175123"
+            
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - meta
+                - data
+                - hmac
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - txncode
+                    - ver
+                    - ts
+                  properties:
+                    txncode:
+                      type: string
+                      description: Unique transaction code
+                      example: "5473773"
+                    ver:
+                      type: string
+                      description: Version of the request template
+                      example: "1.0"
+                    ts:
+                      type: string
+                      format: date-time
+                      description: Date and time of request initiation in ISO-8601 format
+                      example: "2024-06-27T12:26:45+0530"
+                data:
+                  type: object
+                  required:
+                    - uniqueId
+                    - imageBase64
+                  properties:
+                    uniqueId:
+                      type: string
+                      description: Alphanumeric Unique Identifier (1-50 characters)
+                      pattern: ^[a-zA-Z0-9]{1,50}$
+                      example: "test123"
+                    imageBase64:
+                      type: string
+                      description: Base64 encoded image (JPEG/JPG/PNG format, 1KB-10MB size)
+                      example: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD..."
+                hmac:
+                  type: string
+                  description: SHA-256 Hash of the value of key 'data'
+                  example: "wAqy8gf+uS5j5naWleuCZejR7X2TOin/KjwsUm0Q9Ms="
+                  
+      responses:
+        '200':
+          description: Successful Aadhaar redaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                        description: Error code - 'E000' indicates success
+                        example: "E000"
+                      status:
+                        type: string
+                        description: Transaction status
+                        enum: [success, failed]
+                        example: "success"
+                      info:
+                        type: string
+                        description: Additional message or notes (can be empty)
+                        example: ""
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        description: Status message
+                        example: "Aadhaar redact completed successfully"
+                      contentType:
+                        type: string
+                        description: MIME type of the redacted image
+                        example: "image/jpeg"
+                      uniqueId:
+                        type: string
+                        description: Unique identifier from the request
+                        example: "test123"
+                      redactedImageBase64:
+                        type: string
+                        description: Base64-encoded redacted Aadhaar image
+                        example: "/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBw"
+                  signature:
+                    type: string
+                    description: Digital signature hash of the data for integrity verification
+                    example: "MGUCMBT2op6n9evwi0d4VDxyx4AjhkmrMxlUA71d2b4d0Yt9Gee/QuzZreuTildXdSTd6gIxAJ4Utkl64L6P/9B/ZrEMvxXWefL4QpUUHPI2EwrFqCZor8OxLyAoCf0EcBAfLPT4mA=="
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                        description: Transaction identifier
+                        example: "5473773"
+                      ver:
+                        type: string
+                        description: Response format version
+                        example: "1.0"
+                      ts:
+                        type: string
+                        format: date-time
+                        description: Timestamp in ISO-8601 format
+                        example: "2025-05-09T12:00:47+0530"
+                  hmac:
+                    type: string
+                    description: SHA256 HMAC of the data payload
+                    example: "FLBbMCsSmAP9T+suAXC0KbJ19AOzQYp2LreP7goNHYU="
+                  publickey:
+                    type: string
+                    description: Platform public key for signature verification
+                    example: "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAETSwSJlJmF6JEqiu8F4pW1KDppDCVwfJgdBx/pTLopUwfB7mBIDkKVM/ZMa4f9QoOYxtVTp4p6nvx8/rB08e9QHNNNNbmof7/cndQhb3h+VIwAIO6pdYXy+6rPcue9dcu"
+                  sig-algo:
+                    type: string
+                    description: Signature algorithm used
+                    example: "SHA256withECDSA"
+                    
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+                
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+                
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            errcode:
+              type: string
+              description: Error code
+              enum: [ETK001, ETK005, ETK014, ETK015, ETK016]
+            status:
+              type: string
+              description: Status
+              example: "failed"
+            info:
+              type: string
+              description: Error message
+              
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+security:
+  - JWT: []
+  
+tags:
+  - name: Aadhaar Redact
+    description: API for redacting Aadhaar numbers from document images
+    
+externalDocs:
+  description: Platform Error Codes Documentation
+  url: https://docs.rbihub.io/error-codes

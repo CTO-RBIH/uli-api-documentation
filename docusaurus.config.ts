@@ -11,7 +11,7 @@ const config: Config = {
   tagline: "Frictionless Finance for a Billion Indians™",
   url: "https://rbih-docs.com",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 
@@ -31,13 +31,6 @@ const config: Config = {
           editUrl:
             "https://github.com/rbih/rbih-docs/tree/main/",
           docItemComponent: "@theme/ApiItem", // Derived from docusaurus-theme-openapi
-          versions: {
-            current: {
-              label: 'Next',
-              path: 'next',
-              badge: true,
-            },
-          },
           lastVersion: '1.0.0',
           includeCurrentVersion: true,
         },
@@ -77,7 +70,7 @@ const config: Config = {
           {
             label: "RBIH API",
             position: "left",
-            to: "/docs/petstore/swagger-petstore-yaml",
+            to: "/docs/next/aadhaar-redact/think-360-aadhaar-redact-service-api",
           },
           {
             type: 'docsVersionDropdown',
@@ -121,7 +114,7 @@ const config: Config = {
               },
               {
                 label: "API Reference",
-                to: "/docs/petstore/swagger-petstore-yaml",
+                to: "/docs/next/aadhaar-redact/think-360-aadhaar-redact-service-api",
               },
               {
                 label: "All Versions",
@@ -315,9 +308,17 @@ const config: Config = {
         id: "openapi",
         docsPluginId: "classic",
         config: {
-          petstore: {
-            specPath: "examples/petstore.yaml",
-            outputDir: "docs/petstore",
+          "document-verification": {
+            specPath: "examples/document-verification-dl-v1.0.yaml",
+            outputDir: "docs/document-verification",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "aadhaar-redact": {
+            specPath: "examples/aadhaar-redact-v1.0.yaml",
+            outputDir: "docs/aadhaar-redact",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",

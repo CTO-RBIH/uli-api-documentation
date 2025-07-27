@@ -40,7 +40,7 @@ function Version() {
           </div>
         )}
 
-        {latestVersion !== currentVersion && (
+        {latestVersion && (
           <div className="margin-bottom--lg">
             <h3 id="latest">Latest stable version</h3>
             <p>Here you can find the documentation for the latest stable version.</p>
