@@ -4,16 +4,16 @@ const sidebar: SidebarsConfig = {
   apisidebar: [
     {
       type: "category",
-      label: "Driving License Verification",
+      label: "Facematch",
       link: {
         type: "doc",
-        id: "document-verification/driving-license",
+        id: "facematch/facematch",
       },
       items: [
         {
           type: "doc",
-          id: "document-verification/verify-driving-license",
-          label: "Verify driving license details",
+          id: "facematch/perform-facematch",
+          label: "Perform Facial Verification",
           className: "api-method post",
         },
       ],

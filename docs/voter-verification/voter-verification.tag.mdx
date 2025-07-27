@@ -1,0 +1,63 @@
+---
+id: voter-verification
+title: "Document Verification Service - Voter ID API"
+description: "The Voter ID API is a digital solution that allows businesses to verify an individual's voter ID details online. It offers a paperless, real-time alternative to manual verification, enabling seamless onboarding and identity validation."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Document Verification Service - Voter ID API"}
+>
+</Heading>
+
+The Voter ID API is a digital solution that allows businesses to verify an individual's voter ID details online. It offers a paperless, real-time alternative to manual verification, enabling seamless onboarding and identity validation.
+
+## Key Features
+
+- **Digital Verification**: Paperless, real-time voter ID verification
+- **Comprehensive Data**: Retrieves detailed electoral and demographic information
+- **Electoral Details**: Access to constituency, polling booth, and administrative data
+- **Name Matching**: Optional name similarity scoring against voter records
+- **Multi-language Support**: Returns data in both English and vernacular languages
+- **Consent-Based**: Requires explicit customer consent for verification
+
+## Data Retrieved
+
+- **Personal Information**: Name, age, gender, and relative details
+- **Electoral Data**: EPIC number, constituency information, polling booth details
+- **Geographic Information**: State, district, and polling location coordinates
+- **Administrative Details**: Serial numbers, last updated dates, and status flags
+- **Optional Features**: Name matching scores and similarity analysis
+
+## Service Information
+
+- **Provider**: ZOOP (Provider Code: 134)
+- **API Version**: 1.0
+- **Data Format**: XML-based request payload (Base64 encoded)
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token (6 hours sandbox, 12 hours production)
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

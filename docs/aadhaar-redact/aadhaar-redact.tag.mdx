@@ -1,15 +1,48 @@
 ---
 id: aadhaar-redact
-title: "Aadhaar Redact"
-description: "Aadhaar Redact"
+title: "Think360 Aadhaar Redact Service API"
+description: "The Aadhaar Redact API allows Lenders to securely mask Aadhaar numbers in documents by redacting the 12-digit identifier from scanned images. This ensures compliance with data privacy norms and protects sensitive personal information during digital KYC and onboarding processes."
+hide_title: true
 custom_edit_url: null
 ---
 
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
 
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
 
-API for redacting Aadhaar numbers from document images
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Think360 Aadhaar Redact Service API"}
+>
+</Heading>
 
+The Aadhaar Redact API allows Lenders to securely mask Aadhaar numbers in documents by redacting the 12-digit identifier from scanned images. This ensures compliance with data privacy norms and protects sensitive personal information during digital KYC and onboarding processes. The process is automated, efficient, and privacy driven.
 
+## Key Features
+
+- **Privacy Compliance**: Ensures compliance with data privacy norms by masking sensitive Aadhaar information
+- **Document Processing**: Processes scanned images in JPEG/JPG/PNG formats (1KB-10MB)
+- **Automated Redaction**: Automatically identifies and redacts 12-digit Aadhaar numbers
+- **Digital KYC Integration**: Seamlessly integrates with digital KYC and onboarding workflows
+- **Secure Processing**: Uses HMAC SHA-256 for secure data transmission and JWT authentication
+
+## Service Information
+
+- **Provider**: Think360 (Provider Code: 132)
+- **API Version**: 1.0
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token with 6-hour validity
+
+## Available Endpoints
 
 ```mdx-code-block
 import DocCardList from '@theme/DocCardList';

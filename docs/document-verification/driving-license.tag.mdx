@@ -1,15 +1,49 @@
 ---
 id: driving-license
-title: "Driving License Verification"
-description: "Driving License Verification"
+title: "Document Verification Service - Driving License API"
+description: "Digital solution for verifying driving license details online, offering paperless, real-time verification for seamless onboarding and identity validation."
+hide_title: true
 custom_edit_url: null
 ---
 
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
 
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
 
-Driving license verification operations
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Document Verification Service - Driving License API"}
+>
+</Heading>
 
+The Driving License Verification API is a digital solution that allows businesses to verify an individual's driving license details online. It offers a paperless, real-time alternative to manual verification, enabling seamless onboarding and identity validation.
 
+## Key Features
+
+- **Digital Verification**: Paperless, real-time driving license verification
+- **Comprehensive Data**: Retrieves detailed license and personal information
+- **License Validation**: Verifies license authenticity and current status
+- **Personal Details**: Access to holder's name, address, and license specifics
+- **Real-time Processing**: Immediate verification results
+- **Secure Processing**: Uses HMAC SHA-256 and JWT authentication
+
+## Service Information
+
+- **API Version**: 1.0
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token based authentication
+- **Response Format**: JSON with digital signature verification
+
+## Available Endpoints
 
 ```mdx-code-block
 import DocCardList from '@theme/DocCardList';

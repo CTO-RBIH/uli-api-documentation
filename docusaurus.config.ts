@@ -70,7 +70,7 @@ const config: Config = {
           {
             label: "RBIH API",
             position: "left",
-            to: "/docs/next/aadhaar-redact/think-360-aadhaar-redact-service-api",
+            to: "/docs/next/rbih-apis",
           },
           {
             type: 'docsVersionDropdown',
@@ -114,7 +114,7 @@ const config: Config = {
               },
               {
                 label: "API Reference",
-                to: "/docs/next/aadhaar-redact/think-360-aadhaar-redact-service-api",
+                to: "/docs/next/rbih-apis",
               },
               {
                 label: "All Versions",
@@ -319,6 +319,22 @@ const config: Config = {
           "aadhaar-redact": {
             specPath: "examples/aadhaar-redact-v1.0.yaml",
             outputDir: "docs/aadhaar-redact",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "facematch": {
+            specPath: "examples/facematch-v1.0.yaml",
+            outputDir: "docs/facematch",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "voter-verification": {
+            specPath: "examples/voter-verification-v1.0.yaml",
+            outputDir: "docs/voter-verification",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",

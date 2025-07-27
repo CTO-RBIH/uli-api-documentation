@@ -3,10 +3,6 @@ import type { SidebarsConfig } from "@docusaurus/plugin-content-docs";
 const sidebar: SidebarsConfig = {
   apisidebar: [
     {
-      type: "doc",
-      id: "aadhaar-redact/think-360-aadhaar-redact-service-api",
-    },
-    {
       type: "category",
       label: "Aadhaar Redact",
       link: {

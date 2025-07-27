@@ -1,0 +1,63 @@
+---
+id: facematch
+title: "Think360 Facematch Service API"
+description: "The Facematch API enables Lenders to verify a customer's identity by comparing a live image (captured during the journey) with an official photo ID (such as Aadhaar, PAN, or passport). This biometric validation ensures that the person interacting is the actual document holder, adding a critical layer of security."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Think360 Facematch Service API"}
+>
+</Heading>
+
+The Facematch API enables Lenders to verify a customer's identity by comparing a live image (captured during the journey) with an official photo ID (such as Aadhaar, PAN, or passport). This biometric validation ensures that the person interacting is the actual document holder, adding a critical layer of security. The process is consent-driven and forms an essential part of digital KYC and onboarding workflows.
+
+## Key Features
+
+- **Identity Verification**: Compares live customer images with official document photos
+- **Biometric Security**: Adds critical security layer through facial comparison
+- **Confidence Scoring**: Returns similarity scores with 65% match threshold for success
+- **Consent-Driven**: Requires explicit customer consent for privacy compliance
+- **Multi-Format Support**: Accepts JPEG/JPG/PNG images (1KB-10MB)
+- **Real-time Processing**: Provides immediate verification results
+
+## How It Works
+
+1. **Live Image Capture**: Customer takes a live photo using device camera
+2. **Document Collection**: Official photo ID document is captured or retrieved
+3. **Consent Verification**: Electronic consent is obtained from customer
+4. **Face Comparison**: API compares both images and returns confidence score
+5. **Result Processing**: Match success/failure is determined based on confidence threshold
+
+## Service Information
+
+- **Provider**: Think360 (Provider Code: 132)
+- **API Version**: 1.0
+- **Match Threshold**: 65% confidence for successful verification
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token with 6-hour validity
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

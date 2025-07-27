@@ -4,16 +4,16 @@ const sidebar: SidebarsConfig = {
   apisidebar: [
     {
       type: "category",
-      label: "Driving License Verification",
+      label: "Voter Verification",
       link: {
         type: "doc",
-        id: "document-verification/driving-license",
+        id: "voter-verification/voter-verification",
       },
       items: [
         {
           type: "doc",
-          id: "document-verification/verify-driving-license",
-          label: "Verify driving license details",
+          id: "voter-verification/verify-voter-id",
+          label: "Verify Voter ID Details",
           className: "api-method post",
         },
       ],
