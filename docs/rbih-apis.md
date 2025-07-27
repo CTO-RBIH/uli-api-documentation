@@ -28,13 +28,11 @@ Welcome to the Reserve Bank Innovation Hub (RBIH) API documentation. RBIH provid
 - **LRS Lien Marking Service** - Create and manage liens on land properties upon loan issuance with digitally signed documentation across 4 states
 
 ### Agricultural Services
-- **Crop Insurance APIs** - Agricultural insurance verification and processing
-- **Farmer Database APIs** - Farmer identity and land ownership verification
+- **Farm Yield & MultiLand Parcel Service** - Comprehensive farm health analysis, crop yield predictions, and weather intelligence powered by satellite imagery and geospatial data across 5 states
 
 ### Other Services
-- **Translation & Transliteration** - Language processing services
-- **Legal Verification** - Legal document and entity verification
-- **E-signature & E-stamp** - Digital document processing services
+- **Translation & Transliteration Service** - Language processing services for transliteration and translation between English and 6 Indian languages via Bhashini
+- **Legal Verification Service** - Comprehensive legal background checks for individuals and entities from multiple court systems and enforcement databases
 
 ## Authentication
 

@@ -1,0 +1,125 @@
+---
+id: farm-yield-multi-land-parcel
+title: "Farm Yield & MultiLand Parcel Service API"
+description: "The Farm Yield Report API provides farm health parameters such as irrigation, water body, ground water, minimum support price, crop yield and weather conditions based on algorithms and geospatial data."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.7"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Farm Yield & MultiLand Parcel Service API"}
+>
+</Heading>
+
+The Farm Yield Report API provides comprehensive farm health parameters such as irrigation, water body, ground water, minimum support price, crop yield and weather conditions based on advanced algorithms and geospatial data. This service supports both single and multi-land parcel analysis across multiple Indian states, enabling precision agriculture insights for agricultural lending and risk assessment.
+
+This service is part of the Unified Lending Interface (ULI) and is powered by SatSure Analytics India Pvt Ltd, providing cutting-edge agricultural intelligence through satellite imagery and machine learning algorithms.
+
+## Key Features
+
+- **Dual Analysis Modes**: Single farm analysis (GET) and multi-land parcel analysis (POST)
+- **Geospatial Intelligence**: Satellite imagery analysis with farm geometry mapping
+- **Multi-State Coverage**: Supports 5 major agricultural states with state-specific land record formats
+- **Comprehensive Analytics**: Farm health, crop yield, weather parameters, and historical performance
+- **Asynchronous Processing**: Multi-land analysis with callback notifications (≤5 seconds)
+- **Historical Data**: Multi-season crop performance and yield comparison
+- **Precision Agriculture**: Centroid mapping and detailed farm geometry analysis
+
+## Supported States & Land Record Formats
+
+### Madhya Pradesh (State Code: 23)
+- **Parameters**: Village LGD Code + Khasara Number
+- **Format**: "khasara": "10/3 (S)"
+- **Coverage**: Major agricultural districts
+
+### Odisha (State Code: 21)
+- **Parameters**: Village LGD Code + Khatiyan Number + Plot Number
+- **Format**: Separate khatiyan and plot identification
+- **Coverage**: Rice and cash crop regions
+
+### Telangana (State Code: 36)
+- **Parameters**: Village LGD Code + Survey Number
+- **Format**: Supports Unicode characters in survey numbers
+- **Coverage**: Cotton and paddy cultivation areas
+
+### Maharashtra (State Code: 27)
+- **Parameters**: Village LGD Code + Survey Number
+- **Format**: Standard survey number format
+- **Coverage**: Sugarcane and cotton belt regions
+
+### Andhra Pradesh (State Code: 37)
+- **Parameters**: Village LGD Code + Survey Number
+- **Format**: Standard survey number identification
+- **Coverage**: Rice and aquaculture regions
+
+## Service Information
+
+- **API Version**: 1.7 (Latest)
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token (6 hours validity)
+- **Service Provider**: SatSure Analytics (Provider Code: 104)
+- **Processing**: Synchronous (single farm) and Asynchronous (multi-land)
+- **Data Sources**: Satellite imagery, weather stations, agricultural databases
+
+## Farm Analytics Capabilities
+
+### Farm Health Parameters
+- **Soil Health Indicators**: Soil quality and fertility analysis
+- **Irrigation Assessment**: Water availability and irrigation infrastructure
+- **Water Body Proximity**: Distance and access to water sources
+- **Ground Water Analysis**: Aquifer levels and availability
+- **Vegetation Indices**: NDVI and crop health monitoring
+
+### Crop Yield Analysis
+- **Potential Yield Calculation**: Farm-specific yield predictions
+- **District Benchmark Comparison**: Performance vs regional averages
+- **Historical Performance**: Multi-season crop performance tracking
+- **Price Integration**: Market price data for ROI analysis
+- **Performance Rating**: Good/Average/Below Average classifications
+
+### Weather Intelligence
+- **Temperature Patterns**: Seasonal temperature analysis
+- **Rainfall Data**: Precipitation patterns and irrigation needs
+- **Humidity Monitoring**: Atmospheric moisture levels
+- **Wind Speed Analysis**: Weather impact on crop growth
+- **Climate Risk Assessment**: Weather-related risk factors
+
+## Multi-Land Parcel Processing
+
+- **Batch Analysis**: Up to 5 land parcels per request
+- **Asynchronous Callbacks**: Results delivered within 5 seconds
+- **Callback Authentication**: Secure webhook verification with JWT
+- **State-Specific Handling**: Automatic format detection by state code
+- **Comprehensive Reports**: Combined analysis across multiple parcels
+
+## Integration Features
+
+- **Member ID Support**: SatSure member identification for specific lenders
+- **Callback URLs**: Webhook integration for asynchronous processing
+- **Digital Signatures**: HMAC SHA-256 and digital signatures for data integrity
+- **Farm Imagery**: Satellite images and geometry visualization
+- **Centroid Mapping**: Precise geographic coordinates for each parcel
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

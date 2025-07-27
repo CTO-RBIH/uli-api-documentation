@@ -62,8 +62,8 @@ const config: Config = {
         },
         items: [
           {
-            type: "doc",
-            docId: "intro",
+            type: "docSidebar",
+            sidebarId: "tutorialSidebar",
             position: "left",
             label: "Documentation",
           },
@@ -110,7 +110,7 @@ const config: Config = {
             items: [
               {
                 label: "Get Started",
-                to: "/docs/intro",
+                to: "/docs/next/rbih-apis",
               },
               {
                 label: "API Reference",
@@ -391,6 +391,30 @@ const config: Config = {
           "lrs-lien-marking": {
             specPath: "examples/lrs-lien-marking-v1.5.yaml",
             outputDir: "docs/lrs-lien-marking",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "translation-transliteration": {
+            specPath: "examples/translation-transliteration-v1.3.yaml",
+            outputDir: "docs/translation-transliteration",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "legal-verification": {
+            specPath: "examples/legal-verification-v1.1.yaml",
+            outputDir: "docs/legal-verification",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "farm-yield-multiland": {
+            specPath: "examples/farm-yield-multiland-v1.7.yaml",
+            outputDir: "docs/farm-yield-multiland",
             sidebarOptions: {
               groupPathsBy: "tag",
               categoryLinkSource: "tag",

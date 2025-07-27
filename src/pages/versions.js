@@ -32,7 +32,7 @@ function Version() {
                     <Link to={currentVersion.path}>Documentation</Link>
                   </td>
                   <td>
-                    <Link to={`${currentVersion.path}/petstore/swagger-petstore-yaml`}>API Reference</Link>
+                    <Link to={`${currentVersion.path}/rbih-apis`}>API Reference</Link>
                   </td>
                 </tr>
               </tbody>
@@ -52,7 +52,7 @@ function Version() {
                     <Link to={latestVersion.path}>Documentation</Link>
                   </td>
                   <td>
-                    <Link to={`${latestVersion.path}/petstore/swagger-petstore-yaml`}>API Reference</Link>
+                    <Link to={`${latestVersion.path}/rbih-apis`}>API Reference</Link>
                   </td>
                 </tr>
               </tbody>
@@ -73,7 +73,7 @@ function Version() {
                       <Link to={version.path}>Documentation</Link>
                     </td>
                     <td>
-                      <Link to={`${version.path}/petstore/swagger-petstore-yaml`}>API Reference</Link>
+                      <Link to={`${version.path}/rbih-apis`}>API Reference</Link>
                     </td>
                   </tr>
                 ))}

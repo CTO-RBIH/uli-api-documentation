@@ -1,0 +1,104 @@
+---
+id: legal-verification-service-api
+title: "Legal Verification Service API"
+description: "The Legal Verification API provides comprehensive legal background checks for both individuals and entities. It checks and retrieves legal history, case details, and compliance status from multiple sources including Supreme Court, High Court, e-Court, Consumer Court, FIRs, and defaulter lists. Also provides arrested, most wanted, and absconder data."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Legal Verification Service API"}
+>
+</Heading>
+
+
+
+The Legal Verification API provides comprehensive legal background checks for both individuals and entities. It checks and retrieves legal history, case details, and compliance status from multiple sources including Supreme Court, High Court, e-Court, Consumer Court, FIRs, and defaulter lists. Also provides arrested, most wanted, and absconder data.
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"JWTAuth"}
+    >
+      
+      
+      JWT token obtained from RBIH authentication service
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                JWT
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    RBIH Support: [support@rbihub.io](mailto:support@rbihub.io)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    License
+  </h3><a
+    href={"https://rbihub.in/terms-of-use/"}
+  >
+    RBIH License
+  </a>
+</div>
+      

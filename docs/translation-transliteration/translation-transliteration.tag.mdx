@@ -1,0 +1,101 @@
+---
+id: translation-transliteration
+title: "Translation & Transliteration Service API"
+description: "The Transliteration and Translation API provides a simple and effective means to transliterate or translate any text from standard English to selected Indian languages and vice versa."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.3.1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Translation & Transliteration Service API"}
+>
+</Heading>
+
+The Transliteration and Translation API provides a simple and effective means to transliterate or translate any text from standard English to selected Indian languages and vice versa. This service is offered by Bhashini and supports seamless language processing for financial applications and digital services.
+
+This service is part of the Public Tech Platform for Frictionless Credit and enables multilingual support for enhanced customer experience across diverse linguistic communities in India.
+
+## Key Features
+
+- **Dual Language Processing**: Both transliteration (script conversion) and translation (meaning conversion)
+- **Multi-Language Support**: Supports 6 major Indian languages plus English
+- **Bidirectional Processing**: Convert from English to Indian languages and vice versa
+- **Base64 Encoding**: Secure text processing with Base64 encoded inputs and outputs
+- **Digital Signatures**: SHA256withECDSA algorithm for data integrity
+- **Bhashini Integration**: Powered by India's national language technology platform
+
+## Supported Languages
+
+### Core Languages (Available in all versions)
+- **English** (en) - Source and target language
+- **Hindi** (hi) - India's most widely spoken language
+- **Tamil** (ta) - Primary language of Tamil Nadu
+- **Marathi** (mr) - Primary language of Maharashtra
+- **Kannada** (kn) - Primary language of Karnataka
+
+### Extended Languages (Available from v1.3 onwards)
+- **Bengali** (bn) - Primary language of West Bengal
+- **Telugu** (te) - Primary language of Andhra Pradesh and Telangana
+
+## Service Types
+
+### Transliteration Service
+- **Purpose**: Converts script while preserving phonetic sound
+- **Example**: "Hello" (English) → "हैलो" (Hindi script)
+- **API Versions**: 1.2, 1.3
+- **Use Cases**: Names, addresses, phonetic conversions
+
+### Translation Service  
+- **Purpose**: Converts meaning between languages
+- **Example**: "Hello" (English) → "नमस्ते" (Hindi meaning)
+- **API Version**: 1.0
+- **Use Cases**: Documents, instructions, communication
+
+## Service Information
+
+- **API Version**: 1.3.1 (Latest)
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token (6 hours validity in sandbox, 12 hours in production)
+- **Request Method**: POST for all operations
+- **Data Format**: JSON with Base64 encoded text
+- **Service Provider**: Bhashini (Provider Code: 111)
+
+## Technical Specifications
+
+- **Input Format**: Base64 encoded text strings
+- **Output Format**: Base64 encoded processed text
+- **Character Support**: Full Unicode support for Indian languages
+- **Security**: HMAC SHA-256 signatures for request integrity
+- **Response Verification**: Digital signatures with public key validation
+
+## Use Cases in Financial Services
+
+- **Customer Communication**: Translate terms and conditions, loan documents
+- **Data Entry**: Transliterate customer names and addresses
+- **Compliance**: Provide regulatory information in local languages
+- **User Interface**: Support multilingual banking interfaces
+- **Document Processing**: Convert and verify multilingual documents
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

@@ -1,0 +1,71 @@
+---
+id: get-single-farm-yield-report
+title: "Get Single Farm Yield Report"
+description: "Retrieves farm health parameters and yield analysis for a single land parcel based on geospatial data and agricultural algorithms."
+sidebar_label: "Get Single Farm Yield Report"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWt1T27oS/1c0frhD5+Q7BGieLpSW5gxQJqHtPdPhQbEVR8WWXElO4TL53++uZCd2EhIHzsO5MzzFsXdXP+2XVtI+eYaG2uv/8D5RFZO/OIsC8i9ylUaGX1IRkBuqfBZ5dzUvYNpXPDFcCq/vDZlRnM2YJhNknDIamSlJqKIxM0xpgsyPVhwVNHrUHCilIpRoLsKIkQgJEiudjKlmAZGChEzqhBpOIxJQQ60QGiruA55UwVsahVJxM411w6t5MmGKIqBBAJBCZkZWNk7FzmTIEqkMEC5xwVSfPAF/gGHGFHzjOB0YdArPiv1KuWIgzaiUrc759GZAgEfjv5qn/SmLqdd/8sxjguI0aESE8IU90DiJ8FW7cejN57XFiDDpcK8hwQZhSkNGfBkwq0DFdCKFZtsRiDRGozKBllvigf9FOKepmTJhuG+VmAMDWwZWM9uh/fn9lhh5z4Sz66qoKuo5Y1QxRT7eX9fPv2ih0+HP4Zejs4dGo1HC6UccZNd5sCfEM/Cro0PCBGovIB+sGDI4rwgvuR4+8Bm/nYVnanL86+r0+tfZN31//tfkIy3hS5Sc8WDpTRXhjZiacZ+RnH1p5BE1o1TtsPHSy1plLzN6TyBD+Mq0IYbH8ANiCRdkMPpSPzlqtRFQTM1WLBlJ34OoZXUUUwLYaXW69Va33u7dto/77V6/+/6PVq/bKqN+sGbaE/pXwQE7MYoKTX18STIpVTTX7Rz2ut2j026vNz0sKxH0YFik/H1timzOkFQTyE/k6vx8RECaCKgKdEVgnW4JzIxH4f5YvvEowtxxeXG+j1IOjzuHnXZp/Psp1YruHX+ZcSAZjUERVGseCohDI4vZv7KTN7vkYPSuhOuhrpN6zFD8YF9wV5YNskEefwEZP+aRRw4wDHXCfD7hPomYAJH6XVWsne7hYa/XW8HKxKyuZGq2+fiERnoN6kcx40qKGLMXCoDxiOMlBzmrzRsa1DqWD1VxNvUYIN7h+G5R0UjfabXwZ8WvU99nWk/SyC34bmlXdoEtrkm+FAZgogCaJFG2HjR/apTytI5Kjn8y3y7RCldzwx0GkAhL/m46ppT17A3TXFGhUjJLsAcfW62WU5eb1LuSUvCrN6/ZBJDq3ZJHlo7ICYEVkCxKEnKQSW9OKI/KQ2RfcBQuJnL3GKdBwPERKiBkwGTrVtmlTPQ1z3Bj/wyt+gYoG95iKbVblWjWCyahTFKPBWqqFH1EhzUs1tWkDGLIOluXiVTxtTl+HV5iZrDepTH3RjAk4VYWTCLMoF3SMeSMnRrLZ0IgsKEsmXCIMzRqOn79HH2QqCRkw52UkfP6HUTPzajgk4h9RqO0qFaXVkurr0zHUWnpPT5unLw/hoR+1H5/2OrN0UkiWiGwKoC6fimoTq9xdNw7OWm1262TXqdzcjyfF70XLPQhV7H7khv/nBkIpgpBWQiYcOEJhcgpDvep6Pj4AV1wfaQ9nUSnasaqAx5Z8nyphNy06rf4uaLvZ7KcCRfMp4rRaobaKA0qdYpl4RQmC882eSkWAk3lOYKSQ0WTKS6o0i0MJMiYVw1yXniP9mDqA6g3AbGfuTayFL4LC5SHc4SwAkXEB14sxuxcBZTcdncJy71mVNtEShcOc1My48uMXxhq2/bsQkqsWk5hU4lZrgYbokj+Jvn/tU33TWEGuMqAsDkOzf2NIbhS71B1zwyx1LYwhbpBGGo9BDV8I3Hhhq233Trvlregz2qB+7CZ+QZKRI1f28Jnl1cgVb56IpddsTgS++Z2Cp42lVFQEdN5xkeoUyEIzQQ4kCU3Q4cqaNSzmeY3g205Uzf5gcFuW4NH2DUf92s7ffJ2SWx90EYRhcxEo2g39zCjhMrZADZhg3Caxhx8t0pAZJRQzs5YZJl/cxGMEsY2rmVl7u9AihUxlJoxRA3MAOvRcuR+X9Ve5luf7fHQHkrVkkeOaTewEdCCM9MIpwYgseaUylVXSvHQnRBBAf+wW9ZgwQAuBAmIjrkVi9uVbAirNqhP1JkMHiFZPPC4kvbRN23kQpFj+YmWKWyALNAQynoRfMfXl2ic3eIuLEcmqYjVrsoshPy5x7y/LRjyozyrSLaemFdNaaMGN3arEfBMuJ/zkEPWIQsWW4nbfAzpiIUqmwJIr1C0zkrO9MyQ39yZXZ5kVH7aAbEItVD5qKLd6OHoZuNytvGYYyXAtx+hrJ6JtOut7m2n3W+3+p3uH61ev2v3HvlZyM6pPXP8UdrS4pzdBrYE4PY/17hP7R1ZEy93oD+yc1F7ipQDuVs6wRUYJt9ZTGPq7wb5+er0wwYr41kq7q7XK7K1Y9xse+mKwcNN+9MzGpD8GKtOBgLqUh4UzqPftqb/yK0pw7lX2HHtqUiXQLR+Zh+6iS0nx+rjBbsMO5FCNfuWwf4fMljBL60XrGWa9nqm+SrwrgM2Fv8FcMtUs7gOecs0b5nmLdO8ZZq9Mk1vU00zELjJA5PjRSHek1oXfksvb+nlLb28pZfq6cWZcCqzJhm0HPae9L0mns3YgzF3kdd8gvHmzSdsU5kDmbZ5x/XMpCoCjqkxie43m+zBhL8bQgqYXdBQYz5Nxw0u1wPXXUiSwg2mh3eim6TRhG+RdAMDpU6tJWF3CNNP7bEB4oQ6DNta4Pmu+G2ESdE56oJiYVHE4WVXpvh/bPtS4I17+JT7GnCu4Vq2wcgxxAzeb0+UjMnwbPB5pSuGaNfwYc21SEqFs5Vn+69I3ipyejNY93NwqgK3a3pCytz1nu3Rghw5xTaF5TFZLTtQGsvgsUbCwhlTjcRc8DiNgSuxI9iT5Jo7W887vYDYHQGC7wuXU/SyvWvZvWVJV7q9GmTkJAOHBKBZoxhSxqiPerFlbNFURmF8rR0FRBPU4wGngtj2DdsklndsYUI5zlZPiE/UfXYzb02VjY1xGUPqsyuIffPvpU/i5RnMGeNqhfsye11b8eycVzRBhbGuy0k91axpPSCR2sRUFERdMEPc2ce6QVfN/rQsA/4ZzXhZLBkI5iYkcy5QXVYbT1m++eGt5Bvg6rsM17edcRCvU1AKUj49IY6vKprP8TVkVrzy+XGHN46KU7yowmgPuMbnZxonijo6GGZp9R0p9/FtxJ1f+wi89MnuOD14vGeAwmZlzGIvGn1rS98LwFjNze/wNM61k7xYLzs6+jZicxjWGgkXKF+spi29e1uAFDsFX4+hSoPeFjCFtsDXY6nYo7cFjq0iXg/k+Y67bWMvmvv+BqvsbrHbgqTQ1/d6KBs67LYMvezi+9ussLO1bgucQlPf6/G8sJtuC7zV3r4XYnxJ79xWVMUuvhKmLBXCtjMxhW9rW3QsSxf1+MXHWygG/gcH5lIn
+sidebar_class_name: "get api-method"
+info_path: docs/farm-yield-multiland/farm-yield-multiland-parcel-service-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get Single Farm Yield Report"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/farmyieldreport/{ver}/{lang}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Retrieves farm health parameters and yield analysis for a single land parcel based on geospatial data and agricultural algorithms.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"ver","in":"path","required":true,"description":"API version","schema":{"type":"string","example":"1.4"}},{"name":"lang","in":"path","required":true,"description":"Language code for response","schema":{"type":"string","enum":["en"],"example":"en"}},{"name":"Authentication","in":"header","required":true,"description":"JWT token for authentication","schema":{"type":"string","example":"Bearer EkN-DOsnsuRjRO6Bx..."}},{"name":"client-id","in":"header","required":true,"description":"Base64 encoded Client ID","schema":{"type":"string","example":"pNRxiviTvgBrf7qMANqBVskDYfEa"}},{"name":"provider","in":"header","required":true,"description":"Service provider code for SatSure","schema":{"type":"string","example":"104"}},{"name":"ts","in":"header","required":true,"description":"Request timestamp in ISO-8601 format","schema":{"type":"string","format":"date-time","example":"2023-03-15T17:15:39+0530"}},{"name":"txncode","in":"header","required":true,"description":"Unique transaction code","schema":{"type":"string","example":"3245336A355h44"}},{"name":"statelrc","in":"header","required":true,"description":"State code as per MDDS standards","schema":{"type":"string","example":"23"}},{"name":"vilglrc","in":"header","required":true,"description":"Village LGD code","schema":{"type":"string","example":"472421"}},{"name":"khasraid","in":"header","required":true,"description":"Unique number assigned to land parcel","schema":{"type":"string","example":"10/3 (S)"}},{"name":"x-sp-memberId","in":"header","required":true,"description":"Member ID provided by SatSure (for specific lenders)","schema":{"type":"string","example":"12344555"}},{"name":"x-env-route","in":"header","required":false,"description":"Environment routing header (required for sandbox)","schema":{"type":"string","example":"/sb"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"Successful farm yield report response","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","properties":{"errcode":{"type":"string","description":"Error code (E000 for success)","example":"E000"},"status":{"type":"string","description":"Status of the operation (success/fail)","example":"success"},"info":{"type":"string","description":"Additional information","example":""}},"title":"ResultInfo"},"data":{"type":"object","properties":{"farmGeometry":{"type":"array","items":{"type":"object","properties":{"farmImage":{"type":"string","format":"uri","description":"URL to farm satellite image"},"geometryLabel":{"type":"string","description":"Geometry identifier"},"subGeometry":{"type":"array","items":{"type":"object","properties":{"centroid":{"type":"object","properties":{"lon":{"type":"object","properties":{"label":{"type":"string","example":"E"},"value":{"type":"number","format":"double","example":77.897724619405}}},"lat":{"type":"object","properties":{"label":{"type":"string","example":"N"},"value":{"type":"number","format":"double","example":25.675880110852287}}}},"title":"GeoCentroid"}}}},"geometryDetails":{"type":"string","description":"Additional geometry information"}},"title":"FarmGeometry"}},"farmDetails":{"type":"array","items":{"type":"object","properties":{"surveyDetails":{"type":"string","description":"Survey number or identifier"},"surveyLabel":{"type":"string","description":"Survey label"},"surveyArea":{"type":"number","format":"double","description":"Survey area in hectares"},"regionDetails":{"type":"string","description":"Geographic location details"}},"title":"FarmDetails"}},"farmerCroppingHistory":{"type":"object","description":"Historical crop performance data by season","additionalProperties":{"type":"array","items":{"type":"object","properties":{"performance":{"type":"string","enum":["Good","Average","Below Average"],"description":"Performance rating"},"price":{"type":"number","description":"Market price per quintal"},"farmPotentialYield":{"type":"number","description":"Potential yield kg/hectare"},"cropName":{"type":"string","description":"Name of the crop"},"districtThresholdYield":{"type":"number","description":"District average threshold yield"}},"title":"CropPerformance"}}},"weatherParameter":{"type":"object","properties":{"temperature":{"type":"object","description":"Temperature data"},"rainfall":{"type":"object","description":"Rainfall patterns"},"humidity":{"type":"object","description":"Humidity levels"},"windSpeed":{"type":"object","description":"Wind speed measurements"}},"title":"WeatherParameter"},"farmHealthParameter":{"type":"object","properties":{"soilHealth":{"type":"object","description":"Soil quality indicators"},"irrigationIndex":{"type":"object","description":"Irrigation availability and quality"},"waterBodyProximity":{"type":"object","description":"Distance to water sources"},"groundWaterLevel":{"type":"object","description":"Ground water availability"},"vegetationIndex":{"type":"object","description":"Vegetation health indices"}},"title":"FarmHealthParameter"}}},"signature":{"type":"string","description":"Digital signature for data integrity"},"meta":{"type":"object","properties":{"ver":{"type":"string","description":"Version of the request template","example":"1.5"},"ts":{"type":"string","format":"date-time","description":"Timestamp in ISO-8601 format","example":"2023-01-03T21:10:23+05:30"},"txncode":{"type":"string","description":"Unique transaction code provided by the lender","example":"TXN123456"}},"required":["ver","ts","txncode"],"title":"MetaInfo"},"hmac":{"type":"string","description":"HMAC for data integrity verification"}},"title":"SingleFarmYieldResponse"}}}},"400":{"description":"Bad Request - Invalid parameters","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","properties":{"errcode":{"type":"string","description":"Error code (E000 for success)","example":"E000"},"status":{"type":"string","description":"Status of the operation (success/fail)","example":"success"},"info":{"type":"string","description":"Additional information","example":""}},"title":"ResultInfo"},"error":{"type":"object","properties":{"code":{"type":"string","description":"Error code"},"message":{"type":"string","description":"Error message"},"details":{"type":"string","description":"Additional error details"}}},"meta":{"type":"object","properties":{"ver":{"type":"string","description":"Version of the request template","example":"1.5"},"ts":{"type":"string","format":"date-time","description":"Timestamp in ISO-8601 format","example":"2023-01-03T21:10:23+05:30"},"txncode":{"type":"string","description":"Unique transaction code provided by the lender","example":"TXN123456"}},"required":["ver","ts","txncode"],"title":"MetaInfo"}},"title":"ErrorResponse"}}}},"401":{"description":"Unauthorized - Invalid JWT token","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","properties":{"errcode":{"type":"string","description":"Error code (E000 for success)","example":"E000"},"status":{"type":"string","description":"Status of the operation (success/fail)","example":"success"},"info":{"type":"string","description":"Additional information","example":""}},"title":"ResultInfo"},"error":{"type":"object","properties":{"code":{"type":"string","description":"Error code"},"message":{"type":"string","description":"Error message"},"details":{"type":"string","description":"Additional error details"}}},"meta":{"type":"object","properties":{"ver":{"type":"string","description":"Version of the request template","example":"1.5"},"ts":{"type":"string","format":"date-time","description":"Timestamp in ISO-8601 format","example":"2023-01-03T21:10:23+05:30"},"txncode":{"type":"string","description":"Unique transaction code provided by the lender","example":"TXN123456"}},"required":["ver","ts","txncode"],"title":"MetaInfo"}},"title":"ErrorResponse"}}}},"500":{"description":"Internal Server Error","content":{"application/json":{"schema":{"type":"object","properties":{"result":{"type":"object","properties":{"errcode":{"type":"string","description":"Error code (E000 for success)","example":"E000"},"status":{"type":"string","description":"Status of the operation (success/fail)","example":"success"},"info":{"type":"string","description":"Additional information","example":""}},"title":"ResultInfo"},"error":{"type":"object","properties":{"code":{"type":"string","description":"Error code"},"message":{"type":"string","description":"Error message"},"details":{"type":"string","description":"Additional error details"}}},"meta":{"type":"object","properties":{"ver":{"type":"string","description":"Version of the request template","example":"1.5"},"ts":{"type":"string","format":"date-time","description":"Timestamp in ISO-8601 format","example":"2023-01-03T21:10:23+05:30"},"txncode":{"type":"string","description":"Unique transaction code provided by the lender","example":"TXN123456"}},"required":["ver","ts","txncode"],"title":"MetaInfo"}},"title":"ErrorResponse"}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

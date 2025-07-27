@@ -56,7 +56,7 @@ All APIs use JWT token authentication. Tokens are valid for:
 
 #### Available OpenAPI Specifications:
 - **[Document Verification - Driving License v1.0](/versioned_examples/version-1.0.0/document-verification-dl-v1.0.yaml)**
-- **[Petstore Example](/versioned_examples/version-1.0.0/petstore.yaml)** (Reference implementation)
+- **[RBIH API Reference](/docs/rbih-apis)** - Complete API catalog
 
 ## Environment URLs
 

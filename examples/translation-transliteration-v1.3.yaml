@@ -1,0 +1,414 @@
+openapi: 3.0.3
+info:
+  title: "Translation & Transliteration Service API"
+  description: "The Transliteration and Translation API provides a simple and effective means to transliterate or translate any text from standard English to selected Indian languages and vice versa. This service is offered by Bhashini and supports multiple Indian languages including Hindi, Tamil, Marathi, Kannada, Bengali, and Telugu."
+  version: "1.3.1"
+  contact:
+    name: "RBIH Support"
+    email: "support@rbihub.io"
+  license:
+    name: "RBIH License"
+    url: "https://rbihub.in/terms-of-use/"
+
+servers:
+  - url: "https://extgw.nonprod.rbihub.io"
+    description: "Sandbox Environment"
+  - url: "https://extgw.api.rbihub.io" 
+    description: "Production Environment"
+
+security:
+  - JWTAuth: []
+
+paths:
+  /transliterate/{ver}/{srclang}/{tgtlang}:
+    post:
+      tags:
+        - "Translation & Transliteration"
+      summary: "Transliterate Text Between Languages"
+      description: "Transliterates text from one script to another while preserving the phonetic sound. Converts characters from source language script to target language script."
+      operationId: "transliterateText"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version for transliteration"
+          schema:
+            type: "string"
+            enum: ["1.2", "1.3"]
+            example: "1.3"
+        - name: "srclang"
+          in: "path"
+          required: true
+          description: "ISO 639-1 code of source language"
+          schema:
+            type: "string"
+            enum: ["en", "hi", "ta", "mr", "kn", "bn", "te"]
+            example: "en"
+        - name: "tgtlang"
+          in: "path"
+          required: true
+          description: "ISO 639-1 code of target language"
+          schema:
+            type: "string"
+            enum: ["en", "hi", "ta", "mr", "kn", "bn", "te"]
+            example: "hi"
+        - name: "Authentication"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "content-type"
+          in: "header"
+          required: true
+          description: "Media type of the resource"
+          schema:
+            type: "string"
+            example: "application/json"
+        - name: "content-length"
+          in: "header"
+          required: true
+          description: "Length of request payload in bytes"
+          schema:
+            type: "string"
+            example: "512"
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "MTEyMw=="
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "Service provider code for Bhashini"
+          schema:
+            type: "string"
+            example: "111"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransliterationRequest"
+            example:
+              meta:
+                ver: "1.3"
+                ts: "2023-01-03T21:10:23+05:30"
+                txncode: "TXN123456"
+              data:
+                input-text: "SGVsbG8gV29ybGQ="
+              hmac: "SHA-256 Hash of the data value"
+      responses:
+        "200":
+          description: "Successful transliteration response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransliterationResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /translation/{ver}/{srclang}/{tgtlang}:
+    post:
+      tags:
+        - "Translation & Transliteration"
+      summary: "Translate Text Between Languages"
+      description: "Translates text from source language to target language while preserving meaning and context. Converts the actual meaning of text from one language to another."
+      operationId: "translateText"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version for translation"
+          schema:
+            type: "string"
+            enum: ["1.0"]
+            example: "1.0"
+        - name: "srclang"
+          in: "path"
+          required: true
+          description: "ISO 639-1 code of source language"
+          schema:
+            type: "string"
+            enum: ["en", "hi", "ta", "mr", "kn", "bn", "te"]
+            example: "en"
+        - name: "tgtlang"
+          in: "path"
+          required: true
+          description: "ISO 639-1 code of target language"
+          schema:
+            type: "string"
+            enum: ["en", "hi", "ta", "mr", "kn", "bn", "te"]
+            example: "hi"
+        - name: "Authentication"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "content-type"
+          in: "header"
+          required: true
+          description: "Media type of the resource"
+          schema:
+            type: "string"
+            example: "application/json"
+        - name: "content-length"
+          in: "header"
+          required: true
+          description: "Length of request payload in bytes"
+          schema:
+            type: "string"
+            example: "512"
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "MTEyMw=="
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "Service provider code for Bhashini"
+          schema:
+            type: "string"
+            example: "111"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TranslationRequest"
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2023-01-03T21:10:23+05:30"
+                txncode: "TXN123456"
+              data:
+                input-text: "SGVsbG8gV29ybGQ="
+              hmac: "SHA-256 Hash of the data value"
+      responses:
+        "200":
+          description: "Successful translation response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TranslationResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  securitySchemes:
+    JWTAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+      description: "JWT token obtained from RBIH authentication service"
+
+  schemas:
+    TransliterationRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            input-text:
+              type: "string"
+              description: "Base64 encoded string to hold text to be transliterated based on the source language"
+              example: "SGVsbG8gV29ybGQ="
+          required: ["input-text"]
+        hmac:
+          type: "string"
+          description: "SHA-256 hash of the value of key 'data'"
+      required: ["meta", "data", "hmac"]
+
+    TranslationRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            input-text:
+              type: "string"
+              description: "Base64 encoded string to hold text to be translated based on the source language"
+              example: "SGVsbG8gV29ybGQ="
+          required: ["input-text"]
+        hmac:
+          type: "string"
+          description: "SHA-256 hash of the value of key 'data'"
+      required: ["meta", "data", "hmac"]
+
+    TransliterationResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            input-text:
+              type: "string"
+              description: "Base64 encoded transliterated text based on the target language"
+              example: "4KSH4KSy4KWL4KSy4KWL"
+        signature:
+          type: "string"
+          description: "Digital signature hash of the value under the key 'data'"
+          example: "MEYCIQDoejEHkKtybsE9mZGll7XrFrGMKbTOVEKQi1t6oGJHRAIhAMZbfKoCuOhDPElBqeRZsc3BhI01Ss11uncvJr558FKv"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "SHA256 hash of the value under the key 'data'"
+          example: "LwIMt8MOuX1ui8QpLuAzVQF0qpf/DupFGGZHTzA/am8="
+        publickey:
+          type: "string"
+          description: "Public key of the platform for source verification"
+          example: "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE2RFeYmyJ8dr7JwELfSn1gzEeP7DKo0uF3xRFh464ZhkEnuocTS48c0EXfyCsSpDDdwiqUMVbthZzXXSl9gvsmQ=="
+        sig-algo:
+          type: "string"
+          description: "Algorithm used for signing the data"
+          example: "SHA256withECDSA"
+
+    TranslationResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            input-text:
+              type: "string"
+              description: "Base64 encoded translated text in the target language"
+              example: "4KSH4KSy4KWL4KSy4KWL"
+        signature:
+          type: "string"
+          description: "Digital signature hash of the value under the key 'data'"
+          example: "MEYCIQDoejEHkKtybsE9mZGll7XrFrGMKbTOVEKQi1t6oGJHRAIhAMZbfKoCuOhDPElBqeRZsc3BhI01Ss11uncvJr558FKv"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "SHA256 hash of the value under the key 'data'"
+          example: "LwIMt8MOuX1ui8QpLuAzVQF0qpf/DupFGGZHTzA/am8="
+        publickey:
+          type: "string"
+          description: "Public key of the platform for source verification"
+          example: "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAE2RFeYmyJ8dr7JwELfSn1gzEeP7DKo0uF3xRFh464ZhkEnuocTS48c0EXfyCsSpDDdwiqUMVbthZzXXSl9gvsmQ=="
+        sig-algo:
+          type: "string"
+          description: "Algorithm used for signing the data"
+          example: "SHA256withECDSA"
+
+    MetaInfo:
+      type: "object"
+      properties:
+        ver:
+          type: "string"
+          description: "Version of the request template"
+          example: "1.3"
+        ts:
+          type: "string"
+          format: "date-time"
+          description: "Timestamp in ISO-8601 format"
+          example: "2023-01-03T21:10:23+05:30"
+        txncode:
+          type: "string"
+          description: "Unique transaction code provided by the lender"
+          example: "TXN123456"
+      required: ["ver", "ts", "txncode"]
+
+    ResultInfo:
+      type: "object"
+      properties:
+        errcode:
+          type: "string"
+          description: "Error code (E000 for success)"
+          example: "E000"
+        status:
+          type: "string"
+          description: "Status of the operation (success/fail)"
+          example: "success"
+        info:
+          type: "string"
+          description: "Additional information"
+          example: ""
+
+    ErrorResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        error:
+          type: "object"
+          properties:
+            code:
+              type: "string"
+              description: "Error code"
+            message:
+              type: "string"
+              description: "Error message"
+            details:
+              type: "string"
+              description: "Additional error details"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+
+tags:
+  - name: "Translation & Transliteration"
+    description: "Language processing services for transliteration and translation between English and Indian languages. Transliteration converts script while preserving phonetic sound, while translation converts meaning between languages. Supports Hindi, Tamil, Marathi, Kannada, Bengali, and Telugu through Bhashini service provider."

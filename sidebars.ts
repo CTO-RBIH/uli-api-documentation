@@ -22,10 +22,46 @@ const gstnServiceSidebar = require("./docs/gstn-service/sidebar.ts");
 const accountAggregatorSidebar = require("./docs/account-aggregator/sidebar.ts");
 const lrsOwnerDetailsSidebar = require("./docs/lrs-owner-details/sidebar.ts");
 const lrsLienMarkingSidebar = require("./docs/lrs-lien-marking/sidebar.ts");
+const translationTransliterationSidebar = require("./docs/translation-transliteration/sidebar.ts");
+const legalVerificationSidebar = require("./docs/legal-verification/sidebar.ts");
+const farmYieldMultilandSidebar = require("./docs/farm-yield-multiland/sidebar.ts");
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     {type: "doc", id: "intro"},
+    {
+      type: "category",
+      label: "Authentication & Security",
+      collapsed: false,
+      items: [
+        {type: "doc", id: "authentication/authentication-overview"},
+        {type: "doc", id: "authentication/jwt-tokens"},
+        {type: "doc", id: "authentication/digital-signatures"},
+        {type: "doc", id: "authentication/environments"},
+        {type: "doc", id: "authentication/best-practices"}
+      ]
+    },
+    {
+      type: "category",
+      label: "Error Handling",
+      collapsed: false,
+      items: [
+        {type: "doc", id: "error-handling/error-handling-overview"},
+        {type: "doc", id: "error-handling/common-errors"}
+      ]
+    },
+    {
+      type: "category",
+      label: "Performance & Rate Limiting",
+      collapsed: false,
+      items: [
+        {type: "doc", id: "performance/performance-overview"},
+        {type: "doc", id: "performance/rate-limiting"}
+      ]
+    },
+    {
+      type: "doc", id: "security-compliance", label: "Security & Compliance"
+    }
   ],
   openApiSidebar: [
     {
@@ -66,6 +102,23 @@ const sidebars: SidebarsConfig = {
           items: [
             ...lrsOwnerDetailsSidebar,
             ...lrsLienMarkingSidebar
+          ]
+        },
+        {
+          type: "category",
+          label: "Agricultural Services",
+          collapsed: false,
+          items: [
+            ...farmYieldMultilandSidebar
+          ]
+        },
+        {
+          type: "category",
+          label: "Other Services",
+          collapsed: false,
+          items: [
+            ...translationTransliterationSidebar,
+            ...legalVerificationSidebar
           ]
         }
       ]

@@ -1,0 +1,665 @@
+openapi: 3.0.3
+info:
+  title: "Farm Yield & MultiLand Parcel Service API"
+  description: "The Farm Yield Report API provides farm health parameters such as irrigation, water body, ground water, minimum support price, crop yield and weather conditions based on algorithms and geospatial data. Supports both single and multi-land parcel analysis across multiple Indian states."
+  version: "1.7"
+  contact:
+    name: "RBIH Support"
+    email: "support@rbihub.io"
+  license:
+    name: "RBIH License"
+    url: "https://rbihub.in/terms-of-use/"
+
+servers:
+  - url: "https://extgw.nonprod.rbihub.io"
+    description: "Sandbox Environment"
+  - url: "https://extgw.api.rbihub.io" 
+    description: "Production Environment"
+
+security:
+  - JWTAuth: []
+
+paths:
+  /farmyieldreport/{ver}/{lang}:
+    get:
+      tags:
+        - "Farm Yield & MultiLand Parcel"
+      summary: "Get Single Farm Yield Report"
+      description: "Retrieves farm health parameters and yield analysis for a single land parcel based on geospatial data and agricultural algorithms."
+      operationId: "getSingleFarmYieldReport"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version"
+          schema:
+            type: "string"
+            example: "1.4"
+        - name: "lang"
+          in: "path"
+          required: true
+          description: "Language code for response"
+          schema:
+            type: "string"
+            enum: ["en"]
+            example: "en"
+        - name: "Authentication"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "pNRxiviTvgBrf7qMANqBVskDYfEa"
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "Service provider code for SatSure"
+          schema:
+            type: "string"
+            example: "104"
+        - name: "ts"
+          in: "header"
+          required: true
+          description: "Request timestamp in ISO-8601 format"
+          schema:
+            type: "string"
+            format: "date-time"
+            example: "2023-03-15T17:15:39+0530"
+        - name: "txncode"
+          in: "header"
+          required: true
+          description: "Unique transaction code"
+          schema:
+            type: "string"
+            example: "3245336A355h44"
+        - name: "statelrc"
+          in: "header"
+          required: true
+          description: "State code as per MDDS standards"
+          schema:
+            type: "string"
+            example: "23"
+        - name: "vilglrc"
+          in: "header"
+          required: true
+          description: "Village LGD code"
+          schema:
+            type: "string"
+            example: "472421"
+        - name: "khasraid"
+          in: "header"
+          required: true
+          description: "Unique number assigned to land parcel"
+          schema:
+            type: "string"
+            example: "10/3 (S)"
+        - name: "x-sp-memberId"
+          in: "header"
+          required: true
+          description: "Member ID provided by SatSure (for specific lenders)"
+          schema:
+            type: "string"
+            example: "12344555"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      responses:
+        "200":
+          description: "Successful farm yield report response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SingleFarmYieldResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /farmyieldreportmultiland/{ver}/{lang}:
+    post:
+      tags:
+        - "Farm Yield & MultiLand Parcel"
+      summary: "Get Multi-Land Parcel Farm Yield Report"
+      description: "Retrieves farm health parameters and yield analysis for multiple land parcels. Supports asynchronous processing with callback notifications for complex multi-parcel analysis."
+      operationId: "getMultiLandFarmYieldReport"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version"
+          schema:
+            type: "string"
+            example: "1.5"
+        - name: "lang"
+          in: "path"
+          required: true
+          description: "Language code for response"
+          schema:
+            type: "string"
+            enum: ["en"]
+            example: "en"
+        - name: "Authentication"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "pNRxiviTvgBrf7qMANqBVskDYfEa"
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "Service provider code for SatSure"
+          schema:
+            type: "string"
+            example: "104"
+        - name: "x-sp-memberId"
+          in: "header"
+          required: true
+          description: "Member ID provided by SatSure"
+          schema:
+            type: "string"
+            example: "12344555"
+        - name: "x-sp-auth-token"
+          in: "header"
+          required: true
+          description: "JWT token for callback authentication"
+          schema:
+            type: "string"
+            example: "eyJ4NXQiOiJNR1"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MultiLandFarmYieldRequest"
+            examples:
+              madhya_pradesh:
+                summary: "Madhya Pradesh Multi-Land Request"
+                value:
+                  meta:
+                    ver: "1.5"
+                    ts: "2023-01-03T21:10:23+05:30"
+                    txncode: "unique transaction code"
+                  data:
+                    landRecordData:
+                      - state: "23"
+                        village_lgd_code: "340902"
+                        khasara: "6 (S)"
+                      - state: "23"
+                        village_lgd_code: "340902"
+                        khasara: "100 (S)"
+                  hmac: "SHA-256 Hash of the data value"
+              odisha:
+                summary: "Odisha Multi-Land Request"
+                value:
+                  meta:
+                    ver: "1.5"
+                    ts: "2023-01-03T21:10:23+05:30"
+                    txncode: "unique transaction code"
+                  data:
+                    landRecordData:
+                      - state: "21"
+                        village_lgd_code: "429737"
+                        khatiyan_number: "04"
+                        plot_number: "134"
+                  hmac: "SHA-256 Hash of the data value"
+              telangana:
+                summary: "Telangana Multi-Land Request"
+                value:
+                  meta:
+                    ver: "1.5"
+                    ts: "2023-01-03T21:10:23+05:30"
+                    txncode: "unique transaction code"
+                  data:
+                    landRecordData:
+                      - state: "36"
+                        village_lgd_code: "570520"
+                        survey_number: "10/2క/1"
+                  hmac: "SHA-256 Hash of the data value"
+      responses:
+        "200":
+          description: "Successful multi-land farm yield request initiation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MultiLandFarmYieldResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  securitySchemes:
+    JWTAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+      description: "JWT token obtained from RBIH authentication service"
+
+  schemas:
+    MultiLandFarmYieldRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            landRecordData:
+              type: "array"
+              maxItems: 5
+              description: "Array of land parcel data (maximum 5 parcels)"
+              items:
+                oneOf:
+                  - $ref: "#/components/schemas/MPLandRecord"
+                  - $ref: "#/components/schemas/ODLandRecord"
+                  - $ref: "#/components/schemas/TSLandRecord"
+                  - $ref: "#/components/schemas/MHLandRecord"
+                  - $ref: "#/components/schemas/APLandRecord"
+          required: ["landRecordData"]
+        hmac:
+          type: "string"
+          description: "SHA-256 hash of the value of key 'data'"
+      required: ["meta", "data", "hmac"]
+
+    # State-specific land record schemas
+    MPLandRecord:
+      type: "object"
+      description: "Madhya Pradesh land record format"
+      properties:
+        state:
+          type: "string"
+          example: "23"
+        village_lgd_code:
+          type: "string"
+          description: "Village LGD code"
+        khasara:
+          type: "string"
+          description: "Khasara number of land parcel"
+      required: ["state", "village_lgd_code", "khasara"]
+
+    ODLandRecord:
+      type: "object"
+      description: "Odisha land record format"
+      properties:
+        state:
+          type: "string"
+          example: "21"
+        village_lgd_code:
+          type: "string"
+          description: "Village LGD code"
+        khatiyan_number:
+          type: "string"
+          description: "Khatiyan number of land parcel"
+        plot_number:
+          type: "string"
+          description: "Plot number of land parcel"
+      required: ["state", "village_lgd_code", "khatiyan_number", "plot_number"]
+
+    TSLandRecord:
+      type: "object"
+      description: "Telangana land record format"
+      properties:
+        state:
+          type: "string"
+          example: "36"
+        village_lgd_code:
+          type: "string"
+          description: "Village LGD code"
+        survey_number:
+          type: "string"
+          description: "Survey number of land parcel"
+      required: ["state", "village_lgd_code", "survey_number"]
+
+    MHLandRecord:
+      type: "object"
+      description: "Maharashtra land record format"
+      properties:
+        state:
+          type: "string"
+          example: "27"
+        village_lgd_code:
+          type: "string"
+          description: "Village LGD code"
+        survey_number:
+          type: "string"
+          description: "Survey number of land parcel"
+      required: ["state", "village_lgd_code", "survey_number"]
+
+    APLandRecord:
+      type: "object"
+      description: "Andhra Pradesh land record format"
+      properties:
+        state:
+          type: "string"
+          example: "37"
+        village_lgd_code:
+          type: "string"
+          description: "Village LGD code"
+        survey_number:
+          type: "string"
+          description: "Survey number of land parcel"
+      required: ["state", "village_lgd_code", "survey_number"]
+
+    SingleFarmYieldResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            farmGeometry:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/FarmGeometry"
+            farmDetails:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/FarmDetails"
+            farmerCroppingHistory:
+              type: "object"
+              description: "Historical crop performance data by season"
+              additionalProperties:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/CropPerformance"
+            weatherParameter:
+              $ref: "#/components/schemas/WeatherParameter"
+            farmHealthParameter:
+              $ref: "#/components/schemas/FarmHealthParameter"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+
+    MultiLandFarmYieldResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            referenceId:
+              type: "string"
+              description: "Reference ID for tracking the callback"
+              example: "REF123456789"
+            responseMessage:
+              type: "string"
+              description: "Response message"
+              example: "Multi-land farm yield report request submitted successfully"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+
+    CallbackResponse:
+      type: "object"
+      description: "Asynchronous callback response for multi-land analysis"
+      properties:
+        txncode:
+          type: "string"
+          description: "Transaction code from original request"
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            farmGeometry:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/FarmGeometry"
+            farmDetails:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/FarmDetails"
+            farmerCroppingHistory:
+              type: "object"
+              additionalProperties:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/CropPerformance"
+            weatherParameter:
+              $ref: "#/components/schemas/WeatherParameter"
+            farmHealthParameter:
+              $ref: "#/components/schemas/FarmHealthParameter"
+        x-sp-auth-token:
+          type: "string"
+          description: "Authentication token for callback verification"
+
+    FarmGeometry:
+      type: "object"
+      properties:
+        farmImage:
+          type: "string"
+          format: "uri"
+          description: "URL to farm satellite image"
+        geometryLabel:
+          type: "string"
+          description: "Geometry identifier"
+        subGeometry:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              centroid:
+                $ref: "#/components/schemas/GeoCentroid"
+        geometryDetails:
+          type: "string"
+          description: "Additional geometry information"
+
+    GeoCentroid:
+      type: "object"
+      properties:
+        lon:
+          type: "object"
+          properties:
+            label:
+              type: "string"
+              example: "E"
+            value:
+              type: "number"
+              format: "double"
+              example: 77.897724619405
+        lat:
+          type: "object"
+          properties:
+            label:
+              type: "string"
+              example: "N"
+            value:
+              type: "number"
+              format: "double"
+              example: 25.675880110852287
+
+    FarmDetails:
+      type: "object"
+      properties:
+        surveyDetails:
+          type: "string"
+          description: "Survey number or identifier"
+        surveyLabel:
+          type: "string"
+          description: "Survey label"
+        surveyArea:
+          type: "number"
+          format: "double"
+          description: "Survey area in hectares"
+        regionDetails:
+          type: "string"
+          description: "Geographic location details"
+
+    CropPerformance:
+      type: "object"
+      properties:
+        performance:
+          type: "string"
+          enum: ["Good", "Average", "Below Average"]
+          description: "Performance rating"
+        price:
+          type: "number"
+          description: "Market price per quintal"
+        farmPotentialYield:
+          type: "number"
+          description: "Potential yield kg/hectare"
+        cropName:
+          type: "string"
+          description: "Name of the crop"
+        districtThresholdYield:
+          type: "number"
+          description: "District average threshold yield"
+
+    WeatherParameter:
+      type: "object"
+      properties:
+        temperature:
+          type: "object"
+          description: "Temperature data"
+        rainfall:
+          type: "object"
+          description: "Rainfall patterns"
+        humidity:
+          type: "object"
+          description: "Humidity levels"
+        windSpeed:
+          type: "object"
+          description: "Wind speed measurements"
+
+    FarmHealthParameter:
+      type: "object"
+      properties:
+        soilHealth:
+          type: "object"
+          description: "Soil quality indicators"
+        irrigationIndex:
+          type: "object"
+          description: "Irrigation availability and quality"
+        waterBodyProximity:
+          type: "object"
+          description: "Distance to water sources"
+        groundWaterLevel:
+          type: "object"
+          description: "Ground water availability"
+        vegetationIndex:
+          type: "object"
+          description: "Vegetation health indices"
+
+    MetaInfo:
+      type: "object"
+      properties:
+        ver:
+          type: "string"
+          description: "Version of the request template"
+          example: "1.5"
+        ts:
+          type: "string"
+          format: "date-time"
+          description: "Timestamp in ISO-8601 format"
+          example: "2023-01-03T21:10:23+05:30"
+        txncode:
+          type: "string"
+          description: "Unique transaction code provided by the lender"
+          example: "TXN123456"
+      required: ["ver", "ts", "txncode"]
+
+    ResultInfo:
+      type: "object"
+      properties:
+        errcode:
+          type: "string"
+          description: "Error code (E000 for success)"
+          example: "E000"
+        status:
+          type: "string"
+          description: "Status of the operation (success/fail)"
+          example: "success"
+        info:
+          type: "string"
+          description: "Additional information"
+          example: ""
+
+    ErrorResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        error:
+          type: "object"
+          properties:
+            code:
+              type: "string"
+              description: "Error code"
+            message:
+              type: "string"
+              description: "Error message"
+            details:
+              type: "string"
+              description: "Additional error details"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+
+tags:
+  - name: "Farm Yield & MultiLand Parcel"
+    description: "Agricultural analytics service providing comprehensive farm health parameters, crop yield analysis, and weather conditions based on geospatial data and algorithms. Supports both single and multi-land parcel analysis across multiple Indian states including Madhya Pradesh, Odisha, Telangana, Maharashtra, and Andhra Pradesh. Powered by SatSure Analytics for precision agriculture insights."

@@ -1,0 +1,112 @@
+---
+id: legal-verification
+title: "Legal Verification Service API"
+description: "The Legal Verification API provides comprehensive legal background checks for both individuals and entities. It checks and retrieves legal history, case details, and compliance status from multiple sources including Supreme Court, High Court, e-Court, Consumer Court, FIRs, and defaulter lists."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Legal Verification Service API"}
+>
+</Heading>
+
+The Legal Verification API provides comprehensive legal background checks for both individuals and entities. It checks and retrieves legal history, case details, and compliance status from multiple sources including Supreme Court, High Court, e-Court, Consumer Court, FIRs, and defaulter lists. Also provides arrested, most wanted, and absconder data for thorough due diligence.
+
+This service is part of the Unified Lending Interface (ULI) and enables financial institutions to perform comprehensive legal due diligence as part of their risk assessment and compliance processes.
+
+## Key Features
+
+- **Dual Verification Types**: Separate APIs for individual and entity legal verification
+- **Comprehensive Data Sources**: Access to multiple legal databases and court systems
+- **Multi-Court Coverage**: Supreme Court, High Courts, e-Courts, Consumer Courts, and Tribunals
+- **Criminal Records**: FIR data, arrested persons, most wanted, and absconder lists
+- **Defaulter Information**: MCA defaulters and civil defaulters database
+- **Asynchronous Processing**: Webhook-based result delivery with downloadable reports
+- **Advanced Filtering**: State, case category, party type, and date range filters
+
+## Verification Types
+
+### Individual Legal Verification
+- **Purpose**: Comprehensive background check for individuals
+- **Coverage**: All legal proceedings, criminal records, and enforcement actions
+- **Data Sources**: Courts, police records, enforcement agencies
+- **Special Features**: Most wanted, arrested, absconder data
+
+### Entity Legal Verification  
+- **Purpose**: Corporate and organizational legal compliance checks
+- **Coverage**: Corporate disputes, regulatory violations, defaulter status
+- **Data Sources**: Corporate affairs ministry, tribunals, court records
+- **Special Features**: IBC proceedings, corporate defaulter lists
+
+## Data Sources & Coverage
+
+### Court Systems
+- **Supreme Court** - Highest court proceedings and judgments
+- **High Courts** - State-level high court cases across India
+- **e-Courts** - District and subordinate court proceedings
+- **Consumer Courts** - Consumer protection and grievance cases
+- **Tribunals** - Specialized tribunal proceedings
+
+### Law Enforcement
+- **FIR Database** - First Information Reports from police stations
+- **Arrested Persons** - Current and historical arrest records
+- **Most Wanted** - Active wanted person lists
+- **Absconders** - Fugitive and absconder databases
+
+### Regulatory & Compliance
+- **MCA Defaulters** - Ministry of Corporate Affairs defaulter lists
+- **Civil Defaulters** - Civil court defaulter databases
+- **IBC Proceedings** - Insolvency and Bankruptcy Code cases
+
+## Service Information
+
+- **API Version**: 1.1
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token (6 hours validity)
+- **Processing**: Asynchronous with webhook callbacks
+- **Service Provider**: ScoreMe (Provider Code: 137)
+- **Response Format**: JSON and Excel downloadable reports
+
+## Advanced Search Capabilities
+
+### Match Types
+- **Individual**: Exact match, Contains
+- **Entity**: Exact, Likely, Contains, Less_likely
+
+### Filtering Options
+- **Geographic**: All Indian states and union territories
+- **Temporal**: Year-based or date range filtering
+- **Case Type**: Criminal vs Civil categorization
+- **Party Role**: Petitioner vs Respondent classification
+
+## Webhook Integration
+
+- **Callback Authentication**: x-lender-auth-token for secure webhooks
+- **File Delivery**: JSON and Excel format reports
+- **Reference Tracking**: Unique reference IDs for request tracking
+- **Async Processing**: Efficient handling of large-scale background checks
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

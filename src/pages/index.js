@@ -20,12 +20,12 @@ function HomepageHeader() {
           <div className={styles.heroButtons}>
             <Link
               className={clsx('button button--primary button--lg', styles.heroButton)}
-              to="/docs/intro">
+              to="/docs/next/rbih-apis">
               Get Started
             </Link>
             <Link
               className={clsx('button button--secondary button--lg', styles.heroButton)}
-              to="/docs/petstore/swagger-petstore-yaml">
+              to="/docs/next/rbih-apis">
               API Reference
             </Link>
           </div>
