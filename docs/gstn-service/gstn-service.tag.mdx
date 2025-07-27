@@ -1,0 +1,77 @@
+---
+id: gstn-service
+title: "GSTN Service API"
+description: "The Financial Information Providers (FIPs) maintain accounts (GSTINs) of customers. Lenders may request FIP for financial information using explicit electronic consents obtained through direct customer interaction."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"GSTN Service API"}
+>
+</Heading>
+
+The Financial Information Providers (FIPs) maintain accounts (GSTINs) of customers. Lenders may request FIP for financial information using explicit electronic consents obtained through direct customer interaction. GSTN is playing the role of FIP and Lenders can request data like an Account Aggregator.
+
+The APIs defined here are implemented by the GSTN to enable lenders to discover a customer's account, perform account linking and enable query of financial information based on explicit digitally signed electronic consent.
+
+## Key Features
+
+- **Account Discovery**: Check if GSTIN is registered and verify taxpayer type
+- **OTP-based Linking**: Secure account linking through mobile/email OTP verification
+- **Consent Management**: Handle consent artifacts as per REBIT's AA specifications
+- **Encrypted Data Exchange**: Secure financial information transfer with encryption/decryption
+- **GSTR Data Access**: Retrieve GSTR-1 and GSTR-3B data along with basic profile details
+- **Compliance Ready**: Follows Account Aggregator framework specifications
+
+## Process Flow
+
+1. **Authentication** → Get auth token (valid for 2 hours)
+2. **Discover** → Check if GSTIN is registered and get account details  
+3. **Link** → Generate OTP for account linking
+4. **Verify** → Confirm OTP and get linkRefNumber + customerAddress
+5. **Consent** → Submit consent artifact as per REBIT's AA specifications
+6. **FI Request** → Request encrypted financial information with public key
+7. **FI Fetch** → Retrieve and decrypt financial data using private key
+
+## Service Information
+
+- **Provider**: GSTN (Goods and Services Tax Network)
+- **Role**: Financial Information Provider (FIP)
+- **API Version**: 1.0.1
+- **Environment Support**: Sandbox and Production  
+- **Authentication**: JWT Token with 6-hour validity
+- **Auth Token**: Valid for 2 hours, required for all subsequent calls
+- **Data Types**: GSTR-1, GSTR-3B, and basic profile information
+
+## Important Notes
+
+⚠️ **Prerequisites**: 
+- Encryption JAR (forwardsecrecy.jar) required for key generation and data decryption
+- Store accRefNumber and maskedAccNumber from discover API for future use
+- Store linkRefNumber and customerAddress from verify API for future use
+- If customerAddress or linkRefNumber are lost, restart the entire process
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

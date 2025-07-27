@@ -1,0 +1,769 @@
+openapi: 3.0.3
+info:
+  title: GSTN Service API
+  description: |
+    The Financial Information Providers (FIPs) maintain accounts (GSTINs) of the customers. The Lenders may request FIP for financial information of the customers using explicit electronic consents obtained through direct customer interaction. GSTN is playing the role of FIP and Lenders can request data like an AA.
+    
+    The APIs defined here are implemented by the GSTN to enable lenders to:
+    - Discover a customer's GSTIN account
+    - Perform account linking through OTP verification
+    - Enable query of financial information based on explicit digitally signed electronic consent
+    - Retrieve GSTR-1 and GSTR-3B data along with basic profile details
+    
+    ## Process Flow
+    1. **Authentication**: Get auth token (valid for 2 hours)
+    2. **Discover**: Check if GSTIN is registered and get account details
+    3. **Link**: Generate OTP for account linking
+    4. **Verify**: Confirm OTP and get linkRefNumber
+    5. **Consent**: Submit consent artifact as per REBIT's AA specifications
+    6. **FI Request**: Request encrypted financial information
+    7. **FI Fetch**: Retrieve and decrypt financial data
+  version: "1.0.1"
+  contact:
+    name: RBIH Support
+    email: support@rbihub.io
+  license:
+    name: Proprietary
+    url: https://rbihub.in/terms-of-use/
+
+servers:
+  - url: https://extgw.nonprod.rbihub.io
+    description: Sandbox Environment
+  - url: https://extgw.api.rbihub.io
+    description: Production Environment
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: gstn-service
+    description: GSTN financial information and account management services
+
+paths:
+  /gstn/authenticate/{ver}/{lang}:
+    get:
+      tags:
+        - gstn-service
+      summary: Authenticate and get auth token
+      description: |
+        Authenticates the request received and shares the auth token and SEK for the authenticated user.
+        The auth_token must be included as a header in all subsequent API requests.
+        
+        **Note**: Auth token is valid for 2 hours.
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /gstn/discover/{ver}/{lang}:
+    get:
+      tags:
+        - gstn-service
+      summary: Discover GSTIN account
+      description: |
+        Checks whether the GSTIN is active and verifies the type of taxpayer.
+        
+        **Important**: Store the accRefNumber and maskedAccNumber from the response for all future purposes.
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: auth_token
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Authentication token from authenticate API
+        - name: gstin
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$"
+          description: GSTIN number to discover
+      responses:
+        '200':
+          description: GSTIN discovered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoverResponse'
+        '400':
+          description: Invalid GSTIN format
+        '401':
+          description: Unauthorized or invalid auth token
+        '404':
+          description: GSTIN not found
+        '500':
+          description: Internal server error
+
+  /gstn/link/{ver}/{lang}:
+    get:
+      tags:
+        - gstn-service
+      summary: Generate OTP for account linking
+      description: |
+        Provides a token (OTP) for authentication of the GSTIN required to be linked.
+        
+        The OTP will be sent to the registered mobile number/email associated with the GSTIN.
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: auth_token
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Authentication token from authenticate API
+        - name: accRefNumber
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Account reference number from discover API response
+      responses:
+        '200':
+          description: OTP generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkResponse'
+        '400':
+          description: Invalid account reference number
+        '401':
+          description: Unauthorized or invalid auth token
+        '500':
+          description: Internal server error
+
+  /gstn/verify/{ver}/{lang}:
+    get:
+      tags:
+        - gstn-service
+      summary: Verify OTP and complete account linking
+      description: |
+        Validates the token (OTP) sent to the customer and submitted by lenders for linking accounts.
+        
+        **Important**: Store the linkRefNumber and customerAddress from the response for all future purposes.
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: auth_token
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Authentication token from authenticate API
+        - name: accRefNumber
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Account reference number from discover API response
+        - name: otp
+          in: query
+          required: true
+          schema:
+            type: string
+            pattern: "^[0-9]{6}$"
+          description: 6-digit OTP received by customer
+      responses:
+        '200':
+          description: OTP verified successfully and account linked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyResponse'
+        '400':
+          description: Invalid OTP or account reference number
+        '401':
+          description: Unauthorized or invalid auth token
+        '422':
+          description: OTP expired or already used
+        '500':
+          description: Internal server error
+
+  /gstn/consent/{ver}/{lang}:
+    post:
+      tags:
+        - gstn-service
+      summary: Submit consent artifact
+      description: |
+        This API is used for receiving the consent artifact as per REBIT's AA specifications.
+        
+        The consent must be digitally signed and contain all mandatory parameters including:
+        - Customer address from verify API response
+        - Link reference number and masked account number
+        - FI data range and fetch type (must be ONETIME)
+        - Valid consent start and expiry dates
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: auth_token
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Authentication token from authenticate API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentRequest'
+            example:
+              meta:
+                txncode: "5473773"
+                ver: "1.0"
+                ts: "2024-06-27T12:26:45+0530"
+              data:
+                payload: "eyJ2ZXIiOiIyLjAuMCIsInR4bmlkIjoiYzFkOGM0MDUtYTA3Mi00Y2JkLTkyYzQtNTQxNDQxZTE3NTc2IiwiY29uc2VudElkIjoiNDYwYjBkN2EtMjI5Zi00ZDJjLTkxZDAtNWU2MDgxMTg5ZmMyIiwiY3JlYXRlVGltZXN0YW1wIjoiMjAyNC0wNy0xOFQwNzoxMDozOC45MTZaIiwic3RhdHVzIjoiQUNUSVZFIiwic2lnbmVkQ29uc2VudCI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpqYjI1elpXNTBVM1JoY25RaU9pSXlNREkwTFRBeExUQXhWREV4T2pNNU9qSXdMak00TVZvaUxDSmpiMjV6Wlc1MFJYaHdhWEo1SWpvaU1qQXlOQzB4TWkweE1sUXhOem8xTmpvelV5UTkifQ=="
+              hmac: "wAqy8gf+uS5j5naWleuCZejR7X2TOin/KjwsUm0Q9Ms="
+      responses:
+        '200':
+          description: Consent artifact accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsentResponse'
+        '400':
+          description: Invalid consent artifact or missing mandatory parameters
+        '401':
+          description: Unauthorized or invalid auth token
+        '422':
+          description: Consent validation failed
+        '500':
+          description: Internal server error
+
+  /gstn/fi-request/{ver}/{lang}:
+    post:
+      tags:
+        - gstn-service
+      summary: Request financial information
+      description: |
+        Request encrypted financial information based on the consent artifact.
+        
+        **Prerequisites**:
+        - Valid consent artifact must be submitted
+        - Public/private keys generated using provided JAR
+        - Request must be within consent validity period
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: auth_token
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Authentication token from authenticate API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FIRequest'
+      responses:
+        '200':
+          description: FI request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FIRequestResponse'
+        '400':
+          description: Invalid request or consent not found
+        '401':
+          description: Unauthorized or invalid auth token
+        '403':
+          description: Consent expired or not active
+        '500':
+          description: Internal server error
+
+  /gstn/fi-fetch/{ver}/{lang}:
+    post:
+      tags:
+        - gstn-service
+      summary: Fetch encrypted financial information
+      description: |
+        Retrieve encrypted financial information that can be decrypted using the private key.
+        
+        **Note**: Use the decryption functionality provided in the JAR to decrypt the response.
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: auth_token
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Authentication token from authenticate API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FIFetchRequest'
+      responses:
+        '200':
+          description: Encrypted financial information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FIFetchResponse'
+        '400':
+          description: Invalid session ID or request
+        '401':
+          description: Unauthorized or invalid auth token
+        '404':
+          description: Financial information not found
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication (6 hours validity in both sandbox and production)
+
+  schemas:
+    Meta:
+      type: object
+      required:
+        - ver
+        - ts
+        - txncode
+      properties:
+        ver:
+          type: string
+          description: API version
+          example: "1.0"
+        ts:
+          type: string
+          description: Timestamp in ISO format
+          example: "2024-06-27T12:26:45+0530"
+        txncode:
+          type: string
+          description: Unique transaction code
+          example: "5473773"
+
+    Result:
+      type: object
+      properties:
+        errcode:
+          type: string
+          description: Error code (E000 for success)
+          example: "E000"
+        status:
+          type: string
+          description: Request status
+          enum: ["success", "fail"]
+          example: "success"
+        info:
+          type: string
+          description: Additional information
+          example: ""
+
+    AuthenticationResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            auth_token:
+              type: string
+              description: Authentication token (valid for 2 hours)
+              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            sek:
+              type: string
+              description: Session encryption key
+              example: "SEK12345678901234567890"
+        signature:
+          type: string
+          description: Digital signature
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC signature
+        publickey:
+          type: string
+          description: Public key for verification
+        sig-algo:
+          type: string
+          example: "SHA256withECDSA"
+
+    DiscoverResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            accRefNumber:
+              type: string
+              description: Account reference number (store for future use)
+              example: "ACC123456789"
+            maskedAccNumber:
+              type: string
+              description: Masked account number (store for future use)
+              example: "23XXXXXXXXXXXXY"
+            taxpayerType:
+              type: string
+              description: Type of taxpayer
+              example: "Regular"
+            status:
+              type: string
+              description: GSTIN status
+              example: "Active"
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    LinkResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            message:
+              type: string
+              description: OTP generation status message
+              example: "OTP sent successfully"
+            otpExpiry:
+              type: string
+              description: OTP expiry time
+              example: "2024-06-27T12:36:45+0530"
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    VerifyResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            linkRefNumber:
+              type: string
+              description: Link reference number (store for future use)
+              example: "LRN231556062400024"
+            customerAddress:
+              type: string
+              description: Customer address (store for future use)
+              example: "uatsbsanity00001@RBIH"
+            status:
+              type: string
+              description: Linking status
+              example: "Linked"
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    ConsentData:
+      type: object
+      required:
+        - payload
+      properties:
+        payload:
+          type: string
+          description: Base64 encoded consent artifact as per REBIT AA specifications
+          example: "eyJ2ZXIiOiIyLjAuMCIsInR4bmlkIjoiYzFkOGM0MDUtYTA3Mi00Y2JkLTkyYzQtNTQxNDQxZTE3NTc2In0="
+
+    ConsentRequest:
+      type: object
+      required:
+        - meta
+        - data
+        - hmac
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          $ref: '#/components/schemas/ConsentData'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+          example: "wAqy8gf+uS5j5naWleuCZejR7X2TOin/KjwsUm0Q9Ms="
+
+    ConsentResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            consentId:
+              type: string
+              description: Consent identifier
+              example: "460b0d7a-229f-4d2c-91d0-5e6081189fc2"
+            status:
+              type: string
+              description: Consent status
+              example: "ACTIVE"
+            message:
+              type: string
+              description: Consent processing message
+              example: "Consent artifact processed successfully"
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    FIRequestData:
+      type: object
+      required:
+        - consentId
+        - publicKey
+        - digitalSignature
+      properties:
+        consentId:
+          type: string
+          description: Consent ID from consent API response
+          example: "460b0d7a-229f-4d2c-91d0-5e6081189fc2"
+        publicKey:
+          type: string
+          description: Public key generated using provided JAR
+          example: "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA..."
+        digitalSignature:
+          type: string
+          description: Digital signature from signed consent
+          example: "hvOgoB-1LpInG1e_wGb1VIHW3zt1KibpSfgPtzl2aqI..."
+        sessionId:
+          type: string
+          description: Unique session identifier
+          example: "SESSION123456789"
+
+    FIRequest:
+      type: object
+      required:
+        - meta
+        - data
+        - hmac
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          $ref: '#/components/schemas/FIRequestData'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+
+    FIRequestResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            sessionId:
+              type: string
+              description: Session ID for fetch request
+              example: "SESSION123456789"
+            status:
+              type: string
+              description: Request processing status
+              example: "Processed"
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    FIFetchData:
+      type: object
+      required:
+        - sessionId
+      properties:
+        sessionId:
+          type: string
+          description: Session ID from FI request response
+          example: "SESSION123456789"
+
+    FIFetchRequest:
+      type: object
+      required:
+        - meta
+        - data
+        - hmac
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          $ref: '#/components/schemas/FIFetchData'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+
+    FIFetchResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            encryptedFI:
+              type: string
+              description: Encrypted financial information (decrypt using private key)
+              example: "encrypted_base64_data_here"
+            dataRange:
+              type: object
+              properties:
+                from:
+                  type: string
+                  description: Start date of financial data
+                  example: "2023-02-01T11:39:20.381Z"
+                to:
+                  type: string
+                  description: End date of financial data
+                  example: "2024-01-15T12:40:20.453Z"
+            fiTypes:
+              type: array
+              items:
+                type: string
+              description: Types of financial information included
+              example: ["GSTR1_3B"]
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string

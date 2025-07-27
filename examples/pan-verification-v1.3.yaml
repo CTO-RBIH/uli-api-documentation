@@ -1,0 +1,303 @@
+openapi: 3.0.3
+info:
+  title: PAN Verification Service API
+  description: |
+    The PAN Verification API service allows verification of the details and validity of a Permanent Account Number (PAN).
+    
+    This service is offered by Protean eGov Technologies Ltd in the current version of the Platform, providing secure and reliable PAN validation for financial institutions and lenders.
+    
+    ## Key Features
+    - **PAN Validity Check**: Verify if a PAN exists and is valid in the Income Tax Department database
+    - **Status Verification**: Check PAN status including active, deactivated, fake, or deleted status
+    - **Personal Details Matching**: Validate name, father's name, and date of birth against PAN records
+    - **Seeding Status**: Check if PAN is operative or inoperative
+    - **Secure Processing**: Uses AES-256 encryption and PKI certificates for data security
+    
+    ## Important Notes
+    - For production use, a PFX certificate from a CA (such as eMudhra) is mandatory
+    - Different validation levels available for DCT and non-DCT categories
+    - Batch processing support for up to 5 PANs per request
+  version: "1.3.2"
+  contact:
+    name: RBIH Support
+    email: support@rbihub.io
+  license:
+    name: Proprietary
+    url: https://rbihub.in/terms-of-use/
+
+servers:
+  - url: https://extgw.nonprod.rbihub.io
+    description: Sandbox Environment
+  - url: https://extgw.api.rbihub.io
+    description: Production Environment
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: pan-verification
+    description: PAN verification and validation services
+
+paths:
+  /panverification/{ver}/{lang}:
+    post:
+      tags:
+        - pan-verification
+      summary: Verify PAN details and validity
+      description: |
+        Verify the details and validity of a Permanent Account Number (PAN) against Income Tax Department records.
+        
+        The service validates:
+        - PAN existence and status in ITD database
+        - Name matching against PAN records
+        - Father's name matching (for DCT category)
+        - Date of birth verification
+        - Seeding status (operative/inoperative)
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.3"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PANVerificationRequest'
+            example:
+              meta:
+                ver: "1.3"
+                ts: "2024-01-25T21:25:06+0530"
+                txncode: "98798797ty55u"
+              data:
+                payload: "WDoUcYEappsAbqd2pThW27ht8KDKmG2oi0dygVRpY74IuK+97MNnxRtmO/ayUsI6MeE702gkcf0LKjRCfXOVIiibuR1JRRRIhUIIgf1XDhNSa3ENknRmB25rKX6ayHj5ypMg4NDRgrWC"
+                sessionId: "ln+OCfvHxWMRZzBxncegakb9jMjd/Iuufipoz8kk45kAHFnSDkUVkxqYcezJmv54h+Bq5DvvYIpNVuTX6mkRx69z4zEdsPvcrL2DJ+OTcKA8yh0u8VvfPS2UoTst2KaIA2e/BiJMG0GFc0+cDJXxToowmIQbhTKqmmqUvraUmVZOR80fdzsCzMeqPRlZHEU4MgdRwwVujlpfPfIe8jix5xWbyzzitqehD8cAF5f7dXhbIWwtGvhTNQQWxk4F5awZq0BQ2cbNiTPbE3XRATBygbzKZweERqKgsEkwsPvCgvv/h/kbAUeFP+MhCbJjbIVRpDhc/z2f10y+x+Gn3niTgg=="
+                sessionKey: "0s0edeE2U5eSmOvgD+gjqs5b/fzMy80FMCLVRsSap0YN1vK7fmxdXQcPxpQLEButtXbrCTKdRmpsjTbc1B+ur2klEOnk07VvHzb87Fu+3anoP1XClESfspLGKGuSBm/uHiC5oMQOnRu/kxINtD/SOIj8OObsfmeVR98197AEpKVTI+gE0Y4r0oAEULAC5K4luA00YeRtjb8anPhrhZtU8sUH02KegtVQEkHFoFF7lrL5VwmheibLGJv9R2QhOTv4/JTB9XFfSmcYVRFIOoGrLh/XfHt6AWO0JyqUWqvfj6rCUCBdADZLmPErD20WwzIer3wxx9/qn6i8U0liTM7t6g=="
+              hmac: "WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4="
+      responses:
+        '200':
+          description: Successful PAN verification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PANVerificationResponse'
+        '400':
+          description: Bad request - Invalid input data
+        '401':
+          description: Unauthorized - Invalid or missing JWT token
+        '403':
+          description: Forbidden - User not authorized or certificate issues
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication (6 hours validity in both sandbox and production)
+
+  schemas:
+    Meta:
+      type: object
+      required:
+        - ver
+        - ts
+        - txncode
+      properties:
+        ver:
+          type: string
+          description: API version
+          example: "1.3"
+        ts:
+          type: string
+          description: Timestamp in ISO format
+          example: "2024-01-25T21:25:06+0530"
+        txncode:
+          type: string
+          description: Unique transaction code provided by lender
+          example: "98798797ty55u"
+
+    Result:
+      type: object
+      properties:
+        errcode:
+          type: string
+          description: Error code (E000 for success)
+          example: "E000"
+        status:
+          type: string
+          description: Request status
+          enum: ["success", "fail"]
+          example: "success"
+        info:
+          type: string
+          description: Additional information
+          example: ""
+
+    EncryptedData:
+      type: object
+      required:
+        - payload
+        - sessionId
+        - sessionKey
+      properties:
+        payload:
+          type: string
+          description: AES-256 encrypted payload using AES/GCM/NoPadding algorithm
+          example: "WDoUcYEappsAbqd2pThW27ht8KDKmG2oi0dygVRpY74IuK+97MNnxRtmO/ayUsI6MeE702gkcf0LKjRCfXOVIiibuR1JRRRIhUIIgf1XDhNSa3ENknRmB25rKX6ayHj5ypMg4NDRgrWC"
+        sessionId:
+          type: string
+          description: Initialization Vector encrypted using Platform's public key
+          example: "ln+OCfvHxWMRZzBxncegakb9jMjd/Iuufipoz8kk45kAHFnSDkUVkxqYcezJmv54h+Bq5DvvYIpNVuTX6mkRx69z4zEdsPvcrL2DJ+OTcKA8yh0u8VvfPS2UoTst2KaIA2e/BiJMG0GFc0+cDJXxToowmIQbhTKqmmqUvraUmVZOR80fdzsCzMeqPRlZHEU4MgdRwwVujlpfPfIe8jix5xWbyzzitqehD8cAF5f7dXhbIWwtGvhTNQQWxk4F5awZq0BQ2cbNiTPbE3XRATBygbzKZweERqKgsEkwsPvCgvv/h/kbAUeFP+MhCbJjbIVRpDhc/z2f10y+x+Gn3niTgg=="
+        sessionKey:
+          type: string
+          description: Dynamically generated AES key encrypted using Platform's public key
+          example: "0s0edeE2U5eSmOvgD+gjqs5b/fzMy80FMCLVRsSap0YN1vK7fmxdXQcPxpQLEButtXbrCTKdRmpsjTbc1B+ur2klEOnk07VvHzb87Fu+3anoP1XClESfspLGKGuSBm/uHiC5oMQOnRu/kxINtD/SOIj8OObsfmeVR98197AEpKVTI+gE0Y4r0oAEULAC5K4luA00YeRtjb8anPhrhZtU8sUH02KegtVQEkHFoFF7lrL5VwmheibLGJv9R2QhOTv4/JTB9XFfSmcYVRFIOoGrLh/XfHt6AWO0JyqUWqvfj6rCUCBdADZLmPErD20WwzIer3wxx9/qn6i8U0liTM7t6g=="
+
+    DecryptedPayload:
+      type: object
+      description: Decrypted payload structure containing PAN verification data
+      required:
+        - pan
+        - name
+      properties:
+        pan:
+          type: string
+          description: 10-digit alphanumeric PAN number
+          pattern: "^[A-Z]{5}[0-9]{4}[A-Z]{1}$"
+          minLength: 10
+          maxLength: 10
+          example: "AAAPW9785A"
+        name:
+          type: string
+          description: Name of the PAN holder
+          minLength: 1
+          maxLength: 85
+          example: "VINITA BHANUSHALI"
+        fathername:
+          type: string
+          description: Father's name (optional, max 75 characters)
+          minLength: 0
+          maxLength: 75
+          example: "DINABANDHU"
+        dob:
+          type: string
+          description: Date of birth in DD/MM/YYYY format
+          pattern: "^\\d{2}/\\d{2}/\\d{4}$"
+          example: "09/02/1928"
+
+    PANVerificationRequest:
+      type: object
+      required:
+        - meta
+        - data
+        - hmac
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          $ref: '#/components/schemas/EncryptedData'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+          example: "WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4="
+
+    PANOutputData:
+      type: object
+      properties:
+        pan:
+          type: string
+          description: 10-digit alphanumeric PAN number
+          example: "AAAPB2117A"
+        name:
+          type: string
+          description: Name match result (Y/N)
+          enum: ["Y", "N"]
+          example: "Y"
+        fathername:
+          type: string
+          description: Father's name match result (Y/N/blank for non-DCT)
+          enum: ["Y", "N", ""]
+          example: ""
+        dob:
+          type: string
+          description: Date of birth match result (Y/N)
+          enum: ["Y", "N"]
+          example: "Y"
+        pan_status:
+          type: string
+          description: |
+            PAN status code:
+            - E: Existing and Valid
+            - F: Marked as Fake
+            - X: Marked as Deactivated
+            - D: Deleted
+            - N: PAN not found in ITD Database/Invalid PAN
+            - EA: Existing and Valid, event marked as "Amalgamation"
+            - EC: Existing and Valid, event marked as "Acquisition"
+            - ED: Existing and Valid, event marked as "Death"
+            - EI: Existing and Valid, event marked as "Dissolution"
+            - EL: Existing and Valid, event marked as "Liquidated"
+            - EM: Existing and Valid, event marked as "Merger"
+            - EP: Existing and Valid, event marked as "Partition"
+            - ES: Existing and Valid, event marked as "Split"
+            - EU: Existing and Valid, event marked as "Under Liquidation"
+          enum: ["E", "F", "X", "D", "N", "EA", "EC", "ED", "EI", "EL", "EM", "EP", "ES", "EU"]
+          example: "E"
+        seeding_status:
+          type: string
+          description: |
+            Seeding status (for status E and E with events):
+            - Y: Operative PAN
+            - R: Inoperative PAN
+            - NA: For all non-Individual PANs
+          enum: ["Y", "R", "NA"]
+          example: "Y"
+
+    PANVerificationResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            response_Code:
+              type: string
+              description: Response code from service provider
+              example: "1"
+            outputData:
+              type: array
+              items:
+                $ref: '#/components/schemas/PANOutputData'
+              description: Array of PAN verification results
+        signature:
+          type: string
+          description: Digital signature of the response data
+          example: "MGUCMGWZr4yky1gWSvety/7ogr9kccPUxDwS6vA88DbNStRxsroYEXKuZ1YDa7rQTcd3DAIxALLe6ccqu0Cs5xDrwK7cM3qliE8A1gK1tUfAUMUrW8GR+44p/vo1Q5Q1jgn1tUtvFA=="
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature of response data
+          example: "sdXrrIUwYzgf76rhRwyNVdZ+OuUUeDhd5ru01MHfsvA="
+        publickey:
+          type: string
+          description: Platform's public key for signature verification
+          example: "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEx77kAlMLshFojSwUeMfFjkkSLgK4yi2YGdgD+wU8fMP5z6dAFb3cMrbIQlJOM6LAGkfvRA95LWanj0ZvxgxToKp1zDFEPc+2v74z4LCJRWx6Bfy/EcyzwX8AC0kWwbhn"
+        sig-algo:
+          type: string
+          description: Signature algorithm used
+          example: "SHA256withECDSA"

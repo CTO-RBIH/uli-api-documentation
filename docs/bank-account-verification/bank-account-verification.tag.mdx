@@ -1,0 +1,70 @@
+---
+id: bank-account-verification
+title: "Bank Account Verification Service API"
+description: "Digio's Bank Account Verification service enables financial institutions to securely and efficiently validate customer bank account details without initiating a transaction."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bank Account Verification Service API"}
+>
+</Heading>
+
+Digio's Bank Account Verification service enables financial institutions to securely and efficiently validate customer bank account details without initiating a transaction. By leveraging this API, organizations can ensure accurate beneficiary information, reduce transaction failures, and enhance compliance with regulatory standards.
+
+## Key Features
+
+- **Secure Data Exchange**: Transmit customer bank account details, including account number and IFSC code, securely to Digio's verification system
+- **Real-Time Verification**: Instantly validate the authenticity of bank account information ensuring faster onboarding and reduced operational costs
+- **Enhanced Compliance**: Maintain adherence to regulatory requirements by verifying customer bank details through a secure and reliable API integration
+- **Multiple Validation Modes**: Support for PENNY_DROP, PENNY_LESS, and AUTO verification methods
+- **Fuzzy Name Matching**: Optional name matching with confidence scoring for enhanced verification
+- **Pennyless Verification**: Validate accounts without initiating actual transactions
+
+## How It Works
+
+1. **Account Details Submission**: Submit bank account number, IFSC code, and optional beneficiary name
+2. **Validation Mode Selection**: Choose from PENNY_DROP, PENNY_LESS, or AUTO verification methods
+3. **Secure Processing**: Encrypted data transmission using HMAC signatures and service credentials
+4. **Real-time Verification**: Instant validation against bank records with detailed response
+5. **Name Matching**: Optional fuzzy matching with confidence scores for enhanced accuracy
+
+## Service Information
+
+- **Provider**: Digio Tech Solution Pvt Ltd (Provider Code: 138)
+- **API Version**: 1.0
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token + Basic Auth (service credentials required)
+- **Verification Modes**: PENNY_DROP (default), PENNY_LESS, AUTO
+- **Response Format**: JSON with digital signature verification
+
+## Validation Modes
+
+- **PENNY_DROP**: Traditional penny drop verification with micro-transaction
+- **PENNY_LESS**: Account verification without initiating any transaction
+- **AUTO**: Automatically selects the best available verification method
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

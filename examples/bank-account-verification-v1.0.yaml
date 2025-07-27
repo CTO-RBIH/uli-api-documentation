@@ -1,0 +1,299 @@
+openapi: 3.0.3
+info:
+  title: Bank Account Verification Service API
+  description: |
+    This API specification outlines the integration process for Digio's Bank Account Verification service, designed to enable financial institutions to securely and efficiently validate customer bank account details without initiating a transaction.
+    
+    The Pennyless Bank Account Verification API facilitates the following key functionalities:
+    - **Secure Data Exchange**: Transmit customer bank account details, including account number and IFSC code, securely to Digio's verification system
+    - **Real-Time Verification**: Instantly validate the authenticity of bank account information ensuring faster onboarding and reduced operational costs
+    - **Enhanced Compliance**: Maintain adherence to regulatory requirements by verifying customer bank details through a secure and reliable API integration
+    
+    This service is offered by Digio Tech Solution Pvt Ltd under the current version of the Platform, providing a seamless and efficient solution for bank account verification needs.
+  version: "1.0"
+  contact:
+    name: RBIH Support
+    email: support@rbihub.io
+  license:
+    name: Proprietary
+    url: https://rbihub.in/terms-of-use/
+
+servers:
+  - url: https://extgw.nonprod.rbihub.io
+    description: Sandbox Environment
+  - url: https://extgw.api.rbihub.io
+    description: Production Environment
+
+security:
+  - bearerAuth: []
+  - basicAuth: []
+
+tags:
+  - name: bank-account-verification
+    description: Bank account verification and validation services
+
+paths:
+  /digio/verify/bank-account/{ver}/{lang}:
+    post:
+      tags:
+        - bank-account-verification
+      summary: Verify bank account details without initiating a transaction
+      description: |
+        Securely validate customer bank account details including account number and IFSC code.
+        
+        The service provides:
+        - Real-time account verification
+        - Multiple validation modes (PENNY_DROP, PENNY_LESS, AUTO)
+        - Fuzzy name matching capabilities
+        - Enhanced compliance and fraud prevention
+        
+        By leveraging this API, organizations can ensure accurate beneficiary information, reduce transaction failures, and enhance compliance with regulatory standards.
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: x-env-route
+          in: header
+          required: false
+          schema:
+            type: string
+            default: "/sb"
+          description: Header required to access sandbox environment (not required for production)
+        - name: x-sp-authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Base64 encoded value of username and password provided by DIGIO
+          example: "UkJJSFVCUUE6MEN2a3JEM0Y="
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccountVerificationRequest'
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2025-05-19T12:19:32+0530"
+                txncode: "324242"
+              data:
+                amount: 1.00
+                beneficiary_account_no: "1234567890123456"
+                beneficiary_ifsc: "SBIN0000123"
+                narration: "Account verification"
+                unique_request_id: "REQ123456789"
+                beneficiary_name: "JOHN DOE"
+                validation_mode: "PENNY_DROP"
+              hmac: "Rp55cKLyoxVk/WsxevWOBGDYFgf4D81OVl/lsodhFyk="
+      responses:
+        '200':
+          description: Successful bank account verification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccountVerificationResponse'
+        '400':
+          description: Bad request - Invalid input data
+        '401':
+          description: Unauthorized - Invalid credentials
+        '403':
+          description: Forbidden - Service not subscribed or invalid authorization
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication (6 hours validity in both sandbox and production)
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic authentication using Digio service credentials
+
+  schemas:
+    Meta:
+      type: object
+      required:
+        - ver
+        - ts
+        - txncode
+      properties:
+        ver:
+          type: string
+          description: API version
+          example: "1.0"
+        ts:
+          type: string
+          description: Date and time of initiation of the request in ISO-8601 format
+          example: "2025-05-19T12:19:32+0530"
+        txncode:
+          type: string
+          description: Unique transaction code to identify and trace the request
+          example: "324242"
+
+    Result:
+      type: object
+      properties:
+        errcode:
+          type: string
+          description: Error code (E000 for success)
+          example: "E000"
+        status:
+          type: string
+          description: Status of the request
+          enum: ["success", "fail"]
+          example: "success"
+        info:
+          type: string
+          description: Additional information or error description
+          example: ""
+
+    BankAccountData:
+      type: object
+      required:
+        - beneficiary_account_no
+        - beneficiary_ifsc
+      properties:
+        amount:
+          type: number
+          format: double
+          description: Amount used for penny drop verification (default is ₹1)
+          minimum: 0.01
+          maximum: 100.00
+          example: 1.00
+        beneficiary_account_no:
+          type: string
+          description: Bank account number to be verified (8 to 18 characters)
+          minLength: 8
+          maxLength: 18
+          pattern: "^[0-9]+$"
+          example: "1234567890123456"
+        beneficiary_ifsc:
+          type: string
+          description: IFSC code of the bank branch
+          pattern: "^[A-Z]{4}0[A-Z0-9]{6}$"
+          minLength: 11
+          maxLength: 11
+          example: "SBIN0000123"
+        narration:
+          type: string
+          description: Optional text for transaction narration
+          maxLength: 100
+          example: "Account verification"
+        unique_request_id:
+          type: string
+          description: Unique request identifier for traceability and reconciliation
+          minLength: 1
+          maxLength: 70
+          example: "REQ123456789"
+        beneficiary_name:
+          type: string
+          description: Name of the account holder for optional fuzzy matching
+          maxLength: 100
+          example: "JOHN DOE"
+        validation_mode:
+          type: string
+          description: Account verification method
+          enum: ["PENNY_DROP", "PENNY_LESS", "AUTO"]
+          default: "PENNY_DROP"
+          example: "PENNY_DROP"
+
+    BankAccountVerificationRequest:
+      type: object
+      required:
+        - meta
+        - data
+        - hmac
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          $ref: '#/components/schemas/BankAccountData'
+        hmac:
+          type: string
+          description: SHA-256 HMAC signature of the base64-encoded data field
+          example: "Rp55cKLyoxVk/WsxevWOBGDYFgf4D81OVl/lsodhFyk="
+
+    VerificationData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the verification request
+          example: "HGBDEH7282"
+        verified:
+          type: boolean
+          description: Whether the account was verified successfully
+          example: true
+        verified_at:
+          type: string
+          description: Timestamp of verification in format yyyy-MM-dd HH:mm:ss
+          example: "2025-05-19 12:19:32"
+        beneficiary_name_with_bank:
+          type: string
+          description: Name of the account holder as returned by the bank
+          example: "JOHN DOE"
+        fuzzy_match_result:
+          type: boolean
+          description: Result of fuzzy name match, if name was provided in request
+          example: true
+        fuzzy_match_score:
+          type: integer
+          description: Score (0-100) indicating strength of name match
+          minimum: 0
+          maximum: 100
+          example: 100
+        error_msg:
+          type: string
+          description: Error message from the bank, if any
+          example: ""
+        error_code:
+          type: string
+          description: Error code received during verification
+          example: "E000"
+        validation_mode:
+          type: string
+          description: The verification mode used
+          enum: ["PENNY_DROP", "PENNY_LESS", "AUTO"]
+          example: "PENNY_DROP"
+
+    BankAccountVerificationResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          $ref: '#/components/schemas/VerificationData'
+        signature:
+          type: string
+          description: Digital signature of the response payload
+          example: "MGYCMQCqc3iuy93cQItCgLq+HNlrT2pVXD2fOBFS7N13+LPSC0vh1GpqxOwBG1yYAYoNgsMCMQDqvuCscK7516IpoORsIW0J6zd4XBUCTY9MHY9wsZjucrhpOzoidGG3cjkbeZHyMVc="
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature of response data
+          example: "Rp55cKLyoxVk/WsxevWOBGDYFgf4D81OVl/lsodhFyk="
+        publickey:
+          type: string
+          description: Public key used to verify the signature
+          example: "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE7yHddkKammjAhFpcrO9rQWZjsKUOYvPj3wCTs6fhOnaiZtvup+Z7nbzTwXyfCspHd24sIb9J4hadCl5+UwMfrFuIFnyGAJaq5Nw2kB4sfJVCR0Yq78cqhTunHr0/LnT9"
+        sig-algo:
+          type: string
+          description: Signature algorithm used
+          example: "SHA256withECDSA"

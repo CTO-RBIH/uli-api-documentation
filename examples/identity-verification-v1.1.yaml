@@ -1,0 +1,869 @@
+openapi: 3.0.3
+info:
+  title: Identity Verification Service API
+  description: |
+    The Identity Service APIs are modular, purpose-built tools designed to streamline KYC and user onboarding processes, enabling fast, secure, and scalable identity verification, regardless of your industry or business model.
+    
+    These APIs provide a comprehensive suite of solutions that support every stage of the onboarding and authentication journey. Available API capabilities include:
+    - Name Comparison: Compares two names and returns a similarity match score
+    - Address Comparison: Compares two address strings and calculates a match score  
+    - Face Liveness Detection: Determines whether the presented face is from a live person, preventing spoofing attempts
+    - Face Match: Compares two facial images and returns a confidence score indicating match accuracy
+    - Geocode API: Transforms a structured or free-form address into precise geographic coordinates
+    - Reverse Geocode API: Converts geographic coordinates into a human-readable address
+    
+    Together, these APIs allow you to build reliable, low-friction onboarding workflows while reducing fraud and improving compliance.
+  version: "1.1"
+  contact:
+    name: RBIH Support
+    email: support@rbihub.io
+  license:
+    name: Proprietary
+    url: https://rbihub.in/terms-of-use/
+
+servers:
+  - url: https://api-sandbox.rbihub.io
+    description: Sandbox Environment
+  - url: https://api.rbihub.io
+    description: Production Environment
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: identity-verification
+    description: Identity verification and comparison services
+
+paths:
+  /compare-name/{ver}/{lang}:
+    post:
+      tags:
+        - identity-verification
+      summary: Compare two names and return similarity score
+      description: Compares two names and returns a similarity match score for identity verification purposes
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NameCompareRequest'
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2024-06-09T09:50:29+05:30"
+                txncode: "ere"
+              hmac: "mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4="
+              data:
+                name1: "Mahesh G"
+                name2: "Mahesh Gurav"
+      responses:
+        '200':
+          description: Successful name comparison
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NameCompareResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /compare-address/{ver}/{lang}:
+    post:
+      tags:
+        - identity-verification
+      summary: Compare two addresses and return similarity score
+      description: Compares two address strings and calculates a match score for verification purposes
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressCompareRequest'
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2024-06-09T10:07:15+05:30"
+                txncode: "ere"
+              hmac: "mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4="
+              data:
+                address1: "Daundaj"
+                address2: "Daundaj Purandar Pune"
+      responses:
+        '200':
+          description: Successful address comparison
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressCompareResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /face-match/{ver}/{lang}:
+    post:
+      tags:
+        - identity-verification
+      summary: Compare two facial images and return match confidence
+      description: Compares two facial images and returns a confidence score indicating match accuracy for identity verification
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaceMatchRequest'
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2024-06-09T10:08:57+05:30"
+                txncode: "ere"
+              hmac: "mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4="
+              data:
+                document1: "https://example.com/sample_1.jpg"
+                document2: "https://example.com/sample_2.jpg"
+      responses:
+        '200':
+          description: Successful face match comparison
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaceMatchResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /face-liveness/{ver}/{lang}:
+    post:
+      tags:
+        - identity-verification
+      summary: Detect if face is live to prevent spoofing
+      description: Determines whether the presented face is from a live person, preventing spoofing attempts during identity verification
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FaceLivenessRequest'
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2024-06-09T10:10:15+05:30"
+                txncode: "ere"
+              hmac: "mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4="
+              data:
+                document1: "https://example.com/sample_1.jpg"
+                detect_face_mask: true
+                detect_front_facing: true
+                detect_nsfw: true
+      responses:
+        '200':
+          description: Successful liveness detection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FaceLivenessResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /geocode/{ver}/{lang}:
+    post:
+      tags:
+        - identity-verification
+      summary: Convert address to geographic coordinates
+      description: Transforms a structured or free-form address into precise geographic coordinates (latitude and longitude)
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeocodeRequest'
+      responses:
+        '200':
+          description: Successful geocoding
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodeResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+  /reverse-geocode/{ver}/{lang}:
+    post:
+      tags:
+        - identity-verification
+      summary: Convert coordinates to human-readable address
+      description: Converts geographic coordinates into a human-readable address for location-based services
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.0"
+          description: API version
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReverseGeocodeRequest'
+      responses:
+        '200':
+          description: Successful reverse geocoding
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReverseGeocodeResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication (6 hours validity in sandbox, 12 hours in production)
+
+  schemas:
+    Meta:
+      type: object
+      required:
+        - ver
+        - ts
+        - txncode
+      properties:
+        ver:
+          type: string
+          description: API version
+          example: "1.0"
+        ts:
+          type: string
+          description: Timestamp in ISO format
+          example: "2024-06-09T09:50:29+05:30"
+        txncode:
+          type: string
+          description: Transaction code
+          example: "ere"
+
+    Result:
+      type: object
+      properties:
+        errcode:
+          type: string
+          description: Error code
+          example: "E000"
+        status:
+          type: string
+          description: Request status
+          example: "success"
+        info:
+          type: string
+          description: Additional information
+          example: ""
+
+    NameCompareRequest:
+      type: object
+      required:
+        - meta
+        - hmac
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+          example: "mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4="
+        data:
+          type: object
+          required:
+            - name1
+            - name2
+          properties:
+            name1:
+              type: string
+              description: First name to compare
+              example: "Mahesh G"
+            name2:
+              type: string
+              description: Second name to compare
+              example: "Mahesh Gurav"
+
+    NameCompareResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            result:
+              type: object
+              properties:
+                match_output:
+                  type: object
+                  properties:
+                    name_match:
+                      type: integer
+                      description: Name match score (0-100)
+                      example: 88
+            completed_at:
+              type: string
+              example: "2025-06-09T09:50:29+05:30"
+            group_id:
+              type: string
+              example: "17040eb5-f8d3-47e0-b5f1-b2f610754297"
+            action:
+              type: string
+              example: "compare"
+            created_at:
+              type: string
+              example: "2025-06-09T09:50:29+05:30"
+            task_id:
+              type: string
+              example: "de46dcef-bd73-450f-98d2-08ae0a8c0e82"
+            type:
+              type: string
+              example: "ind_names"
+            request_id:
+              type: string
+              example: "836aae21-d67d-4bfa-8155-44f3930ca9db"
+            status:
+              type: string
+              example: "completed"
+        signature:
+          type: string
+          description: Digital signature
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: Response HMAC signature
+        publickey:
+          type: string
+          description: Public key for signature verification
+        sig-algo:
+          type: string
+          description: Signature algorithm
+          example: "SHA256withECDSA"
+
+    AddressCompareRequest:
+      type: object
+      required:
+        - meta
+        - hmac
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+        data:
+          type: object
+          required:
+            - address1
+            - address2
+          properties:
+            address1:
+              type: string
+              description: First address to compare
+              example: "Daundaj"
+            address2:
+              type: string
+              description: Second address to compare
+              example: "Daundaj Purandar Pune"
+
+    AddressCompareResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            result:
+              type: object
+              properties:
+                match_output:
+                  type: object
+                  properties:
+                    address_match:
+                      type: integer
+                      description: Address match score
+                      example: 1
+            completed_at:
+              type: string
+            group_id:
+              type: string
+            action:
+              type: string
+            created_at:
+              type: string
+            task_id:
+              type: string
+            type:
+              type: string
+              example: "ind_address"
+            request_id:
+              type: string
+            status:
+              type: string
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    FaceMatchRequest:
+      type: object
+      required:
+        - meta
+        - hmac
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+        data:
+          type: object
+          required:
+            - document1
+            - document2
+          properties:
+            document1:
+              type: string
+              format: uri
+              description: URL of first image for comparison
+              example: "https://example.com/sample_1.jpg"
+            document2:
+              type: string
+              format: uri
+              description: URL of second image for comparison
+              example: "https://example.com/sample_2.jpg"
+
+    FaceMatchResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            result:
+              type: object
+              properties:
+                is_a_match:
+                  type: boolean
+                  description: Whether faces match
+                  example: true
+                image_1:
+                  type: object
+                  properties:
+                    face_detected:
+                      type: boolean
+                      example: true
+                    face_quality:
+                      type: string
+                      example: "Good"
+                match_score:
+                  type: number
+                  format: float
+                  description: Match confidence score
+                  example: 99.89
+                image_2:
+                  type: object
+                  properties:
+                    face_detected:
+                      type: boolean
+                      example: true
+                    face_quality:
+                      type: string
+                      example: "Good"
+                review_recommended:
+                  type: boolean
+                  example: false
+            completed_at:
+              type: string
+            group_id:
+              type: string
+            action:
+              type: string
+            created_at:
+              type: string
+            task_id:
+              type: string
+            type:
+              type: string
+              example: "face"
+            request_id:
+              type: string
+            status:
+              type: string
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    FaceLivenessRequest:
+      type: object
+      required:
+        - meta
+        - hmac
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+        data:
+          type: object
+          required:
+            - document1
+          properties:
+            document1:
+              type: string
+              format: uri
+              description: URL of image for liveness detection
+              example: "https://example.com/sample_1.jpg"
+            detect_face_mask:
+              type: boolean
+              description: Whether to detect face masks
+              example: true
+            detect_front_facing:
+              type: boolean
+              description: Whether to detect front-facing pose
+              example: true
+            detect_nsfw:
+              type: boolean
+              description: Whether to detect inappropriate content
+              example: true
+
+    FaceLivenessResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            result:
+              type: object
+              properties:
+                liveness_score:
+                  type: number
+                  format: float
+                  description: Liveness confidence score
+                is_live:
+                  type: boolean
+                  description: Whether the face is determined to be live
+                face_detected:
+                  type: boolean
+                  description: Whether a face was detected
+                face_quality:
+                  type: string
+                  description: Quality assessment of the face
+                face_mask_detected:
+                  type: boolean
+                  description: Whether a face mask was detected
+                front_facing:
+                  type: boolean
+                  description: Whether the face is front-facing
+                nsfw_detected:
+                  type: boolean
+                  description: Whether inappropriate content was detected
+            completed_at:
+              type: string
+            group_id:
+              type: string
+            action:
+              type: string
+            created_at:
+              type: string
+            task_id:
+              type: string
+            type:
+              type: string
+            request_id:
+              type: string
+            status:
+              type: string
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    GeocodeRequest:
+      type: object
+      required:
+        - meta
+        - hmac
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+        data:
+          type: object
+          required:
+            - address
+          properties:
+            address:
+              type: string
+              description: Address to geocode
+              example: "123 Main Street, Mumbai, Maharashtra"
+
+    GeocodeResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            result:
+              type: object
+              properties:
+                latitude:
+                  type: number
+                  format: float
+                  description: Latitude coordinate
+                longitude:
+                  type: number
+                  format: float
+                  description: Longitude coordinate
+                formatted_address:
+                  type: string
+                  description: Formatted address
+                confidence:
+                  type: number
+                  format: float
+                  description: Geocoding confidence score
+            completed_at:
+              type: string
+            group_id:
+              type: string
+            action:
+              type: string
+            created_at:
+              type: string
+            task_id:
+              type: string
+            type:
+              type: string
+            request_id:
+              type: string
+            status:
+              type: string
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string
+
+    ReverseGeocodeRequest:
+      type: object
+      required:
+        - meta
+        - hmac
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+          description: HMAC SHA-256 signature
+        data:
+          type: object
+          required:
+            - latitude
+            - longitude
+          properties:
+            latitude:
+              type: number
+              format: float
+              description: Latitude coordinate
+              example: 19.0760
+            longitude:
+              type: number
+              format: float
+              description: Longitude coordinate
+              example: 72.8777
+
+    ReverseGeocodeResponse:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          type: object
+          properties:
+            result:
+              type: object
+              properties:
+                formatted_address:
+                  type: string
+                  description: Human-readable address
+                address_components:
+                  type: object
+                  description: Detailed address components
+                confidence:
+                  type: number
+                  format: float
+                  description: Reverse geocoding confidence score
+            completed_at:
+              type: string
+            group_id:
+              type: string
+            action:
+              type: string
+            created_at:
+              type: string
+            task_id:
+              type: string
+            type:
+              type: string
+            request_id:
+              type: string
+            status:
+              type: string
+        signature:
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        hmac:
+          type: string
+        publickey:
+          type: string
+        sig-algo:
+          type: string

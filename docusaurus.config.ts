@@ -340,6 +340,38 @@ const config: Config = {
               categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
+          "identity-verification": {
+            specPath: "examples/identity-verification-v1.1.yaml",
+            outputDir: "docs/identity-verification",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "pan-verification": {
+            specPath: "examples/pan-verification-v1.3.yaml",
+            outputDir: "docs/pan-verification",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "bank-account-verification": {
+            specPath: "examples/bank-account-verification-v1.0.yaml",
+            outputDir: "docs/bank-account-verification",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "gstn-service": {
+            specPath: "examples/gstn-service-v1.0.yaml",
+            outputDir: "docs/gstn-service",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
         } satisfies Plugin.PluginOptions,
       },
     ],

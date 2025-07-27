@@ -1,0 +1,65 @@
+---
+id: identity-verification
+title: "Identity Verification Service API"
+description: "The Identity Service APIs are modular, purpose-built tools designed to streamline KYC and user onboarding processes, enabling fast, secure, and scalable identity verification, regardless of your industry or business model."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Identity Verification Service API"}
+>
+</Heading>
+
+The Identity Service APIs are modular, purpose-built tools designed to streamline KYC and user onboarding processes, enabling fast, secure, and scalable identity verification, regardless of your industry or business model.
+
+These APIs provide a comprehensive suite of solutions that support every stage of the onboarding and authentication journey.
+
+## Key Features
+
+- **Name Comparison**: Compares two names and returns a similarity match score
+- **Address Comparison**: Compares two address strings and calculates a match score  
+- **Face Liveness Detection**: Determines whether the presented face is from a live person, preventing spoofing attempts
+- **Face Match**: Compares two facial images and returns a confidence score indicating match accuracy
+- **Geocode API**: Transforms a structured or free-form address into precise geographic coordinates
+- **Reverse Geocode API**: Converts geographic coordinates into a human-readable address
+
+## How It Works
+
+1. **Data Collection**: Gather customer information requiring verification
+2. **API Selection**: Choose appropriate verification endpoints based on data type
+3. **Secure Transmission**: Send encrypted data using HMAC SHA-256 signatures
+4. **Real-time Processing**: Receive immediate verification results and confidence scores
+5. **Decision Making**: Use results to automate approval workflows and fraud detection
+
+## Service Information
+
+- **API Version**: 1.1
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token with 6-hour validity (sandbox) / 12-hour (production)
+- **Response Format**: JSON with digital signature verification
+- **Security**: HMAC SHA-256 for data integrity
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

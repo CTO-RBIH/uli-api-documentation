@@ -1,0 +1,68 @@
+---
+id: pan-verification
+title: "PAN Verification Service API"
+description: "The PAN Verification API service allows verification of the details and validity of a Permanent Account Number (PAN) against Income Tax Department records."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.3.2"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"PAN Verification Service API"}
+>
+</Heading>
+
+The PAN Verification API service allows verification of the details and validity of a Permanent Account Number (PAN) against Income Tax Department records. This service is offered by Protean eGov Technologies Ltd, providing secure and reliable PAN validation for financial institutions and lenders.
+
+## Key Features
+
+- **PAN Validity Check**: Verify if a PAN exists and is valid in the Income Tax Department database
+- **Status Verification**: Check PAN status including active, deactivated, fake, or deleted status
+- **Personal Details Matching**: Validate name, father's name, and date of birth against PAN records
+- **Seeding Status**: Check if PAN is operative or inoperative
+- **Secure Processing**: Uses AES-256 encryption and PKI certificates for data security
+- **Batch Processing**: Support for up to 5 PANs per request
+
+## How It Works
+
+1. **Data Encryption**: Customer PAN data is encrypted using AES-256 with session keys
+2. **Secure Transmission**: Encrypted payload sent with PKI certificate authentication
+3. **ITD Validation**: Platform validates PAN against Income Tax Department database
+4. **Status Check**: Comprehensive status verification including seeding and validity
+5. **Response Processing**: Encrypted response with detailed validation results
+
+## Service Information
+
+- **Provider**: Protean eGov Technologies Ltd (Provider Code: 106)
+- **API Version**: 1.3.2
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token with 6-hour validity
+- **Security**: AES-256 encryption + PKI certificates required for production
+- **Batch Support**: Up to 5 PAN verifications per request
+
+## Production Requirements
+
+⚠️ **Important**: For production deployment, a PFX certificate from a CA (such as eMudhra) is mandatory. The certificate must be shared with Protean for mapping and uploaded by RBIH.
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

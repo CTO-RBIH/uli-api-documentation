@@ -15,6 +15,10 @@ const documentVerificationSidebar = require("./docs/document-verification/sideba
 const aadhaarRedactSidebar = require("./docs/aadhaar-redact/sidebar.ts");
 const facematchSidebar = require("./docs/facematch/sidebar.ts");
 const voterVerificationSidebar = require("./docs/voter-verification/sidebar.ts");
+const identityVerificationSidebar = require("./docs/identity-verification/sidebar.ts");
+const panVerificationSidebar = require("./docs/pan-verification/sidebar.ts");
+const bankAccountVerificationSidebar = require("./docs/bank-account-verification/sidebar.ts");
+const gstnServiceSidebar = require("./docs/gstn-service/sidebar.ts");
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
@@ -32,7 +36,11 @@ const sidebars: SidebarsConfig = {
         ...documentVerificationSidebar,
         ...aadhaarRedactSidebar,
         ...facematchSidebar,
-        ...voterVerificationSidebar
+        ...voterVerificationSidebar,
+        ...identityVerificationSidebar,
+        ...panVerificationSidebar,
+        ...bankAccountVerificationSidebar,
+        ...gstnServiceSidebar
       ]
     }
   ]
