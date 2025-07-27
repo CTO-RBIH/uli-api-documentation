@@ -1,0 +1,97 @@
+---
+id: lrs-lien-marking
+title: "LRS Lien Marking Service API"
+description: "The Lien Marking service sets mortgage details in the land records system upon successful loan issuance. The service provides digitally signed and tehsildar signed documents as proof of lien tagging the land in land record system."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.5.3"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"LRS Lien Marking Service API"}
+>
+</Heading>
+
+The Lien Marking service sets mortgage details in the land records system upon successful loan issuance. The service provides digitally signed and tehsildar signed documents as proof of lien tagging the land in land record system.
+
+This service is part of the Unified Lending Interface (ULI) and enables financial institutions to create, manage, and track liens on land properties across multiple Indian states.
+
+## Key Features
+
+- **Multi-State Support**: Supports Madhya Pradesh, Tamil Nadu, Rajasthan, and Chhattisgarh
+- **Digital Documentation**: Provides digitally signed and tehsildar signed documents
+- **Lien Management**: Create liens upon loan issuance and remove liens upon loan clearance
+- **Status Tracking**: Query lien status for specific land parcels
+- **Callback Support**: Asynchronous processing with callback notifications for Madhya Pradesh
+- **Document Delivery**: PDF and JSON file delivery for lien certificates
+
+## Supported States & Operations
+
+### Madhya Pradesh (Provider Code: 23)
+- **Lien Creation**: Full lien marking with callback support
+- **Document Types**: PDF certificates with JSON metadata
+- **Callback Support**: Multipart/form-data delivery to lender callback URL
+- **Max File Size**: 10 MB for PDF documents
+
+### Tamil Nadu (Provider Code: 33)
+- **Lien Operations**: Create and unmark liens
+- **Status Queries**: Real-time lien status checking
+- **Unique Identifiers**: RBI Lien ID generation
+- **Response Types**: Synchronous JSON responses
+
+### Rajasthan (Provider Code: 8)
+- **Lien Management**: Mark and track liens
+- **Reference System**: Reference number generation
+- **Status Codes**: Standardized status reporting
+
+### Chhattisgarh (Provider Code: 22)
+- **Dual Operations**: Separate lien marking and unmarking endpoints
+- **Loan Tracking**: Comprehensive loan status management
+- **Village-Based**: Village code and survey number identification
+
+## Service Information
+
+- **API Version**: 1.5.3
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token (6 hours validity in sandbox, 12 hours in production)
+- **Request Methods**: POST for all operations
+- **Data Format**: JSON with HMAC SHA-256 signatures
+- **Digital Signatures**: SHA256withECDSA algorithm for data integrity
+
+## Lien Lifecycle Management
+
+1. **Lien Creation**: Upon successful loan disbursement, create lien on land parcel
+2. **Document Generation**: Receive digitally signed lien certificates
+3. **Status Monitoring**: Track lien status throughout loan lifecycle
+4. **Lien Removal**: Remove lien upon loan closure or clearance
+5. **Audit Trail**: Maintain complete transaction history with signatures
+
+## State-Specific Requirements
+
+- **Madhya Pradesh**: Requires Khasra ID and LGD code mapping
+- **Tamil Nadu**: Uses district, taluk, village codes with patta and owner numbers
+- **Rajasthan**: Requires district, tehsil, village IDs with khasra numbers
+- **Chhattisgarh**: Uses village code and survey number combinations
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

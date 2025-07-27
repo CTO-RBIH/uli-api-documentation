@@ -372,6 +372,30 @@ const config: Config = {
               categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
+          "account-aggregator": {
+            specPath: "examples/account-aggregator-v1.3.yaml",
+            outputDir: "docs/account-aggregator",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "lrs-owner-details": {
+            specPath: "examples/lrs-owner-details-v1.5.yaml",
+            outputDir: "docs/lrs-owner-details",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "lrs-lien-marking": {
+            specPath: "examples/lrs-lien-marking-v1.5.yaml",
+            outputDir: "docs/lrs-lien-marking",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
         } satisfies Plugin.PluginOptions,
       },
     ],

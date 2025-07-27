@@ -11,23 +11,30 @@ Welcome to the Reserve Bank Innovation Hub (RBIH) API documentation. RBIH provid
 ## API Categories
 
 ### Identity & Verification Services
+- **Document Verification Service** - Comprehensive identity document verification including driving license verification
 - **Aadhaar Redact Service** - Secure redaction of Aadhaar numbers from document images
-- **Document Verification Service** - Comprehensive identity document verification including driving license, PAN, passport verification
 - **Facematch Service** - Biometric identity verification through facial comparison
 - **Voter ID Verification** - Electoral identity verification service
-
-### Land Records Services
-- **Property Records APIs** - Access to land and property ownership records
-- **Survey Settlement APIs** - Land survey and settlement information
+- **Identity Verification Service** - Multi-endpoint identity verification including name/address comparison, face matching, and geocoding
+- **PAN Verification Service** - Permanent Account Number validation against Income Tax Department records
 
 ### Financial Services
-- **Credit Bureau APIs** - Credit score and history verification
-- **Bank Account Verification** - Real-time account validation services
-- **GSTIN Verification** - GST identification number validation
+- **Bank Account Verification** - Real-time account validation services without initiating transactions
+- **GSTN Service** - GST-related financial information access through Account Aggregator framework
+- **Account Aggregator Service** - Central hub for financial data aggregation from multiple banks and institutions
+
+### Land Records Services
+- **LRS Owner Details Service** - Verify land ownership details from state government land record systems across 9 Indian states
+- **LRS Lien Marking Service** - Create and manage liens on land properties upon loan issuance with digitally signed documentation across 4 states
 
 ### Agricultural Services
 - **Crop Insurance APIs** - Agricultural insurance verification and processing
 - **Farmer Database APIs** - Farmer identity and land ownership verification
+
+### Other Services
+- **Translation & Transliteration** - Language processing services
+- **Legal Verification** - Legal document and entity verification
+- **E-signature & E-stamp** - Digital document processing services
 
 ## Authentication
 

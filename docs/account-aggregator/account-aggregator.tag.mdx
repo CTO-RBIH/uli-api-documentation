@@ -1,0 +1,82 @@
+---
+id: account-aggregator
+title: "Account Aggregator Service API"
+description: "The Account Aggregator serves as an intermediary between Users/FIUs and Financial Information Providers, enabling secure consent management and multi-bank data aggregation."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.3.1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Account Aggregator Service API"}
+>
+</Heading>
+
+The Account Aggregator (AA) serves as an intermediary between a User or a FIU and Financial Information Providers (such as banks, securities, insurance, pensions and other account/finance management service providers). Application Programming interfaces enable AA to manage the lifecycle of consent artifacts through the Consent Flow API.
+
+The Account Aggregator API service allows to get consent of the application and fetches account details from multiple banks.
+
+## Key Features
+
+- **Consent Management**: Handle consent artifacts as per ReBIT FIU 2.0.0 specifications
+- **Multi-Bank Integration**: Fetch account details from multiple financial institutions
+- **Secure Data Exchange**: Base64 encoded requests with HMAC signatures and JWS authentication
+- **Multiple AA Providers**: Support for 7 major Account Aggregator providers
+- **Enhanced Security**: JWS signatures and client API keys for robust authentication
+- **Pass-through Architecture**: Seamless integration without examining specific consent types
+
+## Supported Service Providers
+
+- **Perfios** (Provider Code: 121) - ✅ AA 2.0 Support
+- **FinVu** (Provider Code: 122) - ✅ AA 2.0 Support
+- **Saafe** (Provider Code: 123)
+- **NADL** (Provider Code: 124) - ✅ AA 2.0 Support
+- **CAMSFinserv** (Provider Code: 125)
+- **Onemoney** (Provider Code: 126) - ✅ AA 2.0 Support
+- **Protean** (Provider Code: 106) - ✅ AA 2.0 Support
+
+## Service Information
+
+- **API Version**: 1.3.1 (with AA 2.0 integration for selected providers)
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token + JWS Signature + Client API Key
+- **Data Format**: Base64 encoded consent requests per ReBIT FIU 2.0.0 specification
+- **Security**: HMAC SHA-256 signatures and digital signature verification
+
+## How It Works
+
+1. **Consent Request Preparation**: Prepare consent request as per ReBIT FIU 2.0.0 specifications
+2. **Base64 Encoding**: Encode the consent request data in base64 format
+3. **Secure Transmission**: Send with JWS signature and client API key
+4. **AA Processing**: Selected Account Aggregator processes the consent request
+5. **Response Handling**: Receive and decode the response from the AA provider
+
+## Consent Types Supported
+
+- **Bank Account Consent**: Access to banking information
+- **GSTN Consent**: GST-related financial information access
+- **Multi-Provider Consent**: Aggregated financial data from multiple sources
+- **Custom Consent**: Various other financial information types
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

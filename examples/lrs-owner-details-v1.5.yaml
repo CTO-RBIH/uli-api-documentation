@@ -1,0 +1,549 @@
+openapi: 3.0.3
+info:
+  title: "LRS Owner Details Service API"
+  description: "The Verify Land Ownership Details API service allows to verify the details of the owner of the land. It fetches the details from the land record system maintained by the state governments across 9 Indian states including Madhya Pradesh, Maharashtra, Uttar Pradesh, Tamil Nadu, Odisha, Andhra Pradesh, Tripura, Rajasthan, and Chhattisgarh."
+  version: "1.5"
+  contact:
+    name: "RBIH Support"
+    email: "support@rbihub.io"
+  license:
+    name: "RBIH License"
+    url: "https://rbihub.in/terms-of-use/"
+
+servers:
+  - url: "https://extgw.nonprod.rbihub.io"
+    description: "Sandbox Environment"
+  - url: "https://extgw.api.rbihub.io" 
+    description: "Production Environment"
+
+security:
+  - JWTAuth: []
+
+paths:
+  /landownerdetails/1.5/{lang}:
+    get:
+      tags:
+        - "LRS Owner Details"
+      summary: "Verify Land Ownership Details"
+      description: "Fetches land ownership details from state government land record systems. Supports multiple Indian states with state-specific parameters and multilingual responses."
+      operationId: "verifyLandOwnership"
+      parameters:
+        - name: "lang"
+          in: "path"
+          required: true
+          description: "Language code for response transliteration"
+          schema:
+            type: "string"
+            enum: ["en", "hi", "mr", "ta", "te", "bn"]
+            example: "en"
+        - name: "Authorization"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "ts"
+          in: "header"
+          required: true
+          description: "Request timestamp in ISO-8601 format"
+          schema:
+            type: "string"
+            format: "date-time"
+            example: "2024-07-25T21:10:23+05:30"
+        - name: "txncode"
+          in: "header"
+          required: true
+          description: "Unique transaction code provided by the lender"
+          schema:
+            type: "string"
+            example: "3245336A355h44"
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "pNRxiviTvgBrf7qMANqBVskDYfEa=="
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "State code as per MDDS standards"
+          schema:
+            type: "string"
+            enum: ["8", "9", "16", "21", "22", "23", "27", "28", "33"]
+            example: "23"
+        - name: "scope"
+          in: "header"
+          required: false
+          description: "Scope to retrieve specific parts of response"
+          schema:
+            type: "string"
+            enum: ["all", "landOwnerDetails", "documentDetails", "farmRiskParams", "cropYieldDetails"]
+            example: "all"
+        - name: "consent-id"
+          in: "header"
+          required: true
+          description: "Reference number of the consent artifact"
+          schema:
+            type: "string"
+            example: "3883ct99u3992"
+        - name: "distid"
+          in: "header"
+          required: false
+          description: "District ID (required for most states)"
+          schema:
+            type: "string"
+            example: "18"
+        - name: "subdistid"
+          in: "header"
+          required: false
+          description: "Sub District/Tehsil/Taluk ID"
+          schema:
+            type: "string"
+            example: "04"
+        - name: "villageid"
+          in: "header"
+          required: false
+          description: "Village Code/LGD Code/C Code"
+          schema:
+            type: "string"
+            example: "119223"
+        - name: "surveynum"
+          in: "header"
+          required: false
+          description: "Survey Number/Khasara ID (Base64 encoded for Andhra Pradesh Unicode characters)"
+          schema:
+            type: "string"
+            example: "118040200107207000995"
+        - name: "subdivnum"
+          in: "header"
+          required: false
+          description: "Plot number/Sub division number"
+          schema:
+            type: "string"
+            example: "6908"
+        - name: "ulpin"
+          in: "header"
+          required: false
+          description: "UC Code/ULPIN for land parcel"
+          schema:
+            type: "string"
+            example: "1192230081000012"
+        - name: "khatanum"
+          in: "header"
+          required: false
+          description: "Khata Number"
+          schema:
+            type: "string"
+            example: "36"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      responses:
+        "200":
+          description: "Successful response with land ownership details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LandOwnershipResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "403":
+          description: "Forbidden - Access denied"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: "Not Found - Land record not found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  securitySchemes:
+    JWTAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+      description: "JWT token obtained from RBIH authentication service"
+
+  schemas:
+    LandOwnershipResponse:
+      type: "object"
+      properties:
+        landOwnerDetails:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/LandOwnerDetail"
+        documentDetails:
+          $ref: "#/components/schemas/DocumentDetails"
+        farmRiskParams:
+          $ref: "#/components/schemas/FarmRiskParams"
+        cropYieldDetails:
+          $ref: "#/components/schemas/CropYieldDetails"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+          example: "MEQCIGkzgBDG+mGsgGvm8H1Oh6/IBCsijeesqicwXu5IUg2xAiBGDnoPbKmAyI9tusTIe5f4gEHQ+BpFH/Hqwe+LIaWFQw=="
+        sigalgo:
+          type: "string"
+          description: "Signature algorithm used"
+          example: "SHA256withECDSA"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+          example: "WbvwfMw59bNH46yuD4hbNZrIEZhDSt5MXwWTGaQ6UkI="
+
+    LandOwnerDetail:
+      type: "object"
+      properties:
+        ownername:
+          type: "string"
+          description: "Name of the land owner"
+        lownername:
+          type: "string"
+          description: "Owner name in vernacular language"
+        fathername:
+          type: "string"
+          description: "Father's name of the owner"
+        lfathername:
+          type: "string"
+          description: "Father's name in vernacular language"
+        area:
+          type: "string"
+          description: "Area of the land parcel"
+        larea:
+          type: "string"
+          description: "Area in vernacular language"
+        share:
+          type: "string"
+          description: "Share percentage of ownership"
+        rights:
+          type: "string"
+          description: "Rights on the land"
+        lrights:
+          type: "string"
+          description: "Rights in vernacular language"
+        khasratype:
+          type: "string"
+          description: "Khasra type set by state"
+        parcelid:
+          type: "string"
+          description: "Parcel ID set by state"
+        utofarea:
+          type: "string"
+          description: "Unit of area"
+        surveynoarea:
+          type: "string"
+          description: "Survey number area recorded in state land record"
+        districtid:
+          type: "string"
+          description: "District ID set by state"
+        talukcode:
+          type: "string"
+          description: "Taluk code set by state"
+        extares:
+          type: "string"
+          description: "Extra area set by state"
+        districtcode:
+          type: "string"
+          description: "District code set by state"
+        villagecode:
+          type: "string"
+          description: "Village code set by state"
+        ulpin:
+          type: "string"
+          description: "ULPIN set on the land"
+        subdivnum:
+          type: "string"
+          description: "Subdivision number set by the state"
+        uc:
+          type: "string"
+          description: "Unique code as set by state"
+        khatadesc:
+          type: "string"
+          description: "Khata description as set by state"
+        lkhatadesc:
+          type: "string"
+          description: "Khata description in vernacular"
+        khatanum:
+          type: "string"
+          description: "Khata number as set by state"
+        ccode:
+          type: "string"
+          description: "C code for village as set by state"
+        cultiarea:
+          type: "string"
+          description: "Cultivatable area of land"
+        noncultiarea:
+          type: "string"
+          description: "Non-cultivatable area of land"
+        khatatype:
+          type: "string"
+          description: "Khata type as set by state"
+        khasrano:
+          type: "string"
+          description: "Khasra number as set by the state"
+        pin:
+          type: "string"
+          description: "PIN as set by the state"
+        otherrightsname:
+          type: "string"
+          description: "Other rights name set by the state"
+        tenurename:
+          type: "string"
+          description: "Tenure name set by the state"
+        plotno:
+          type: "string"
+          description: "Unique identifier for land"
+        dateofmutation:
+          type: "string"
+          description: "Date on which property owner changed or transferred the land"
+        geocoordinates:
+          type: "string"
+          description: "Latitude and longitude of land parcel"
+        landmainclass:
+          type: "string"
+          description: "Main classification of the plot"
+        landsubclass:
+          type: "string"
+          description: "Sub-classification of the plot"
+        llandmainclass:
+          type: "string"
+          description: "Main classification in vernacular"
+        llandsubclass:
+          type: "string"
+          description: "Sub-classification in vernacular"
+        khatianrevenue:
+          type: "string"
+          description: "Revenue payable by the owner for the khatian"
+
+    DocumentDetails:
+      type: "object"
+      properties:
+        pattano:
+          type: "string"
+          description: "Patta number of the owner"
+        poramboke:
+          type: "string"
+          description: "Poramboke details of land"
+        form8no:
+          type: "string"
+          description: "Form 8 number issued from state"
+        surveynum:
+          type: "string"
+          description: "Survey number of the land"
+        form6no:
+          type: "string"
+          description: "Form 6 number issued from state"
+
+    FarmRiskParams:
+      type: "object"
+      properties:
+        assessed:
+          type: "string"
+          description: "Assessed details by state"
+        soilclass:
+          type: "string"
+          description: "Soil class recorded by state"
+        landtypeid:
+          type: "string"
+          description: "Land type ID specified by state"
+        irrsource:
+          $ref: "#/components/schemas/IrrigationSource"
+        landrevenue:
+          type: "string"
+          description: "Land revenue details set by state"
+        landtypename:
+          type: "string"
+          description: "Land type name in English"
+        llandusetype:
+          type: "string"
+          description: "Land use type in vernacular"
+        soiltypepri:
+          type: "string"
+          description: "Primary soil type recorded by state"
+        soiltypesec:
+          type: "string"
+          description: "Secondary soil type recorded by state"
+        courtcase:
+          type: "string"
+          description: "Court case details recorded by state"
+        llandtypename:
+          type: "string"
+          description: "Land type name in vernacular"
+        irrigated:
+          type: "string"
+          description: "Irrigation status of land"
+        landusetype:
+          type: "string"
+          description: "Land use type set by state"
+        mortgageDetails:
+          $ref: "#/components/schemas/MortgageDetails"
+        courtcaseremarks:
+          type: "string"
+          description: "Court case remarks if available, otherwise 'NA'"
+        remarks:
+          type: "string"
+          description: "Additional remarks set by state"
+
+    IrrigationSource:
+      type: "object"
+      properties:
+        sourceofIrrigation:
+          type: "object"
+          properties:
+            source:
+              type: "string"
+              description: "Irrigation source set by state"
+
+    MortgageDetails:
+      type: "object"
+      properties:
+        hypothecation:
+          type: "string"
+          description: "Hypothecation status recorded by state"
+        remarks:
+          type: "string"
+          description: "Mortgage remarks as set by state"
+        mortgaged:
+          type: "string"
+          description: "Mortgaged status recorded by state"
+        addlremarks:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/MortgageRemark"
+
+    MortgageRemark:
+      type: "object"
+      properties:
+        request_id:
+          type: "string"
+          description: "Request ID set by state"
+        mortgage_amount:
+          type: "string"
+          description: "Mortgage amount set by bank"
+        bank_name:
+          type: "string"
+          description: "Bank name set during mortgage"
+        branch_name:
+          type: "string"
+          description: "Bank branch name set during mortgage"
+        ifsc_code:
+          type: "string"
+          description: "IFSC code set during mortgage"
+        name:
+          type: "string"
+          description: "Name set during mortgage"
+        dated:
+          type: "string"
+          description: "Date during mortgage"
+        khata_number:
+          type: "string"
+          description: "Khata number for the land parcel set for mortgage"
+        gata_unique_code:
+          type: "string"
+          description: "Gata unique code for UP land parcel"
+
+    CropYieldDetails:
+      type: "object"
+      properties:
+        cropDetail:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/CropDetail"
+
+    CropDetail:
+      type: "object"
+      properties:
+        seasontype:
+          type: "string"
+          description: "Season type in vernacular"
+        croparea:
+          type: "string"
+          description: "Crop area of cultivated land"
+        cropirrigatedtype:
+          type: "string"
+          description: "Crop irrigated type in vernacular"
+        croptype:
+          type: "string"
+          description: "Crop type in vernacular"
+        sichitarea:
+          type: "string"
+          description: "Sichit area as recorded by state"
+        asichitarea:
+          type: "string"
+          description: "Asichit area as recorded by state"
+        year:
+          type: "string"
+          description: "Crop yield year"
+        cropyear:
+          type: "string"
+          description: "Crop year"
+        cropirrigationsource:
+          type: "string"
+          description: "Crop irrigation source"
+
+    MetaInfo:
+      type: "object"
+      properties:
+        txncode:
+          type: "string"
+          description: "Transaction code"
+          example: "412341231"
+        ver:
+          type: "string"
+          description: "API version"
+          example: "1.5"
+        ts:
+          type: "string"
+          format: "date-time"
+          description: "Response timestamp"
+          example: "2024-10-01T12:26:10+0530"
+
+    ErrorResponse:
+      type: "object"
+      properties:
+        error:
+          type: "object"
+          properties:
+            code:
+              type: "string"
+              description: "Error code"
+            message:
+              type: "string"
+              description: "Error message"
+            details:
+              type: "string"
+              description: "Additional error details"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+
+tags:
+  - name: "LRS Owner Details"
+    description: "Land Records Service for verifying land ownership details across multiple Indian states. Provides comprehensive land ownership information including owner details, documentation, farm risk parameters, and crop yield data from state government land record systems."

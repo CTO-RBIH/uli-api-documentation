@@ -19,6 +19,9 @@ const identityVerificationSidebar = require("./docs/identity-verification/sideba
 const panVerificationSidebar = require("./docs/pan-verification/sidebar.ts");
 const bankAccountVerificationSidebar = require("./docs/bank-account-verification/sidebar.ts");
 const gstnServiceSidebar = require("./docs/gstn-service/sidebar.ts");
+const accountAggregatorSidebar = require("./docs/account-aggregator/sidebar.ts");
+const lrsOwnerDetailsSidebar = require("./docs/lrs-owner-details/sidebar.ts");
+const lrsLienMarkingSidebar = require("./docs/lrs-lien-marking/sidebar.ts");
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
@@ -33,14 +36,38 @@ const sidebars: SidebarsConfig = {
         id: "rbih-apis",
       },
       items: [
-        ...documentVerificationSidebar,
-        ...aadhaarRedactSidebar,
-        ...facematchSidebar,
-        ...voterVerificationSidebar,
-        ...identityVerificationSidebar,
-        ...panVerificationSidebar,
-        ...bankAccountVerificationSidebar,
-        ...gstnServiceSidebar
+        {
+          type: "category",
+          label: "Identity & Verification Services",
+          collapsed: false,
+          items: [
+            ...documentVerificationSidebar,
+            ...aadhaarRedactSidebar,
+            ...facematchSidebar,
+            ...voterVerificationSidebar,
+            ...identityVerificationSidebar,
+            ...panVerificationSidebar
+          ]
+        },
+        {
+          type: "category", 
+          label: "Financial Services",
+          collapsed: false,
+          items: [
+            ...bankAccountVerificationSidebar,
+            ...gstnServiceSidebar,
+            ...accountAggregatorSidebar
+          ]
+        },
+        {
+          type: "category",
+          label: "Land Records Services", 
+          collapsed: false,
+          items: [
+            ...lrsOwnerDetailsSidebar,
+            ...lrsLienMarkingSidebar
+          ]
+        }
       ]
     }
   ]

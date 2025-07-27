@@ -1,0 +1,84 @@
+---
+id: lrs-owner-details
+title: "LRS Owner Details Service API"
+description: "The Verify Land Ownership Details API service allows to verify the details of the owner of the land. It fetches the details from the land record system maintained by the state governments across 9 Indian states."
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.5"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"LRS Owner Details Service API"}
+>
+</Heading>
+
+The Verify Land Ownership Details API service allows to verify the details of the owner of the land. It fetches the details from the land record system maintained by the state governments across multiple Indian states including Madhya Pradesh, Maharashtra, Uttar Pradesh, Tamil Nadu, Odisha, Andhra Pradesh, Tripura, Rajasthan, and Chhattisgarh.
+
+This service is part of the Unified Lending Interface (ULI) and provides comprehensive land ownership verification for financial institutions and lending platforms.
+
+## Key Features
+
+- **Multi-State Coverage**: Integrated with land record systems of 9 Indian states
+- **Comprehensive Data**: Provides owner details, documentation, farm risk parameters, and crop yield information
+- **Multilingual Support**: Supports English, Hindi, Marathi, Tamil, Telugu, and Bengali
+- **State-Specific Parameters**: Flexible header-based parameter system for different state requirements
+- **Digital Signatures**: HMAC SHA-256 and ECDSA signatures for data integrity
+- **Flexible Scope**: Option to retrieve specific parts of the response
+
+## Supported States
+
+- **Madhya Pradesh** (Provider Code: 23)
+- **Maharashtra** (Provider Code: 27) 
+- **Uttar Pradesh** (Provider Code: 9)
+- **Tamil Nadu** (Provider Code: 33)
+- **Odisha** (Provider Code: 21)
+- **Andhra Pradesh** (Provider Code: 28) - Supports Unicode characters with Base64 encoding
+- **Tripura** (Provider Code: 16)
+- **Rajasthan** (Provider Code: 8)
+- **Chhattisgarh** (Provider Code: 22)
+
+## Service Information
+
+- **API Version**: 1.5
+- **Environment Support**: Sandbox and Production
+- **Authentication**: JWT Token (6 hours validity in sandbox, 12 hours in production)
+- **Request Method**: GET with state-specific headers
+- **Data Format**: JSON with digital signatures for integrity
+
+## Response Data Categories
+
+- **Land Owner Details**: Comprehensive ownership information including names, shares, rights, and land parcel details
+- **Document Details**: Patta numbers, survey numbers, form details from state records
+- **Farm Risk Parameters**: Soil classification, irrigation sources, mortgage details, court case information
+- **Crop Yield Details**: Seasonal crop information, irrigation types, cultivated areas
+
+## State-Specific Requirements
+
+Each state has unique parameter requirements:
+- **Madhya Pradesh**: Requires Khasara ID mapping (see AC005 API for master data)
+- **Andhra Pradesh**: Unicode survey numbers must be Base64 encoded
+- **Uttar Pradesh**: Uses ULPIN (Unique Code) for land parcel identification
+- **Tamil Nadu**: Uses LGD codes for district, taluk, and village identification
+
+## Available Endpoints
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```
+      

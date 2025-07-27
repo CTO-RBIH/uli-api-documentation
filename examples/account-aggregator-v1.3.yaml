@@ -1,0 +1,277 @@
+openapi: 3.0.3
+info:
+  title: Account Aggregator Service API
+  description: |
+    The Account Aggregator (AA) serves as an intermediary between a User or a FIU and Financial Information Providers (such as banks, securities, insurance, pensions and other account/finance management service providers). 
+    
+    Application Programming interfaces enable AA to manage the lifecycle of consent artifacts through the Consent Flow API. The Account Aggregator API service allows to get consent of the application and fetches account details from multiple banks.
+    
+    ## Key Features
+    - **Consent Management**: Handle consent artifacts as per ReBIT FIU 2.0.0 specifications
+    - **Multi-Bank Integration**: Fetch account details from multiple financial institutions
+    - **Secure Data Exchange**: Base64 encoded requests with HMAC signatures
+    - **Multiple AA Providers**: Support for Perfios, FinVu, Saafe, NADL, CAMSFinserv, Onemoney, and Protean
+    - **Enhanced Security**: JWS signatures and client API keys for authentication
+    
+    ## Supported Service Providers
+    - **Perfios** (Provider Code: 121)
+    - **FinVu** (Provider Code: 122) 
+    - **Saafe** (Provider Code: 123)
+    - **NADL** (Provider Code: 124)
+    - **CAMSFinserv** (Provider Code: 125)
+    - **Onemoney** (Provider Code: 126)
+    - **Protean** (Provider Code: 106)
+    
+    **Note**: v1.3 with AA 2.0 integration is enabled for Perfios, FinVu, Protean, Onemoney, and NADL providers.
+  version: "1.3.1"
+  contact:
+    name: RBIH Support
+    email: support@rbihub.io
+  license:
+    name: Proprietary
+    url: https://rbihub.in/terms-of-use/
+
+servers:
+  - url: https://extgw.nonprod.rbihub.io
+    description: Sandbox Environment
+  - url: https://extgw.api.rbihub.io
+    description: Production Environment
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: account-aggregator
+    description: Account aggregator consent management and data aggregation services
+
+paths:
+  /aaconsent/{ver}/{lang}:
+    post:
+      tags:
+        - account-aggregator
+      summary: Process consent requests through Account Aggregator
+      description: |
+        Manages the lifecycle of consent artifacts through the Consent Flow API as per ReBIT FIU 2.0.0 specifications.
+        
+        This API handles various types of consent requests including:
+        - Bank account consent requests
+        - GSTN consent requests (for tax-related financial information)
+        - Multi-provider financial data aggregation
+        
+        The request payload contains base64 encoded consent data that is passed through to the selected Account Aggregator provider without modification.
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "1.3"
+          description: API version (v1.3 supports AA 2.0 integration for selected providers)
+        - name: lang
+          in: path
+          required: true
+          schema:
+            type: string
+            default: "en"
+          description: Language preference
+        - name: x-jws-signature
+          in: header
+          required: true
+          schema:
+            type: string
+          description: JWS signature for request authentication
+          example: "eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQi..."
+        - name: client_api_key
+          in: header
+          required: true
+          schema:
+            type: string
+          description: Client API key provided by the service provider
+          example: "pNRxiviTvgBrf7qMANqBVskDYfEasdWFss1e4121d="
+        - name: provider
+          in: header
+          required: true
+          schema:
+            type: string
+            enum: ["121", "122", "123", "124", "125", "126", "106"]
+          description: |
+            Service provider code:
+            - 121: Perfios
+            - 122: FinVu
+            - 123: Saafe
+            - 124: NADL
+            - 125: CAMSFinserv
+            - 126: Onemoney
+            - 106: Protean
+        - name: x-env-route
+          in: header
+          required: false
+          schema:
+            type: string
+            default: "/sb"
+          description: Header required to access sandbox environment (not required for production)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AAConsentRequest'
+            example:
+              meta:
+                ver: "1.3"
+                ts: "2024-05-15T17:15:39+0530"
+                txncode: "412341231"
+              data: "eyJ2ZXIiOiIyLjAuMCIsInR4bmlkIjoiNGE0YWRiYmUtMjlhZS0xMWU4LWE4ZDctMDI4OTQzN2JmMzMxIiwiY29uc2VudElkIjoiNDMxZWQyMjItNDk5ZC00ZDJiLWE1YTAtNTA5Mjg3NTBmYzE0In0="
+              hmac: "myukAvGKjpafeykYv8j7XyIZVuTrs8VMwuza8TAEHqI="
+      responses:
+        '200':
+          description: Consent request processed successfully
+          headers:
+            x-jws-signature:
+              description: JWS signature received from Service Provider response
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AAConsentResponse'
+        '400':
+          description: Bad request - Invalid consent data or missing parameters
+        '401':
+          description: Unauthorized - Invalid JWT token or authentication failure
+        '403':
+          description: Forbidden - Missing required headers or invalid provider
+        '500':
+          description: Internal server error
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token authentication (6 hours validity in sandbox, 12 hours in production)
+
+  schemas:
+    Meta:
+      type: object
+      required:
+        - ver
+        - ts
+        - txncode
+      properties:
+        ver:
+          type: string
+          description: Version of the request template
+          example: "1.3"
+        ts:
+          type: string
+          description: Date and time of initiation of the request in ISO-8601 format
+          example: "2024-05-15T17:15:39+0530"
+        txncode:
+          type: string
+          description: Unique transaction code provided by the lender
+          example: "412341231"
+
+    Result:
+      type: object
+      properties:
+        errcode:
+          type: string
+          description: Error code (E000 for success)
+          example: "E000"
+        status:
+          type: string
+          description: Request status
+          enum: ["success", "fail"]
+          example: "success"
+        info:
+          type: string
+          description: Additional information
+          example: ""
+
+    AAConsentRequest:
+      type: object
+      required:
+        - meta
+        - data
+        - hmac
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          type: string
+          description: |
+            Base64 encoded string of the consent request as per ReBIT FIU 2.0.0 request specification.
+            
+            This payload contains different types of consent requests including:
+            - Bank account consent requests
+            - GSTN consent requests for tax-related financial information
+            - Multi-provider financial data aggregation requests
+            
+            The platform passes this information along to the Account Aggregator without examining the specific type of consent request.
+          example: "eyJ2ZXIiOiIyLjAuMCIsInR4bmlkIjoiNGE0YWRiYmUtMjlhZS0xMWU4LWE4ZDctMDI4OTQzN2JmMzMxIiwiY29uc2VudElkIjoiNDMxZWQyMjItNDk5ZC00ZDJiLWE1YTAtNTA5Mjg3NTBmYzE0In0="
+        hmac:
+          type: string
+          description: SHA-256 hash of the value of key 'data'
+          example: "myukAvGKjpafeykYv8j7XyIZVuTrs8VMwuza8TAEHqI="
+
+    AAResponseData:
+      type: object
+      properties:
+        ver:
+          type: string
+          description: API version
+          example: "1.3"
+        Customer:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Customer identifier in AA format
+              example: "customer_identifier@AA_identifier"
+        ConsentHandle:
+          type: string
+          description: Unique consent handle identifier
+          example: "594b686c-1fbb-4e3c-8aed-5c801dcd891b"
+        timestamp:
+          type: string
+          description: Response timestamp in ISO format
+          example: "2024-05-06T11:39:57.153Z"
+        txnid:
+          type: string
+          description: Transaction identifier
+          example: "4a4adbbe-29ae-11e8-a8d7-0289437bf331"
+
+    AAConsentResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        result:
+          $ref: '#/components/schemas/Result'
+        data:
+          oneOf:
+            - $ref: '#/components/schemas/AAResponseData'
+            - type: string
+              description: |
+                Base64 encoded data of the response as per ReBIT FIU 2.0.0 specification.
+                
+                This response data contains different types of consent responses including GSTN responses.
+                The platform passes the information from the Account Aggregator without examining the specific type of response.
+        signature:
+          type: string
+          description: Digital signature hash of the value located under the key "data"
+          example: "MEUCIAeQv+ziy089sx2o1Y5lqyPjWtw72BDcvIPhpPNNFw/6AiEA+NE2V83BtyAd5kfu1m0Oa4yhMyiGagfAm03e0jz81kU="
+        hmac:
+          type: string
+          description: SHA256 hash of the value located under the key "data"
+          example: "myukAvGKjpafeykYv8j7XyIZVuTrs8VMwuza8TAEHqI="
+        publickey:
+          type: string
+          description: Public key of the platform for source verification purposes
+          example: "MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAERGnPiFyAyylyIVGiSeUNOVSSqaFCYUSkFP4o9cXoiPi8yq54Dmknu/90Q4VQLbGKihaNmk+/AwrPsMNVEC4Cew=="
+        sig-algo:
+          type: string
+          description: Algorithm used for signing the data
+          example: "SHA256withECDSA"
