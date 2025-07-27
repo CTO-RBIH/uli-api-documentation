@@ -9,7 +9,7 @@ import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 const config: Config = {
   title: "RBIH Developer Portal",
   tagline: "Frictionless Finance for a Billion Indians™",
-  url: "https://rbih-docs.com",
+  url: "https://rbih.tech",
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
@@ -19,6 +19,8 @@ const config: Config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "rbih", // Usually your GitHub org/user name.
   projectName: "rbih-docs", // Usually your repo name.
+  deploymentBranch: "gh-pages",
+  trailingSlash: false,
 
   presets: [
     [

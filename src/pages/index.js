@@ -27,7 +27,7 @@ function HomepageHeader() {
           <div className={styles.heroButtons}>
             <Link
               className={clsx('button button--primary button--lg', styles.heroButton)}
-              to="/docs/next/rbih-apis">
+              to="/docs/next/intro">
               Get Started
             </Link>
             <Link

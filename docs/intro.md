@@ -6,11 +6,9 @@ slug: /intro
 
 # RBIH API Documentation
 
-Welcome to the RBIH API Documentation. This page has moved!
+Welcome to the RBIH API Documentation. 
 
-**👉 You're being redirected to our complete API catalog.**
-
-Please visit: **[RBIH API Reference](/docs/next/rbih-apis)** for the full documentation.
+Please visit: **[RBIH API Reference](/docs/next/rbih-apis)** for the openapi specs
 
 <script>
 window.location.href = '/docs/next/rbih-apis';
