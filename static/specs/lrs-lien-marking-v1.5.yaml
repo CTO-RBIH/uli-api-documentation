@@ -1,0 +1,877 @@
+openapi: 3.0.3
+info:
+  title: "LRS Lien Marking Service API"
+  description: "The Lien Marking service sets mortgage details in the land records system upon successful loan issuance. The service provides digitally signed and tehsildar signed documents as proof of lien tagging the land in land record system. Supports multiple states including Madhya Pradesh, Tamil Nadu, Rajasthan, and Chhattisgarh."
+  version: "1.5.3"
+  contact:
+    name: "RBIH Support"
+    email: "support@rbihub.io"
+  license:
+    name: "RBIH License"
+    url: "https://rbihub.in/terms-of-use/"
+
+servers:
+  - url: "https://extgw.nonprod.rbihub.io"
+    description: "Sandbox Environment"
+  - url: "https://extgw.api.rbihub.io" 
+    description: "Production Environment"
+
+security:
+  - JWTAuth: []
+
+paths:
+  /lienmarking/{ver}/{lang}:
+    post:
+      tags:
+        - "LRS Lien Marking"
+      summary: "Create Lien Marking on Land Property"
+      description: "Sets mortgage details in the land records system upon successful loan issuance. Provides digitally signed documents as proof of lien tagging."
+      operationId: "createLienMarking"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version"
+          schema:
+            type: "string"
+            example: "1.5"
+        - name: "lang"
+          in: "path"
+          required: true
+          description: "Language code for response"
+          schema:
+            type: "string"
+            enum: ["en", "hi", "mr", "ta", "te", "bn"]
+            example: "en"
+        - name: "Authorization"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "ts"
+          in: "header"
+          required: true
+          description: "Request timestamp in ISO-8601 format"
+          schema:
+            type: "string"
+            format: "date-time"
+            example: "2024-07-25T21:10:23+05:30"
+        - name: "txncode"
+          in: "header"
+          required: true
+          description: "Unique transaction code provided by the lender"
+          schema:
+            type: "string"
+            example: "3245336A355h44"
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "pNRxiviTvgBrf7qMANqBVskDYfEa=="
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "State code as per MDDS standards"
+          schema:
+            type: "string"
+            enum: ["23", "33", "8", "22"]
+            example: "23"
+        - name: "consent-id"
+          in: "header"
+          required: true
+          description: "Reference number of the consent artifact"
+          schema:
+            type: "string"
+            example: "3883ct99u3992"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "#/components/schemas/MPLienMarkingRequest"
+                - $ref: "#/components/schemas/TNLienMarkingRequest"
+                - $ref: "#/components/schemas/RJLienMarkingRequest"
+                - $ref: "#/components/schemas/CGLienMarkingRequest"
+                - $ref: "#/components/schemas/CGUnmarkingRequest"
+            examples:
+              madhya_pradesh:
+                summary: "Madhya Pradesh Lien Marking"
+                value:
+                  meta:
+                    ver: "1.5"
+                    ts: "2023-01-03T21:10:23+05:30"
+                    txncode: "unique transaction code"
+                  data:
+                    borrowerName: "John Doe"
+                    borrowerMobileNo: "9876543210"
+                    bankApplicationNo: "APP123456"
+                    loanAccountNo: "LOAN789012"
+                    loanAmount: "500000.00"
+                    dateOfLoan: "2024-01-30"
+                    khasraId: "118040200107207000995"
+                    lgdcode: "270700020066440000"
+                  hmac: "SHA-256 Hash of the value"
+              tamil_nadu:
+                summary: "Tamil Nadu Lien Marking"
+                value:
+                  meta:
+                    ver: "1.5"
+                    ts: "2024-11-27T13:16:16+0530"
+                    txncode: "t1253"
+                  data:
+                    districtCode: "16"
+                    talukCode: "03"
+                    villageCode: "611"
+                    surveyNo: "105"
+                    subDivNo: "1A"
+                    pattaNo: 471
+                    ownNum: 1
+                    bankApplicationNo: "TNAPP123"
+                    loanAccountNo: "TNLOAN456"
+                    loanAmount: "300000.00"
+                    dateOfLoan: "2024-11-27"
+                    borrowerName: "Tamil Borrower"
+                    borrowerMobileNo: "9876543210"
+                  hmac: "SHA-256 Hash of the data value"
+      responses:
+        "200":
+          description: "Successful lien marking response"
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/LienMarkingResponse"
+                  - $ref: "#/components/schemas/TNLienMarkingResponse"
+                  - $ref: "#/components/schemas/RJLienMarkingResponse"
+                  - $ref: "#/components/schemas/CGLienMarkingResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /getStatus/{ver}/{lang}:
+    post:
+      tags:
+        - "LRS Lien Marking"
+      summary: "Get Lien Marking Status"
+      description: "Retrieves the current status of lien marking for a specific land parcel."
+      operationId: "getLienMarkingStatus"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version"
+          schema:
+            type: "string"
+            example: "1.5"
+        - name: "lang"
+          in: "path"
+          required: true
+          description: "Language code for response"
+          schema:
+            type: "string"
+            enum: ["en", "hi", "mr", "ta", "te", "bn"]
+            example: "en"
+        - name: "Authorization"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "ts"
+          in: "header"
+          required: true
+          description: "Request timestamp in ISO-8601 format"
+          schema:
+            type: "string"
+            format: "date-time"
+            example: "2024-07-25T21:10:23+05:30"
+        - name: "txncode"
+          in: "header"
+          required: true
+          description: "Unique transaction code provided by the lender"
+          schema:
+            type: "string"
+            example: "3245336A355h44"
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "pNRxiviTvgBrf7qMANqBVskDYfEa=="
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "State code as per MDDS standards"
+          schema:
+            type: "string"
+            enum: ["33", "22", "8"]
+            example: "33"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: "#/components/schemas/TNLienStatusRequest"
+                - $ref: "#/components/schemas/CGLienStatusRequest"
+                - $ref: "#/components/schemas/RJLienStatusRequest"
+            examples:
+              tamil_nadu:
+                summary: "Tamil Nadu Lien Status"
+                value:
+                  meta:
+                    ver: "1.5"
+                    ts: "2023-01-03T21:10:23+05:30"
+                    txncode: "unique transaction code"
+                  data:
+                    districtCode: "16"
+                    talukCode: "03"
+                    villageCode: "611"
+                    surveyNo: "105"
+                    subDivNo: "1A"
+                    pattaNo: 471
+                    ownNum: 1
+                  hmac: "SHA-256 Hash of the data value"
+      responses:
+        "200":
+          description: "Successful lien status response"
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/TNLienStatusResponse"
+                  - $ref: "#/components/schemas/CGLienStatusResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  securitySchemes:
+    JWTAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+      description: "JWT token obtained from RBIH authentication service"
+
+  schemas:
+    # Madhya Pradesh Schemas
+    MPLienMarkingRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            borrowerName:
+              type: "string"
+              description: "Name of the borrower"
+            borrowerMobileNo:
+              type: "string"
+              description: "Mobile number of the borrower"
+            bankApplicationNo:
+              type: "string"
+              description: "Bank application number"
+            loanAccountNo:
+              type: "string"
+              description: "Loan account number"
+            loanAmount:
+              type: "string"
+              description: "Loan amount"
+            dateOfLoan:
+              type: "string"
+              format: "date"
+              description: "Date of loan"
+            khasraId:
+              type: "string"
+              description: "Khasra ID of the land parcel"
+            lgdcode:
+              type: "string"
+              description: "LGD code for the location"
+          required: ["borrowerName", "borrowerMobileNo", "bankApplicationNo", "loanAccountNo", "loanAmount", "dateOfLoan", "khasraId", "lgdcode"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    # Tamil Nadu Schemas
+    TNLienMarkingRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            districtCode:
+              type: "string"
+              description: "District code"
+            talukCode:
+              type: "string"
+              description: "Taluk code"
+            villageCode:
+              type: "string"
+              description: "Village code"
+            surveyNo:
+              type: "string"
+              description: "Survey number"
+            subDivNo:
+              type: "string"
+              description: "Sub division number"
+            pattaNo:
+              type: "integer"
+              description: "Patta number"
+            ownNum:
+              type: "integer"
+              description: "Owner number"
+            bankApplicationNo:
+              type: "string"
+              description: "Bank application number"
+            loanAccountNo:
+              type: "string"
+              description: "Loan account number"
+            loanAmount:
+              type: "string"
+              description: "Loan amount"
+            dateOfLoan:
+              type: "string"
+              format: "date"
+              description: "Date of loan"
+            borrowerName:
+              type: "string"
+              description: "Name of the borrower"
+            borrowerMobileNo:
+              type: "string"
+              description: "Mobile number of the borrower"
+          required: ["districtCode", "talukCode", "villageCode", "surveyNo", "subDivNo", "pattaNo", "ownNum"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    # Rajasthan Schemas
+    RJLienMarkingRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            distId:
+              type: "string"
+              description: "District ID"
+            tehsilId:
+              type: "string"
+              description: "Tehsil ID"
+            villageId:
+              type: "string"
+              description: "Village ID"
+            khasra:
+              type: "string"
+              description: "Khasra number"
+            borrowerName:
+              type: "string"
+              description: "Name of the borrower"
+            borrowerMobileNo:
+              type: "string"
+              description: "Mobile number of the borrower"
+            bankApplicationNo:
+              type: "string"
+              description: "Bank application number"
+            loanAccountNo:
+              type: "string"
+              description: "Loan account number"
+            loanAmount:
+              type: "string"
+              description: "Loan amount"
+            dateOfLoan:
+              type: "string"
+              format: "date"
+              description: "Date of loan"
+          required: ["distId", "tehsilId", "villageId", "khasra"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    # Chhattisgarh Schemas
+    CGLienMarkingRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            villageCode:
+              type: "string"
+              description: "Village code"
+            surveyNo:
+              type: "string"
+              description: "Survey number"
+            borrowerName:
+              type: "string"
+              description: "Name of the borrower"
+            borrowerMobileNo:
+              type: "string"
+              description: "Mobile number of the borrower"
+            bankApplicationNo:
+              type: "string"
+              description: "Bank application number"
+            loanAccountNo:
+              type: "string"
+              description: "Loan account number"
+            loanAmount:
+              type: "string"
+              description: "Loan amount"
+            dateOfLoan:
+              type: "string"
+              format: "date"
+              description: "Date of loan"
+          required: ["villageCode", "surveyNo", "loanAccountNo", "loanAmount", "dateOfLoan"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    CGUnmarkingRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            loanId:
+              type: "string"
+              description: "Loan ID to unmark"
+            loanClearanceDate:
+              type: "string"
+              format: "date"
+              description: "Date of loan clearance"
+          required: ["loanId", "loanClearanceDate"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    # Status Request Schemas
+    TNLienStatusRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            districtCode:
+              type: "string"
+              description: "District code"
+            talukCode:
+              type: "string"
+              description: "Taluk code"
+            villageCode:
+              type: "string"
+              description: "Village code"
+            surveyNo:
+              type: "string"
+              description: "Survey number"
+            subDivNo:
+              type: "string"
+              description: "Sub division number"
+            pattaNo:
+              type: "integer"
+              description: "Patta number"
+            ownNum:
+              type: "integer"
+              description: "Owner number"
+          required: ["districtCode", "talukCode", "villageCode", "surveyNo", "subDivNo", "pattaNo", "ownNum"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    CGLienStatusRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            villageCode:
+              type: "string"
+              description: "Village code"
+            surveyNo:
+              type: "string"
+              description: "Survey number"
+          required: ["villageCode", "surveyNo"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    RJLienStatusRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            statusType:
+              type: "string"
+              description: "Status type"
+              example: "flagstatus"
+            distid:
+              type: "string"
+              description: "District ID"
+            tehsilid:
+              type: "string"
+              description: "Tehsil ID"
+            villageid:
+              type: "string"
+              description: "Village ID"
+            khasra:
+              type: "string"
+              description: "Khasra number"
+          required: ["statusType", "distid", "tehsilid", "villageid", "khasra"]
+        hmac:
+          type: "string"
+          description: "HMAC SHA-256 hash of the data"
+
+    # Response Schemas
+    LienMarkingResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          description: "State-specific response data"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+        publickey:
+          type: "string"
+          description: "Public key for signature verification"
+        sig-algo:
+          type: "string"
+          description: "Signature algorithm used"
+          example: "SHA256withECDSA"
+
+    TNLienMarkingResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            Status:
+              type: "string"
+              description: "Status of the operation"
+              example: "1"
+            Response:
+              type: "string"
+              description: "Response message"
+              example: "Lien Marked/Unmarked Success"
+            "RBI Lien ID":
+              type: "string"
+              description: "Unique RBI Lien ID"
+              example: "f1fa4e4a-10fa-4a04-814a-fe497ad21993"
+            timestamp:
+              type: "string"
+              description: "Timestamp of the operation"
+              example: "2024-11-27 13:19:21.938"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+        publickey:
+          type: "string"
+          description: "Public key for signature verification"
+        sig-algo:
+          type: "string"
+          description: "Signature algorithm used"
+
+    RJLienMarkingResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            referenceNo:
+              type: "string"
+              description: "Reference number"
+            statusCode:
+              type: "string"
+              description: "Status code"
+            status:
+              type: "string"
+              description: "Status (I for marked)"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+        publickey:
+          type: "string"
+          description: "Public key for signature verification"
+        sig-algo:
+          type: "string"
+          description: "Signature algorithm used"
+
+    CGLienMarkingResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            loanAccountNo:
+              type: "string"
+              description: "Loan account number"
+            dateOfLoan:
+              type: "string"
+              format: "date"
+              description: "Date of loan"
+            surveyNo:
+              type: "string"
+              description: "Survey number"
+            lienStatus:
+              type: "string"
+              description: "Lien status (I for marked, R for removed)"
+            loanId:
+              type: "string"
+              description: "Loan ID"
+            loanAmount:
+              type: "string"
+              description: "Loan amount"
+            villageCode:
+              type: "string"
+              description: "Village code"
+            loanClearanceDate:
+              type: "string"
+              format: "date"
+              description: "Loan clearance date (for unmarking)"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+        publickey:
+          type: "string"
+          description: "Public key for signature verification"
+        sig-algo:
+          type: "string"
+          description: "Signature algorithm used"
+
+    # Status Response Schemas
+    TNLienStatusResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            chargeCreationDate:
+              type: "string"
+              description: "Charge creation date"
+            rbiRemarks:
+              type: "string"
+              description: "RBI remarks"
+            ruralUrban:
+              type: "string"
+              description: "Rural/Urban classification"
+            LienId:
+              type: "string"
+              description: "Lien ID"
+            update_dt:
+              type: "string"
+              description: "Update date"
+            chargeClosureDate:
+              type: "string"
+              description: "Charge closure date"
+            LienStatus:
+              type: "string"
+              description: "Lien status (U for unmarked)"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+        publickey:
+          type: "string"
+          description: "Public key for signature verification"
+        sig-algo:
+          type: "string"
+          description: "Signature algorithm used"
+
+    CGLienStatusResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            loanStatus:
+              type: "array"
+              items:
+                type: "object"
+                properties:
+                  loanAccountNo:
+                    type: "string"
+                    description: "Loan account number"
+                  loanClearanceDate:
+                    type: "string"
+                    description: "Loan clearance date"
+                  dateOfLoan:
+                    type: "string"
+                    description: "Date of loan"
+                  lienStatus:
+                    type: "string"
+                    description: "Lien status"
+                  loanId:
+                    type: "string"
+                    description: "Loan ID"
+                  loanAmount:
+                    type: "string"
+                    description: "Loan amount"
+                  villageCode:
+                    type: "string"
+                    description: "Village code"
+        signature:
+          type: "string"
+          description: "Digital signature for data integrity"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        hmac:
+          type: "string"
+          description: "HMAC for data integrity verification"
+        publickey:
+          type: "string"
+          description: "Public key for signature verification"
+        sig-algo:
+          type: "string"
+          description: "Signature algorithm used"
+
+    # Common Schemas
+    MetaInfo:
+      type: "object"
+      properties:
+        ver:
+          type: "string"
+          description: "Version of the request template"
+        ts:
+          type: "string"
+          format: "date-time"
+          description: "Timestamp in ISO-8601 format"
+        txncode:
+          type: "string"
+          description: "Unique transaction code provided by the lender"
+
+    ResultInfo:
+      type: "object"
+      properties:
+        errcode:
+          type: "string"
+          description: "Error code (E000 for success)"
+        status:
+          type: "string"
+          description: "Status of the operation"
+        info:
+          type: "string"
+          description: "Additional information"
+
+    ErrorResponse:
+      type: "object"
+      properties:
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        error:
+          type: "object"
+          properties:
+            code:
+              type: "string"
+              description: "Error code"
+            message:
+              type: "string"
+              description: "Error message"
+            details:
+              type: "string"
+              description: "Additional error details"
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+
+tags:
+  - name: "LRS Lien Marking"
+    description: "Land Records Service for creating and managing liens on land properties. Supports multiple states including Madhya Pradesh, Tamil Nadu, Rajasthan, and Chhattisgarh. Provides digitally signed documents as proof of lien tagging in land record systems upon successful loan issuance."

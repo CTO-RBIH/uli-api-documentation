@@ -13,7 +13,7 @@ const config: Config = {
   baseUrl: "/",
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  favicon: "img/favicon.png",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -309,7 +309,7 @@ const config: Config = {
         docsPluginId: "classic",
         config: {
           "document-verification": {
-            specPath: "examples/document-verification-dl-v1.0.yaml",
+            specPath: "specs/document-verification-dl-v1.0.yaml",
             outputDir: "docs/document-verification",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -317,7 +317,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "aadhaar-redact": {
-            specPath: "examples/aadhaar-redact-v1.0.yaml",
+            specPath: "specs/aadhaar-redact-v1.0.yaml",
             outputDir: "docs/aadhaar-redact",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -325,7 +325,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "facematch": {
-            specPath: "examples/facematch-v1.0.yaml",
+            specPath: "specs/facematch-v1.0.yaml",
             outputDir: "docs/facematch",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -333,7 +333,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "voter-verification": {
-            specPath: "examples/voter-verification-v1.0.yaml",
+            specPath: "specs/voter-verification-v1.0.yaml",
             outputDir: "docs/voter-verification",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -341,7 +341,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "identity-verification": {
-            specPath: "examples/identity-verification-v1.1.yaml",
+            specPath: "specs/identity-verification-v1.1.yaml",
             outputDir: "docs/identity-verification",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -349,7 +349,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "pan-verification": {
-            specPath: "examples/pan-verification-v1.3.yaml",
+            specPath: "specs/pan-verification-v1.3.yaml",
             outputDir: "docs/pan-verification",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -357,7 +357,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "bank-account-verification": {
-            specPath: "examples/bank-account-verification-v1.0.yaml",
+            specPath: "specs/bank-account-verification-v1.0.yaml",
             outputDir: "docs/bank-account-verification",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -365,7 +365,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "gstn-service": {
-            specPath: "examples/gstn-service-v1.0.yaml",
+            specPath: "specs/gstn-service-v1.0.yaml",
             outputDir: "docs/gstn-service",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -373,7 +373,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "account-aggregator": {
-            specPath: "examples/account-aggregator-v1.3.yaml",
+            specPath: "specs/account-aggregator-v1.3.yaml",
             outputDir: "docs/account-aggregator",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -381,7 +381,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "lrs-owner-details": {
-            specPath: "examples/lrs-owner-details-v1.5.yaml",
+            specPath: "specs/lrs-owner-details-v1.5.yaml",
             outputDir: "docs/lrs-owner-details",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -389,7 +389,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "lrs-lien-marking": {
-            specPath: "examples/lrs-lien-marking-v1.5.yaml",
+            specPath: "specs/lrs-lien-marking-v1.5.yaml",
             outputDir: "docs/lrs-lien-marking",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -397,7 +397,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "translation-transliteration": {
-            specPath: "examples/translation-transliteration-v1.3.yaml",
+            specPath: "specs/translation-transliteration-v1.3.yaml",
             outputDir: "docs/translation-transliteration",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -405,7 +405,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "legal-verification": {
-            specPath: "examples/legal-verification-v1.1.yaml",
+            specPath: "specs/legal-verification-v1.1.yaml",
             outputDir: "docs/legal-verification",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -413,7 +413,7 @@ const config: Config = {
             },
           } satisfies OpenApiPlugin.Options,
           "farm-yield-multiland": {
-            specPath: "examples/farm-yield-multiland-v1.7.yaml",
+            specPath: "specs/farm-yield-multiland-v1.7.yaml",
             outputDir: "docs/farm-yield-multiland",
             sidebarOptions: {
               groupPathsBy: "tag",

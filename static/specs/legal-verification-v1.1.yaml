@@ -1,0 +1,498 @@
+openapi: 3.0.3
+info:
+  title: "Legal Verification Service API"
+  description: "The Legal Verification API provides comprehensive legal background checks for both individuals and entities. It checks and retrieves legal history, case details, and compliance status from multiple sources including Supreme Court, High Court, e-Court, Consumer Court, FIRs, and defaulter lists. Also provides arrested, most wanted, and absconder data."
+  version: "1.1"
+  contact:
+    name: "RBIH Support"
+    email: "support@rbihub.io"
+  license:
+    name: "RBIH License"
+    url: "https://rbihub.in/terms-of-use/"
+
+servers:
+  - url: "https://extgw.nonprod.rbihub.io"
+    description: "Sandbox Environment"
+  - url: "https://extgw.api.rbihub.io" 
+    description: "Production Environment"
+
+security:
+  - JWTAuth: []
+
+paths:
+  /scoreme/individual-legal-verifier/{ver}/{lang}:
+    post:
+      tags:
+        - "Legal Verification"
+      summary: "Individual Legal Verification"
+      description: "Checks and retrieves legal history, case details, and compliance status of an individual from multiple sources including Supreme Court, High Court, e-Court, Consumer Court, FIRs, and defaulter lists. Also provides arrested, most wanted, and absconder data."
+      operationId: "verifyIndividualLegal"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version"
+          schema:
+            type: "string"
+            example: "1.0"
+        - name: "lang"
+          in: "path"
+          required: true
+          description: "Language code for response"
+          schema:
+            type: "string"
+            enum: ["en"]
+            example: "en"
+        - name: "Authentication"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "Content-Type"
+          in: "header"
+          required: true
+          description: "Media type of the resource"
+          schema:
+            type: "string"
+            example: "application/json"
+        - name: "Content-Length"
+          in: "header"
+          required: true
+          description: "Length of request payload in bytes"
+          schema:
+            type: "string"
+            example: "512"
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "Provider code assigned for ScoreMe service"
+          schema:
+            type: "string"
+            example: "137"
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "c3VwZXJhZG1pbjEyMw=="
+        - name: "sp-client-id"
+          in: "header"
+          required: true
+          description: "Service provider client ID in base64 format"
+          schema:
+            type: "string"
+            example: "c3VwZXJhZG1pbjEyMw=="
+        - name: "x-lender-auth-token"
+          in: "header"
+          required: true
+          description: "Lender authentication token for callback verification"
+          schema:
+            type: "string"
+            example: "eyJ4NXQiOiJNR1"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IndividualLegalVerificationRequest"
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2023-01-03T21:10:23+05:30"
+                txncode: "TXN123456"
+              data:
+                searchType: "Individual"
+                name: "John Doe"
+                source: "ecourt"
+                partyType: "respondent"
+                stateName: "MAHARASHTRA"
+                caseCategory: "criminal"
+                matchType: "exact"
+                caseYear: "2020"
+              hmac: "SHA-256 Hash of the data value"
+      responses:
+        "200":
+          description: "Successful legal verification initiation response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LegalVerificationResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /scoreme/entity-legal-verifier/{ver}/{lang}:
+    post:
+      tags:
+        - "Legal Verification"
+      summary: "Entity Legal Verification"
+      description: "Checks and provides legal status, case history, and compliance information for a company or organization, integrating data from various sources like courts, tribunals, and defaulter registries."
+      operationId: "verifyEntityLegal"
+      parameters:
+        - name: "ver"
+          in: "path"
+          required: true
+          description: "API version"
+          schema:
+            type: "string"
+            example: "1.0"
+        - name: "lang"
+          in: "path"
+          required: true
+          description: "Language code for response"
+          schema:
+            type: "string"
+            enum: ["en"]
+            example: "en"
+        - name: "Authentication"
+          in: "header"
+          required: true
+          description: "JWT token for authentication"
+          schema:
+            type: "string"
+            example: "Bearer EkN-DOsnsuRjRO6Bx..."
+        - name: "Content-Type"
+          in: "header"
+          required: true
+          description: "Media type of the resource"
+          schema:
+            type: "string"
+            example: "application/json"
+        - name: "Content-Length"
+          in: "header"
+          required: true
+          description: "Length of request payload in bytes"
+          schema:
+            type: "string"
+            example: "512"
+        - name: "provider"
+          in: "header"
+          required: true
+          description: "Provider code assigned for ScoreMe service"
+          schema:
+            type: "string"
+            example: "137"
+        - name: "client-id"
+          in: "header"
+          required: true
+          description: "Base64 encoded Client ID"
+          schema:
+            type: "string"
+            example: "c3VwZXJhZG1pbjEyMw=="
+        - name: "sp-client-id"
+          in: "header"
+          required: true
+          description: "Service provider client ID in base64 format"
+          schema:
+            type: "string"
+            example: "c3VwZXJhZG1pbjEyMw=="
+        - name: "x-lender-auth-token"
+          in: "header"
+          required: true
+          description: "Lender authentication token for callback verification"
+          schema:
+            type: "string"
+            example: "eyJ4NXQiOiJNR1"
+        - name: "x-env-route"
+          in: "header"
+          required: false
+          description: "Environment routing header (required for sandbox)"
+          schema:
+            type: "string"
+            example: "/sb"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EntityLegalVerificationRequest"
+            example:
+              meta:
+                ver: "1.0"
+                ts: "2023-01-03T21:10:23+05:30"
+                txncode: "TXN123456"
+              data:
+                searchType: "Entity"
+                name: "ABC Corporation Ltd"
+                source: "Ministry of Corporate Affairs"
+                partyType: "respondent"
+                stateName: "MAHARASHTRA"
+                caseCategory: "civil"
+                matchType: "exact"
+                caseYear: "2020-2025"
+              hmac: "SHA-256 Hash of the data value"
+      responses:
+        "200":
+          description: "Successful legal verification initiation response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LegalVerificationResponse"
+        "400":
+          description: "Bad Request - Invalid parameters"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: "Unauthorized - Invalid JWT token"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  securitySchemes:
+    JWTAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+      description: "JWT token obtained from RBIH authentication service"
+
+  schemas:
+    IndividualLegalVerificationRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            searchType:
+              type: "string"
+              description: "Type of entity being searched"
+              enum: ["Individual"]
+              example: "Individual"
+            name:
+              type: "string"
+              description: "Name of the individual (alphanumeric values, all numeric not allowed)"
+              example: "John Doe"
+            source:
+              type: "string"
+              description: "Legal data source to search"
+              enum: ["ecourt", "supreme court", "high court", "tribunals", "consumer court", "ibc", "Ministry of Corporate Affairs", "defaulters", "fir", "most wanted", "arrested", "absconders"]
+              example: "ecourt"
+            partyType:
+              type: "string"
+              description: "Role of the individual in legal proceedings"
+              enum: ["petitioner", "respondent"]
+              example: "respondent"
+            stateName:
+              type: "string"
+              description: "Indian state name"
+              enum: ["ANDAMAN AND NICOBAR", "ANDHRA PRADESH", "ARUNACHAL PRADESH", "ASSAM", "BIHAR", "CHANDIGARH", "CHHATTISGARH", "DELHI", "DAMAN AND DIU", "DADRA & NAGAR HAVELI", "GOA", "GUJARAT", "HARYANA", "HIMACHAL PRADESH", "JAMMU AND KASHMIR", "JHARKHAND", "KERALA", "KARNATAKA", "LADAKH", "LAKSHADWEEP", "MADHYA PRADESH", "MAHARASHTRA", "MANIPUR", "MEGHALAYA", "MIZORAM", "NAGALAND", "ORISSA", "PUDUCHERRY", "PUNJAB", "RAJASTHAN", "SIKKIM", "TAMIL NADU", "TELANGANA", "TRIPURA", "UTTARAKHAND", "UTTAR PRADESH", "WEST BENGAL"]
+              example: "MAHARASHTRA"
+            caseCategory:
+              type: "string"
+              description: "Category of legal case"
+              enum: ["criminal", "civil"]
+              example: "criminal"
+            matchType:
+              type: "string"
+              description: "Type of name matching for individual searches"
+              enum: ["exact", "contains"]
+              example: "exact"
+            caseYear:
+              type: "string"
+              description: "Year or year range in YYYY or YYYY-YYYY format"
+              pattern: "^\\d{4}(-\\d{4})?$"
+              example: "2020"
+          required: ["searchType", "name"]
+        hmac:
+          type: "string"
+          description: "SHA-256 hash of the value of key 'data'"
+      required: ["meta", "data", "hmac"]
+
+    EntityLegalVerificationRequest:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        data:
+          type: "object"
+          properties:
+            searchType:
+              type: "string"
+              description: "Type of entity being searched"
+              enum: ["Entity"]
+              example: "Entity"
+            name:
+              type: "string"
+              description: "Name of the entity (alphanumeric values, all numeric not allowed)"
+              example: "ABC Corporation Ltd"
+            source:
+              type: "string"
+              description: "Legal data source to search"
+              enum: ["ecourt", "supreme court", "high court", "tribunals", "consumer court", "ibc", "Ministry of Corporate Affairs", "defaulters"]
+              example: "Ministry of Corporate Affairs"
+            partyType:
+              type: "string"
+              description: "Role of the entity in legal proceedings"
+              enum: ["petitioner", "respondent"]
+              example: "respondent"
+            stateName:
+              type: "string"
+              description: "Indian state name"
+              enum: ["ANDAMAN AND NICOBAR", "ANDHRA PRADESH", "ARUNACHAL PRADESH", "ASSAM", "BIHAR", "CHANDIGARH", "CHHATTISGARH", "DELHI", "DAMAN AND DIU", "DADRA & NAGAR HAVELI", "GOA", "GUJARAT", "HARYANA", "HIMACHAL PRADESH", "JAMMU AND KASHMIR", "JHARKHAND", "KERALA", "KARNATAKA", "LADAKH", "LAKSHADWEEP", "MADHYA PRADESH", "MAHARASHTRA", "MANIPUR", "MEGHALAYA", "MIZORAM", "NAGALAND", "ORISSA", "PUDUCHERRY", "PUNJAB", "RAJASTHAN", "SIKKIM", "TAMIL NADU", "TELANGANA", "TRIPURA", "UTTARAKHAND", "UTTAR PRADESH", "WEST BENGAL"]
+              example: "MAHARASHTRA"
+            caseCategory:
+              type: "string"
+              description: "Category of legal case"
+              enum: ["criminal", "civil"]
+              example: "civil"
+            matchType:
+              type: "string"
+              description: "Type of name matching for entity searches"
+              enum: ["exact", "likely", "contains", "less_likely"]
+              example: "exact"
+            caseYear:
+              type: "string"
+              description: "Year or year range in YYYY or YYYY-YYYY format"
+              pattern: "^\\d{4}(-\\d{4})?$"
+              example: "2020-2025"
+          required: ["searchType", "name"]
+        hmac:
+          type: "string"
+          description: "SHA-256 hash of the value of key 'data'"
+      required: ["meta", "data", "hmac"]
+
+    LegalVerificationResponse:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        data:
+          type: "object"
+          properties:
+            referenceId:
+              type: "string"
+              description: "Reference ID for tracking the webhook callback"
+              example: "REF123456789"
+            responseMessage:
+              type: "string"
+              description: "Response message description"
+              example: "Legal verification request submitted successfully"
+            responseCode:
+              type: "string"
+              description: "Unique response code for success or failure cases"
+              example: "200"
+        signature:
+          type: "string"
+          description: "Digital signature of the response"
+        hmac:
+          type: "string"
+          description: "SHA-256 hash of the value under key 'data'"
+
+    CallbackResponse:
+      type: "object"
+      description: "Asynchronous callback response sent to lender's callback URL"
+      properties:
+        txncode:
+          type: "string"
+          description: "Unique transaction code provided by the lender"
+          example: "TXN123456"
+        jsonUrl:
+          type: "string"
+          format: "uri"
+          description: "URL to download the JSON file containing legal verification results"
+          example: "https://example.com/results.json"
+        fileUrl:
+          type: "string"
+          format: "uri"
+          description: "URL to download the Excel file containing legal verification results"
+          example: "https://example.com/results.xlsx"
+        referenceId:
+          type: "string"
+          description: "Reference ID sent in the initial response"
+          example: "REF123456789"
+        x-lender-auth-token:
+          type: "string"
+          description: "JWT token sent by lender for authenticating the webhook"
+          example: "eyJ4NXQiOiJNR1"
+
+    MetaInfo:
+      type: "object"
+      properties:
+        ver:
+          type: "string"
+          description: "Version of the request template"
+          example: "1.0"
+        ts:
+          type: "string"
+          format: "date-time"
+          description: "Timestamp in ISO-8601 format"
+          example: "2023-01-03T21:10:23+05:30"
+        txncode:
+          type: "string"
+          description: "Unique transaction code provided by the lender"
+          example: "TXN123456"
+      required: ["ver", "ts", "txncode"]
+
+    ResultInfo:
+      type: "object"
+      properties:
+        status:
+          type: "string"
+          description: "Status of the transaction (success/fail)"
+          example: "success"
+        errcode:
+          type: "string"
+          description: "Error code (blank for successful transactions)"
+          example: ""
+
+    ErrorResponse:
+      type: "object"
+      properties:
+        meta:
+          $ref: "#/components/schemas/MetaInfo"
+        result:
+          $ref: "#/components/schemas/ResultInfo"
+        error:
+          type: "object"
+          properties:
+            code:
+              type: "string"
+              description: "Error code"
+            message:
+              type: "string"
+              description: "Error message"
+            details:
+              type: "string"
+              description: "Additional error details"
+
+tags:
+  - name: "Legal Verification"
+    description: "Comprehensive legal background verification services for individuals and entities. Provides access to legal history, case details, and compliance status from multiple Indian legal databases including Supreme Court, High Court, e-Court, Consumer Court, FIRs, defaulter lists, and criminal records. Supports both individual and entity verification with detailed filtering options."

@@ -1,0 +1,372 @@
+openapi: 3.0.3
+info:
+  title: Document Verification Service - Voter ID API
+  description: The Voter ID API is a digital solution that allows businesses to verify an individual's voter ID details online. It offers a paperless, real-time alternative to manual verification, enabling seamless onboarding and identity validation.
+  version: 1.0.0
+  contact:
+    name: Platform Support Center
+    email: support@rbihub.io
+    
+servers:
+  - url: https://extgw.nonprod.rbihub.io
+    description: Sandbox Environment
+  - url: https://extgw.api.rbihub.io
+    description: Production Environment
+
+paths:
+  /zoop/voter/{ver}/{lang}:
+    post:
+      summary: Verify Voter ID Details
+      description: Verifies voter ID details and retrieves comprehensive electoral information including constituency details, polling booth information, and personal details.
+      operationId: verifyVoterID
+      tags:
+        - Voter Verification
+      parameters:
+        - name: ver
+          in: path
+          required: true
+          description: Current version of API
+          schema:
+            type: string
+            example: "1.0"
+        - name: lang
+          in: path
+          required: true
+          description: Language for response (default en)
+          schema:
+            type: string
+            default: en
+            example: en
+        - name: Authentication
+          in: header
+          required: true
+          description: JSON Web Token (JWT) created and signed by the authentication server
+          schema:
+            type: string
+            example: "EkN-DOsnsuRjRO6BxXemmJDm3HbxrbRzXglbN2S4sOkopdU4IsDxTI8jO19W_A4K8ZPJijNLis4EzsHeY559a4DFOd50_OqgHGuERTqYZyuhtF39yxJPAjUESwxk2J5k_4zM3O-vtd1Ghyo4IbqKKSy6J9mTniYJPenn5-HiirE"
+        - name: api-key
+          in: header
+          required: false
+          description: A unique key provided by the platform (24-character alphanumeric string, lowercase only)
+          schema:
+            type: string
+            example: "434950ee34353tty33463399"
+        - name: client-id
+          in: header
+          required: true
+          description: Base64 encoded Client Id provided during onboarding
+          schema:
+            type: string
+            example: "pNRxiviTvgBrf7qMANqBVskDYfEa"
+        - name: provider
+          in: header
+          required: true
+          description: Service provider code
+          schema:
+            type: string
+            example: "134"
+        - name: x-env-route
+          in: header
+          required: false
+          description: Header required to access the sandbox environment (not required for production)
+          schema:
+            type: string
+            example: "/sb"
+        - name: x-zoop-api-key
+          in: header
+          required: true
+          description: ZOOP API key generated for the lender
+          schema:
+            type: string
+            example: "HCG997A-4V5MXEM-J40KGVA-E8MN1N1"
+        - name: x-zoop-app-id
+          in: header
+          required: true
+          description: ZOOP app ID generated for the lender
+          schema:
+            type: string
+            example: "681c70a88c0cdd00101457e9"
+            
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - meta
+                - data
+                - hmac
+              properties:
+                meta:
+                  type: object
+                  required:
+                    - txncode
+                    - ver
+                    - ts
+                  properties:
+                    txncode:
+                      type: string
+                      description: Unique transaction code provided by the lender
+                      example: "TXN123456"
+                    ver:
+                      type: string
+                      description: Version associated with the service
+                      example: "1.0"
+                    ts:
+                      type: string
+                      format: date-time
+                      description: Timestamp in ISO-8601 format indicating time of request initiation
+                      example: "2024-06-27T12:26:45Z"
+                data:
+                  type: string
+                  description: Base64 encoded XML with voter verification details
+                  example: "PHZvdGVyX3ZlcmlmaWNhdGlvbj4KICA8Y3VzdG9tZXJfZXBpY19udW1iZXI+QUJDMTIzNDU2Nzg5MDwvY3VzdG9tZXJfZXBpY19udW1iZXI+CiAgPG5hbWVfdG9fbWF0Y2g+Sm9obiBEb2U8L25hbWVfdG9fbWF0Y2g+CiAgPGNvbnNlbnQ+WTwvY29uc2VudD4KICA8Y29uc2VudF90ZXh0PkkgYWdyZWUgdG8gdmVyaWZ5IG15IHZvdGVyIElEIGRldGFpbHM8L2NvbnNlbnRfdGV4dD4KICA8dGFza19pZD4xMjNlNDU2Ny1lODliLTEyZDMtYTQ1Ni00MjY2MTQxNzQwMDA8L3Rhc2tfaWQ+Cjwvdm90ZXJfdmVyaWZpY2F0aW9uPg=="
+                hmac:
+                  type: string
+                  description: SHA-256 hash of the value under the key 'data'
+                  example: "wAqy8gf+uS5j5naWleuCZejR7X2TOin/KjwsUm0Q9Ms="
+                  
+      responses:
+        '200':
+          description: Successful voter ID verification
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                        description: Error code - 'E000' indicates success
+                        example: "E000"
+                      status:
+                        type: string
+                        description: Transaction status
+                        enum: [success, failed]
+                        example: "success"
+                  data:
+                    type: object
+                    properties:
+                      address:
+                        type: object
+                        properties:
+                          district_code:
+                            type: string
+                            description: Code representing the district
+                            example: "001"
+                          district_name:
+                            type: string
+                            description: Name of the district (in English)
+                            example: "Central Delhi"
+                          district_name_vernacular:
+                            type: string
+                            description: Name of the district (in vernacular/local language)
+                            example: "केंद्रीय दिल्ली"
+                          state:
+                            type: string
+                            description: Name of the state
+                            example: "Delhi"
+                          state_code:
+                            type: string
+                            description: Code representing the state
+                            example: "07"
+                      user_age:
+                        type: integer
+                        description: Age of the user based on electoral records
+                        example: 35
+                      assembly_constituency_name:
+                        type: string
+                        description: Name of the state assembly constituency (in English)
+                        example: "New Delhi"
+                      assembly_constituency_name_vernacular:
+                        type: string
+                        description: Name of the state assembly constituency (vernacular)
+                        example: "नई दिल्ली"
+                      assembly_constituency_number:
+                        type: string
+                        description: Assembly constituency number
+                        example: "001"
+                      constituency_part_name:
+                        type: string
+                        description: Name of the polling part/ward (in English)
+                        example: "Connaught Place"
+                      constituency_part_name_vernacular:
+                        type: string
+                        description: Name of the polling part/ward (vernacular)
+                        example: "कनॉट प्लेस"
+                      constituency_part_number:
+                        type: string
+                        description: Number assigned to the polling part
+                        example: "001"
+                      constituency_section_number:
+                        type: string
+                        description: Section number within the polling part
+                        example: "1"
+                      epic_number:
+                        type: string
+                        description: EPIC (Voter ID) number of the user
+                        example: "ABC1234567890"
+                      user_gender:
+                        type: string
+                        description: Gender of the user
+                        enum: [M, F, T]
+                        example: "M"
+                      parliamentary_constituency_name:
+                        type: string
+                        description: Name of the parliamentary constituency (in English)
+                        example: "New Delhi"
+                      parliamentary_constituency_name_vernacular:
+                        type: string
+                        description: Name of the parliamentary constituency (vernacular)
+                        example: "नई दिल्ली"
+                      parliamentary_constituency_number:
+                        type: string
+                        description: Number assigned to the parliamentary constituency
+                        example: "004"
+                      polling_booth:
+                        type: object
+                        properties:
+                          lat_long:
+                            type: string
+                            description: Latitude and longitude of the polling booth
+                            example: "28.6139,77.2090"
+                          name:
+                            type: string
+                            description: Name and address of the polling booth (in English)
+                            example: "Government School, Connaught Place"
+                          name_vernacular:
+                            type: string
+                            description: Name and address of the polling booth (vernacular)
+                            example: "सरकारी स्कूल, कनॉट प्लेस"
+                          number:
+                            type: string
+                            description: Booth number of the polling station
+                            example: "001"
+                      relative_name_english:
+                        type: string
+                        description: Name of the voter's relative (in English)
+                        example: "Robert Doe"
+                      relative_name_vernacular:
+                        type: string
+                        description: Name of the voter's relative (vernacular)
+                        example: "रॉबर्ट डो"
+                      relative_relation:
+                        type: string
+                        description: Relation type (FTHR - Father, MTHR - Mother, HUSB - Husband)
+                        enum: [FTHR, MTHR, HUSB, WIFE, OTHR]
+                        example: "FTHR"
+                      serial_number_applicable_part:
+                        type: string
+                        description: Serial number within the applicable part of the roll
+                        example: "123"
+                      status:
+                        type: string
+                        description: Status flag (N - normal, D - deleted, etc.)
+                        example: "N"
+                      user_name_english:
+                        type: string
+                        description: Name of the user (in English)
+                        example: "John Doe"
+                      user_name_vernacular:
+                        type: string
+                        description: Name of the user (vernacular)
+                        example: "जॉन डो"
+                      voter_last_updated_date:
+                        type: string
+                        format: date
+                        description: Last updated date of the voter record
+                        example: "2024-01-15"
+                      name_match_score:
+                        type: string
+                        description: Name match score if name matching addon is requested
+                        example: "16.50"
+                  signature:
+                    type: string
+                    description: Digital signature hash of the data for integrity verification
+                    example: "MGUCMBT2op6n9evwi0d4VDxyx4AjhkmrMxlUA71d2b4d0Yt9Gee/QuzZreuTildXdSTd6gIxAJ4Utkl64L6P/9B/ZrEMvxXWefL4QpUUHPI2EwrFqCZor8OxLyAoCf0EcBAfLPT4mA=="
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                        description: Transaction identifier
+                        example: "TXN123456"
+                      ver:
+                        type: string
+                        description: Response format version
+                        example: "1.0"
+                      ts:
+                        type: string
+                        format: date-time
+                        description: Timestamp in ISO-8601 format
+                        example: "2025-05-09T12:00:47Z"
+                  hmac:
+                    type: string
+                    description: SHA256 HMAC of the data payload
+                    example: "FLBbMCsSmAP9T+suAXC0KbJ19AOzQYp2LreP7goNHYU="
+                  publickey:
+                    type: string
+                    description: Platform public key for signature verification
+                    example: "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAETSwSJlJmF6JEqiu8F4pW1KDppDCVwfJgdBx/pTLopUwfB7mBIDkKVM/ZMa4f9QoOYxtVTp4p6nvx8/rB08e9QHNNNNbmof7/cndQhb3h+VIwAIO6pdYXy+6rPcue9dcu"
+                  sig-algo:
+                    type: string
+                    description: Signature algorithm used
+                    example: "SHA256withECDSA"
+                    
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+                
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+                
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            errcode:
+              type: string
+              description: Error code
+              enum: [EZP001, EZP002, EZP003, EZP004, EZP005, EZP006, EZP007, EZP0010, EZP0011, EZP020, EZP021, EZP022]
+            status:
+              type: string
+              description: Status
+              example: "failed"
+            
+  securitySchemes:
+    JWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+security:
+  - JWT: []
+  
+tags:
+  - name: Voter Verification
+    description: API for verifying voter ID details and retrieving electoral information
+    
+externalDocs:
+  description: Platform Error Codes Documentation
+  url: https://docs.rbihub.io/error-codes

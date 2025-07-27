@@ -9,6 +9,13 @@ function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={styles.hero}>
+      <div className={styles.heroBanner}>
+        <img 
+          src="/img/hero/innovation-banner.png" 
+          alt="RBIH Innovation - AI, Technology, and Rural Development"
+          className={styles.heroImage}
+        />
+      </div>
       <div className="container">
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>

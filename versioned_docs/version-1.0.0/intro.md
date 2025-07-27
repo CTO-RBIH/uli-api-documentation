@@ -17,7 +17,7 @@ The RBIH platform provides a comprehensive suite of financial and verification A
 ## Featured API Services
 
 ### Document Verification Services
-- **[Driving License Verification](/versioned_examples/version-1.0.0/document-verification-dl-v1.0.yaml)** - Real-time verification of driving license details
+- **[Driving License Verification](/versioned_specs/version-1.0.0/document-verification-dl-v1.0.yaml)** - Real-time verification of driving license details
 - Aadhaar Verification
 - PAN Validation  
 - Voter ID Verification
@@ -55,7 +55,7 @@ All APIs use JWT token authentication. Tokens are valid for:
 ### API Specifications - Version 1.0.0
 
 #### Available OpenAPI Specifications:
-- **[Document Verification - Driving License v1.0](/versioned_examples/version-1.0.0/document-verification-dl-v1.0.yaml)**
+- **[Document Verification - Driving License v1.0](/versioned_specs/version-1.0.0/document-verification-dl-v1.0.yaml)**
 - **[RBIH API Reference](/docs/rbih-apis)** - Complete API catalog
 
 ## Environment URLs
