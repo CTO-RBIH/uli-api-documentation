@@ -11,7 +11,7 @@ const config: Config = {
   tagline: "Frictionless Finance for a Billion Indians™",
   url: "https://rbih.tech",
   baseUrl: "/",
-  onBrokenLinks: "warn",
+  onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.png",
 
