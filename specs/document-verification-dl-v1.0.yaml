@@ -25,7 +25,7 @@ info:
     This API uses JWT (JSON Web Token) authentication. All requests must include a valid JWT token 
     in the Authorization header. Tokens are valid for:
     - **Sandbox**: 6 hours
-    - **Production**: 12 hours
+    - **Production**: 6 hours
 
     ## Prerequisites
     
@@ -507,7 +507,7 @@ components:
         
         Token validity:
         - Sandbox: 6 hours
-        - Production: 12 hours
+        - Production: 6 hours
         
         Refer to the Authentication and Authorization API specification for token generation.
     ApiKeyAuth:

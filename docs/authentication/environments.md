@@ -14,7 +14,7 @@ RBIH provides separate sandbox and production environments to support developmen
 | Aspect | Sandbox | Production |
 |--------|---------|------------|
 | **Purpose** | Development & Testing | Live Operations |
-| **Token Validity** | 6 hours | 12 hours |
+| **Token Validity** | 6 hours | 6 hours |
 | **Rate Limits** | Lower limits for testing | Higher limits for operations |
 | **Data** | Mock/Test data | Real/Live data |
 | **Monitoring** | Basic logging | Comprehensive monitoring |
@@ -150,7 +150,7 @@ const productionConfig = {
   devPortal: 'https://am.api.rbihub.io/devportal',
   
   // Token settings
-  tokenValidity: 12 * 60 * 60, // 12 hours
+  tokenValidity: 12 * 60 * 60, // 6 hours
   refreshBuffer: 30 * 60, // 30 minutes before expiry
   
   // Rate limits (requests per minute)

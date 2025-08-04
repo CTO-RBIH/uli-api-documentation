@@ -50,7 +50,7 @@ Before integrating with any RBIH API, ensure you have:
 ### Authentication
 All APIs use JWT token authentication. Tokens are valid for:
 - **Sandbox**: 6 hours
-- **Production**: 12 hours
+- **Production**: 6 hours
 
 ### API Specifications - Version 1.0.0
 

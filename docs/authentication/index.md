@@ -18,7 +18,7 @@ All RBIH APIs require proper authentication and follow industry-standard securit
 ### Token Validity
 
 - **Sandbox Environment**: 6 hours
-- **Production Environment**: 12 hours
+- **Production Environment**: 6 hours
 
 ### Required Headers
 

@@ -325,7 +325,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: JWT token authentication (6 hours validity in sandbox, 12 hours in production)
+      description: JWT token authentication (6 hours validity in sandbox, 6 hours in production)
 
   schemas:
     Meta:

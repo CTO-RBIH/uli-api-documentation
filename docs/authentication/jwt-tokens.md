@@ -231,7 +231,7 @@ const sandboxConfig = {
 
 ```javascript
 const productionConfig = {
-  tokenValidity: 12 * 60 * 60, // 12 hours
+  tokenValidity: 12 * 60 * 60, // 6 hours
   baseUrl: 'https://api.rbihapis.com',
   refreshBuffer: 30 * 60, // 30 minutes
   algorithm: 'HS256'

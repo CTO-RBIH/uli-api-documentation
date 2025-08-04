@@ -100,7 +100,7 @@ const generateToken = (clientId, clientSecret, providerId) => {
 | Environment | Token Validity | Base URL | Purpose |
 |-------------|---------------|----------|---------|
 | **Sandbox** | 6 hours | `https://sandbox.rbihapis.com` | Development & Testing |
-| **Production** | 12 hours | `https://api.rbihapis.com` | Live Operations |
+| **Production** | 6 hours | `https://api.rbihapis.com` | Live Operations |
 
 ### 4. First API Call
 ```javascript
