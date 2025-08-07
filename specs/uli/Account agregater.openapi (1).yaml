@@ -1,0 +1,475 @@
+openapi: 3.0.1
+info:
+  title: Account agregater
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/aaconsent/1.2/en:
+    post:
+      summary: Consent Request AA-QA
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '122'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: Base64 Encoded client id
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: api-key
+          in: header
+          description: ''
+          required: true
+          example: test
+          schema:
+            type: string
+        - name: x-jws-signature
+          in: header
+          description: ''
+          required: true
+          example: test
+          schema:
+            type: string
+        - name: client_api_key
+          in: header
+          description: ''
+          required: true
+          example: test
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                hmac:
+                  type: string
+                data:
+                  type: string
+              required:
+                - meta
+                - hmac
+                - data
+            example:
+              meta:
+                ver: '1.2'
+                ts: '{{currentdate}}'
+                txncode: test
+              hmac: >-
+                hQtwLNUWCf0NMAH9OKJgkSPqfYzWuGcFHFHtRvDZ6OxcQexqJ75rpU9IS46t3hXjs9wYnnNvRTeUkc9u5at0bw==
+              data: >-
+                ewogICJ2ZXIiOiAiMS4wIiwKICAidGltZXN0YW1wIjogIjIwMjMtMDYtMTdUMDY6NDM6MjkuMDcxWiIsCiAgInR4bmlkIjogIjRhNGFkYmJlLTI5YWUtMTFlOC1hOGQ3LTAyODk0MzdiZjMzMSIsCiAgIkNvbnNlbnREZXRhaWwiOiB7CiAgICAiY29uc2VudFN0YXJ0IjogIjIwMTktMTItMDZUMTE6Mzk6NTcuMTUzWiIsCiAgICAiY29uc2VudEV4cGlyeSI6ICIyMDE5LTEyLTA2VDExOjM5OjU3LjE1M1oiLAogICAgImNvbnNlbnRNb2RlIjogIlZJRVciLAogICAgImZldGNoVHlwZSI6ICJPTkVUSU1FIiwKICAgICJjb25zZW50VHlwZXMiOiBbCiAgICAgICJQUk9GSUxFIgogICAgXSwKICAgICJmaVR5cGVzIjogWwogICAgICAiREVQT1NJVCIKICAgIF0sCiAgICAiRGF0YUNvbnN1bWVyIjogewogICAgICAiaWQiOiAiZml1NzQ2NTM3NDUzN2lkIgogICAgfSwKICAgICJDdXN0b21lciI6IHsKICAgICAgImlkIjogImN1c3RvbWVyX2lkZW50aWZpZXJAQUFfaWRlbnRpZmllciIKICAgIH0sCiAgICAiUHVycG9zZSI6IHsKICAgICAgImNvZGUiOiAiMTAxIiwKICAgICAgInJlZlVyaSI6ICJodHRwczovL2FwaS5yZWJpdC5vcmcuaW4vYWEvcHVycG9zZS8xMDEueG1sIiwKICAgICAgInRleHQiOiAiV2VhbHRoIG1hbmFnZW1lbnQgc2VydmljZSIsCiAgICAgICJDYXRlZ29yeSI6IHsKICAgICAgICAidHlwZSI6ICJzdHJpbmciCiAgICAgIH0KICAgIH0sCiAgICAiRklEYXRhUmFuZ2UiOiB7CiAgICAgICJmcm9tIjogIjIwMTgtMTItMDZUMTE6Mzk6NTcuMTUzWiIsCiAgICAgICJ0byI6ICIyMDE5LTEyLTA2VDExOjM5OjU3LjE1M1oiCiAgICB9LAogICAgIkRhdGFMaWZlIjogewogICAgICAidW5pdCI6ICJNT05USCIsCiAgICAgICJ2YWx1ZSI6IDAKICAgIH0sCiAgICAiRnJlcXVlbmN5IjogewogICAgICAidW5pdCI6ICJIT1VSIiwKICAgICAgInZhbHVlIjogMAogICAgfSwKICAgICJEYXRhRmlsdGVyIjogWwogICAgICB7CiAgICAgICAgInR5cGUiOiAiVFJBTlNBQ1RJT05BTU9VTlQiLAogICAgICAgICJvcGVyYXRvciI6ICI+PSIsCiAgICAgICAgInZhbHVlIjogIjIwMDAwIgogICAgICB9CiAgICBdCiAgfQp9
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      ver:
+                        type: string
+                      timestamp:
+                        type: string
+                      txnid:
+                        type: string
+                      Customer:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                        required:
+                          - id
+                      ConsentHandle:
+                        type: string
+                    required:
+                      - ver
+                      - timestamp
+                      - txnid
+                      - Customer
+                      - ConsentHandle
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  ver: '1.2'
+                  timestamp: '2018-12-06T11:39:57.153Z'
+                  txnid: 4a4adbbe-29ae-11e8-a8d7-0289437bf331
+                  Customer:
+                    id: customer_identifier@AA
+                  ConsentHandle: 16a7bd61-362e-4094-a529-b2c6a7fe6ef3
+                signature: >-
+                  MGUCMEmEsnJdhgp0u0w1O+sVxj52BOwd03SwMc3UlbqpSOihuNuXnj/RZpOBvfu2qGyQKgIxAIO6z3vn3byQZbH5m1cn90UdbzSLG11Q09J3dNXWzjN8XbDjIEJp0O1wTG+XHViiVw==
+                meta:
+                  txncode: test
+                  ver: '1.2'
+                  ts: 2025-08-05T14:05:28+0530
+                hmac: PVw7B9C4SdxNP7jdOWLO6t6L65cqkPDiaaiM2omfCHo=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEEiL2i8l9/8F5XrOgSBdl5PwLV4Pc57c8VAhy25Sw2VBj1gQdmjvxQ8reHRYdtmQI6ValyI470XSjtAQup/Ib79+QrYAZDZLxgBjFJGMYNlkHs0XMt9y+p9qvoW1+hoPM
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failure:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E008
+                  status: failed
+                  info: Invalid API version code
+                data: {}
+                signature: >-
+                  MGQCMBPnysdM9sR9paNvd/M28gK1RvglHCkZxquIkiCcQ6ejv6Ns8PCpYSOZWjoFmpvBuwIwO3eFXv7ppkou5+LzF2+c0bitEgelScMyzOqKr/tk7HgBs9/8ntWPjs6FhPqgBa1J
+                meta:
+                  txncode: test
+                  ver: '1.2'
+                  ts: 2025-08-05T14:06:24+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEEAP0Dqb0c7ydKnGzCXg7iow4nAnx1mnB/DSJIAGPypxFdYbQJ9TZ15KtBqqO2zysqdE022KfIRzIIDL/1xlJKfDBmepzoTwEH0zj3aqb4t5cS4wN5yY7sBixQ2uP1pbW
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/aacallback/1.0/en:
+    post:
+      summary: FI Notification Callback QA
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ver:
+                  type: string
+                timestamp:
+                  type: string
+                txnid:
+                  type: string
+                consentHandle:
+                  type: string
+                Notifier:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    id:
+                      type: string
+                  required:
+                    - type
+                    - id
+                FIStatusNotification:
+                  type: object
+                  properties:
+                    sessionId:
+                      type: string
+                    sessionStatus:
+                      type: string
+                    FIStatusResponse:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          fipID:
+                            type: string
+                          Accounts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                linkRefNumber:
+                                  type: string
+                                FIStatus:
+                                  type: string
+                                description:
+                                  type: string
+                              required:
+                                - linkRefNumber
+                                - FIStatus
+                                - description
+                        required:
+                          - fipID
+                          - Accounts
+                  required:
+                    - sessionId
+                    - sessionStatus
+                    - FIStatusResponse
+              required:
+                - ver
+                - timestamp
+                - txnid
+                - consentHandle
+                - Notifier
+                - FIStatusNotification
+            example:
+              ver: '1.0'
+              timestamp: '2018-12-06T11:39:57.153Z'
+              txnid: test
+              consentHandle: '{{ConsentHandle}}'
+              Notifier:
+                type: AA
+                id: AA-1
+              FIStatusNotification:
+                sessionId: XXXX0-XXXX-XXXX
+                sessionStatus: ACTIVE
+                FIStatusResponse:
+                  - fipID: FIP-1
+                    Accounts:
+                      - linkRefNumber: XXXX-XXXX-XXXX
+                        FIStatus: READY
+                        description: ''
+                  - fipID: FIP-2
+                    Accounts:
+                      - linkRefNumber: YYYY-XXXX-XXXX
+                        FIStatus: READY
+                        description: ''
+                      - linkRefNumber: ZZZZ-XXXX-XXXX
+                        FIStatus: Done
+                        description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ver:
+                    type: string
+                  response:
+                    type: string
+                  timestamp:
+                    type: string
+                  txnid:
+                    type: string
+                required:
+                  - ver
+                  - response
+                  - timestamp
+                  - txnid
+              example:
+                ver: '1.0'
+                response: OK
+                timestamp: 2025-08-05T14:08:16+0530
+                txnid: aabc33bd-4db6-47f0-9b20-9aa0534a9270
+          headers: {}
+        x-200:Failure:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E014
+                  status: failed
+                  info: Unsupported format – permissible formats are JSON only
+                data: {}
+                signature: >-
+                  MGQCMBPnysdM9sR9paNvd/M28gK1RvglHCkZxquIkiCcQ6ejv6Ns8PCpYSOZWjoFmpvBuwIwO3eFXv7ppkou5+LzF2+c0bitEgelScMyzOqKr/tk7HgBs9/8ntWPjs6FhPqgBa1J
+                meta:
+                  txncode: ''
+                  ver: '1.0'
+                  ts: 2025-08-05T14:08:34+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEEAP0Dqb0c7ydKnGzCXg7iow4nAnx1mnB/DSJIAGPypxFdYbQJ9TZ15KtBqqO2zysqdE022KfIRzIIDL/1xlJKfDBmepzoTwEH0zj3aqb4t5cS4wN5yY7sBixQ2uP1pbW
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - basic: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+    basic:
+      type: http
+      scheme: basic
+servers: []
+security: []

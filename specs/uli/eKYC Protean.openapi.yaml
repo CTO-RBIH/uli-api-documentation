@@ -1,0 +1,239 @@
+openapi: 3.0.1
+info:
+  title: eKYC Protean
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /sb/ekyc/1.2/en:
+    post:
+      summary: eKYC
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: api-key
+          in: header
+          description: API Key (Optional)
+          required: false
+          example: ''
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: Provider for Protean
+          required: true
+          example: '106'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: Client ID
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                hmac:
+                  type: string
+                data:
+                  type: string
+              required:
+                - meta
+                - hmac
+                - data
+            example:
+              meta:
+                ver: '1.2'
+                ts: 2025-08-05T10:44:33+0530
+                txncode: '2345678'
+              hmac: ''
+              data: >-
+                QTIyPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxLeWMgdmVyPSIyLjUiIHJhPSJGIiByYz0iWSIgbHI9Ik4iIGRlPSJOIiBwZnI9Ik4iIHhtbG5zPSJodHRwOi8vd3d3LnVpZGFpLmdvdi5pbi9reWMvdWlkLWt5Yy1yZXF1ZXN0LzEuMCI+PFJhZD5QRDk0Yld3Z2RtVnljMmx2YmowaU1TNHdJaUJsYm1OdlpHbHVaejBpVlZSR0xUZ2lJSE4wWVc1a1lXeHZibVU5SW5sbGN5SS9QanhCZFhSb0lIVnBaRDBpTWpJMU16WTFOREE0TlRBMElpQmhZejBpVTFSSFFWaEpVekF3TVNJZ2RHbGtQU0p5WldkcGMzUmxjbVZrSWlCMlpYSTlJakl1TlNJZ2RIaHVQU0pWUzBNNk1qZzFNekkxSWlCc2F6MGlUVXg1TFhoTU1WaGtRakl3U3pSS1pVbEhURzFoTVRKMVJtZGFOVGRNV0ZKWFNtUnlXbEIwTTJreGJEY3hlSFJ4UjJGNlIzVXpVU0lnYzJFOUlsTlVSMEZZU1ZNd01ERWlJSEpqUFNKWklpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTFhV1JoYVM1bmIzWXVhVzR2WVhWMGFHVnVkR2xqWVhScGIyNHZkV2xrTFdGMWRHZ3RjbVZ4ZFdWemRDOHlMakFpUGp4VmMyVnpJSEJwUFNKdUlpQndZVDBpYmlJZ2NHWmhQU0p1SWlCaWFXODlJbmtpSUdKMFBTSkdUVklzUmtsU0lpQndhVzQ5SW00aUlHOTBjRDBpYmlJdlBqeE5aWFJoSUhKa2MwbGtQU0pUUjBrdVYwbE9MakF3TVNJZ2NtUnpWbVZ5UFNJeExqQXVNeUlnWkhCSlpEMGlVMFZEVlVkRlRpNVRSMGtpSUdSalBTSm1NR0V6TmpFellpMHdZVGRrTFRReE9HWXRZVEE1TnkwNU9EZ3lORFZqWVRZNU9HRWlJRzFwUFNKSVZUSXdJaUJ0WXowaVRVbEpSR3RVUTBOQmJtMW5RWGRKUWtGblNVVkNialp5VjNwQlRrSm5hM0ZvYTJsSE9YY3dRa0ZSVlVaQlJFTkNkbnBGYlUxRFVVZERVM0ZIVTBsaU0wUlJSVXBCVWxsWVlUTldkVnBIUm5GUlNFNXNXVE5XYmxwWE5YQmliVkp3V1ZNMWFtSXlNSGhFZWtGT1FtZE9Wa0pCWTFSQ2F6RXhZbGRLYUdGVVJYTk5RMjlIUVRGVlJVRjRUV3BTUmsxblZUQldSRlpWWkVaVWFVSktWR3RTU2xGVFFsRlZhMnhYVVZaU1JrbEZlRXBVVld4VlVsVlJaMDFFVVhoS2FrRnJRbWRPVmtKQmIxUklWazVHVVRGV1NGSlZOR2RUVlRWRlUxVkZaMVZHU2twV2EwWlZVbE5DVFZOVk1VcFdSVlpGVFZGemQwTlJXVVJXVVZGTVJYZEtTbFpFUlZWTlFrbEhRVEZWUlVOQ1RVeFVWMFp2V1ZoS2FHTXlhREJqYlVWNFEzcEJTa0puVGxaQ1FWbFVRV3RzVDAxQ05GaEVWRWw1VFVSVmVVNTZRVE5OUkZVeFQwWnZXRVJVU1hsTlJGbDVUbXBCTTAxRVZURlBSbTkzVmxSRlUwMUNRVWRCTVZWRlFYaE5TbFV3WkVwVmExSldWVEJXVTAxUmQzZERaMWxFVmxGUlMwVjNUa0pXVlVWNFJHcEJUVUpuVGxaQ1FXTlVRbGQ0ZGxreVJuTk5VbEYzUldkWlJGWlJVVWxGZDNST1dWZG9hR050Um5waFNGSjVXVlJGVEUxQmEwZEJNVlZGUW1oTlExTlZOSGRuWjBWcFRVRXdSME5UY1VkVFNXSXpSRkZGUWtGUlZVRkJORWxDUkhkQmQyZG5SVXRCYjBsQ1FWRkRaVGRLVldvMWIxWlpjbVZXZUdnMmJHazJlVTR2ZVV0aVpITnFVVFJ2U1ZGM016UmlPRUpFUkM5NFUxUnRlRmhLWlRSaGIwMXZSVzVsWVc4MVFVZGlUMk5aVEVSTU5ITmFja2wyWVRSdUsyZEtSMHRIVEZoRVVIcFJMMDVqVVZocGJWWjFZMEV2ZGpsNlJtUlljVm9yTTBaUWRtUXpNWHBXZURKdFlsazJOVFJ0Tnk5eWVWTkNkalZIVlM5R2IyRTNOVVJPYkdNeWJFTkxSR1kzV0V4M2MzQm9NemRMUnpOUE1GUTBOWFJaTm04dkwySnRkR1ZTVTFOb1dGWlhjbWQ1U210b2JUVnVTVzltWVhOWE9XeEtaM2t3YjBsU2VWUnFha1ZTWjJkNWJVRnpTM1pLTWtwbU5HaGtNRGhxY1hCNU9FVnliVGRhVDFoaVZqQkNXakpzTWxWRFRHcEhaRWhIYjBwM1FqQlNPSFExVVZwaWJrSkVjbkZKUjFOSk5YQlZOazFOVVZGV1RsWnFNR2ROYTFjNE1uRm5aSFJYVW1STVExZEJjMjVyTDNwbFpGbDNhMUI1UVdsbVpHZEZRemhEZEZWbmQxSkJaMDFDUVVGRmQwUlJXVXBMYjFwSmFIWmpUa0ZSUlVaQ1VVRkVaMmRGUWtGSlVWTkdWazlpVDFkcGIzbFJXa05OYWxCMmExWk9TVWQ1YzFCc1dFdDVaR1pWZUdvMWRTdE5VSFE0VTBVelFtbENNRXhtTDNKcGEzRXphRFZSVEZBclNHc3pSek0xUzJac2FVdG5iMDlEZWtORk1tSk5kV0ZNTUhsc0wwczJUa00xSzNOU1V6bENaMjlEUms5d1FWUllLMlZyU2pSV0wzZFZjbFI2WjJWbFVrbElNVE5hTWtSeVRrNURRekoyVm1ST1IzVXZMekpsUTNWVWREZG1RM0V2VUVoVVMwZFRaREZSUXpGVWVUUlRiWGhMUWtKYVUzRTBhWE5aVFZVMVRrNVFSbVZzVm1WTFUyYzVaRkZwTUZCME4yMXNlV0ZsZUc1UlQwWnFWRWR5YlRGWWFURm1hemN5VkZoMWFsbFFSRGRxYlhBck1HSmtORXMxVjBkTlJtaFJUbWQyZWs5NlpFOU9SbGRtZFdkR1lrOXBaSGR4ZW1Oa2NGbHhjMFJVV0Uxc2VEUk1jRXB2Tm1jNEwwMWtRVGRXYzFKcUsxSnROVTk2U0RsSUwxZ3dWVVJHU2s1V1RVZG5UekpzYm5veGQzVTVZMVJqVjBFOUlpOCtQRk5yWlhrZ1kyazlJakl3TWpVd09USXpJajVxY2twc2EyaE9TMmxNV214WVZUSnNiV1Y2U1dzeE5EZHVTMkZXTUc1V1kxTm5Ua1JvVkdjM04wUkhaa0kzVnl0WFUydHROWE5OZWk5aFkzUjFSakp1UkRoWWRHUllZMW96TlVjMldubFpVa1ZZYTFkblpIbzNNMHd4WVdKemIxbExUVGt2ZG1wNVFqUjBjVkZLV1d4dFdrSlpkSFUxWkdwQ0wwdGxNWEV6TjFSd1RYbHJhRXRZYWpWeE5FSlhjeXN6ZFhoNFRWSXpiMlJIYkRWR04xUlZWbUZTWTFvMWJDc3ZjVFZzUkUxYVdtbHdTUzlEYWt4R2IzWnVVR3N4ZFROSFIzTlBhVzFhV214V1FuQkxkWFl3TmpSSFkwcHpVMmhyWVZOcFZWbFBhVkJKYW5CNFJHcHVUVzFMV0dKYWFXaEVUSFZITkVZelEzbzNhbVZqS3pKQ1RuaHhaWFpsUkd0aGRGSkRPVGwzZG5wd1dEY3dhRlJ6UTJNd1pqSnlWM0kxVUhBeE1uZEhSSEJzT1ZCa1oxWlFSSFp2VVZSNGJVa3ZVbEJ1Tm5WcUwxZDVRMjB5Y1RoSGJtUlJiMWxHTlZkS1RqUldPV2M5UFR3dlUydGxlVDQ4UkdGMFlTQjBlWEJsUFNKWUlqNU5ha0Y1VFhrd2QwMVRNSGROTVZGNFRtcHZNVTFVYnpCTlpWUklMMmhsTVVoeVlWSmlPR3hyY0RrdlEycHFUR1JxU25KdlFuUXpXSG93TkhWYWJ6TlhVMDVOZVZSNlEzRXZkRFJyU25CaEsweDZkbEZFV2pkRWNtSjVXa1JuVERaUFJtVmxUbVZRYlhkcmJTOXhZMDlGV204MGRFTnVRa2hxTm1oclVHWkViVE5oYm1ReFZ6WjJSM2s0UkUxVlF6UlVPRW94ZWpORFZIcDNjbFppYWtFeFVFTTVhekJpV21KNGIwWkNXbnA0V25aeVlXVmhZMnB3WkRodksyNHhVVnA2U1M4MmJsSTRVekIyYnowOEwwUmhkR0UrUEVodFlXTStZbFY0ZDJNM1FTOU5jUzgxVDJKMFNGWXJZMFpQTHpaVFZqZFpWRzEyYTFSTFVVWk1hVlF2YTB4dVptNW1PVzgyTkZSbFdVc3dOVzV2Y0dWQ1ppdDVSRHd2U0cxaFl6NDhVMmxuYm1GMGRYSmxJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3THpBNUwzaHRiR1J6YVdjaklqNVRWRWRCV0VsVE1EQXhQQzlUYVdkdVlYUjFjbVUrUEM5QmRYUm9QZz09PC9SYWQ+PFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+U1RHQVhJUzAwMTwvU2lnbmF0dXJlPjwvS3ljPg==
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      response:
+                        type: string
+                    required:
+                      - response
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: eKYC initiated.
+                data:
+                  response: >-
+                    PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPFJlc3Agc3RhdHVzPSItMSIgcmV0PSJOIiBjb2RlPSJhYTMwMDU3ZWYxMmU0Yjk1OTg3ZTUxNWUwOWZkNmFiMiIgdHhuPSJVS0M6Mjg1MzI1IiB0cz0iMjAyNS0wOC0wNVQxMDo0NTowMi4wMTQrMDU6MzAiIGVycj0iSy0xMDAiPjxreWNSZXM+UEQ5NGJXd2dkbVZ5YzJsdmJqMGlNUzR3SWlCbGJtTnZaR2x1WnowaVZWUkdMVGdpSUhOMFlXNWtZV3h2Ym1VOUltNXZJajgrUEV0NVkxSmxjeUJqYjJSbFBTSmhZVE13TURVM1pXWXhNbVUwWWprMU9UZzNaVFV4TldVd09XWmtObUZpTWlJZ1pYSnlQU0pMTFRFd01DSWdjbVYwUFNKT0lpQjBjejBpTWpBeU5TMHdPQzB3TlZReE1EbzBOVG93TWk0d01UUXJNRFU2TXpBaUlIUjRiajBpVlV0RE9qSTROVE15TlNJK1BGSmhjajVRUkRrMFlsZDNaMlJ0Vm5sak1teDJZbW93YVUxVE5IZEphVUpzWW0xT2RscEhiSFZhZWpCcFZsWlNSMHhVWjJsUWVqUTRVVmhXTUdGR1NteGplVUpxWWpKU2JGQlRTbWhaVkUxM1RVUlZNMXBYV1hoTmJWVXdXV3ByTVU5VVp6TmFWRlY0VGxkVmQwOVhXbXRPYlVacFRXbEpaMXBZU25sUVUwa3hUbXBWYVVsSGJIVmFiVGc1U1dwQk1HVjZRWGhOUkVGM1RrUkZkMlJ1U1ROVFJHc3pVMGhvTUUxdFdUSldhMmhWVGxkWk0wNHdOSGRsUjNReFZWWlNiVlpHUWxwamJHaFZaSHBhVTFFeGFHNWtNMnh4VG14c2VHRnRPV3hSYlU1SlZFaEdTRTFzU214V2JHUlVWa1pDVWsxVGVFSk1SRUYzVFVSQmQwMUVRWGROUkVGM1RVUkJkMDFFUVhkTlJFRjNUVVJCZDAxRVFYZE5SRUYzVFVSQmQwMUVRWGROUkVGM1RVUkJkMDFFUVhkTlJFRjNUVVJCZDAxRVFYZE5SRUYzVFVSQmQwMUVRWGROUkVGM1RVUkJkMDFFUVhkTVJFRjRUVVJCZDAxRVFYZE5SRUYzVFVSQmQwMUVRWE5VYTBWelZHdEZjMVJyUlhOVWEwVnpWR3RGYzFSclJYTk5hVFF4VEVkWmQxbFhSbXRhUkVreVdrUlplVTlIV20xTlZHc3lXa1JyZVUxVVpHMWFWMUY0VFhwRk1GbDZUbXhPYWxsM1RtMVJORnBxUVhwYWFrcHNUa2RHYlZwVVNYbFpNbEV5VDFSVmQwNUhWbXRPVkdSb1QwZFZjMWxxWkd0TlJHeHFUVWRGTkZwSFdtcE9hbGw2VG1wak5GbHFRbXBPUjBsNFdYcFJNVnBVYUdwYVIxcHNUMVJKZDA1RVNUTk5iVlY1V21wc2JFNXFUVEZhYWs1clRrZEZNVTFxUm1wUFIwMHdUbGRWTlZwVGVHbE9NbEYzVDFkTmQxbFVhR3RhYlUweVRtcE5NazU2YUdsTlIwMHdXV3BHYWs1RVZteFBSMDVyV20xVk5VMXFRVEJOYW1ONVdsUktiVTlYVlRKTmVsWnRUVEpSTUZsVVZYbE5WMDAwV1hwUk1WcFViR3hNUlRWQ1RFVTFRa3hGTlVKTVJUVkNURVUxUWt4Rk5VSk1SVFZDVEVVMVFreEZOVUpNUlRWQ1RFaEtiRm95Ykhwa1IxWjVXbGRSYzFSclJYTlVhMFZ6Vkd0RmMxUnJSWE5VYTBWelZHdEdPVWxwUW5sYVdGRTVTVzAwYVVsSVVucFFVMGw1VFVSSk1VeFVRVFJNVkVFeFZrUkZkMDlxVVRGUGFrRjRUR3BCTVU1cGMzZE9WRzk2VFVOSloyUklhSFZRVTBwV1V6Qk5OazFxWnpGTmVra3hTV28wT0ZVeWJHNWliVVl3WkZoS2JFbElhSFJpUnpWNlVGTktiMlJJVW5kUGFUaDJaRE5rTTB4dVkzcE1iVGw1V25rNGVVMUVRWGRNZWtFMVRETm9kR0pIVW5waFYyTnFTV28wT0ZVeWJHNWliVlpyVTFjMWJXSjZORGhSTWtaMVlqSTFjRmt5Um5OaFdIQm9aRWRzZG1Kck1XeGtSMmgyV2tOQ1FtSkhaSFpqYld3d1lVY3dPVWx0YURCa1NFRTJUSGs1TTJRelkzVmtlazExWWpOS2Jrd3hVbE5NZWtsM1RVUkZkbFZyVmtSTVdHaDBZa014YWsxVVVuVk1WRWwzVFVSRmQwMTZSVEZKYVRnclVFWk9jRm95Tldoa1NGWjVXbFV4YkdSSGFIWmFRMEpDWWtka2RtTnRiREJoUnpBNVNXMW9NR1JJUVRaTWVUa3paRE5qZFdSNlRYVmlNMHB1VEhwSmQwMUVRWFpOUkd0MlpVY3hjMXBJVG5CYWVVNTVZekpGZEdNeWFHaE5VMGwyVUdwNFUxcFhXbXhqYlZaMVdUSlZaMVpXU2twUVUwbHBVR3A0VldOdFJuVmpNbHAyWTIweGVsQnFlRlZqYlVaMVl6SmFkbU50TUdkUlYzaHVZak5LY0dSSGFIUlFVMHB2WkVoU2QwOXBPSFprTTJRelRHNWpla3h0T1hsYWVUaDVUVVJCZDB4NlFUVk1NMmgwWWtkU2VtRlhZMnBhVnpVeVdsZDRkbU5IVm10TVdFNXdXakkxYUdSSVZubGFVMGwyVUdwM2RsWklTbWhpYms1dFlqTktkR042TkRoU1IyeHVXbGhPTUZSWFZqQmhSemxyU1VWR2Mxb3lPWGxoV0ZKdllsUXdhV0ZJVWpCalJHOTJURE5rTTJSNU5UTk5lVFYyWTIxamRrMXFRWGROVXpoM1RrTTVOR0pYZUd4aWJVMXFZekpvYUUxcVZUSkphVGdyVUVWU2NGb3lWbnBrUmxwb1lraFdiRkJyWkVSaVJrNVBTM3BzTldKWVdYWlJNa3B3VTBSU1VscHJOREpVTW1SUFpGZDRSazVGYzNoT1IzaEhUVEpzZVZvd2JFWlVNRGxFVFhwUk9WQkRPVVZoVjJSc1l6TlNWMWxYZURGYVZEUTRUREZLYkZwdFZubGFWelZxV2xRME9Fd3hUbkJhTWpWc1drVnNkVnB0T0N0UVJrNXdXakkxYUdSSVZubGFWbHBvWWtoV2JGQnFVak5QV0dSMlpEQndNRmxVVFhsa00wcFhUREJPYjJReVduRldNa3BYVWtWT1JtVkZXa2xhTWxKdVdsZGtUV0ZZYkdoWFZFcHhUMVJuTUdKVlNsaFVSVEZYWWtaR1VWWkZiRkphYlRsQ1QwZFZkMkpyYkZkVE1GcDJZVmRzY21GSGRHNVZhMFZ0U1hwRmVrOTNjRnBsUkVwMFdWUktOVmRIWkU1amEwNXhXVmN4TTFkcGRGRldSRXBEVkcwNVYwNVZaSGRVTWxaelRsZE9WR1Z1UWpaTGVsSmhXVzVzZWs5VlZtOVJhMVpRV1ZkTk5VMTZaRVZhUjBaVll6QmFhVk16V2t0TlYyUjVVMjVGTWs1V1JuWk1NVTVhU21sTmVFMTZjMHRVUjFKSlkwTjBTV1JHUmxGalZHc3dWRlJXYm1Gc1VqVk5SVXB6VkcxdmVtUXdkRzVPVlhSUlkyNU9kMUZXVGxwbFJFSjJVbXRTUTJWWVZUVk9NREY1VkVOMFYySnJXazVUUkVZeVVteE9WMk5FYkZaWFZVWlpWVmRPU1ZJelZqUmtWVEZFVlhsWmFrMVVUVGREYTFweFlsVjBNRTVWWTNKa1JYaEZUakprV1ZSVmVFZE9SbWh4WTFoU2FrOVhNVVZXYkdSUFZWZFNXRkZ1VGxsYWJGSnZZakJzWVZOVmFEWldTR1JoVWtaa1NVNVZTbkJPTW1oWFRVVkdjV0ZFYkRSTU1IQkxWVmhSZW1WR1NsRmthbVJaVDFSRmJVbDZSWHBQZDNCc1UyeHNVMU5HWkdGVFIyaENaRVZHUjFaSE9VOWxSbVJ3VGtSV1QyRnNiR3BpYmtJd1VURnZjbUpET1ZSWmEwcHBVVlF3T1ZCRE9WUmhWMlIxV1ZoU01XTnRWbGRaVjNneFdsUTBPRXd4VG5CYU1qVm9aRWhXZVZwVU5EaE1NRVl4WkVkb1UxcFlUU3M4TDFKaGNqNDhVMmxuYm1GMGRYSmxJSGh0Ykc1elBTSm9kSFJ3T2k4dmQzZDNMbmN6TG05eVp5OHlNREF3THpBNUwzaHRiR1J6YVdjaklqNDhVMmxuYm1Wa1NXNW1iejQ4UTJGdWIyNXBZMkZzYVhwaGRHbHZiazFsZEdodlpDQkJiR2R2Y21sMGFHMDlJbWgwZEhBNkx5OTNkM2N1ZHpNdWIzSm5MMVJTTHpJd01ERXZVa1ZETFhodGJDMWpNVFJ1TFRJd01ERXdNekUxSWk4K1BGTnBaMjVoZEhWeVpVMWxkR2h2WkNCQmJHZHZjbWwwYUcwOUltaDBkSEE2THk5M2QzY3Vkek11YjNKbkx6SXdNREF2TURrdmVHMXNaSE5wWnlOeWMyRXRjMmhoTVNJdlBqeFNaV1psY21WdVkyVWdWVkpKUFNJaVBqeFVjbUZ1YzJadmNtMXpQanhVY21GdWMyWnZjbTBnUVd4bmIzSnBkR2h0UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMekE1TDNodGJHUnphV2NqWlc1MlpXeHZjR1ZrTFhOcFoyNWhkSFZ5WlNJdlBqd3ZWSEpoYm5ObWIzSnRjejQ4UkdsblpYTjBUV1YwYUc5a0lFRnNaMjl5YVhSb2JUMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM4d05DOTRiV3hsYm1NamMyaGhNalUySWk4K1BFUnBaMlZ6ZEZaaGJIVmxQbmRsVkU1TVIycHpiekV4T0dGQ1RTdHpUV1ozVjNKdVNrOVllWGhwWkc1R2RUWnFMMXBuY0hGc2VVazlQQzlFYVdkbGMzUldZV3gxWlQ0OEwxSmxabVZ5Wlc1alpUNDhMMU5wWjI1bFpFbHVabTgrUEZOcFoyNWhkSFZ5WlZaaGJIVmxQa1JDUWxFMFVERXhNMDkwU3pBMVJWWmxWbEJMS3padVJWaDFZVXRQTURCcU5tNVNaRzVVVFV0MlIyeGxiMGhVTDFWemVWazVNRVZGZUdsMVdXUTRRakJZTml0RVFYRk5Ta2wwVkhvS1ozTjBSRGRwVm5oQ1YxaEpOMVJFZEc1UFlWWjNiSEpuVUVWRVptZE5LMHBzU25jMk1YSkNXSEJNTW1wdlFpOVVjWEZIVW1KQlMyRXJjblZqWkV0YWMzcHRVbmxEV0ZWcldpOXphQXBIWldRcmRXdHpTVVIyVUZjNE9EbDZlSFJYT0dWYUsyTmhNMFpJWkRWbU9DOUdjbTFOVVhwUll6aEZTMGg0UjFSMFYzUlpNVGQyUTFGU1JrNW5LekpoZFhwd0wxQmlWbVJOYWpOTUNsQkZOSGROTldkS2QzRkdNVU42YUcxd1lqVjFUbTFpWTIwME0wMUxkV3haUmxKdVIwdFlaVGxtTHpOTE1tcFFXVTl2T0ZrMk0xazVhMmxpZVhoMFIxaHFaMXBFZEdKdlYwd3Zaa29LTTJGQlJTOHdkVkpuYWpCVFdIbDFWVWhCUjJ0VmQyMTZOREV5VW00clNTczJWa0l4SzBFOVBUd3ZVMmxuYm1GMGRYSmxWbUZzZFdVK1BFdGxlVWx1Wm04K1BGZzFNRGxFWVhSaFBqeFlOVEE1VTNWaWFtVmpkRTVoYldVK01TNHlMamcwTUM0eE1UTTFORGt1TVM0NUxqRTlJekUyTVRZMk1UWTBOakUzTlRjME5qZ3laVGMwTmpNME1EYzFOamsyTkRZeE5qa3laVFpsTmpVM05ESmxOamsyWlN4TVBVSmhibWRoYkc5eVpTeERUajFWU1VSQlNTeFBQVlZKUkVGSkxFOVZQVlJsWTJodWIyeHZaM2tnUTJWdWRISmxMRk5VUFV0aGNtNWhkR0ZyWVN4RFBVbE9QQzlZTlRBNVUzVmlhbVZqZEU1aGJXVStQRmcxTURsRFpYSjBhV1pwWTJGMFpUNU5TVWxHZEhwRFEwSktLMmRCZDBsQ1FXZEpSMlk0UVhCaFdHZ3dUVUV3UjBOVGNVZFRTV0l6UkZGRlFrTjNWVUZOU1Vob1RWRnpkME5SV1VSV1VWRkhSWGRLU2xScVJXMU5RMUZIQ2tFeFZVVkRhRTFrVm0xV2VWbFlUalZqZVVKVldsZE9iMkp0T1hOaU1tUndXbGhOWjFWSVdqQkpSWGd3V2tNMGVFaFVRV0pDWjA1V1FrRnpWRVpGVG14amJsSndXbTVzY0dKdFkyY0tVVmhXTUdGSE9YbGhXRkkxVFZFNGQwUlJXVVJXVVZGU1JYZFpNRTFFUVhkTmFsVjRSa1JCVTBKblRsWkNRV2RVUXpBeGFHRkhSbmxaV0U1dlpFaEthRTFTU1hkRlFWbEVWbEZSU2dwRmQyeFhUR3hOZFVsRk1XaGpiV040VFdwQmQwSm5UbFpDUkUxVVMxVTViVnB0YkdwYVUwSlBZbmswWjAxcVJYTkpSRXAxV2tOQ1IySkhPWFpqYVhkblVXMW9hR1J0TldoSlJVb3hDbUZYZUd0aFZ6VnVUVkozZDBkbldVUldVVkZFUlhoT1YxcFlTbWhqTTJ4NlNVWk9NVmxwUWtSUlUwRjVUVVJKZVUxQ05GaEVWRWw2VFVSVmQwMTZSWGxOYWtrd1RVWnZXRVJVU1RJS1RVUlZkMDE2UlhsTmFra3dUVVp2ZDJkYVozaERla0ZLUW1kT1ZrSkJXVlJCYTJ4UFRWSkpkMFZCV1VSV1VWRkpSWGRzVEZsWVNuVlpXRkpvWVRKRmVFZHFRVmxDWjA1V1FrRnpWQXBGVmxKc1dUSm9kV0l5ZUhaYU0ydG5VVEpXZFdSSVNteE5VVFIzUkVGWlJGWlJVVXRGZDFaV1UxVlNRbE5VUlU5TlFYZEhRVEZWUlVGNFRVWldWV3hGVVZWcmVFVnFRVkZDWjA1V0NrSkJZMVJEVlVwb1ltMWthR0pIT1hsYVZFVnNUVU5OUjBOVGNVZFRTV0l6UkZGRlNrRlNXVmRaVjFKb1pGaFNiMHh1VW1wUlNGWndXa2RHY0V4dE5XeGtRelZ3WW1wRFEwRlRTWGNLUkZGWlNrdHZXa2xvZG1OT1FWRkZRa0pSUVVSblowVlFRVVJEUTBGUmIwTm5aMFZDUVU4Mk4waENhMHN6TkZGQk5ubDZRMjFpVVRoTVNIaEtSbHBoYkdkUVdHMWhUMFpRT0RkMU53cE9aV2RZVFhkTk0ydDJSVTF4SzI5NVRIWTBjak15UW1wRlRUQmFjVVZrVkhSdGFXNTZURzlwYkN0NldIWktOelpNT1RWVlpraDJOSEZFUWtjMlRYTkpkMDFqYTJ0M2RFTnBkbXBQQ21Ock5rTk1ZWEpOTjIxTU5HWkRObGMwTlRJeWVHVmpiMmhOUVVGVVJrTkRTM0ZvT0haelowSTFlRTFrWW5aTlNtdzRhbkJOWXpoT1VuVnFTekYxYkdGRVZtOUhPVkZOTmpWM1JXNEtVMFJOVTBGUVdWZzNhU3RXV1RsUFJUVnBibVJhZFUxbWJYUmxSQ3R0UjB4cmQwcFJiVE5hTUVkclJUbG9WVGhsUmpOcWVraEVNRzFXTWxSMGMxVm5VekJ4SzJWQ05uRXJiWFJLWlFwemIwNU1jR3RNWWxOU01HSm1lWFl2TTFCWEwyZHhWMjFQTUd4bGJqRk5aalpNUlVzeGJrZ3dhMmdyVlVneFNYbDNOM05pYjFKTU9YZDJhMVJYZFZGd1dqQnJTWFJoYWpaa1psVkRDa0YzUlVGQllVOURRV0p2ZDJkblJ6Sk5SVUZIUVRGVlpFcFJVVFZOUkdOSFEybHpSMEZSVVVKbmFtTlZRV2RKUjBORGMwZEJVVlZHUW5kTlJVSm5iM0pDWjBWRlFWbEpNME5uVFUwS1FtZHJjV2hyYVVjNWVUaENRVkZWUjBORGMwZEJVVlZHUW5kTlEwMUNUVWRCTVZWa1NYZFJUVTFCY1VGRFJUQjFWMDlIUmt4bU5rdE5TRUZIUTBOelIwRlJWVVpDZDBWQ1FrZFJkd3BaYWtGblFtZG5ja0puUlVaQ1VXTjNRVmxaVldGSVVqQmpSRzkyVERJNWFtTXpRWFZrYms1d1dqSTBkV0ZYTkhkUVoxbEpTM2RaUWtKUlZVaE5RVXRIVFcxb01HUklRbnBQYVRoMkNtUXpaRE5NYmxwNllWZGtkVXh0YkhWTU0wcHNZMGM1ZW1GWVVuWmpibXQyWkc1T2NGb3lOWHBrVjBwcVdWUkpkMDFxU1hWWk1sWjVUVWxIVEVKblRsWklVMEZGWjFsTmQyZFpRWGNLWkVGWlIxbEpTbXRhUVVsRVRVZHZkMHgzV1VsTGQxbENRbEZWU0VGblJWZEpNbWd3WkVoQ2VrOXBPSFprTTJRelRHNWFlbUZYWkhWTWJXeDFURE5LYkdOSE9YcGhXRkoyWTI1cmRncFpNMEo2VFVSalIwTkRjMGRCVVZWR1FuZEpRMDFEYzJGTFZVNXpXVmhPZWtsRmJFcFRVMEpRWTIxa2FHSnRiRFpaV0ZKd1lqSTBaMVV5Ykc1aWJWWjVTVVZPYkdOdVVuQmFiV3hxQ2xsWVVteE5RV2RIUW0xRFExcEhVVU5CYWtGMlFtZE9Wa2hTT0VWTFJFRnRUVU5UWjBseFFXZG9hRFZ2WkVoU2QyTjZiM1pNTWs1b1RHNWFlbUZYWkhWTWJXeDFUREpPZVdKSFVub0tXWHBKZDAxcVNYZEZVVmxFVmxJd1QwSkJiMFZEUlhCNmJFOTNRalZIYm1kTlFUUkhRVEZWWkVSM1JVSXZkMUZGUVhkSlIzZEVRVXBDWjA1V1NGSk5SVUZxUVVGTlFUQkhRMU54UndwVFNXSXpSRkZGUWtOM1ZVRkJORWxDUVZGQ01VNW5LMkpsYVVFM09USXpWRFZSTDNsRlRUTkthMDFWVG1KWFpsUlFlVEZ1YkZoSWRUTjBPRTgxU1VOQmJFUTJXblJHTjA1MlMwTXdDa1ExVlZCbVVFZDVhRTVJWWl0TVUycExabXRrT1dKSlEwa3lXR0ZvUVdnNFJFd3dXRGN6YnpFNFVsUmFjVkJZVVhSb01uSjNhRU5OZFd0VUswMXljVXhwWVd0TVlrMHlVVkIxT0hjS04zRkxTM0Z2YlhkV2FXSTVVMEZXVjNCa09FaFdVVkpaVkdKeGNtMDNXVlJvVTBKRGVHWnlUMHRSYmxVNVpFYzRkbEZRYkhZclprMTRVV3BqVUVwRlUwOXNUVGN6VWxGQ1RHZHhkZ3AxTDFoQlRDdEpWV0oyWTJVMVdXOWhibGQxVDJ0dlMycEhVMGh4TDNaaGJWTm9OekJpVEVwTVJFVlBXbTl5UmpsTlUyMUpkWGQyWkhKNVdWaFJNMGhsYVUxQldWZE9VM05WYlVsbkNuTllWekoxUjBSWWJUSkJaM1UxTHpWVFRVNXZhbmhsYXpndll6VkpSVlpETUV4V00weFVLeTlCZVV4dFJtTkRSRFpaZWtob09Fd3JQQzlZTlRBNVEyVnlkR2xtYVdOaGRHVStQQzlZTlRBNVJHRjBZVDQ4TDB0bGVVbHVabTgrUEM5VGFXZHVZWFIxY21VK1BDOUxlV05TWlhNKzwva3ljUmVzPjwvUmVzcD4=
+                signature: >-
+                  MGQCMCdjoQJK8a9Ry8rek8HqcebQaH7SXsD8H4RKl8ThMyGMKfLatGD2lr4Op9d210AJuAIwLV2Z2RdVHkPkBAeP5o/Si/0RlN8ZuuIa3fwpxe4biDU9i4SOrIGsLi2gbzesprP7
+                meta:
+                  txncode: '2345678'
+                  ver: '1.2'
+                  ts: 2025-08-05T10:45:02+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failure:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E037
+                  status: failed
+                  info: Request payload hmac is missing
+                data: {}
+                signature: >-
+                  MGQCMCdjoQJK8a9Ry8rek8HqcebQaH7SXsD8H4RKl8ThMyGMKfLatGD2lr4Op9d210AJuAIwLV2Z2RdVHkPkBAeP5o/Si/0RlN8ZuuIa3fwpxe4biDU9i4SOrIGsLi2gbzesprP7
+                meta:
+                  txncode: ''
+                  ver: '1.2'
+                  ts: 2025-08-05T10:45:46+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []

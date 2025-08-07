@@ -25,6 +25,9 @@ const lrsLienMarkingSidebar = require("./docs/lrs-lien-marking/sidebar.ts");
 const translationTransliterationSidebar = require("./docs/translation-transliteration/sidebar.ts");
 const legalVerificationSidebar = require("./docs/legal-verification/sidebar.ts");
 const farmYieldMultilandSidebar = require("./docs/farm-yield-multiland/sidebar.ts");
+const panProteanSidebar = require("./docs/pan-protean/sidebar.ts");
+const dgvSidebar = require("./docs/dgv/sidebar.ts");
+const esignProteanSidebar = require("./docs/esign-protean/sidebar.ts");
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
@@ -119,6 +122,16 @@ const sidebars: SidebarsConfig = {
           items: [
             ...translationTransliterationSidebar,
             ...legalVerificationSidebar
+          ]
+        },
+        {
+          type: "category",
+          label: "ULI Services",
+          collapsed: false,
+          items: [
+            ...panProteanSidebar,
+            ...dgvSidebar,
+            ...esignProteanSidebar
           ]
         }
       ]

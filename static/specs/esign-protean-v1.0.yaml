@@ -1,0 +1,245 @@
+openapi: 3.0.1
+info:
+  title: eSign Protean Service API
+  description: 'Electronic signature service powered by Protean integration for secure document signing'
+  version: 1.0.0
+tags:
+  - name: eSign Protean
+    description: Electronic signature operations through Protean integration
+paths:
+  /qa/aadhaaresignprt/1.2/en:
+    post:
+      summary: eSign
+      deprecated: false
+      description: 'Perform electronic signature on documents using Aadhaar-based eSign through Protean integration'
+      tags:
+        - eSign Protean
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: true
+          example: test
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '106'
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: text/html
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: callback-url
+          in: header
+          description: ''
+          required: false
+          example: https://lendercallback.requestcatcher.com/test
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.2'
+                ts: 2025-08-05T11:33:40+0530
+                txncode: test
+              data:
+                payload: >-
+                  PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PEVzaWduIEF1dGhNb2RlPSIxIiBhc3BJZD0iQVNQUkJJSFVBVDAwNjU3MSIgZWt5Y0lkPSIiIGVreWNJZFR5cGU9IkEiIHJlc3BvbnNlU2lnVHlwZT0icGtjczciIHJlc3BvbnNlVXJsPSJodHRwczovL2hlbGxvLnJlcXVlc3RjYXRjaGVyLmNvbS9sbW4iIHNjPSJZIiB0cz0iMjAyMy0wOC0wMVQxNzozNzoyNyIgdHhuPSJ0eG5BdWcyMDIzMDA3IiB2ZXI9IjIuMSI+PERvY3M+PElucHV0SGFzaCBkb2NJbmZvPSJEb2N1bWVudCBmb3IgZVNpZ24iIGhhc2hBbGdvcml0aG09IlNIQTI1NiIgaWQ9IjEiPjI5MzRjZWQwNGNmM2M5OTdmZDgxN2ZlMWUwOGUwYzQ0NmU5YzA3NGExYTNiMDNhOWI2MGFlMGFlMzgzNWJmZDI8L0lucHV0SGFzaD48L0RvY3M+PFNpZ25hdHVyZSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+PFNpZ25lZEluZm8+PENhbm9uaWNhbGl6YXRpb25NZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy14bWwtYzE0bi0yMDAxMDMxNSIvPjxTaWduYXR1cmVNZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjcnNhLXNoYTEiLz48UmVmZXJlbmNlIFVSST0iIj48VHJhbnNmb3Jtcz48VHJhbnNmb3JtIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnI2VudmVsb3BlZC1zaWduYXR1cmUiLz48L1RyYW5zZm9ybXM+PERpZ2VzdE1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNzaGExIi8+PERpZ2VzdFZhbHVlPnU1RVRlNllTVFlXY2N0Y0IySUUzVVFlMUphST08L0RpZ2VzdFZhbHVlPjwvUmVmZXJlbmNlPjwvU2lnbmVkSW5mbz48U2lnbmF0dXJlVmFsdWU+WVkva3JaVzVpVDh3ZHViRVJPK09hWHBQekw0TmNCUENFcWRWNXlQVnptS2pOcEY1UDZKc3lRSzFwYWk2K0FPeGgxRk92OTNkRDlMZyYjMTM7dU5ZV2xIOGwxQTNoaDRMcHlMNGNDdERYYzN1S09ET25wMVF3SkdMT2VaVyt2cXZ1VHY0MlVjeXlTeklZOVQxSGtqYkUyWGx4L3hHRiYjMTM7MnFVVnkxNE1nRUFVK2JsNFdtYVM5SUgyWXlKL0NhL2o2ZllGL1N3RnlrYzNkaVBkS3kzVkxzT21GUVF4cU10R1VGZkFuR3REdFZ6LyYjMTM7NjZzSUROKzRjZ0xMZklneFVBMjhybXB2NnVkRzRjL1dXTnhZT294cDdUS1VjZG5yeWVqUVpQY0lPWGM1M2gydHQzMVc5UFFHQ2tFRiYjMTM7UGVEbktPNW5ST2l5ZzZGdlkzUlRoZXJ0d05PWHAySDFYcjA5cnc9PTwvU2lnbmF0dXJlVmFsdWU+PEtleUluZm8+PFg1MDlEYXRhPjxYNTA5U3ViamVjdE5hbWU+Q049UmVzZXJ2ZSBCYW5rIElubm92YXRpb24gSHViLE89UmVzZXJ2ZSBCYW5rIElubm92YXRpb24gSHViLEw9YmFuZ2Fsb3JlLFNUPWthcm5hdGFrYSxDPUlOPC9YNTA5U3ViamVjdE5hbWU+PFg1MDlDZXJ0aWZpY2F0ZT5NSUlEM2pDQ0FzYWdBd0lCQWdJVUQ3SEpZRUl1TjlwR2VNS2U0QlA1TUZ5blNxSXdEUVlKS29aSWh2Y05BUUVMQlFBd2dZRXhDekFKJiMxMztCZ05WQkFZVEFrbE9NUkl3RUFZRFZRUUlFd2xyWVhKdVlYUmhhMkV4RWpBUUJnTlZCQWNUQ1dKaGJtZGhiRzl5WlRFa01DSUdBMVVFJiMxMztDaE1iVW1WelpYSjJaU0JDWVc1cklFbHVibTkyWVhScGIyNGdTSFZpTVNRd0lnWURWUVFERXh0U1pYTmxjblpsSUVKaGJtc2dTVzV1JiMxMztiM1poZEdsdmJpQklkV0l3SGhjTk1qTXdNekUyTVRReU1EQXpXaGNOTWpRd016RTJNVFF5TURBeldqQ0JnVEVMTUFrR0ExVUVCaE1DJiMxMztTVTR4RWpBUUJnTlZCQWdUQ1d0aGNtNWhkR0ZyWVRFU01CQUdBMVVFQnhNSlltRnVaMkZzYjNKbE1TUXdJZ1lEVlFRS0V4dFNaWE5sJiMxMztjblpsSUVKaGJtc2dTVzV1YjNaaGRHbHZiaUJJZFdJeEpEQWlCZ05WQkFNVEcxSmxjMlZ5ZG1VZ1FtRnVheUJKYm01dmRtRjBhVzl1JiMxMztJRWgxWWpDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTXFVN1djaVZ5Zlp1dzhaUDZheEVrYWNISko5JiMxMztlcDRtZUlqbS9vRk00cXdyS0pQNFRDUGY0VGkrditCUGV2SHpVekwvS3p4SmM0WEMvSDcxdGNPQjROZDFpQitSVHVVMlZKZWZvL3VSJiMxMztJbmptSzlTSlRrekdoRm05V3R0Sk9vMVFHZndBWFNQSmlJWEU4bS94K2UySU0wa3Jsc0t0WldMU09sOGVweElTWUMxOUNkNk1ScDNLJiMxMzs5cUlOKzcvbkxXaUpzbjV0em0ydFhycWtlblNWYU9yU2dQNWNMVzRoa2Y4UFVuL2xSQnRwajNQVnAzT05JNENPT1RBNCt5eDdHUHRkJiMxMztxcFRCdnpsVjloZ0JmUW4vOEZheXdlRTYyMkR3TmtnQ2VnaHYvcU1GTmhZYis0dlBVUkpTQVE4Y1dVQmE4S2NWSHIyTk1CU0FlcGJDJiMxMzswL1JLeVNSWUNCMENBd0VBQWFOTU1Fb3dDUVlEVlIwVEJBSXdBREFSQmdsZ2hrZ0JodmhDQVFFRUJBTUNCUEF3Q3dZRFZSMFBCQVFEJiMxMztBZ1dnTUIwR0ExVWRKUVFXTUJRR0NDc0dBUVVGQndNQ0JnZ3JCZ0VGQlFjREFUQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFRZTFSJiMxMztrUGVobWZhbk83UlRrdjRENnZMTEJjejF1YS9QeUV5a0txZGdyMmlvQ0toN2hZN0UySDZkWTdaeTVHSGQ5VlJpTStaamxUUFVxNlQ5JiMxMztqK01iNFZVOEJZeGxubGFoYjkvaEgrZmM4c1RyMzJIelBxRG1hZERjSTZRVXdQdlB0bXJrdnhmb0Y5R29NQWxESTlRVDNRRCtkNGRqJiMxMztyMmRlT3hLQzJ6SmJ1TmJ6czJiTGJBODl6SUNmZXcxU1k2L0JXK1BSTk02MmhYNnpIVVJzYWlKRDcrSTRYN1pZaEFSckIxREZRV1A1JiMxMztFaEkwTGdKVGcra3l3ZlNCUEZieFA2czY4MkZtdk85enVJcFNVdnFNRlBzVFJHeUN6MmVXQUNoK0pHbG04ZEpXbS83Z0ROdWs0WkhNJiMxMztqWG53N2xRVDFqaEt5MnpOWnh3dmNmbUEzV1RBUHpOSjZBPT08L1g1MDlDZXJ0aWZpY2F0ZT48L1g1MDlEYXRhPjwvS2V5SW5mbz48L1NpZ25hdHVyZT48L0VzaWduPg==
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+              example: |-
+                <!DOCTYPE html>
+                <html>
+                    <body>
+                        <form id="URL" name="URL" method="POST" enctype="multipart/form-data" action='https://pregw.esign.egov-nsdl.com/nsdl-esp/authenticate/esign-doc/'>
+                            <input type="hidden" name="msg" id="msg" value=''/>
+                        </form>
+                        <input type="hidden" name="Version" id="version" value='1.2'/>
+                        <input type="hidden" name="Lang" id="lang" value='en'/>
+                        <input type="hidden" name="Txn" id="txn" value='test'/>
+                        <input type="hidden" name="Timestamp" id="timestamp" value='2025-08-05T10:50:38+0530'/>
+                        <input type="hidden" name="srcIP" id="ip" value='172.19.40.98'/>
+                        <input type="hidden" name="UId" id="uid" value='ce429ce4-3963-4db9-9981-b1d8a751d62f'/>
+                        <input type="hidden" name="KId" id="kid" value='MTc1NDM3MTI3MDAyNQ=='/>
+                        <input type="hidden" name="CId" id="cid" value='1754371270025'/>
+                    </body>
+                    &lt;script>
+                    var strResponse = '
+                        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                        <Esign AuthMode="1" aspId="ASPRBIHUAT006571" ekycId="" ekycIdType="A" responseSigType="pkcs7" responseUrl="https://hello.requestcatcher.com/lmn" sc="Y" ts="2023-08-01T17:37:27" txn="txnAug2023007" ver="2.1">
+                            <Docs>
+                                <InputHash docInfo="Document for eSign" hashAlgorithm="SHA256" id="1">2934ced04cf3c997fd817fe1e08e0c446e9c074a1a3b03a9b60ae0ae3835bfd2</InputHash>
+                            </Docs>
+                            <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+                                <SignedInfo>
+                                    <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+                                    <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+                                    <Reference URI="">
+                                        <Transforms>
+                                            <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+                                        </Transforms>
+                                        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                                        <DigestValue>u5ETe6YSTYWcctcB2IE3UQe1JaI=</DigestValue>
+                                    </Reference>
+                                </SignedInfo>
+                                <SignatureValue>YY/krZW5iT8wdubERO+OaXpPzL4NcBPCEqdV5yPVzmKjNpF5P6JsyQK1pai6+AOxh1FOv93dD9Lg&#13;uNYWlH8l1A3hh4LpyL4cCtDXc3uKODOnp1QwJGLOeZW+vqvuTv42UcyySzIY9T1HkjbE2Xlx/xGF&#13;2qUVy14MgEAU+bl4WmaS9IH2YyJ/Ca/j6fYF/SwFykc3diPdKy3VLsOmFQQxqMtGUFfAnGtDtVz/&#13;66sIDN+4cgLLfIgxUA28rmpv6udG4c/WWNxYOoxp7TKUcdnryejQZPcIOXc53h2tt31W9PQGCkEF&#13;PeDnKO5nROiyg6FvY3RThertwNOXp2H1Xr09rw==</SignatureValue>
+                                <KeyInfo>
+                                    <X509Data>
+                                        <X509SubjectName>CN=Reserve Bank Innovation Hub,O=Reserve Bank Innovation Hub,L=bangalore,ST=karnataka,C=IN</X509SubjectName>
+                                        <X509Certificate>MIID3jCCAsagAwIBAgIUD7HJYEIuN9pGeMKe4BP5MFynSqIwDQYJKoZIhvcNAQELBQAwgYExCzAJ&#13;BgNVBAYTAklOMRIwEAYDVQQIEwlrYXJuYXRha2ExEjAQBgNVBAcTCWJhbmdhbG9yZTEkMCIGA1UE&#13;ChMbUmVzZXJ2ZSBCYW5rIElubm92YXRpb24gSHViMSQwIgYDVQQDExtSZXNlcnZlIEJhbmsgSW5u&#13;b3ZhdGlvbiBIdWIwHhcNMjMwMzE2MTQyMDAzWhcNMjQwMzE2MTQyMDAzWjCBgTELMAkGA1UEBhMC&#13;SU4xEjAQBgNVBAgTCWthcm5hdGFrYTESMBAGA1UEBxMJYmFuZ2Fsb3JlMSQwIgYDVQQKExtSZXNl&#13;cnZlIEJhbmsgSW5ub3ZhdGlvbiBIdWIxJDAiBgNVBAMTG1Jlc2VydmUgQmFuayBJbm5vdmF0aW9u&#13;IEh1YjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMqU7WciVyfZuw8ZP6axEkacHJJ9&#13;ep4meIjm/oFM4qwrKJP4TCPf4Ti+v+BPevHzUzL/KzxJc4XC/H71tcOB4Nd1iB+RTuU2VJefo/uR&#13;InjmK9SJTkzGhFm9WttJOo1QGfwAXSPJiIXE8m/x+e2IM0krlsKtZWLSOl8epxISYC19Cd6MRp3K&#13;9qIN+7/nLWiJsn5tzm2tXrqkenSVaOrSgP5cLW4hkf8PUn/lRBtpj3PVp3ONI4COOTA4+yx7GPtd&#13;qpTBvzlV9hgBfQn/8FayweE622DwNkgCeghv/qMFNhYb+4vPURJSAQ8cWUBa8KcVHr2NMBSAepbC&#13;0/RKySRYCB0CAwEAAaNMMEowCQYDVR0TBAIwADARBglghkgBhvhCAQEEBAMCBPAwCwYDVR0PBAQD&#13;AgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATANBgkqhkiG9w0BAQsFAAOCAQEAQe1R&#13;kPehmfanO7RTkv4D6vLLBcz1ua/PyEykKqdgr2ioCKh7hY7E2H6dY7Zy5GHd9VRiM+ZjlTPUq6T9&#13;j+Mb4VU8BYxlnlahb9/hH+fc8sTr32HzPqDmadDcI6QUwPvPtmrkvxfoF9GoMAlDI9QT3QD+d4dj&#13;r2deOxKC2zJbuNbzs2bLbA89zICfew1SY6/BW+PRNM62hX6zHURsaiJD7+I4X7ZYhARrB1DFQWP5&#13;EhI0LgJTg+kywfSBPFbxP6s682FmvO9zuIpSUvqMFPsTRGyCz2eWACh+JGlm8dJWm/7gDNuk4ZHM&#13;jXnw7lQT1jhKy2zNZxwvcfmA3WTAPzNJ6A==</X509Certificate>
+                                    </X509Data>
+                                </KeyInfo>
+                            </Signature>
+                        </Esign>';
+                    console.log(strResponse);
+                    document.getElementById("msg").value = unescape(strResponse);
+                    var form = document.getElementById("URL");
+                    form.submit();
+                    &lt;/script&gt;
+                </html>
+          headers: {}
+        x-200:Failure:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E045
+                  status: failed
+                  info: Missing mandatory header parameter
+                data: {}
+                signature: >-
+                  MGUCMAZ/GBl3GLyDUMk8atyZX0bfzk3HP//mlg6ydNvKCkzLuLcQxLo411lzfqte0wQfMwIxAO0ORlB/YYPMQg28BeLnXtU8+MYVaBpp/7fQwP2SCog4LD094ek8qNDayr9+zZvXIw==
+                meta:
+                  txncode: test
+                  ver: '1.2'
+                  ts: 2025-08-05T11:32:36+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEwd1V+VNkpEY9xtqjOUblJj3dZridcKPw1P+pOey+0P+1GijkTspl4icqngyyXwigek0aJ0w5AHPjX7FaiYajpBjflu0M6m4a1rl4f5g/2mulJmFZ0ZfKOY+XJMP2gHwo
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []

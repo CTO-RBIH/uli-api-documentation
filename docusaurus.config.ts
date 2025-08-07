@@ -422,6 +422,30 @@ const config: Config = {
               categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
+          "pan-protean": {
+            specPath: "specs/pan-protean-v1.0.yaml",
+            outputDir: "docs/pan-protean",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "dgv": {
+            specPath: "specs/dgv-v1.0.yaml",
+            outputDir: "docs/dgv",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "esign-protean": {
+            specPath: "specs/esign-protean-v1.0.yaml",
+            outputDir: "docs/esign-protean",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
         } satisfies Plugin.PluginOptions,
       },
     ],

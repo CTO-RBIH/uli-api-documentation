@@ -1,0 +1,2052 @@
+openapi: 3.0.1
+info:
+  title: DGV
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/getconsentformilkinsights/1.3/en:
+    get:
+      summary: Consent for Milk Insights
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: lkjhgpoiu4556567
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ' Provider -116 -workingfor DGV '
+          required: true
+          example: '116'
+          schema:
+            type: string
+        - name: x-performance-test
+          in: header
+          description: ''
+          required: true
+          example: 'false'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: farmermobilenumber
+          in: header
+          description: '8369225184'
+          required: true
+          example: '9527194180'
+          schema:
+            type: string
+        - name: farmercode
+          in: header
+          description: '0153'
+          required: true
+          example: '0153'
+          schema:
+            type: string
+        - name: dgvmcpcode
+          in: header
+          description: AMULSUR0547
+          required: true
+          example: AMULSUR0547
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /sb
+          schema:
+            type: string
+        - name: banktxncode
+          in: header
+          description: F2405211720176571
+          required: true
+          example: F2405211720176571
+          schema:
+            type: string
+        - name: bankcode
+          in: header
+          description: HDFC
+          required: true
+          example: HDFC
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          example: Bearer {{AUTH_TOKEN}}
+          schema:
+            type: string
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      errordesc:
+                        type: 'null'
+                      response:
+                        type: object
+                        properties:
+                          banktxncode:
+                            type: string
+                          txncode:
+                            type: string
+                          dgvtxncode:
+                            type: string
+                        required:
+                          - banktxncode
+                          - txncode
+                          - dgvtxncode
+                      message:
+                        type: string
+                      errorcode:
+                        type: 'null'
+                      status:
+                        type: string
+                    required:
+                      - errordesc
+                      - response
+                      - message
+                      - errorcode
+                      - status
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  errordesc: null
+                  response:
+                    banktxncode: F2405211720176571
+                    txncode: lkjhgpoiu4556567
+                    dgvtxncode: DGVRBIH2508011300315094
+                  message: OTP is sent to the number given
+                  errorcode: null
+                  status: '0'
+                signature: >-
+                  MGUCMEO0ZtuXz/2YusfbjwsmLbqPGICXTbxEhwQ0wxdsuQ9dTdoXW3bXho7PnYTdtfxojwIxAJ7l6b2ntHQwxtD8DUW1oKmYu7Z6jnKrZ2K7iNO2WyQR8h/1IQLDvhNuRRXHPRMNgQ==
+                meta:
+                  txncode: lkjhgpoiu4556567
+                  ver: '1.3'
+                  ts: 2025-08-01T13:00:34+0530
+                hmac: +tJX+hvKUl3I16F7tDxrtxEHtRgniDAKTgxM7oRTPTE=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E025
+                  status: failed
+                  info: Invalid parameter supplied
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: lkjhgpoiu4556567
+                  ver: '1.3'
+                  ts: 2025-08-01T13:02:28+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/getfarmermilkinsights/1.3/en:
+    get:
+      summary: Farmer Milk Insights
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: lkjhgpoiu4556567
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '116'
+          schema:
+            type: string
+        - name: x-performance-test
+          in: header
+          description: ''
+          required: false
+          example: 'false'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: x-auth-token
+          in: header
+          description: ''
+          required: false
+          example: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6ImtVU292U1lwZUludUtfRUluM0hJTDFfWl9Sa2EiLCJuYmYiOjE2ODQ5MDE2MjUsImF6cCI6ImtVU292U1lwZUludUtfRUluM0hJTDFfWl9Sa2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2ODQ5NDQ4MjUsImlhdCI6MTY4NDkwMTYyNSwianRpIjoiNjJlMjAyZTktNDQzZC00ZmI1LTlhMDgtOGIxOTUzMmI1NjMwIn0.MPUaIGAWPhiefRHvyKtyuzbie3IVrM7XYOP57VeSv4nkdzCJGqo5RU0oJaApi2T2PiSauYfKPQlx50NCkd99l8CvltptyUtf8PrqHsaFZKiC6jeEKTfRuB9rDw329q1MNZoRedUiKVQcUcnN-MlfdwVq89OL-gc8-6CV6ArY-e4qNG9P8sEjHMdjkDwUq6C8Y_iyYcC1LHRVeoJ526s2zp9pZ1NIpdeHao8tDW9p2gM0JW2aQae1km8Umf94Luo7EZArhNOtJmW6FGVxc31-2Yb6F9lMC1UQic1UpITRPK8ZbMGKWbERY1zlcxxfc3CTaCpA_vT4ct4NauBYqEtO9A
+          schema:
+            type: string
+        - name: farmermobilenumber
+          in: header
+          description: '8369225184'
+          required: true
+          example: '8369225184'
+          schema:
+            type: string
+        - name: farmercode
+          in: header
+          description: '0046'
+          required: true
+          example: '0153'
+          schema:
+            type: string
+        - name: dgvmcpcode
+          in: header
+          description: AMULKUTCH1057
+          required: true
+          example: AMULSUR0547
+          schema:
+            type: string
+        - name: consentotp
+          in: header
+          description: '123456'
+          required: true
+          example: '123456'
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /sb
+          schema:
+            type: string
+        - name: bankcode
+          in: header
+          description: ''
+          required: true
+          example: HDFC
+          schema:
+            type: string
+        - name: banktxncode
+          in: header
+          description: F240521
+          required: true
+          example: F2405211720176571
+          schema:
+            type: string
+        - name: dgvtxncode
+          in: header
+          description: ''
+          required: true
+          example: DGVRBIH2507011634133233
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  example: client_credentials
+                  type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E383
+                  status: failed
+                  info: Transaction Code Already Present
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: lkjhgpoiu4556567
+                  ver: '1.3'
+                  ts: 2025-08-01T13:00:54+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E386
+                  status: failed
+                  info: Invalid Consent OTP
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: lkjhgpoiu4556567
+                  ver: '1.3'
+                  ts: 2025-08-01T13:03:06+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/dgv/farmermilkinsights/pdf/1.3/en:
+    get:
+      summary: Farmer Milk Insights PDF
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: true
+          example: <api-key>
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: 94j6d8
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '116'
+          schema:
+            type: string
+        - name: x-performance-test
+          in: header
+          description: ''
+          required: false
+          example: 'false'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: x-auth-token
+          in: header
+          description: ''
+          required: false
+          example: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6ImtVU292U1lwZUludUtfRUluM0hJTDFfWl9Sa2EiLCJuYmYiOjE2ODQ5MDE2MjUsImF6cCI6ImtVU292U1lwZUludUtfRUluM0hJTDFfWl9Sa2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE2ODQ5NDQ4MjUsImlhdCI6MTY4NDkwMTYyNSwianRpIjoiNjJlMjAyZTktNDQzZC00ZmI1LTlhMDgtOGIxOTUzMmI1NjMwIn0.MPUaIGAWPhiefRHvyKtyuzbie3IVrM7XYOP57VeSv4nkdzCJGqo5RU0oJaApi2T2PiSauYfKPQlx50NCkd99l8CvltptyUtf8PrqHsaFZKiC6jeEKTfRuB9rDw329q1MNZoRedUiKVQcUcnN-MlfdwVq89OL-gc8-6CV6ArY-e4qNG9P8sEjHMdjkDwUq6C8Y_iyYcC1LHRVeoJ526s2zp9pZ1NIpdeHao8tDW9p2gM0JW2aQae1km8Umf94Luo7EZArhNOtJmW6FGVxc31-2Yb6F9lMC1UQic1UpITRPK8ZbMGKWbERY1zlcxxfc3CTaCpA_vT4ct4NauBYqEtO9A
+          schema:
+            type: string
+        - name: farmermobilenumber
+          in: header
+          description: ''
+          required: true
+          example: '8369225184'
+          schema:
+            type: string
+        - name: farmercode
+          in: header
+          description: '0046'
+          required: true
+          example: '0153'
+          schema:
+            type: string
+        - name: dgvmcpcode
+          in: header
+          description: AMULKUTCH1057
+          required: true
+          example: AMULSUR0547
+          schema:
+            type: string
+        - name: consentotp
+          in: header
+          description: ''
+          required: true
+          example: '123456'
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /sb
+          schema:
+            type: string
+        - name: bankcode
+          in: header
+          description: ''
+          required: true
+          example: HDFC
+          schema:
+            type: string
+        - name: banktxncode
+          in: header
+          description: ''
+          required: true
+          example: F2405211720176571
+          schema:
+            type: string
+        - name: dgvtxncode
+          in: header
+          description: ''
+          required: true
+          example: DGVRBIH2506301252235344
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  example: client_credentials
+                  type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E329
+                  status: failed
+                  info: Expired transaction request
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: 94j6d8
+                  ver: '1.3'
+                  ts: 2025-08-01T13:01:10+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E377
+                  status: failed
+                  info: Invalid MCP Code
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: 94j6d8
+                  ver: '1.3'
+                  ts: 2025-08-01T13:03:52+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/dgv/farmermilkinsights/federations/1.3/en:
+    post:
+      summary: Get Federations
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '116'
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /sb
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          example: Bearer {{AUTH_TOKEN}}
+          schema:
+            type: string
+        - name: Cookie
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: false
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                hmac:
+                  type: string
+                data:
+                  type: object
+                  properties:
+                    state-code:
+                      type: string
+                  required:
+                    - state-code
+              required:
+                - meta
+                - hmac
+                - data
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: ere
+              hmac: mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+              data:
+                state-code: GJ
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      errordesc:
+                        type: 'null'
+                      response:
+                        type: object
+                        properties:
+                          dgvStateCode:
+                            type: string
+                          federations:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                federationType:
+                                  type: string
+                                dgvFederationCode:
+                                  type: string
+                                dgvFederationName:
+                                  type: string
+                                isUnionApplicable:
+                                  type: string
+                        required:
+                          - dgvStateCode
+                          - federations
+                      message:
+                        type: string
+                      errorcode:
+                        type: 'null'
+                      status:
+                        type: string
+                    required:
+                      - errordesc
+                      - response
+                      - message
+                      - errorcode
+                      - status
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  errordesc: null
+                  response:
+                    dgvStateCode: GJ
+                    federations:
+                      - federationType: COP
+                        dgvFederationCode: AM
+                        dgvFederationName: AMUL
+                        isUnionApplicable: 'true'
+                  message: Federations delivered successfully
+                  errorcode: null
+                  status: '0'
+                signature: >-
+                  MGUCMQDHsa9yMzL2RFRHg6bKHtN93WkhlV+KN7ZSOysFmwO6xbFUcm5MWU8Eu88b30X7jqwCMCgdNtfLYe6dBUULMNdS7GAo300/acSlPa8v/Bh2nb1kUnRALZVi7LL3oq9pVzOWVw==
+                meta:
+                  txncode: ere
+                  ver: '1.3'
+                  ts: 2025-08-01T13:01:22+0530
+                hmac: iYuXDoxVF1bS2Xb/C4GqzfBS92cBPO4KZwbkV0rwHaM=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E032
+                  status: failed
+                  info: Invalid client id value
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: ere
+                  ver: '1.3'
+                  ts: 2025-08-01T13:04:32+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/dgv/farmermilkinsights/unions/1.3/en:
+    post:
+      summary: Get Unions
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '116'
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /sb
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          example: Bearer {{AUTH_TOKEN}}
+          schema:
+            type: string
+        - name: Cookie
+          in: header
+          description: ''
+          required: true
+          example: '*=7dd2ed34a25982be09a090d177ffde9d7a6fdb8e'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                hmac:
+                  type: string
+                data:
+                  type: object
+                  properties:
+                    federation-code:
+                      type: string
+                    state-code:
+                      type: string
+                  required:
+                    - federation-code
+                    - state-code
+              required:
+                - meta
+                - hmac
+                - data
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: ere
+              hmac: mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+              data:
+                federation-code: AM
+                state-code: GJ
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      errordesc:
+                        type: 'null'
+                      response:
+                        type: object
+                        properties:
+                          unions:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                dgvUnionCode:
+                                  type: string
+                                dgvUnionName:
+                                  type: string
+                              required:
+                                - dgvUnionCode
+                                - dgvUnionName
+                          federationType:
+                            type: string
+                          dgvFederationCode:
+                            type: string
+                          isUnionApplicable:
+                            type: string
+                        required:
+                          - unions
+                          - federationType
+                          - dgvFederationCode
+                          - isUnionApplicable
+                      message:
+                        type: string
+                      errorcode:
+                        type: 'null'
+                      status:
+                        type: string
+                    required:
+                      - errordesc
+                      - response
+                      - message
+                      - errorcode
+                      - status
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  errordesc: null
+                  response:
+                    unions:
+                      - dgvUnionCode: DWA
+                        dgvUnionName: DWARKA
+                      - dgvUnionCode: SUR
+                        dgvUnionName: SURENDRANAGAR DAIRY UNION
+                      - dgvUnionCode: KUT
+                        dgvUnionName: KUTCH DAIRY UNION
+                      - dgvUnionCode: MOR
+                        dgvUnionName: MORBI DAIRY UNION
+                      - dgvUnionCode: JAM
+                        dgvUnionName: JAMNAGAR DAIRY UNION
+                      - dgvUnionCode: VAL
+                        dgvUnionName: VALSAD DAIRY UNION
+                      - dgvUnionCode: BHAV
+                        dgvUnionName: BHAVNAGAR DAIRY UNION
+                      - dgvUnionCode: BANAS
+                        dgvUnionName: BANASKANTHA DAIRY UNION
+                      - dgvUnionCode: SURAT
+                        dgvUnionName: SURAT DAIRY UNION
+                      - dgvUnionCode: BHARUCH
+                        dgvUnionName: BHARUCH DAIRY UNION
+                      - dgvUnionCode: GANDHI
+                        dgvUnionName: GANDHINAGAR DAIRY UNION
+                      - dgvUnionCode: POR
+                        dgvUnionName: PORBANDAR DAIRY UNION
+                      - dgvUnionCode: RAJKOT
+                        dgvUnionName: RAJKOT DAIRY UNION
+                      - dgvUnionCode: MAH
+                        dgvUnionName: MEHSANA DAIRY UNION
+                      - dgvUnionCode: KAIRA
+                        dgvUnionName: KAIRA DAIRY UNION
+                      - dgvUnionCode: SABR
+                        dgvUnionName: SABARKANTHA DAIRY UNION
+                      - dgvUnionCode: CHAMUL
+                        dgvUnionName: CHAMUL
+                    federationType: COP
+                    dgvFederationCode: AM
+                    isUnionApplicable: 'true'
+                  message: Unions delivered successfully
+                  errorcode: null
+                  status: '0'
+                signature: >-
+                  MGUCMQCJ8k0Jx9kfyFzwS/eCfYpNU6BKL8xvP9GGgek0Z4GtHPWgF4deylD+wZXfaDK2NWQCMGC3guzPRNPCSLsEC7QIJ/rYhgBNNHEGpo5N/u7cQwczD1LFyjfE+9QEl0zFAseJRA==
+                meta:
+                  txncode: ere
+                  ver: '1.3'
+                  ts: 2025-08-01T13:01:34+0530
+                hmac: vPZO0yRi8dkGwIf9UOyMmb8Rn+Sv4aM1uM6R8xq4GZM=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E039
+                  status: failed
+                  info: >-
+                    Request payload timestamp is either invalid or should be
+                    less than 60 seconds old or cannot be in future
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: ere
+                  ver: '1.3'
+                  ts: 2025-08-01T13:05:25+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/dgv/farmermilkinsights/states/1.3/en:
+    get:
+      summary: Get States
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '116'
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /sb
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          example: Bearer {{AUTH_TOKEN}}
+          schema:
+            type: string
+        - name: Cookie
+          in: header
+          description: ''
+          required: false
+          example: '*=7dd2ed34a25982be09a090d177ffde9d7a6fdb8e'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: txncode
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      errordesc:
+                        type: 'null'
+                      response:
+                        type: object
+                        properties:
+                          states:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                dgvStateCode:
+                                  type: string
+                                dgvStateName:
+                                  type: string
+                              required:
+                                - dgvStateCode
+                                - dgvStateName
+                        required:
+                          - states
+                      message:
+                        type: string
+                      errorcode:
+                        type: 'null'
+                      status:
+                        type: string
+                    required:
+                      - errordesc
+                      - response
+                      - message
+                      - errorcode
+                      - status
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  errordesc: null
+                  response:
+                    states:
+                      - dgvStateCode: AN
+                        dgvStateName: Andaman & Nicobar Islands
+                      - dgvStateCode: AP
+                        dgvStateName: Andhra Pradesh
+                      - dgvStateCode: AR
+                        dgvStateName: Arunachal Pradesh
+                      - dgvStateCode: AS
+                        dgvStateName: Assam
+                      - dgvStateCode: BR
+                        dgvStateName: Bihar
+                      - dgvStateCode: CH
+                        dgvStateName: Chandigarh
+                      - dgvStateCode: CG
+                        dgvStateName: Chhattisgarh
+                      - dgvStateCode: DN
+                        dgvStateName: Dadra & Nagar Haveli
+                      - dgvStateCode: DD
+                        dgvStateName: Daman & Diu
+                      - dgvStateCode: GA
+                        dgvStateName: Goa
+                      - dgvStateCode: GJ
+                        dgvStateName: Gujarat
+                      - dgvStateCode: HR
+                        dgvStateName: Haryana
+                      - dgvStateCode: HP
+                        dgvStateName: Himachal Pradesh
+                      - dgvStateCode: JK
+                        dgvStateName: Jammu and Kashmir
+                      - dgvStateCode: JH
+                        dgvStateName: Jharkhand
+                      - dgvStateCode: KA
+                        dgvStateName: Karnataka
+                      - dgvStateCode: KL
+                        dgvStateName: Kerala
+                      - dgvStateCode: LD
+                        dgvStateName: Lakshadweep
+                      - dgvStateCode: MP
+                        dgvStateName: Madhya Pradesh
+                      - dgvStateCode: MH
+                        dgvStateName: Maharashtra
+                      - dgvStateCode: MN
+                        dgvStateName: Manipur
+                      - dgvStateCode: ML
+                        dgvStateName: Meghalaya
+                      - dgvStateCode: MZ
+                        dgvStateName: Mizoram
+                      - dgvStateCode: DL
+                        dgvStateName: NCT of Delhi
+                      - dgvStateCode: NL
+                        dgvStateName: Nagaland
+                      - dgvStateCode: OR
+                        dgvStateName: Odisha
+                      - dgvStateCode: PY
+                        dgvStateName: Puducherry
+                      - dgvStateCode: PB
+                        dgvStateName: Punjab
+                      - dgvStateCode: RJ
+                        dgvStateName: Rajasthan
+                      - dgvStateCode: SK
+                        dgvStateName: Sikkim
+                      - dgvStateCode: TN
+                        dgvStateName: Tamil Nadu
+                      - dgvStateCode: TL
+                        dgvStateName: 'Telangana '
+                      - dgvStateCode: TR
+                        dgvStateName: Tripura
+                      - dgvStateCode: UP
+                        dgvStateName: Uttar Pradesh
+                      - dgvStateCode: UK
+                        dgvStateName: Uttarakhand
+                      - dgvStateCode: WB
+                        dgvStateName: West Bengal
+                  message: States delivered successfully
+                  errorcode: null
+                  status: '0'
+                signature: >-
+                  MGUCMQCyifl1LD8R2wFCuzw2L31IJtZ/+ur2YmB3dq7NW2WAglnBwLcCvF7MQv6YU7X5eHsCMFy/KeueTv8HFhRT0Ti+vScfyDL4HiQWutvpSIR4050lBbaBzBZsrrLmZIVPoX0Q5A==
+                meta:
+                  txncode: txncode
+                  ver: '1.3'
+                  ts: 2025-08-01T13:01:48+0530
+                hmac: yEQZ2ZCo9rFwRKEAYCR7kGpvSQQR7zylw/KRvN9BUIc=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E058
+                  status: failed
+                  info: Invalid provider code
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: txncode
+                  ver: '1.3'
+                  ts: 2025-08-01T13:06:03+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/dgv/farmermilkinsights/mcps/1.3/en:
+    post:
+      summary: Get Mcps
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '116'
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /sb
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          example: Bearer {{AUTH_TOKEN}}
+          schema:
+            type: string
+        - name: Cookie
+          in: header
+          description: ''
+          required: true
+          example: '*=7dd2ed34a25982be09a090d177ffde9d7a6fdb8e'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                hmac:
+                  type: string
+                data:
+                  type: object
+                  properties:
+                    association-code:
+                      type: string
+                  required:
+                    - association-code
+              required:
+                - meta
+                - hmac
+                - data
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: ere
+              hmac: mUljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+              data:
+                association-code: SURAT
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      errordesc:
+                        type: 'null'
+                      response:
+                        type: object
+                        properties:
+                          milkCollectionPoints:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                dgvMcpName:
+                                  type: string
+                                dgvStateCode:
+                                  type: string
+                                dgvStateName:
+                                  type: string
+                                mcpAddress:
+                                  type: string
+                                dgvFederationCode:
+                                  type: string
+                                dgvFederationName:
+                                  type: string
+                                dgvMcpCode:
+                                  type: string
+                                dgvUnionCode:
+                                  type: string
+                                dgvUnionName:
+                                  type: string
+                              required:
+                                - dgvMcpName
+                                - dgvStateCode
+                                - dgvStateName
+                                - mcpAddress
+                                - dgvFederationCode
+                                - dgvFederationName
+                                - dgvMcpCode
+                                - dgvUnionCode
+                                - dgvUnionName
+                          dgvAssociationCode:
+                            type: string
+                        required:
+                          - milkCollectionPoints
+                          - dgvAssociationCode
+                      message:
+                        type: string
+                      errorcode:
+                        type: 'null'
+                      status:
+                        type: string
+                    required:
+                      - errordesc
+                      - response
+                      - message
+                      - errorcode
+                      - status
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  errordesc: null
+                  response:
+                    milkCollectionPoints:
+                      - dgvMcpName: 'Shree Gunkhadi dumsl '
+                        dgvStateCode: GJ
+                        dgvStateName: Gujarat
+                        mcpAddress: gujrat
+                        dgvFederationCode: AM
+                        dgvFederationName: AMUL
+                        dgvMcpCode: AMULSURAT0425
+                        dgvUnionCode: SURAT
+                        dgvUnionName: SURAT DAIRY UNION
+                      - dgvMcpName: Surat
+                        dgvStateCode: GJ
+                        dgvStateName: Gujarat
+                        mcpAddress: Surat
+                        dgvFederationCode: AM
+                        dgvFederationName: AMUL
+                        dgvMcpCode: AMULSURAT0999
+                        dgvUnionCode: SURAT
+                        dgvUnionName: SURAT DAIRY UNION
+                    dgvAssociationCode: SURAT
+                  message: Mcps delivered successfully
+                  errorcode: null
+                  status: '0'
+                signature: >-
+                  MGUCMQCLWNim9qqFO2ULJOk9vH/KjWoOEmRJ8a5yCkqyM0hPg8I0Ukion8nZcb2nccg5SoICMDqQ2WgJ2OysitOOhevtv6cpa33hI7U3GciLkg0Kl2Z2iF055MEBAKWNLKFucywTdg==
+                meta:
+                  txncode: ere
+                  ver: '1.3'
+                  ts: 2025-08-01T13:01:59+0530
+                hmac: zXqPmhInjs3C1LnUZIUeVETD3DTAa2cOd/wmZCyAYV8=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E031
+                  status: failed
+                  info: Invalid txncode value
+                data: {}
+                signature: >-
+                  MGUCMQDFkHxGLkXQzdGFQEJ5DZi9di8UL94WzF5lKpnaqsdPMnPBsk2owR281SisPPEczrACMClaBS/dQrtYddHqdBieGAMMx43dAUF4Dpo7cPg7MxY1S0QMjUwFmu0sMy2Eb/W04A==
+                meta:
+                  txncode: '@#$ere'
+                  ver: '1.3'
+                  ts: 2025-08-01T13:07:04+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []
