@@ -1,0 +1,907 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/rbih/landownerdetails/1.5/en:
+    get:
+      summary: Uttar Pradesh
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '9'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{randomHeaderValue}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: consent-id
+          in: header
+          description: ''
+          required: true
+          example: 12345abcde
+          schema:
+            type: string
+        - name: scope
+          in: header
+          description: ''
+          required: true
+          example: '1'
+          schema:
+            type: string
+        - name: villageid
+          in: header
+          description: ''
+          required: true
+          example: '119223'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          example: >-
+            Bearer
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJBdmluYXNoLkthbmNoYW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IjlqN1h5MGt3VXB3TEtXQTJIdW56Q1FPV2lyQWEiLCJuYmYiOjE3Mjk4NDYzMzgsImF6cCI6IjlqN1h5MGt3VXB3TEtXQTJIdW56Q1FPV2lyQWEiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3Mjk4ODk1MzgsImlhdCI6MTcyOTg0NjMzOCwianRpIjoiODY4OGE5ZDMtYzFkYS00ZTc1LWJkYWEtODFlY2JlM2M1ZDU2In0.Vp6fIAlCGivJM1VwSsR6HvpznTd9SxtIfAfjdXdyu4YuqKcDuALm4CbITYW5ROsWO2S_OaCQB3o4osCLr_wP5Dl80B9osXQUa-p5qVtJfPNHiJEGp-dJrAF6-ZEluSOkwKG-7PErGozGoDSFZZ0ijnjb9nHpZZuWv8sJuHAl8412VQAu04t5UOoDXUrQbaA-ZSMqPwOp3bxvg3ybMkGXUWLqhgC-xysLwrPyY0WFse1ml-E30iWSUJyjLeo5ikp-YEs1kXa7hx5nRGTsy2jG3S8SWefv_r12gyoDsKikIew_anYsVXFcU2Q2wJ37NVVHJAz4kQwl9sY_hVwcb1jIIQ
+          schema:
+            type: string
+        - name: ulpin
+          in: header
+          description: ''
+          required: true
+          example: 11922300810000ab
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      documentDetails:
+                        type: object
+                        properties:
+                          pattano:
+                            type: string
+                          form8no:
+                            type: string
+                          poramboke:
+                            type: string
+                          form6no:
+                            type: string
+                          surveynum:
+                            type: string
+                        required:
+                          - pattano
+                          - form8no
+                          - poramboke
+                          - form6no
+                          - surveynum
+                      farmRiskParams:
+                        type: object
+                        properties:
+                          assessed:
+                            type: string
+                          soiltypepri:
+                            type: string
+                          soilclass:
+                            type: string
+                          landtypeid:
+                            type: string
+                          irrsource:
+                            type: object
+                            properties:
+                              sourceofIrrigation:
+                                type: object
+                                properties:
+                                  source:
+                                    type: string
+                                required:
+                                  - source
+                            required:
+                              - sourceofIrrigation
+                          landrevenue:
+                            type: string
+                          landtypename:
+                            type: string
+                          llandusetype:
+                            type: string
+                          courtcaseremarks:
+                            type: string
+                          mortgageDetails:
+                            type: object
+                            properties:
+                              hypothecation:
+                                type: string
+                              addlremarks:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    ifsc_code:
+                                      type: string
+                                    mortgage_amount:
+                                      type: integer
+                                    branch_name:
+                                      type: string
+                                    name:
+                                      type: string
+                                    bank_name:
+                                      type: string
+                                    gata_unique_code:
+                                      type: integer
+                                    dated:
+                                      type: string
+                                    request_id:
+                                      type: string
+                                    khata_number:
+                                      type: string
+                                  required:
+                                    - ifsc_code
+                                    - mortgage_amount
+                                    - branch_name
+                                    - name
+                                    - bank_name
+                                    - gata_unique_code
+                                    - dated
+                                    - request_id
+                                    - khata_number
+                              remarks:
+                                type: object
+                                properties: {}
+                              mortgaged:
+                                type: string
+                            required:
+                              - hypothecation
+                              - addlremarks
+                              - remarks
+                              - mortgaged
+                          soiltypesec:
+                            type: string
+                          courtcase:
+                            type: string
+                          llandtypename:
+                            type: string
+                          irrigated:
+                            type: string
+                          landusetype:
+                            type: string
+                          remarks:
+                            type: object
+                            properties: {}
+                        required:
+                          - assessed
+                          - soiltypepri
+                          - soilclass
+                          - landtypeid
+                          - irrsource
+                          - landrevenue
+                          - landtypename
+                          - llandusetype
+                          - courtcaseremarks
+                          - mortgageDetails
+                          - soiltypesec
+                          - courtcase
+                          - llandtypename
+                          - irrigated
+                          - landusetype
+                          - remarks
+                      landOwnerDetails:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            owner:
+                              type: object
+                              properties:
+                                lfathername:
+                                  type: string
+                                address:
+                                  type: string
+                                statefarmeriddef:
+                                  type: string
+                                lheirtyp:
+                                  type: string
+                                lfullname:
+                                  type: string
+                                caste:
+                                  type: string
+                                hissa:
+                                  type: number
+                                aadhartkn:
+                                  type: string
+                                farmerid:
+                                  type: string
+                                fathername:
+                                  type: string
+                                lcaste:
+                                  type: string
+                                heirpcshr:
+                                  type: integer
+                                statefarmerid:
+                                  type: string
+                                fullname:
+                                  type: string
+                                heirtyp:
+                                  type: string
+                                laddress:
+                                  type: string
+                              required:
+                                - lfathername
+                                - address
+                                - statefarmeriddef
+                                - lheirtyp
+                                - lfullname
+                                - caste
+                                - hissa
+                                - aadhartkn
+                                - farmerid
+                                - fathername
+                                - lcaste
+                                - heirpcshr
+                                - statefarmerid
+                                - fullname
+                                - heirtyp
+                                - laddress
+                            landParcel:
+                              type: object
+                              properties:
+                                extarea:
+                                  type: string
+                                landsubclass:
+                                  type: string
+                                khasrano:
+                                  type: string
+                                talukcode:
+                                  type: string
+                                geocoordinates:
+                                  type: string
+                                uc:
+                                  type: string
+                                parcelid:
+                                  type: string
+                                surveynoarea:
+                                  type: string
+                                districtid:
+                                  type: string
+                                pin:
+                                  type: string
+                                cultiarea:
+                                  type: string
+                                dateofmutation:
+                                  type: string
+                                khatatype:
+                                  type: string
+                                districtcode:
+                                  type: string
+                                landmainclass:
+                                  type: string
+                                otherrightsname:
+                                  type: string
+                                tehsilid:
+                                  type: string
+                                lgdcode:
+                                  type: string
+                                llandsubclass:
+                                  type: string
+                                plotno:
+                                  type: string
+                                khatanum:
+                                  type: string
+                                khasratype:
+                                  type: string
+                                khatadesc:
+                                  type: string
+                                totarea:
+                                  type: string
+                                extares:
+                                  type: string
+                                khatianrevenue:
+                                  type: string
+                                ccode:
+                                  type: string
+                                lkhatadesc:
+                                  type: string
+                                llandmainclass:
+                                  type: string
+                                utofarea:
+                                  type: string
+                                subdivnum:
+                                  type: string
+                                noncultiarea:
+                                  type: string
+                                tenurename:
+                                  type: string
+                                villagecode:
+                                  type: string
+                                ulpin:
+                                  type: string
+                              required:
+                                - extarea
+                                - landsubclass
+                                - khasrano
+                                - talukcode
+                                - geocoordinates
+                                - uc
+                                - parcelid
+                                - surveynoarea
+                                - districtid
+                                - pin
+                                - cultiarea
+                                - dateofmutation
+                                - khatatype
+                                - districtcode
+                                - landmainclass
+                                - otherrightsname
+                                - tehsilid
+                                - lgdcode
+                                - llandsubclass
+                                - plotno
+                                - khatanum
+                                - khasratype
+                                - khatadesc
+                                - totarea
+                                - extares
+                                - khatianrevenue
+                                - ccode
+                                - lkhatadesc
+                                - llandmainclass
+                                - utofarea
+                                - subdivnum
+                                - noncultiarea
+                                - tenurename
+                                - villagecode
+                                - ulpin
+                          required:
+                            - owner
+                            - landParcel
+                      cropYieldDetails:
+                        type: object
+                        properties:
+                          cropDetail:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                croparea:
+                                  type: number
+                                asichitarea:
+                                  type: integer
+                                cropirrigationsource:
+                                  type: string
+                                year:
+                                  type: string
+                                seasontype:
+                                  type: string
+                                cropyear:
+                                  type: string
+                                sichitarea:
+                                  type: number
+                                cropirrigatedtype:
+                                  type: string
+                                croptype:
+                                  type: string
+                              required:
+                                - croparea
+                                - asichitarea
+                                - cropirrigationsource
+                                - year
+                                - seasontype
+                                - cropyear
+                                - sichitarea
+                                - cropirrigatedtype
+                                - croptype
+                        required:
+                          - cropDetail
+                    required:
+                      - documentDetails
+                      - farmRiskParams
+                      - landOwnerDetails
+                      - cropYieldDetails
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  documentDetails:
+                    pattano: ''
+                    form8no: ''
+                    poramboke: ''
+                    form6no: ''
+                    surveynum: ''
+                  farmRiskParams:
+                    assessed: ''
+                    soiltypepri: ''
+                    soilclass: ''
+                    landtypeid: ''
+                    irrsource:
+                      sourceofIrrigation:
+                        source: ''
+                    landrevenue: ''
+                    landtypename: ''
+                    llandusetype: ''
+                    courtcaseremarks: ''
+                    mortgageDetails:
+                      hypothecation: ''
+                      addlremarks:
+                        - ifsc_code: IDIB000K516
+                          mortgage_amount: 184000
+                          branch_name: KAILI
+                          name: हरकेश
+                          bank_name: Indian Bank
+                          gata_unique_code: 1192230081000012
+                          dated: 01-06-2023
+                          request_id: '13800734202300619627'
+                          khata_number: '00539'
+                        - ifsc_code: UPCB00MERUT
+                          mortgage_amount: 145000
+                          branch_name: KHARKHAUDA
+                          name: रणवीर
+                          bank_name: Meerut District Cooperative Bank Ltd
+                          gata_unique_code: 1192230081000012
+                          dated: 12-07-2025
+                          request_id: '138007342025096125584'
+                          khata_number: '00539'
+                      remarks: {}
+                      mortgaged: ''
+                    soiltypesec: ''
+                    courtcase: ''
+                    llandtypename: ''
+                    irrigated: ''
+                    landusetype: ''
+                    remarks: {}
+                  landOwnerDetails:
+                    - owner:
+                        lfathername: हरकेश
+                        address: fakharpur kabatata merath
+                        statefarmeriddef: ''
+                        lheirtyp: ''
+                        lfullname: गुरवीर सिंह
+                        caste: ''
+                        hissa: 0.0893
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: harkesh
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: gurveer sinh
+                        heirtyp: ''
+                        laddress: फखरपुर कबटटा मेरठ
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: '81'
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: ''
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: ''
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: ''
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: ''
+                        khasratype: ''
+                        khatadesc: ''
+                        totarea: '0.3570'
+                        extares: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: ''
+                        subdivnum: ''
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '119223'
+                        ulpin: '1192230081000012'
+                    - owner:
+                        lfathername: हरकेश
+                        address: fakharpur kabatata merath
+                        statefarmeriddef: ''
+                        lheirtyp: ''
+                        lfullname: रणवीर
+                        caste: ''
+                        hissa: 0.0892
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: harkesh
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ranveer
+                        heirtyp: ''
+                        laddress: फखरपुर कबटटा मेरठ
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: '81'
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: ''
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: ''
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: ''
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: ''
+                        khasratype: ''
+                        khatadesc: ''
+                        totarea: '0.3570'
+                        extares: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: ''
+                        subdivnum: ''
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '119223'
+                        ulpin: '1192230081000012'
+                    - owner:
+                        lfathername: हरकेश
+                        address: fakharpur kabatata merath
+                        statefarmeriddef: ''
+                        lheirtyp: ''
+                        lfullname: राजीव कुमार
+                        caste: ''
+                        hissa: 0.0892
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: harkesh
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: rajeev kumar
+                        heirtyp: ''
+                        laddress: फखरपुर कबटटा मेरठ
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: '81'
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: ''
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: ''
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: ''
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: ''
+                        khasratype: ''
+                        khatadesc: ''
+                        totarea: '0.3570'
+                        extares: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: ''
+                        subdivnum: ''
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '119223'
+                        ulpin: '1192230081000012'
+                    - owner:
+                        lfathername: हरकेश
+                        address: fakharpur kabatata merath
+                        statefarmeriddef: ''
+                        lheirtyp: ''
+                        lfullname: रुमालो
+                        caste: ''
+                        hissa: 0.0893
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: harkesh
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: rumalo
+                        heirtyp: ''
+                        laddress: फखरपुर कबटटा मेरठ
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: '81'
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: ''
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: ''
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: ''
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: ''
+                        khasratype: ''
+                        khatadesc: ''
+                        totarea: '0.3570'
+                        extares: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: ''
+                        subdivnum: ''
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '119223'
+                        ulpin: '1192230081000012'
+                  cropYieldDetails:
+                    cropDetail:
+                      - croparea: 0.357
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: खरीफ
+                        cropyear: '2020'
+                        sichitarea: 0.357
+                        cropirrigatedtype: ''
+                        croptype: ज्वार, मक्का , बाजरा (चारा )
+                      - croparea: 0.357
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: खरीफ
+                        cropyear: '2021'
+                        sichitarea: 0.357
+                        cropirrigatedtype: ''
+                        croptype: धान - अधिक उपज वाला
+                      - croparea: 0.357
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: खरीफ
+                        cropyear: '2022'
+                        sichitarea: 0.357
+                        cropirrigatedtype: ''
+                        croptype: धान - अधिक उपज वाला
+                      - croparea: 0.357
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: रबी
+                        cropyear: '2020'
+                        sichitarea: 0.357
+                        cropirrigatedtype: ''
+                        croptype: गेहूँ अधिक उपज वाला
+                      - croparea: 0.357
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: रबी
+                        cropyear: '2021'
+                        sichitarea: 0.357
+                        cropirrigatedtype: ''
+                        croptype: गेहूँ अधिक उपज वाला
+                      - croparea: 0.357
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: रबी
+                        cropyear: '2022'
+                        sichitarea: 0.357
+                        cropirrigatedtype: ''
+                        croptype: गेहूँ अधिक उपज वाला
+                      - croparea: 0
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: जायद
+                        cropyear: '2020'
+                        sichitarea: 0
+                        cropirrigatedtype: ''
+                        croptype: रिक्त
+                      - croparea: 0
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: जायद
+                        cropyear: '2021'
+                        sichitarea: 0
+                        cropirrigatedtype: ''
+                        croptype: रिक्त
+                      - croparea: 0
+                        asichitarea: 0
+                        cropirrigationsource: ''
+                        year: ''
+                        seasontype: जायद
+                        cropyear: '2022'
+                        sichitarea: 0
+                        cropirrigatedtype: ''
+                        croptype: रिक्त
+                signature: >-
+                  MGUCMQD2gjZZPhSMsR9L8r4kb2beYCCaEol9So8k5WcEBV5CTLbXO0D2I/9FNKRZacFK/ewCMFQpHTKE5rFypO7ThIJDEPzGeKF3pgdc9F0N954ArEJ8tvVp3/KJ67V2LWxTsm+jUg==
+                meta:
+                  txncode: RBIH2025073110281275
+                  ver: '1.5'
+                  ts: 2025-07-31T15:58:14+0530
+                hmac: V4qdqxX6AsqHmTCxphoi6SrO7jL/yiqKm2S4g9wIXGQ=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEbAiE0zbLPvP+zR/HR6c8GuOaO+KSCQ0+5Env1FbpqazhX2Hy4RhWHR8+/UCXsFC5eg4cD4qwadHFgsXDu7dCqkxLZPWSBZ+eVklXA1iw0HzmO4S5i6ypwswLqjiWg6FU
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E512
+                  status: failed
+                  info: Invalid ulpin value
+                data: {}
+                signature: >-
+                  MGYCMQCGuNxtcQI5WkggXBBCd0nGUrN+4A4Ce44t38FlL3CHAMZG9w7TEp9oYckUtsfcgmECMQDb4epc3bjTnJF1kk2qspkbh8w8goAlT78QrDHpJj1YReA6xkcyL9T/itDPU8jjyvI=
+                meta:
+                  txncode: RBIH2025073110448735
+                  ver: '1.5'
+                  ts: 2025-07-31T16:14:04+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAER1P7S9dZ0fCDjLey6DfYtnCO+P4OeBIqu7NqdruvsuLwr/7g4D0OxVxQGSpV9TzXJPrTG0Li3e9pX3OTEo0N7sDeP30TMh3XEsy+2HqCpMr7iiLbkBsAGyt6R5a3L+bh
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

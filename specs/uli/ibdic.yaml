@@ -1,0 +1,2600 @@
+openapi: 3.0.1
+info:
+  title: IBDIC
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/ibdic/entity-registration/1.3/en:
+    post:
+      summary: entity-registration
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: 'Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ== '
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: false
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: 123364743kOtQbT4KKA
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: false
+          example: ''
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: jdjdjs
+              data:
+                payload: >-
+                  q3PYyW0+1vXashGgHx8pK9+Zn8oONy5M317nxhcBny6dKNBFnB+HPm6dIjyFhNZylkMGTvyU28ptlTapi91rOI77OrjAd179BOVRCntHL+tjSZCoNi4QIcLZloFOVHm3ay3l+qflqfkbc6JmfhhQghNn1h8oMLqkTpP1YxQqmhhasa7SC+Y9hbjetNPGL1zPCSTPv++6Ty3N3f/iKeyOUjt8AeqfOYxzgJmVihh97yaTCzd6uSgn1USSUp7wUKN3hNNnnBSNcO1An+NqmVdfgHf5eWPCbZbmQbDiQks9ALwIwYCOGDqvTJkzKLb+keTdFjmKvu2GDacboIuSzCQEk4BeCyMPlRRlhAhFKJmcOnba0mUH8VWMgnDJe6jCiM5A
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E000","status":"success","info":""},"data":{"txnCode":"jdjdjs","signature":"7cb4429c0c29ee2e17cddd4ec71a521320485c35d5a6e723fd66975f3f8481cc","encryptData":"2PEMTB5CsFLYp+QZDUmC4F5C3hq37KTJq/uIkU2c8SyGT4M6gRf0ZLg+iOc99iB5nmeD8dzs6SzfYtFe0mQLGi9A73Rc34M1Nm6FfNoLd+l+EX6ht6Me/PcJT9Cv/Cg/","correlationId":"eb198c43-b273-4eac-a2d0-b02e82965c89"},"signature":"MGQCMCiwJy2OHi+eduVYiGrQ7XHntDtk05CEKgz2unmoNY0otCFY27Gds6eFXab8eY8EoAIwEke38rtqZPhISimj4lc3Wlf2BhdyeHbDHLyj0dgJGvYCTU2TgfDfTB3jH8Gidy0k","meta":{"txncode":"jdjdjs","ver":"1.3","ts":"2025-07-31T16:12:57+0530"},"hmac":"U2qIfigDbD5INxD2ovkBDcABkOfig0eGicTAe8XwpFw=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E045
+                  status: failed
+                  info: Missing mandatory header parameter
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: ''
+                  ver: '1.3'
+                  ts: 2025-07-31T16:19:37+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/invoice-registration-with-entity-code/1.3/en:
+    post:
+      summary: Invoice-Registration-With-Code
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: udjoZLwq8Mc3kOtQbT4KKA
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+        - name: x-auth-token
+          in: header
+          description: ''
+          required: false
+          example: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6ImtVU292U1lwZUludUtfRUluM0hJTDFfWl9Sa2EiLCJuYmYiOjE3MDkxMzk1NzcsImF6cCI6ImtVU292U1lwZUludUtfRUluM0hJTDFfWl9Sa2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3MDkxODI3NzcsImlhdCI6MTcwOTEzOTU3NywianRpIjoiNjZjNTdkZTMtNmVlMi00NjZhLTg2NjItMGMyNWM4ZDBkOGFhIn0.l50bj4JMTGvyYJTFG8FCeQVWyZRuZj_EII_5rTSBtsz0P1lFkbruFICl-SscRyiK_IRAGcTK248QWdPZKe07a01NcyLCqFjzayf73bXqjNhIcUUpVsJHm08bhyg1llNFI-K6Ara8rtDoPKbZ4qJ7y0cfBJ5Rz75Q_Ifb-iCJxHufDBrWaruPzYG5JZt5anxW9yulfkrjh3NhefL6CLEfzZTBM-nffgCPXQ22AmC5Sz-Pqb89LKfjGSOOXAZ56epdTRAPZXsHcaaG8bkKnaoKNrHhsUkvwKa98cOXsa6u_6IvKeDrNTeroLusEY63FMm2UUPoyeyNLelrIOdaPQ2NsQ
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: hdhdh
+              data:
+                payload: >-
+                  CBoYxn5FztYTxSZxySYk0/Ug888o3+C/3UALp2Gt5SQYhqF88jdfthwPazBDdd/VFYulpONyzVrqyxTInkrk0U2OvHyQRVzapdpQ38C89IsrM8e45vktcopUzVTWiCFtYf64Lc32AG/39DpjnHuQeYVz8Si8H1VqbU62qXQJalPeQtRaJMDwdJuGuwtR6Caw8wsoeefHgYGwtqJ/x6qC6PJREQ3tCr3LHO1joA2YokBkD1/8Klz4S96J/GUQh914a3CfxHWENaNDXlMi67pkda3htBCZLTlLRG03vgisUkpvhmYTy7rbr3bj8ckpHvQUkrgB/SpkOjSxxfn4UFpFKncSM2d1ZX5qayf/BWo6PmSCB9SsdlQYZPi7iRuzUHGygA8oirBwjAaVrFDhhg+JFVpEzMAjtG3GjBf5Y39E7wwG/9InyAiY+ML3owVqMtyY70KgisUQkmPewbHPP3ukliDVXzZu+6H4l8DBdxcol+W7sQs5hVv8h2qC9AEq1xCoodiPDE5C/FdRjDQuWdN1fowUzk2VTEG475SkUI0IUrc=
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  txnCode: hdhdh
+                  signature: >-
+                    228c86545a464edb535630642661225350b240f98e72155e2fb22847e07293a5
+                  encryptData: >-
+                    /SUiG0UaGNUJfGaFydr4Ku6bXMo/nWqXeISsad2x0qSnQhxnhScBL7xmVl5RNaVpZyC+LSl6kN47WtfQBG7ibsGzkUxltW9fE6m8VoYTa77DcGmpnaqJgHOUvVd9axcB
+                  correlationId: 6f093968-299f-4c9a-8fe7-5c1fa213db4a
+                signature: >-
+                  MGUCMQDsd9mi4FnQ4AQIEQ1ugDdZ++PuNRDBYEWi/i9i37UdmX6LoGeajZEXknMACCfUVzQCMG4M2yar+FMQmLXVMAXHLVzbk2BTU1b4m4rV3iw/1vF+QjRf9sYq0bYHWimPCWBsdg==
+                meta:
+                  txncode: hdhdh
+                  ver: '1.3'
+                  ts: 2025-07-31T15:05:48+0530
+                hmac: KnGMIMHWgfmSg6b1ECnwLLsaudca0VwhdsgBIrPeWfA=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E032
+                  status: failed
+                  info: Invalid client id value
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: hdhdh
+                  ver: '1.3'
+                  ts: 2025-07-31T16:19:03+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/invoice-registration-without-entity-code/1.3/en:
+    post:
+      summary: Invoice-Registration-Without-Entity-Code
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: ''
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: '232223'
+              data:
+                payload: >-
+                  N8UKkmKSzRi5QPOFUekKymP9fpQl5raRS06LCQtIY47R55imRvieKyIl69VqYXS3z0Hn5stFONufWVdVP/MQT3TUufo1FTU4D1CmGgtGL5ZPYrcQRRWr2M/6PlkNEPleIwfPHLrrYD0odXZMQZcCMDkp+xUA51D6MpDtt78heGxT7eMRURwjGjFbaugKC/iW2ULnu4zf/F8aINSRh8zL5/SdE+zXScFcIF7vgw7YZ+kdkiz1VFeL5FNUkvXyogdgE8J0TbMhM3rvUF6nqoOhW9v4oQ4eDvAeiIlORxL/KNfGCcsTFY9NvbMiyX92OTNLB0IXpjpbvaLMQpBAksyUklB8/Lqy8UdZMSsKXuP0pIpFDCWfVZnBzRAFaWOEznga/hl7tTEIjrOY00e13cDtiKYI4Dp1OSzoiqys/a05Xu1GnudktgdafUB5t5vynYtiQBUxSsvKHY6jb+kjfXv2q5D5FP8qT29WICo4nGPiyntIvWRSm9WMcauivVhpIjrmb/UoPoutVeHZLPBQ4CgQ4wYtiwC+RbRgtu4f62BF0WMkyA/a9WN9s0xdwlB8eYYy/M1OCpsPcL20ShMECfzmM9N4H8glToRF6OsNiMnVjrNWyZB2O/v4wkXRtgm7/qeNiQt8t2KgB1T3ELowTh38GBk+na3qJnGSJMDdIEtKzSniCDSjYyvT7XwEnT52XjWOyqReiNQONOTyQxUdmOtX7h4aYMuBJ1iHFiGiln4zh8OJltK7ITFY/kPz+aVWBOZNpphtMxf5zcPplunjfDB6gsBbO7fPfx0BYiH72HLz9qc=
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E000","status":"success","info":""},"data":{"txnCode":"232223","signature":"7a142977c15b73d84601ed601407c287e80e895464f01ea4c6e58bc611128b63","encryptData":"PWNJaOtl76iqRCxMzaUXTyHNwym8fUxUo/y5NpbyfoY/Al5o9PtAANKIqguyv/9nkY9XSstHyqp5ZbLYMG92AunUgrIwlYr++5zfZCDLLijDvZXu2V+3gwlBv6pwRm+x","correlationId":"a56e5e60-3da2-46ae-8c1f-e56f33eaa282"},"signature":"MGUCMQCQhSq60RM/4Rrceb/FMvlO1TpVGZF5Qu9hUOwMe4Wc7a4sTX/7vwSX4FnvgvzCu6UCMCe1XIByrJ5qIonCHFrD7Yc8ALbUKOU8MP/2y6fUaiV39QriLT/sTmmCGg+EEGu0jA==","meta":{"txncode":"232223","ver":"1.3","ts":"2025-07-31T16:26:35+0530"},"hmac":"klQdk5J6dn/XL7XmykaMY+ilCGXQK0Gx+t2dFyeikT8=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E058","status":"failed","info":"Invalid
+                provider
+                code"},"data":{},"signature":"MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=","meta":{"txncode":"232223","ver":"1.3","ts":"2025-07-31T16:27:05+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/ledger-status-check/1.3/en:
+    post:
+      summary: Ledger-Status-Check
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: udjoZLwq8Mc3kOtQbT4KKA
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KK
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: '232223'
+              data:
+                payload: >-
+                  AwMrvqMySYxKmOHpy0xEVhD4TIm+sNfm+tPTePHIuPpWMi+xlfjDK0/IZBtPyafapIHOZDeDxHcM2nbktEiG3WqYjd6CGHhyNRTC0e+jCHLThVh1de3WgupOIcOcBr8Q0clTvtoJcdN+N2jrACRF50P3/lyDnYlKFpqpFy7hBS9nSPaNNPq7AoydveqhXGR4fyDPW+7OFLp3mgptVRkIHfBJaKGS0Z+VxTEyHUuqz0M=
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E043","status":"failed","info":"Provider
+                Internal Error: invalid value for
+                merchant-key."},"data":{},"signature":"MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=","meta":{"txncode":"232223","ver":"1.3","ts":"2025-07-31T16:28:38+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+        x-200:error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E045
+                  status: failed
+                  info: Missing mandatory header parameter
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: ''
+                  ver: '1.3'
+                  ts: 2025-07-31T16:29:03+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/invoice-status-check-with-code/1.3/en:
+    post:
+      summary: Invoice-Status-Check-With-Code
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: ''
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA@#$%
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: '232223'
+              data:
+                payload: >-
+                  DYEi9bIvzVpO5uWMBtZO335N0X/vIbKCPZ2FgIdgOJdqz88F9C+wEohPLlaGm6TPhsjGsaVGo79p/v+VveGdbqdyRX8qa9K2DtznNGcjv+ELm9ZdoDlaHMYnI5uwsstIxQFBV5zeyDxjxD/yLecVvmKkoPMrfCsscVu4rEkODqnRzyibfZveUGRGJLnvBPTsndX+kOxAS78HPvuBhXD0ibopr8d6ltXQW7b5NuHHoFztUj7WkKN/l4gdqIm2XMOgs1ejbZ805Ei68/asSDquXW8KqknkgvMCU3BIk1/VdC+vkT6p0q3l00CwTK9xglNsgzvJL+lY+0XPx5o2mq0OfsoMdfnzlXGjDhdoDopWBIMyqE9Orfgk8H62OZkVfOl/EnDXnSh6um3A9udJNVBrknzc9TP2bz6HQ0kmkkRC1Q+jZec4EsQPjZUz5J2nHNtTASXyWKG6OVHwYbxTzwPHzg==
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E000","status":"success","info":""},"data":{"txnCode":"232223","signature":"1b3adb9c6c7ed1caeab9e5b54de797bcc1ac3d3da1e3c0d3c3e61229f5c0ff06","encryptData":"Iy6ilQGjc+5Km9wj4EzgkR0U9ji4BK6WOfC5y0KajEIJsSnXpVo9RNr2WEAq30PVnumfqkBHlT4/JUweLzxp5CXKteO906mz82A0VKy7Z8tv2PGL0Qp1sxz3hMx7Of03","correlationId":"1221e3fd-52a5-4d72-b4b5-adc1c6667d85"},"signature":"MGUCMDd94zK3wrpiLts0CBwRBzoDTwW8+DeZdCNAOBhBv7sujA8Zdjk8ZehSW60r8HGBjQIxAIKDLvGGIK6WMsY/+fzBP4l5FSyDcClIAPQjOaNjX5xAOZjHlZxmPA8PbW29egrPUg==","meta":{"txncode":"232223","ver":"1.3","ts":"2025-07-31T16:29:22+0530"},"hmac":"SHLTe8t8SEYsNmFIsgoRN9CoIg32RB9BWgEG9I+gWLA=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+        x-200:Error:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E305","status":"failed","info":"Invalid
+                value for
+                x-ibdic-merchant-key."},"data":{},"signature":"MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=","meta":{"txncode":"232223","ver":"1.3","ts":"2025-07-31T16:29:50+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/invoice-status-check-without-code/1.3/en:
+    post:
+      summary: Invoice-Status-Check-Without-Code
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: udjoZLwq8Mc3kOtQbT4KKA
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: '232223'
+              data:
+                payload: >-
+                  oLAIvDCN0rJiCcYbGa3jM0Hu6BdtLBdc2DpWEfW6d+1a+biMmhA/SxXipo8eLwot9V27WlQbXod4cZXtAfqa+Mc0pnLZJp1cRi8eaD+mIVJkwRHDgCzhBlu14jljFRoBgbjf7JGC36znjj7tv0UdIif4CCysmaV+Sak6xgNf4YaIqugaMY+NkJSNAqLSQ1tE4hT3J0xLDrq7J070e7lgT49lHULbIh/E4x061aQ9dtdNBsWLjS5L8bS8TwyjmuxEtDao+06hr5DVsjZYgNU/ZiR9qk8cHWkutdTAZr6uMIPZMpKk8MUX8CfH4JUN0a/jrLk11LErUhrRjC8NE6RDUEXMLsy7WvrbZ1XDWNIhi/ftl8SL/hmQQa4dQu8ABSObA8wQkWbbKLzzuuNbezOpJbu48J/jaK1sI/VC5wdx51VwmiK2ENv4aawxyImp7ISPdAovc6Ow/JejnI3A7rM8IKn/rHJsfCFkvOvMxZXBUuvjZ9tg/+JJb1XuBIMvzJHZbq92Mv94IJZuQfuqYp+0Pw+0s8dDCq4CHjaUy713Cmre9X2HRjyji1nCHhhycocqH2hu2h4K6gXBJoZ/nlP9yIIoJO8D/5Tr53D3YITExb472AItIrr447NgQnuOrAis
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  txnCode: '232223'
+                  signature: >-
+                    1c4fc3fd4faac51fc3806fe0aa500d0e237f3f497c086398a07f80a5152927fb
+                  encryptData: >-
+                    fq6qY++Z7CZwHKFQ/NfBI4QWdEGpa4gwa2nl2YV0qTWjZDqaMyDGFZGcY1dTlZMotK4bjY86qZrsQDl3Yy8pR76eb1pdIFwXMr9SfcoUCgmAHZj+zKwbB2cZV8xYCaOZ0o/KCJNVvA/YvaJatvfpgnGsXabaPO5ZHmKQ6JWeuZadoOQ0NgakFjrLH2CcfLLO7S1EBhRzQkPSXCTSTc2pC6JkGeV3DR/IUNqhC52nvGzLHuEwm9cpiaDoivq9QdiPPk94frb4XP34LFoikF+hq+8tB7nmtk/EFPDDm86AoFABKHJ/Uc9ieKI/FHyK7zILNqkf5IB6KAr+9SzjB2dDZC6VUNHq5iwvwNKzkdvXBbGTGWL9LicIAfpv+5MCA2qZAh2AVw+nda/GEjSAdUDECiqRl/bnheen3sLPwjysWuQ1XBqTW4nAVZ6CDsQfWr3w0NEHVaILwI7J01HtwtcUYnoDMmGNUnW3Q+Dkh6BtcpfHPFKJzwcGcZtCXAfV1WihDb4sMOeTS1yNv6c+nerNETaZomuNMvgSyyW8Q5xRYJb2VzUZl6rICPvnUnclw3lywCiiwhuvdP56w7WS1KcFEFUfAFDJfIFXevQOCBYOfVKjo2QwQlPxa/fdhUzAN9uoE29O27yIQXniD027QyPw0C8ZHgN0wabsi7YcVIsm2I4=
+                  correlationId: 571262da-2aae-4454-b181-03685d8bd000
+                signature: >-
+                  MGUCMQC7/WTzQDCyoL40BjoqqaVDNhjw2kRkPaK5fF16YCIY1FzKOvJrHJRIKjL3DB1wASsCMANfOyGLoonkzrRXPVzXhGnC53kZYGdgLNCWLZw72GIR4KaDCNTJQR8x8IZF9+W6+g==
+                meta:
+                  txncode: '232223'
+                  ver: '1.3'
+                  ts: 2025-07-31T16:30:32+0530
+                hmac: BL7Mhl55WVkBfVbBfCC/oJ6PH2qU924CxiEiYaGzv9A=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E032
+                  status: failed
+                  info: Invalid client id value
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: '232223'
+                  ver: '1.3'
+                  ts: 2025-07-31T16:31:01+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/financing/1.3/en:
+    post:
+      summary: Finance
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: ''
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-rote
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: '232223'
+              data:
+                payload: >-
+                  1tmT+tSAFGxh0lmElorYwgd9/zqKYDySPK2CA+BC8DIzNlXptn6iYCnQ1x/zoLdNuQROInXjghni43IkzmQdz462GsKRG8Yn4eWo4jxgEVulhDqecCO+aVWSYqscLuu2sYVPCHuTyF/DCUMv0/+fF1AF7xzO5KlbFZdiIu5RwySHy+VXmXbfKJOEhnMV/hHeGNz7BFxMnQ/gJPb3lZUprTh5VLfQ+hjjHCK92V8CO/8Iog3dnHuB14UsQ3SnAZBu7JEqz7wTMpj+2gVvCfmvqxx1/THeaEKKP6+9csAGanoQ/24SDacL+eZD/3n3XIGv6JRa/DTVLSfR2DZVYSXQ3JjoD3nkzB/JxIashHwULW8y4NbM73p1h7rMTrxnXTne39q9rjcVfxxbbToNB0K7a4B5nJT/iSSn/gfVUgIEckeYhu2njYlvIGbMLwFqt4Vt0DAqjMWS/B7RFiNssitqm6Wjhc0+PupJhyEy2mt2y/3pEvJvCn0wskz21tAPk/unh+Lwl/8EBPODApQqQuG99wrh7imyjBQP233B3Vlsi/xGhCMgz5Uo6MXCySyFtD27CY4UrEhmEnsh9PuHbQcEUs8Pk4wY+gHR3/Ws22RcfXAHvoMHoLvAjgnR0FoV8ES+eDlQYiaQjTyzdRPhdHkeN00WAuzjjJ5graxJ/btp57+YwdbTkM93Ue5rkCCQ39Q9WD0nIoBjSyIhgamRdZ8KSeLY08eKZPgsHtj/teYeuxTD5xpFYgw/M8+HnCNMOKJR
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E000","status":"success","info":""},"data":{"txnCode":"232223","signature":"e7d31a3165323f4cce41569f839cb0e94cd32bce56ae40304726f39ef1893129","encryptData":"4qY3tMj7o8rY9Q653T56lUDur/T4MFZXS/he8iZuyE8tQ2tHtCREhR+7t5FvtEnjQB9BkDqo/dIOmvBmY9+h7GAEVMwJBkCmT/1y82bLaS7gHqyTl7YTiBpU42Z4cC01","correlationId":"ed5e0a0d-d16e-458e-9d3a-0698a7084154"},"signature":"MGUCMQCausVD1fw3Rvvv3vvYRI1GKSO/NBr3WpgNT5qV1BjNKP90bbyXHLniQdN2w29ZQT8CMF41gVj4QiNqvPAFJU/4EIhHp689xY2gp/o97plWwOtm7K99d/eBxL8AVtPYiBhpmg==","meta":{"txncode":"232223","ver":"1.3","ts":"2025-07-31T16:31:33+0530"},"hmac":"OzzoJjRnHXsmjIK/5yxOf1iBC5dVCT7igfnkwxUItcs=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+        x-200:Error:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E008","status":"failed","info":"Invalid
+                API version
+                code"},"data":{},"signature":"MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=","meta":{"txncode":"232223","ver":"1.3","ts":"2025-07-31T16:32:05+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/disbursement/1.3/en:
+    post:
+      summary: Disbursement
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: ''
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-rote
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: '232223'
+              data:
+                payload: >-
+                  KvLSm0e+bd6Zcd/Db3ZCXCskI1iTpAab8xdDq1453hrKREUfsZzJmYKCisaipi/ixMjeYmq/IeEp5+geXv2ev+k5OyVjrdlMZ9/QQjKPju1NeA9hHyo8y643Rs5YpgUrEnDH5BFFuQxMQIlx/Ggy4k30URhtKn84oOTvtURgiij1E7xPa1PKgAgA+GqKHM4tQtfgNrUcD1cGMn/C8wm1hjkUuMPvCip0G/5vkXx81zb4gCUoXBKO+xPCr5JqVSdeu6iyaBAgeZuIYI64CHzC7/YEdrMg1ufh/puWovCOt0mlvy7Z7mqZ5KG/XMPKwqyQNZzD4IrohuVtJOItmcqlvE75DxB7H6Wz010BbuWPpEnYbphjx/JlZNziXW5fh3av3+Y6j5OOL0mhmY0y3RsPES26fufMsLJtutOy7Y0M8NcwIsM39UR/6I+HcXj5MZVNleSQ2wtljqeUUV2crd7iD4dPCoZseaVAQlgzvUZYkAqv1pe4GUD4OQMNMDbrpETWWLSlZ3GJ4E+sZ/IXeyQmeqFVYyDr3TOgNbEOhLDIBPyVU2Bjgp3qQtJbTIta0ssS3rMBZV13J6dKrIpuYuRl5Y8dc/EqqSAwzrWioCAhHyoW1fAiyXMwuWWgmuIV8zS5vMRxlfNJ4iqM+/oFJMG8lQ==
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  txnCode: '232223'
+                  signature: >-
+                    1093f0275e561ef65eba6d901c16bc3c2ef2512a0fcddc228ad614821b999e10
+                  encryptData: >-
+                    pMxj0XY9655XZV8qufLugM6Wi+iNSZvwjJF6U/kItzvPDOg+1MKTri+noiU8mwislsDo2khReluQCbZ2PeIb9DBRWmeXNPIWYc9+Ydl0A8Zm2EXdaL/+ZSw111WZKLMM
+                  correlationId: 18d250cc-3c0a-41d4-9236-dedaf5ce0b84
+                signature: >-
+                  MGQCMAO6tBMaPTNixtNELCr6N6mNsDqQyvsE3b761os9I4ttaa7XyneEeftLevCKpy3W9QIwMjC+4mRfnT7umq3LVcj3a8mK3pnB9H0q+QY/py3k5tFjh81dNmphPayCekCxml6F
+                meta:
+                  txncode: '232223'
+                  ver: '1.3'
+                  ts: 2025-07-31T16:33:43+0530
+                hmac: GpsCcDVyiQsY7bcS6wiKIUfVWeXC8jxJbgVURTKX7RE=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E058
+                  status: failed
+                  info: Invalid provider code
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: '232223'
+                  ver: '1.3'
+                  ts: 2025-07-31T16:34:05+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/repayment/1.3/en:
+    post:
+      summary: Repayment
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: ''
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-rote
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: '232223'
+              data:
+                payload: >-
+                  +LseoJXin2D73WFNY8Gx83vOQiv5RuKSJcJeDLaVid/ySPcl+cSGjgwEhnFbgO9tsUF99BNYgyiCJCnwTxm6QEfSaOcD6dhN69a8MFIBcrAfRpar8wfYfUv7+3CAPQkTH6cWy0GfpheBRLLyuRyb2A0nOtW/NuN3p20FmAXKPZeStqVINUug+e1iHFmZOv9X4dXy+oIjEwJklrAu3HOlSmd4cIPFuI5IDQKEvwYrIF2znZvsXQ4VkEzRXi4qCeI/qciB2kEPYJk9iFdsEaDC8ADzfCTeOsf0NhqEfXF3A7J6bvltLBYs4TnzCM36DQUB75ZOXhCvmGN+UZHQXqKhQSKlikwn65qpnuf2M4sIP8pXdNtVGL/x4bJfBGmehKHpD4gnEc56Cqu6JuyxDJEtqweEJe4LIcdDvdK6JbaHXxmKWPIFiVwuPiD7yI6EKpLSMXseeSVas18v6wh5TUEAmhyC7mIHYBf9numZYYf0z7UsCHHs+gpBv6Yb8qs3EDPja9wWsBCct4MGKG1ZFOlvHzADwVITWiGvCYiQtmzTMxu4XHHiuRhpf6PC5p7okdFUdHcwzq+mz/7+guaMxM2icfe/XA8TL+xwOUICBrsoPYGkID7XSkBK26j1ViyQfz8KSWHg6SLqsiHBlHEVQ/h4Q7/7w25nczGvIz7u8ndd4Sm4m0kRAEiV6GqDYdHT+FMMyATzpZa+QgherGOrMd8L8g==
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  txnCode: '232223'
+                  signature: >-
+                    db46851b855c40496c2b904c7a9d61a041a2098dabf3c2a0c5e54b23a7b55d1a
+                  encryptData: >-
+                    pQyPJwnDH2fr93MLAg2GK3SzFKhM2jb/uZDnfpcX5axz4V0RNoUQ8nZkxkadbpjY+vH4/1EjCYT8xVdwVKZI9idKmq6Ve+wM5vdJWDksqiDK2JOPAaOn8HDg1Ft/Zz7S
+                  correlationId: c07a3453-ec8a-42e6-96b4-eee0ef2fb0fc
+                signature: >-
+                  MGQCMHPtU6aJMNVvtwnfdoUAmAOt9T1suz37VskDv8BBQZLfpXXITR/+DGKnsLTUnZLm8AIwIVrLsYISMkXgfJy4hZVrf7vjp2BEQ3S6ZVMlBpTyhldUdJ+cJFkOnC7RXbmyGMOR
+                meta:
+                  txncode: '232223'
+                  ver: '1.3'
+                  ts: 2025-07-31T16:34:36+0530
+                hmac: lHQ/NBRS+U5vvxYU2uJphwLDyeFZfwCVOfiZs0Jxmvg=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E305
+                  status: failed
+                  info: Invalid value for x-ibdic-merchant-key.
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: '232223'
+                  ver: '1.3'
+                  ts: 2025-07-31T16:34:59+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/enquiry/1.3/en:
+    post:
+      summary: Enquiry
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: ''
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-rote
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: dfghuirty
+              data:
+                payload: >-
+                  wYGwEqrMig4WESm+1y6HhIetdJZv7oczrCvAf1Cq1uiTTStfBQIyM/EsDhWMzpghed6pibtjy4B53AkSpHdz6jZSnsDJi1UXdAQMPnzBLzGNZHRpXed3VOksWi1AfabYYDiAHlEkTAngw0CE1j656wGeW+D86K/XfVJO4jjw1WY=
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  txnCode: dfghuirty
+                  signature: >-
+                    c17a15f9176c86de915e4358f07eb930f0a4c6e7aa6717020c81ebc647dbc02a
+                  encryptData: >-
+                    Z4Q5Huk58459gkMxMyHYkIf+FGbGP3sV/eH3vp8Ht+EdfNuti4mlLncH/mh+e9FA1cFksJYO8zznQq9JWDTrxwtK2nKQNwBMDJAOSiibJwbEEzaBk1+q8jvQ4FwmZ2I+glWdbsWmE8+IR+I0xlBNzzyp/Gp4zXtuqBExr5slVoZeKNWbbEIbSuitbXMSlBp6lwuyJGCPTVRadzKMAyf1Cw==
+                  correlationId: f2d818db-d3d8-4a37-b19e-84d48c2e414b
+                signature: >-
+                  MGQCMDhs4sL5u1awo5fkzaj1m78uM+msAezyq83HSeWidRK2glGLM7a3XXwS9opYlA2tmwIwee9wlXLSDEciauVlAEzIrrlg1WDz7BccENpv3gby+UYoefcV6EH9mhAeYiBlgKD2
+                meta:
+                  txncode: dfghuirty
+                  ver: '1.3'
+                  ts: 2025-07-31T16:35:38+0530
+                hmac: s+3zmUUBH8r7TJyLeQmMr1WoiW5AdMAio8fot5E7gnQ=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E058
+                  status: failed
+                  info: Invalid provider code
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: dfghuirty
+                  ver: '1.3'
+                  ts: 2025-07-31T16:36:04+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/ibdic/cancel/1.3/en:
+    post:
+      summary: Cancel
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '123456789012345678901234'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          required: true
+          example: Q3BMaVZoel9FZ0VGQkF4eGFKZkh6aXVYZ01vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: '118'
+          required: true
+          example: '118'
+          schema:
+            type: string
+        - name: x-ibdic-merchant-key
+          in: header
+          description: udjoZLwq8Mc3kOtQbT4KKA
+          required: true
+          example: udjoZLwq8Mc3kOtQbT4KKA
+          schema:
+            type: string
+        - name: x-env-rote
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    payload:
+                      type: string
+                  required:
+                    - payload
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.3'
+                ts: '{{currentdate}}'
+                txncode: dfghuirty
+              data:
+                payload: >-
+                  2SlyrOzvUAVa9xgCsPC9ZqtMbKOwgJX70zGXS+bXCFVVJMLpSabSUe3xjAn1EkFFFptlte3K4MAWg2tgvAPQOeIV5uagR1dwhTS5AvaylYykZaC2WKnQpIr5BRXa3DOL2rHpEOxQdnh6WkJzkTCZJ4r8hqyq7ckNFywIae+GjxCAcE2Wx/XhhDCXrzYSlgivQLCKx0hrwI/qVHWBFiWzkNK9LBQ0iXrtbJz344m6T21rVFn6csb+hZW1OYvl46fq8Fr/XOg5MJGyO5/HJjy9Aw==
+              hmac: 3kwYI1h6FQ6UHDZVA7FwUKyaOixBemSSdEwagbg2XY0=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      txnCode:
+                        type: string
+                      signature:
+                        type: string
+                      encryptData:
+                        type: string
+                      correlationId:
+                        type: string
+                    required:
+                      - txnCode
+                      - signature
+                      - encryptData
+                      - correlationId
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  txnCode: dfghuirty
+                  signature: >-
+                    6d8e299fcf25e777d46b866bb5f754544b7a73a20425f4da1c5f90e3ffb38b80
+                  encryptData: >-
+                    apIgjBCIKb37fs3/80IJt0Ku8OGSDw+wTUCcxmdOTtm3zKp9dUbnGTuIBZkGfcjdvOmCWF2MM9gP/77VLEH8hLb3mr48QvblsYDUt801+dI=
+                  correlationId: fdafb81c-fb4a-4117-b1ed-5469840f8483
+                signature: >-
+                  MGUCMEsHD655HajuyiiyJHyhOw/Y1QslkQRhX0iVtNm5RM/J7WtPtLsFCMiyfsfWhZWN8AIxAIf5DJ03xTdM6nDhrSibW7fAmzmoeDcv1RPygoibDMo3YOW2sOOgaIkAvBxwff3EPg==
+                meta:
+                  txncode: dfghuirty
+                  ver: '1.3'
+                  ts: 2025-07-31T16:37:08+0530
+                hmac: KIrB86XND5nbx6CXJaVUQHGpGlaY+gMmKcbZq/46MGo=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Error:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E039
+                  status: failed
+                  info: >-
+                    Request payload timestamp is either invalid or should be
+                    less than 60 seconds old or cannot be in future
+                data: {}
+                signature: >-
+                  MGYCMQDgDmNGOfHFj3lhb3UuWcc/Rf/zSS9xIX7iP5DHMFCd44N4A4fQx2uS3cGR72y1BVkCMQD3WR6W8/02EJCDjErRyFP68Daw//IKSvvQAciPEksfXZjC1E27aUCGPfDBS8jvVQg=
+                meta:
+                  txncode: dfghuirty
+                  ver: '1.3'
+                  ts: 2025-07-31T16:37:34+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []

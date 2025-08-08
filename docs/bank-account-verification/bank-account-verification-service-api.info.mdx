@@ -1,0 +1,139 @@
+---
+id: bank-account-verification-service-api
+title: "Bank Account Verification Service API"
+description: "This API specification outlines the integration process for Digio's Bank Account Verification service, designed to enable financial institutions to securely and efficiently validate customer bank account details without initiating a transaction."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bank Account Verification Service API"}
+>
+</Heading>
+
+
+
+This API specification outlines the integration process for Digio's Bank Account Verification service, designed to enable financial institutions to securely and efficiently validate customer bank account details without initiating a transaction.
+
+The Pennyless Bank Account Verification API facilitates the following key functionalities:
+- **Secure Data Exchange**: Transmit customer bank account details, including account number and IFSC code, securely to Digio's verification system
+- **Real-Time Verification**: Instantly validate the authenticity of bank account information ensuring faster onboarding and reduced operational costs
+- **Enhanced Compliance**: Maintain adherence to regulatory requirements by verifying customer bank details through a secure and reliable API integration
+
+This service is offered by Digio Tech Solution Pvt Ltd under the current version of the Platform, providing a seamless and efficient solution for bank account verification needs.
+
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      JWT token authentication (6 hours validity in both sandbox and production)
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                JWT
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem><TabItem
+      label={"HTTP: Basic Auth"}
+      value={"basicAuth"}
+    >
+      
+      
+      Basic authentication using Digio service credentials
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                basic
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    RBIH Support: [support@rbihub.io](mailto:support@rbihub.io)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    License
+  </h3><a
+    href={"https://rbihub.in/terms-of-use/"}
+  >
+    Proprietary
+  </a>
+</div>
+      

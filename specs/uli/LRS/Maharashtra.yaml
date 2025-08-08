@@ -1,0 +1,1062 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/rbih/landownerdetails/1.5/en:
+    get:
+      summary: Maharashtra
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: 'MDSXNOWFNWOD'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '27'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{randomHeaderValue}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: consent-id
+          in: header
+          description: ''
+          required: true
+          example: 12345abcde
+          schema:
+            type: string
+        - name: scope
+          in: header
+          description: ''
+          required: true
+          example: '1'
+          schema:
+            type: string
+        - name: villageid
+          in: header
+          description: ''
+          required: true
+          example: '270700020066440000'
+          schema:
+            type: string
+        - name: subdivnum
+          in: header
+          description: ''
+          required: true
+          example: '000'
+          schema:
+            type: string
+        - name: distid
+          in: header
+          description: ''
+          required: true
+          example: '7'
+          schema:
+            type: string
+        - name: subdistid
+          in: header
+          description: ''
+          required: true
+          example: '2'
+          schema:
+            type: string
+        - name: khatanum
+          in: header
+          description: ''
+          required: true
+          example: 3Q
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: true
+          example: >-
+            Bearer
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJBdmluYXNoLkthbmNoYW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IjlqN1h5MGt3VXB3TEtXQTJIdW56Q1FPV2lyQWEiLCJuYmYiOjE3Mjk4NDYzMzgsImF6cCI6IjlqN1h5MGt3VXB3TEtXQTJIdW56Q1FPV2lyQWEiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3Mjk4ODk1MzgsImlhdCI6MTcyOTg0NjMzOCwianRpIjoiODY4OGE5ZDMtYzFkYS00ZTc1LWJkYWEtODFlY2JlM2M1ZDU2In0.Vp6fIAlCGivJM1VwSsR6HvpznTd9SxtIfAfjdXdyu4YuqKcDuALm4CbITYW5ROsWO2S_OaCQB3o4osCLr_wP5Dl80B9osXQUa-p5qVtJfPNHiJEGp-dJrAF6-ZEluSOkwKG-7PErGozGoDSFZZ0ijnjb9nHpZZuWv8sJuHAl8412VQAu04t5UOoDXUrQbaA-ZSMqPwOp3bxvg3ybMkGXUWLqhgC-xysLwrPyY0WFse1ml-E30iWSUJyjLeo5ikp-YEs1kXa7hx5nRGTsy2jG3S8SWefv_r12gyoDsKikIew_anYsVXFcU2Q2wJ37NVVHJAz4kQwl9sY_hVwcb1jIIQ
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      documentDetails:
+                        type: object
+                        properties:
+                          pattano:
+                            type: string
+                          form8no:
+                            type: string
+                          poramboke:
+                            type: string
+                          form6no:
+                            type: string
+                          surveynum:
+                            type: string
+                        required:
+                          - pattano
+                          - form8no
+                          - poramboke
+                          - form6no
+                          - surveynum
+                      farmRiskParams:
+                        type: object
+                        properties:
+                          assessed:
+                            type: string
+                          soiltypepri:
+                            type: string
+                          soilclass:
+                            type: string
+                          landtypeid:
+                            type: string
+                          irrsource:
+                            type: object
+                            properties:
+                              sourceofIrrigation:
+                                type: object
+                                properties:
+                                  source:
+                                    type: string
+                                required:
+                                  - source
+                            required:
+                              - sourceofIrrigation
+                          landrevenue:
+                            type: string
+                          landtypename:
+                            type: string
+                          courtcaseremarks:
+                            type: string
+                          llandusetype:
+                            type: string
+                          mortgageDetails:
+                            type: object
+                            properties:
+                              hypothecation:
+                                type: string
+                              addlremarks:
+                                type: array
+                                items: {}
+                              remarks:
+                                type: object
+                                properties: {}
+                              mortgaged:
+                                type: string
+                            required:
+                              - hypothecation
+                              - addlremarks
+                              - remarks
+                              - mortgaged
+                          soiltypesec:
+                            type: string
+                          courtcase:
+                            type: string
+                          llandtypename:
+                            type: string
+                          irrigated:
+                            type: string
+                          landusetype:
+                            type: string
+                          remarks:
+                            type: object
+                            properties: {}
+                        required:
+                          - assessed
+                          - soiltypepri
+                          - soilclass
+                          - landtypeid
+                          - irrsource
+                          - landrevenue
+                          - landtypename
+                          - courtcaseremarks
+                          - llandusetype
+                          - mortgageDetails
+                          - soiltypesec
+                          - courtcase
+                          - llandtypename
+                          - irrigated
+                          - landusetype
+                          - remarks
+                      landOwnerDetails:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            owner:
+                              type: object
+                              properties:
+                                lfathername:
+                                  type: string
+                                address:
+                                  type: string
+                                lheirtyp:
+                                  type: string
+                                statefarmeriddef:
+                                  type: string
+                                lfullname:
+                                  type: string
+                                caste:
+                                  type: string
+                                hissa:
+                                  type: string
+                                aadhartkn:
+                                  type: string
+                                farmerid:
+                                  type: string
+                                fathername:
+                                  type: string
+                                lcaste:
+                                  type: string
+                                heirpcshr:
+                                  type: integer
+                                statefarmerid:
+                                  type: string
+                                fullname:
+                                  type: string
+                                heirtyp:
+                                  type: string
+                                laddress:
+                                  type: string
+                              required:
+                                - lfathername
+                                - address
+                                - lheirtyp
+                                - statefarmeriddef
+                                - lfullname
+                                - caste
+                                - hissa
+                                - aadhartkn
+                                - farmerid
+                                - fathername
+                                - lcaste
+                                - heirpcshr
+                                - statefarmerid
+                                - fullname
+                                - heirtyp
+                                - laddress
+                            landParcel:
+                              type: object
+                              properties:
+                                extarea:
+                                  type: string
+                                landsubclass:
+                                  type: string
+                                khasrano:
+                                  type: string
+                                talukcode:
+                                  type: string
+                                geocoordinates:
+                                  type: string
+                                uc:
+                                  type: string
+                                parcelid:
+                                  type: string
+                                surveynoarea:
+                                  type: string
+                                districtid:
+                                  type: string
+                                pin:
+                                  type: string
+                                cultiarea:
+                                  type: string
+                                dateofmutation:
+                                  type: string
+                                khatatype:
+                                  type: string
+                                districtcode:
+                                  type: string
+                                landmainclass:
+                                  type: string
+                                villageid:
+                                  type: string
+                                otherrightsname:
+                                  type: string
+                                tehsilid:
+                                  type: string
+                                lgdcode:
+                                  type: string
+                                distid:
+                                  type: string
+                                llandsubclass:
+                                  type: string
+                                plotno:
+                                  type: string
+                                khatanum:
+                                  type: string
+                                totarea:
+                                  type: string
+                                khasratype:
+                                  type: string
+                                extares:
+                                  type: string
+                                khatadesc:
+                                  type: string
+                                subdistid:
+                                  type: string
+                                khatianrevenue:
+                                  type: string
+                                ccode:
+                                  type: string
+                                lkhatadesc:
+                                  type: string
+                                llandmainclass:
+                                  type: string
+                                utofarea:
+                                  type: string
+                                subdivnum:
+                                  type: string
+                                noncultiarea:
+                                  type: string
+                                tenurename:
+                                  type: string
+                                villagecode:
+                                  type: string
+                                ulpin:
+                                  type: string
+                              required:
+                                - extarea
+                                - landsubclass
+                                - khasrano
+                                - talukcode
+                                - geocoordinates
+                                - uc
+                                - parcelid
+                                - surveynoarea
+                                - districtid
+                                - pin
+                                - cultiarea
+                                - dateofmutation
+                                - khatatype
+                                - districtcode
+                                - landmainclass
+                                - villageid
+                                - otherrightsname
+                                - tehsilid
+                                - lgdcode
+                                - distid
+                                - llandsubclass
+                                - plotno
+                                - khatanum
+                                - totarea
+                                - khasratype
+                                - extares
+                                - khatadesc
+                                - subdistid
+                                - khatianrevenue
+                                - ccode
+                                - lkhatadesc
+                                - llandmainclass
+                                - utofarea
+                                - subdivnum
+                                - noncultiarea
+                                - tenurename
+                                - villagecode
+                                - ulpin
+                          required:
+                            - owner
+                            - landParcel
+                      cropYieldDetails:
+                        type: object
+                        properties:
+                          cropDetail:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                croparea:
+                                  type: string
+                                asichitarea:
+                                  type: string
+                                year:
+                                  type: string
+                                cropirrigationsource:
+                                  type: string
+                                seasontype:
+                                  type: string
+                                cropyear:
+                                  type: string
+                                sichitarea:
+                                  type: string
+                                cropirrigatedtype:
+                                  type: string
+                                croptype:
+                                  type: string
+                              required:
+                                - croparea
+                                - asichitarea
+                                - year
+                                - cropirrigationsource
+                                - seasontype
+                                - cropyear
+                                - sichitarea
+                                - cropirrigatedtype
+                                - croptype
+                        required:
+                          - cropDetail
+                    required:
+                      - documentDetails
+                      - farmRiskParams
+                      - landOwnerDetails
+                      - cropYieldDetails
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  documentDetails:
+                    pattano: ''
+                    form8no: ''
+                    poramboke: ''
+                    form6no: ''
+                    surveynum: ''
+                  farmRiskParams:
+                    assessed: ''
+                    soiltypepri: ''
+                    soilclass: ''
+                    landtypeid: ''
+                    irrsource:
+                      sourceofIrrigation:
+                        source: ''
+                    landrevenue: ''
+                    landtypename: ''
+                    courtcaseremarks: ''
+                    llandusetype: ''
+                    mortgageDetails:
+                      hypothecation: ''
+                      addlremarks: []
+                      remarks: {}
+                      mortgaged: ''
+                    soiltypesec: ''
+                    courtcase: ''
+                    llandtypename: ''
+                    irrigated: ''
+                    landusetype: ''
+                    remarks: {}
+                  landOwnerDetails:
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: गणेश ज्ञानबा जटाळे
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ganesh dnyanba jatale
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: ' गिताबाई वि ज्ञानबा जटाळे'
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ' gitabai wii dnyanba jatale'
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: ' प्रकाश ज्ञानबा जटाळे'
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ' prakash dnyanba jatale'
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: ' महादेव ज्ञानबा जटाळे'
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ' mahadev dnyanba jatale'
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: ' लक्ष्मण ज्ञानबा जटाळे'
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ' lakshman dnyanba jatale'
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: ' विठ्ठल ज्ञानबा जटाळे'
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ' vitthal dnyanba jatale'
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: ' सौ. सिताबाई लक्ष्मण टोंचर'
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ' sau. sitabai lakshman toncture'
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: ' संतोष ज्ञानबा जटाळे'
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: ' santosh dnyanba jatale'
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '2'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '7'
+                        pin: '45'
+                        cultiarea: '1.9000'
+                        dateofmutation: ''
+                        khatatype: '3'
+                        districtcode: ''
+                        landmainclass: ''
+                        villageid: '270700020066440000'
+                        otherrightsname: बोजा,इकरार
+                        tehsilid: ''
+                        lgdcode: ''
+                        distid: '7'
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: '36'
+                        totarea: '1.9'
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: samaik khaate
+                        subdistid: '2'
+                        khatianrevenue: ''
+                        ccode: '270700020066440000'
+                        lkhatadesc: सामाईक खाते
+                        llandmainclass: ''
+                        utofarea: hectare
+                        subdivnum: ''
+                        noncultiarea: '0.0000'
+                        tenurename: भोगवटादार वर्ग -1
+                        villagecode: ''
+                        ulpin: ''
+                  cropYieldDetails:
+                    cropDetail:
+                      - croparea: ''
+                        asichitarea: '0.0200'
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: संपूर्ण वर्ष
+                        cropyear: '2021'
+                        sichitarea: '0.7900'
+                        cropirrigatedtype: ''
+                        croptype: अडसाली ऊस
+                      - croparea: ''
+                        asichitarea: '0.0200'
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: संपूर्ण वर्ष
+                        cropyear: '2021'
+                        sichitarea: '0.7900'
+                        cropirrigatedtype: ''
+                        croptype: अडसाली ऊस
+                signature: >-
+                  MGQCMEjOdNWVt25VPRuIOMQsNBmhHfohRPfNKLailhGHFYYILkBHpZE/GL9pCyqb9KqN7AIweiLmOQKiytF/pr1NTRZKCQX5WhEPS/HHLdbSlJ0A6F4UGEDupKmiq/oEKbkoxNXD
+                meta:
+                  txncode: RBIH2025073110287547
+                  ver: '1.5'
+                  ts: 2025-07-31T15:58:43+0530
+                hmac: TCn8tGDAFIlNXmVhO7pmf1mGqJWL7W2eF3Fk1lVw0VU=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEXs59ONXGAMNwVqpFau8e4Zhe84AlKtre/HSurN9P6bG0e8wKNsCbgmGg4QO8rzDTsiKqk8nfJWxcgG/GdPmTFawHZZ1NiFzDM5h7p3qoytXAMkrvuN6hs8G0Gowp1/5W
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E529
+                  status: failed
+                  info: Invalid khata number value
+                data: {}
+                signature: >-
+                  MGYCMQCGuNxtcQI5WkggXBBCd0nGUrN+4A4Ce44t38FlL3CHAMZG9w7TEp9oYckUtsfcgmECMQDb4epc3bjTnJF1kk2qspkbh8w8goAlT78QrDHpJj1YReA6xkcyL9T/itDPU8jjyvI=
+                meta:
+                  txncode: RBIH2025073110442196
+                  ver: '1.5'
+                  ts: 2025-07-31T16:14:52+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAER1P7S9dZ0fCDjLey6DfYtnCO+P4OeBIqu7NqdruvsuLwr/7g4D0OxVxQGSpV9TzXJPrTG0Li3e9pX3OTEo0N7sDeP30TMh3XEsy+2HqCpMr7iiLbkBsAGyt6R5a3L+bh
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

@@ -1,0 +1,3500 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /:
+    get:
+      summary: Get Village
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{txncode}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '{{provider}}'
+          schema:
+            type: string
+        - name: distid
+          in: header
+          description: ''
+          required: true
+          example: '{{distid}}'
+          schema:
+            type: string
+        - name: subdistid
+          in: header
+          description: ''
+          required: true
+          example: '{{subdistid}}'
+          schema:
+            type: string
+        - name: servicename
+          in: header
+          description: ''
+          required: true
+          example: '{{servicename}}'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      village:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            vname:
+                              type: string
+                            vname_eng:
+                              type: string
+                            flg_chakbandi:
+                              type: string
+                            flg_survey:
+                              type: string
+                            village_code_census:
+                              type: string
+                          required:
+                            - vname
+                            - vname_eng
+                            - flg_chakbandi
+                            - flg_survey
+                            - village_code_census
+                    required:
+                      - village
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  village:
+                    - vname: आभूराम
+                      vname_eng: Abhooram
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185392'
+                    - vname: तुर्कवलिया
+                      vname_eng: Turkwalia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185393'
+                    - vname: पचवारा खास
+                      vname_eng: Pachwara Khas
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185394'
+                    - vname: नया गांव
+                      vname_eng: Naya Gaon
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185395'
+                    - vname: मड़हा गोकुली
+                      vname_eng: Marha Gokuli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185396'
+                    - vname: ताल लिखिया
+                      vname_eng: Tal Likkia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185397'
+                    - vname: मोहम्मदपुर त.पचवारा
+                      vname_eng: Mohmmdpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185398'
+                    - vname: ताल कोइला
+                      vname_eng: Tal Koila
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185399'
+                    - vname: मंगलपुर
+                      vname_eng: Mangalpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185400'
+                    - vname: बढ़नी
+                      vname_eng: Barhni
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185401'
+                    - vname: पट्टन ऊर्फ पलिया
+                      vname_eng: Pattan Urf Palia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185402'
+                    - vname: जं0 कौडिया
+                      vname_eng: Jangal Kauria
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185403'
+                    - vname: गायघाट
+                      vname_eng: Gay Ghat
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185404'
+                    - vname: चिउंटहा तप्पा पतरा
+                      vname_eng: Chiutaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185405'
+                    - vname: ताल जमुआड़
+                      vname_eng: Tal Jamuar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185406'
+                    - vname: गोसाईपुर
+                      vname_eng: Gosainpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185407'
+                    - vname: जिन्दापुर
+                      vname_eng: Jindapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185408'
+                    - vname: चिउटीजांम तप्पा पचवारा
+                      vname_eng: Chinuti Jam
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185409'
+                    - vname: डिहाघाट
+                      vname_eng: Deehghat
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185410'
+                    - vname: साखी उर्फ मेंहदरिया
+                      vname_eng: Sakhi Urf Mehoria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185411'
+                    - vname: प्रेमपुर
+                      vname_eng: Prempur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185412'
+                    - vname: अजीजुल्लाहउर्फचकिया
+                      vname_eng: Azizullah Urf Chakia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185413'
+                    - vname: देवकली
+                      vname_eng: Deokali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185414'
+                    - vname: सेमरडाड़ी
+                      vname_eng: Semardari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185415'
+                    - vname: करहिया
+                      vname_eng: Karhiya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185416'
+                    - vname: एकमा
+                      vname_eng: Ekama
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185417'
+                    - vname: रिठना
+                      vname_eng: Rithana
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185418'
+                    - vname: सिंगहा
+                      vname_eng: Singaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185419'
+                    - vname: बेलघाट खुर्द
+                      vname_eng: Belghat Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185420'
+                    - vname: फुलवरिया तप्पा खुटहन
+                      vname_eng: Phulwaria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185421'
+                    - vname: पोतहरा
+                      vname_eng: Potahra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185422'
+                    - vname: बनटिकुला
+                      vname_eng: Bantikula
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185423'
+                    - vname: भैरहा
+                      vname_eng: Bhairaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185424'
+                    - vname: अहिरौली तप्पा भौवापार
+                      vname_eng: Ahirauli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185426'
+                    - vname: बलुआ
+                      vname_eng: Balua
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185427'
+                    - vname: सिंहोरवा तप्पा पचवारा
+                      vname_eng: Sihorwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185428'
+                    - vname: प्रतापपुर
+                      vname_eng: Partappur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185429'
+                    - vname: मटियारी
+                      vname_eng: Matiyari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185430'
+                    - vname: मीरपुर तप्पा गौरा
+                      vname_eng: Meerpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185431'
+                    - vname: मदरहा
+                      vname_eng: Madarha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185432'
+                    - vname: राजपुर दूबी R.O
+                      vname_eng: Rajpur Doobi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185433'
+                    - vname: उस्का
+                      vname_eng: Usaka
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185434'
+                    - vname: कुड़वा
+                      vname_eng: Kurwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185435'
+                    - vname: मैनाभागर
+                      vname_eng: Maina Bhagar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185436'
+                    - vname: दहला
+                      vname_eng: Dahla
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185437'
+                    - vname: बौरडीह
+                      vname_eng: Baur Deeh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185438'
+                    - vname: बंजरहा
+                      vname_eng: Banjarha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185439'
+                    - vname: नवापार तप्पा गौरा
+                      vname_eng: Nawapar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185441'
+                    - vname: रामपुर तप्पा गौरा
+                      vname_eng: Rampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185442'
+                    - vname: बरईपार तप्पा गौरा
+                      vname_eng: Baraipar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185443'
+                    - vname: मोहनपुर तप्पा गौरा
+                      vname_eng: Mohanpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185444'
+                    - vname: मड़कडि़या
+                      vname_eng: Markariya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185445'
+                    - vname: सुगन्धगढ़
+                      vname_eng: Sugandh Garh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185446'
+                    - vname: कुशहरा
+                      vname_eng: Kusahra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185447'
+                    - vname: खुटवा
+                      vname_eng: Khutwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185448'
+                    - vname: तारंगचक
+                      vname_eng: Tarngchak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185449'
+                    - vname: काजीपुर कला
+                      vname_eng: Kazipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185450'
+                    - vname: करनजहवां
+                      vname_eng: Karnjahwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185451'
+                    - vname: अवईपाकड़
+                      vname_eng: Awaiepaker
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185452'
+                    - vname: डोहरिया
+                      vname_eng: Doharia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185453'
+                    - vname: बुढि़याबारी
+                      vname_eng: Buriya Bari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185454'
+                    - vname: तालतिलौरा
+                      vname_eng: Tal Tilaura
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185455'
+                    - vname: बरियारपुर
+                      vname_eng: Bariarpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185456'
+                    - vname: मंझरिया तप्पा गौरा
+                      vname_eng: Manjharia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185457'
+                    - vname: खोडवा
+                      vname_eng: Khorwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185458'
+                    - vname: नहरपुर अतरौलिया
+                      vname_eng: Narharpur Atraulia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185459'
+                    - vname: बड़हरा न.2
+                      vname_eng: Barhra N0.2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185460'
+                    - vname: बड़हरा न.1
+                      vname_eng: Barhra No.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185461'
+                    - vname: भौरामल
+                      vname_eng: Bhauramal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185462'
+                    - vname: रोहुआ
+                      vname_eng: Rohua
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185463'
+                    - vname: चकरा
+                      vname_eng: Chakra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185464'
+                    - vname: बेलपारउर्फगुरूनगर
+                      vname_eng: Belpar Urf Guroo Nagar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185465'
+                    - vname: कोठा
+                      vname_eng: Kotha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185466'
+                    - vname: खडि़या
+                      vname_eng: Kharia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185467'
+                    - vname: भव
+                      vname_eng: Bhaw
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185468'
+                    - vname: ताजडीह
+                      vname_eng: Tajdeeh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185469'
+                    - vname: जगतबेला
+                      vname_eng: Jagatbela
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185470'
+                    - vname: बेला तप्पा केवटली
+                      vname_eng: Bela tappa kevtali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185471'
+                    - vname: बघाड़ी
+                      vname_eng: Baghari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185472'
+                    - vname: आराजी मुहम्मदपुर
+                      vname_eng: Arazi Mohmmadpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185473'
+                    - vname: मुहम्मदपुर माफी
+                      vname_eng: Mohmmadpur Mafi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185474'
+                    - vname: जमुआड़
+                      vname_eng: Jamuar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185475'
+                    - vname: हरिहरपुर
+                      vname_eng: Hariharpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185476'
+                    - vname: सोनबरसा
+                      vname_eng: Sonbarsa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185477'
+                    - vname: चकबिजौली
+                      vname_eng: Chak Bijauli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185478'
+                    - vname: विजौली
+                      vname_eng: Bijauli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185479'
+                    - vname: परसिया
+                      vname_eng: Parsia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185480'
+                    - vname: जं.गैमरा
+                      vname_eng: Jangal Gaimara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185481'
+                    - vname: हरि भजन जंगल
+                      vname_eng: Jangal Harbhajan Singh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185482'
+                    - vname: शिवरिया
+                      vname_eng: Siuria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185483'
+                    - vname: जं. रमगढ़वा
+                      vname_eng: Jangal Ramgarhwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185484'
+                    - vname: खरकटवा
+                      vname_eng: Kharkatwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185485'
+                    - vname: भिटनी
+                      vname_eng: Bhitani
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185486'
+                    - vname: भण्डारो
+                      vname_eng: bhandaro
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185487'
+                    - vname: कलानी ऊर्फ बढ़नी
+                      vname_eng: Kalani Urf Barhni
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185488'
+                    - vname: गौराखास तप्पा गौरा
+                      vname_eng: Gaura Khas
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185489'
+                    - vname: गोविन्दपुर तप्पा गौरा
+                      vname_eng: Govindpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185490'
+                    - vname: मझगांवां
+                      vname_eng: Majhgaonwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185491'
+                    - vname: अहिरौली
+                      vname_eng: Ahirauli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185492'
+                    - vname: टिकरीया
+                      vname_eng: Tikaria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185493'
+                    - vname: कोहड़ा
+                      vname_eng: Kohara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185494'
+                    - vname: उत्तरा सोत
+                      vname_eng: Utrasot
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185495'
+                    - vname: मंझरियातप्पागौराआबाद
+                      vname_eng: Manjharia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185496'
+                    - vname: सेमरा तप्पा गौरा
+                      vname_eng: Semra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185497'
+                    - vname: कोड़र ऊर्फ डेकरा
+                      vname_eng: Korara Urf Defara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185498'
+                    - vname: घुनघुनकोठा
+                      vname_eng: Ghunghunkotha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185499'
+                    - vname: डोमिनगढ़ मुस्तकिल
+                      vname_eng: Domin Garh(Part)
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185500'
+                    - vname: डोमिनगढ़ एहतमाली
+                      vname_eng: Domin Garh Ah.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185501'
+                    - vname: बहरामपुर
+                      vname_eng: Bahrampur(Part)
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185502'
+                    - vname: सियारामपुर
+                      vname_eng: Siyarampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185503'
+                    - vname: महराजगंज
+                      vname_eng: Mahrajganj
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185504'
+                    - vname: ठाकुरपुर दोयम
+                      vname_eng: Thakurpur N0.2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185505'
+                    - vname: ठाकुरपुर नं.1
+                      vname_eng: Thakurpur No.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185506'
+                    - vname: देवीपुर तप्पा मराछी
+                      vname_eng: Devipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185507'
+                    - vname: परमेश्वरपुर
+                      vname_eng: Parmeshwarpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185508'
+                    - vname: रामपुर गोपालपुर
+                      vname_eng: Rampur Gopalpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185509'
+                    - vname: ताल जहदा
+                      vname_eng: Taljahda
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185510'
+                    - vname: खुटहन खास
+                      vname_eng: Khutahn Khas
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185511'
+                    - vname: नाकिन जंगल
+                      vname_eng: Jangal Nakin
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185512'
+                    - vname: जं0 अयोध्याप्रसाद तप्पा खुटहन
+                      vname_eng: Jangal Ayodhya Prasad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185513'
+                    - vname: जंगल एकला नं.2
+                      vname_eng: Ekala No.2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185514'
+                    - vname: जं.एकला न.1
+                      vname_eng: Ekala No.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185515'
+                    - vname: मानीराम
+                      vname_eng: Maniram
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185516'
+                    - vname: सिक्टौर तप्पा मराछी
+                      vname_eng: Siktaur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185517'
+                    - vname: रहमत नगर
+                      vname_eng: Rahmat Nagar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185518'
+                    - vname: विशुनपुर
+                      vname_eng: Bisunpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185519'
+                    - vname: बैजनाथपुर
+                      vname_eng: Baijnathpur
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185520'
+                    - vname: बालापार
+                      vname_eng: Balapar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185521'
+                    - vname: सोनबरसा तप्पा मराछी
+                      vname_eng: Sonbarsa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185522'
+                    - vname: रामपुर चक
+                      vname_eng: Rampur Chak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185523'
+                    - vname: नवापार तप्पा कस्बा
+                      vname_eng: Nawapar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185524'
+                    - vname: जं.नन्दलालसिंह
+                      vname_eng: Jangal Nandlal Singh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185525'
+                    - vname: कोल्हुआ
+                      vname_eng: Kolua
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185526'
+                    - vname: जं.बहादुर अली
+                      vname_eng: Jangl Bahadur Ali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185527'
+                    - vname: नुरूद्दीन चक
+                      vname_eng: Nooruddin Chak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185528'
+                    - vname: सन्झाई
+                      vname_eng: Sanjhai
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185529'
+                    - vname: करमैनी
+                      vname_eng: Karmaini
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185530'
+                    - vname: जं.लालपुर मुरली
+                      vname_eng: Lalpur Murli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185531'
+                    - vname: जंगल शिवसिंह
+                      vname_eng: Jangal Shiv Singh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185532'
+                    - vname: जंगल महताब राय
+                      vname_eng: Jangal Mehtab Rai
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185533'
+                    - vname: दौलतपुर
+                      vname_eng: Daulatpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185534'
+                    - vname: अमवा तप्पा पतरा
+                      vname_eng: Amwa tappa patra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185535'
+                    - vname: नरायनपुर दोयम
+                      vname_eng: Narainpur No.2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185536'
+                    - vname: नरायनपुर न.1
+                      vname_eng: Narainpur No.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185537'
+                    - vname: करमहाउर्फकम्हरिया
+                      vname_eng: Karmaha Urf Kamhria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185538'
+                    - vname: उमरपुर
+                      vname_eng: Ummarpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185539'
+                    - vname: बनगाई
+                      vname_eng: Bangai
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185540'
+                    - vname: मिर्जा़पुर तप्पा खुटहन
+                      vname_eng: Mirzapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185541'
+                    - vname: सरायगुलरिया
+                      vname_eng: Sarai Gulharia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185542'
+                    - vname: परसिया तप्पा खुटहन
+                      vname_eng: Parsia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185543'
+                    - vname: जौरहर
+                      vname_eng: Jaurhar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185544'
+                    - vname: नाहरपुर
+                      vname_eng: Narharpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185545'
+                    - vname: रसूलपुर तप्पा खुटहन
+                      vname_eng: Rassoolpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185546'
+                    - vname: जंगल पकड़ी
+                      vname_eng: Jangl Pakri
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185547'
+                    - vname: मुडि़ला उर्फमुन्डेरा
+                      vname_eng: Murila Urf Murera
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185548'
+                    - vname: गुलरिया
+                      vname_eng: Gulariha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185549'
+                    - vname: जंगल छत्रधारी
+                      vname_eng: Jangl Chhatra Dhari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185550'
+                    - vname: आराजी जं.छत्रधारी
+                      vname_eng: Arazi Jangl Chhatra Dhari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185551'
+                    - vname: बनकटीऊर्फइटहिया
+                      vname_eng: Bankatia Urf Itahia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185552'
+                    - vname: बेलवारायपुर
+                      vname_eng: Belwa Raipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185553'
+                    - vname: बरौली तप्पा खुटहन
+                      vname_eng: Barauli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185554'
+                    - vname: जं.औराही
+                      vname_eng: Janglaurahi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185555'
+                    - vname: जं.अहमदअलीशाहउर्फतूरा
+                      vname_eng: Jangl Ahmad Ali Shah Urf Tura
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185556'
+                    - vname: जंंगल धूसड
+                      vname_eng: Jangl Dhoosar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185557'
+                    - vname: जं.तिकोनिया नं.2
+                      vname_eng: Jangl Tinkonia No2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185559'
+                    - vname: जं.तिकोनिया नं 1
+                      vname_eng: Jangl Tinkonia No1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185560'
+                    - vname: जं.रामगढउर्फरजही
+                      vname_eng: Ramgarh Urf Rajahi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185561'
+                    - vname: जं. भेलमपुर उर्फ करमौरा
+                      vname_eng: Karmaura
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185562'
+                    - vname: टिकरिया
+                      vname_eng: Tikaria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185563'
+                    - vname: जं.भेलमपुररघुनाथपुर
+                      vname_eng: Raghunath Pur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185564'
+                    - vname: जं.भेलमपुरउर्फभगवान
+                      vname_eng: Bhelampur Urf Bhagwanpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185565'
+                    - vname: जं0 डुमरी नं01
+                      vname_eng: Jangl Dumri No1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185566'
+                    - vname: जं.डुमरी नं. 2
+                      vname_eng: Jangl Dumri No2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185567'
+                    - vname: जं. भेलमपुर उर्फ सरकार
+                      vname_eng: Jungle Bhelam Urf Sarkar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185568'
+                    - vname: जंगल सखनी
+                      vname_eng: Jangl Sakhani
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185569'
+                    - vname: जंगल हरपुर
+                      vname_eng: Jangl Hapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185570'
+                    - vname: आवादी सखनी
+                      vname_eng: Abadi Sakhani
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185571'
+                    - vname: भैरवा
+                      vname_eng: Bhairwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185572'
+                    - vname: जं.जैनुल आ.उर्फ जैनपुर
+                      vname_eng: J. Janul Abden Urf Jainpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185573'
+                    - vname: जं.माघी
+                      vname_eng: Jangl Maghee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185574'
+                    - vname: पिपराचुरामन
+                      vname_eng: Pipra Churaman
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185575'
+                    - vname: मोहब्बत बरवा
+                      vname_eng: Moohammd Barwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185576'
+                    - vname: मोहीउद्दीनपुर
+                      vname_eng: Mohiuddin Pur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185577'
+                    - vname: करमहा बुजुर्ग
+                      vname_eng: Karmaha Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185579'
+                    - vname: सलेमपुरउर्फमुगलपुर
+                      vname_eng: Salempur Urf Mogalpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185580'
+                    - vname: खान मोहम्मद चक
+                      vname_eng: Chakkhan Mohammd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185581'
+                    - vname: बखरैती
+                      vname_eng: Bakharaijee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185582'
+                    - vname: फुलवरिया
+                      vname_eng: Phulwaria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185583'
+                    - vname: करमहा खुर्द
+                      vname_eng: Karmaha Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185584'
+                    - vname: रामपुर खुर्द
+                      vname_eng: Rampur Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185585'
+                    - vname: अशरफपुर
+                      vname_eng: Asarphpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185586'
+                    - vname: सालेहपुरऔरंगाबाद
+                      vname_eng: Salhpur Aurangabad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185587'
+                    - vname: भरवलिया खुर्द
+                      vname_eng: Bharwalia Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185588'
+                    - vname: लंगड़ी गुलरिहा
+                      vname_eng: Langri Golaria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185589'
+                    - vname: रसूलपुर झुगिंया
+                      vname_eng: rasoolpur jhungia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185590'
+                    - vname: हाफिज नगर
+                      vname_eng: Haphij Nagar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185591'
+                    - vname: बूढ़ाडीह
+                      vname_eng: Budadeeh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185592'
+                    - vname: सोनराइच
+                      vname_eng: Sonaraich
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185593'
+                    - vname: शयामदेउरवा उर्फ लालकरौना
+                      vname_eng: Shyam Durwa Urf Lal Karana
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185594'
+                    - vname: सिंहोरवा तप्पा खुटहन
+                      vname_eng: Siharwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185595'
+                    - vname: पिपरी मु0
+                      vname_eng: Pipari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185596'
+                    - vname: सिरसियागदाई उर्फ बरगदही
+                      vname_eng: Sira Urf Bargadhee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185597'
+                    - vname: चिउंटहा तप्पा पचवारा
+                      vname_eng: Chiutaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185598'
+                    - vname: भिस्वां
+                      vname_eng: Bhiswa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185599'
+                    - vname: इस्लामपुर तप्पा केवटली
+                      vname_eng: Islampur tappa kewatali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185600'
+                    - vname: रामपुर बुजुर्ग
+                      vname_eng: Rampur Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185601'
+                    - vname: मेहदिया
+                      vname_eng: Mehadia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185602'
+                    - vname: जमुनिया तप्पा खुटहन
+                      vname_eng: Jamunia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185603'
+                    - vname: खिरिया तप्पा पतरा
+                      vname_eng: Khiria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185604'
+                    - vname: बिसमिलहवा
+                      vname_eng: Bismilahwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185605'
+                    - vname: तरकुलहा
+                      vname_eng: Tarkulaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185606'
+                    - vname: आराजीचिलबिलवा
+                      vname_eng: Arazi Chilbilwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185607'
+                    - vname: भटहट
+                      vname_eng: Bhatahat
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185608'
+                    - vname: परसौना
+                      vname_eng: Parsauna
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185609'
+                    - vname: जं.मोहब्बत बरवाँ
+                      vname_eng: Jangl Mohammad Barwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185610'
+                    - vname: बजहां
+                      vname_eng: Bajaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185611'
+                    - vname: मीरापुर
+                      vname_eng: Mirapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185612'
+                    - vname: अतरौलिया
+                      vname_eng: Ataraulia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185613'
+                    - vname: चकिया
+                      vname_eng: Chakia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185614'
+                    - vname: अमवां
+                      vname_eng: Amwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185615'
+                    - vname: भलुही
+                      vname_eng: Bhaluhi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185616'
+                    - vname: पोखरभिण्डा
+                      vname_eng: Pokharbhinda
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185617'
+                    - vname: बैलो
+                      vname_eng: Bailo
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185618'
+                    - vname: समदार बुजुर्ग
+                      vname_eng: Samdar Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185619'
+                    - vname: समदार खुर्द
+                      vname_eng: Samdar Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185620'
+                    - vname: तरकुलही उर्फ पोखरभिन्डा
+                      vname_eng: Tarkolahi Urf Pokharbhinda
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185621'
+                    - vname: महरी
+                      vname_eng: Mahri
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185622'
+                    - vname: नियामतपुर
+                      vname_eng: Niyamatpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185623'
+                    - vname: सिरसिया तप्प पतरा
+                      vname_eng: Sirsia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185624'
+                    - vname: घोड़ादेउर
+                      vname_eng: Ghora Deur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185625'
+                    - vname: वनचरा
+                      vname_eng: Banchara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185626'
+                    - vname: सोहसा
+                      vname_eng: Sohasa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185627'
+                    - vname: चिउराडीह तप्पा पतरा
+                      vname_eng: Chiuradeeh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185628'
+                    - vname: चक जलाल
+                      vname_eng: Chakjalal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185629'
+                    - vname: परसिया तप्पा पतरा
+                      vname_eng: Parsia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185630'
+                    - vname: पोखरभिन्डाउर्फचकदहा
+                      vname_eng: Pokharbhinda Urf Chakdah
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185631'
+                    - vname: समस्तपुर मुडि़ला
+                      vname_eng: Samstpur Urf Murila
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185632'
+                    - vname: कोटवा
+                      vname_eng: Kotawa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185633'
+                    - vname: खिरिया
+                      vname_eng: Khiria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185634'
+                    - vname: आराजी बरवा
+                      vname_eng: Arazi Barwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185635'
+                    - vname: रामपुर थवईपार
+                      vname_eng: Rampur Thawaipar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185636'
+                    - vname: तेन्दुआ
+                      vname_eng: Tendua
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185637'
+                    - vname: लहुरा देउर
+                      vname_eng: Lahura Deur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185638'
+                    - vname: चकमजीदा वीवी
+                      vname_eng: Chak Maeeda Bibi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185639'
+                    - vname: नवीपुर
+                      vname_eng: Nabipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185640'
+                    - vname: गम्भीरपुर कम्हरिया
+                      vname_eng: Gambhirpur Kamharia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185641'
+                    - vname: परसुरामपुर
+                      vname_eng: Parusrampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185642'
+                    - vname: सोनराइचउर्फबडागांव
+                      vname_eng: Sonraiech Urf Bragaon
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185643'
+                    - vname: जमुनिया तप्पा पतरा
+                      vname_eng: Jamunia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185644'
+                    - vname: तुलसीदेई
+                      vname_eng: Tulsidei
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185645'
+                    - vname: बनकटिया बुजुर्ग
+                      vname_eng: Bankatia Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185646'
+                    - vname: खैराबाद
+                      vname_eng: Khairabad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185647'
+                    - vname: ताज पिपरा
+                      vname_eng: Taj Pipra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185648'
+                    - vname: छितौनी
+                      vname_eng: Chhitauni
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185649'
+                    - vname: रतनपुर
+                      vname_eng: Ratnpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185650'
+                    - vname: तुलसीदेऊर
+                      vname_eng: Tulasi Deur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185651'
+                    - vname: नेउरी
+                      vname_eng: Neuri
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185652'
+                    - vname: पतरा खास
+                      vname_eng: Patara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185653'
+                    - vname: वरडीहा उर्फरौजा
+                      vname_eng: Bardeeha Urf Rauza
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185654'
+                    - vname: पिपरा बनवारी
+                      vname_eng: Pipra Banwari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185655'
+                    - vname: बनकटिया खुर्द
+                      vname_eng: Bankatia Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185656'
+                    - vname: मौलाखोर
+                      vname_eng: Maulakhor
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185657'
+                    - vname: कैथवलिया तप्पाकेवटली
+                      vname_eng: Kaithawlia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185658'
+                    - vname: आराजी बनकट
+                      vname_eng: Arazi Bankat
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185659'
+                    - vname: महमूदाबाद उर्फ मोगलपुरा
+                      vname_eng: Mahmoodabad Urf Mugalpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185660'
+                    - vname: जं.सुभान  अली
+                      vname_eng: Jangl Subhan Ali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185661'
+                    - vname: उनौला अव्वल
+                      vname_eng: Unaula Awal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185662'
+                    - vname: उनौला दोयम
+                      vname_eng: Unaula Doim
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185663'
+                    - vname: उनौला खुर्द
+                      vname_eng: Unaula Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185664'
+                    - vname: पिपरही
+                      vname_eng: Piparhi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185665'
+                    - vname: खझवा
+                      vname_eng: Khajhawa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185666'
+                    - vname: सोनवे गोनरहा
+                      vname_eng: Sonwy Gonarha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185667'
+                    - vname: महराजी तप्पा पतरा
+                      vname_eng: Mahrazi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185668'
+                    - vname: चिलबिलवा
+                      vname_eng: Chilbilwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185669'
+                    - vname: नैयापार बु0
+                      vname_eng: Naiyapar Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185670'
+                    - vname: नैयापार खुर्द
+                      vname_eng: Naiyapar Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185671'
+                    - vname: करमहा तप्पा पतरा
+                      vname_eng: Karmaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185672'
+                    - vname: बनरही
+                      vname_eng: Banarhi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185673'
+                    - vname: बरौली तप्पा पतरा
+                      vname_eng: Baruali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185674'
+                    - vname: तालियाबाद
+                      vname_eng: Taluabad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185675'
+                    - vname: आराजी चवरी
+                      vname_eng: Arazi Chauri
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185676'
+                    - vname: सिधौली
+                      vname_eng: Sighauli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185677'
+                    - vname: कुरमौलऊर्फबड़हरा
+                      vname_eng: Kurmail Urfbarhra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185678'
+                    - vname: सरण्डा
+                      vname_eng: Sanda
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185679'
+                    - vname: मुडि़यारी बुजुर्ग
+                      vname_eng: Mureri Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185680'
+                    - vname: रक्ष्वापार
+                      vname_eng: Rachhawapar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185681'
+                    - vname: दुबौली तप्पा पतरा
+                      vname_eng: Dubauli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185682'
+                    - vname: इमिलिहाउर्फबिजहरा
+                      vname_eng: Emilia Urf Bijahra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185683'
+                    - vname: खड़राइच खुर्द
+                      vname_eng: Khararaiech Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185684'
+                    - vname: खड़राइच बुजुर्ग
+                      vname_eng: Kharaich Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185685'
+                    - vname: रमवापुर
+                      vname_eng: Ramwapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185686'
+                    - vname: मठिया
+                      vname_eng: Mathia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185687'
+                    - vname: मुडि़यारी खुर्द
+                      vname_eng: Muriari Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185688'
+                    - vname: महुअवाउर्फकटैया
+                      vname_eng: Mahowa Urf Katya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185689'
+                    - vname: तकिया मेदनीपुर
+                      vname_eng: Takia Medanipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185690'
+                    - vname: चनगही
+                      vname_eng: Changahi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185691'
+                    - vname: सिधावल
+                      vname_eng: Sidhawal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185692'
+                    - vname: रिठिया तप्पा पतरा
+                      vname_eng: Rithia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185693'
+                    - vname: हरखापुर
+                      vname_eng: Harkhapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185694'
+                    - vname: मुन्डेरी गढ़वा
+                      vname_eng: Mureri Garhwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185695'
+                    - vname: पिपरा मुगलान
+                      vname_eng: Pipara Muglan
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185696'
+                    - vname: अगया तप्पा पतरा
+                      vname_eng: Agaya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185697'
+                    - vname: उस्का तप्पा पतरा
+                      vname_eng: Ussaka
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185698'
+                    - vname: लखेसरा
+                      vname_eng: Lakhesra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185699'
+                    - vname: जादोपुर
+                      vname_eng: Jadopur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185700'
+                    - vname: बसन्तपुरतप्पाकेवटली
+                      vname_eng: Basntpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185701'
+                    - vname: हेमछापर
+                      vname_eng: Hemchhapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185702'
+                    - vname: महुअवा खुर्द
+                      vname_eng: Mahuawa Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185703'
+                    - vname: भरपुरवा
+                      vname_eng: Bhapurwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185704'
+                    - vname: गौरा
+                      vname_eng: Gaura
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185705'
+                    - vname: मटिहनिया जनूबी
+                      vname_eng: Matihania Janubi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185706'
+                    - vname: मटिहनिया सुमाली
+                      vname_eng: Matihania Sumali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185707'
+                    - vname: बेला
+                      vname_eng: Bela
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185708'
+                    - vname: राउतपार
+                      vname_eng: Rautpar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185709'
+                    - vname: लुहसी
+                      vname_eng: Luhasi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185710'
+                    - vname: हरपुर तप्पा केवटली
+                      vname_eng: Harpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185711'
+                    - vname: रामपुर खु.तप्पाकेवटल
+                      vname_eng: Rampur Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185712'
+                    - vname: माधोपुर तप्पा केवटली
+                      vname_eng: Madhopur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185713'
+                    - vname: नथुआ
+                      vname_eng: Nathua
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185714'
+                    - vname: गोविन्दपुर
+                      vname_eng: Govindpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185715'
+                    - vname: इस्लामपुर
+                      vname_eng: Eslampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185716'
+                    - vname: केवटली खास
+                      vname_eng: Keotali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185717'
+                    - vname: पिपरा बसन्त
+                      vname_eng: Pipra Basnt
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185718'
+                    - vname: बरईपुर
+                      vname_eng: Baraiepur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185719'
+                    - vname: गोपालपुर
+                      vname_eng: Gopalpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185720'
+                    - vname: सिहोरिया
+                      vname_eng: Sihoria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185721'
+                    - vname: कोनी
+                      vname_eng: Koni
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185722'
+                    - vname: मोहनपुर
+                      vname_eng: Mohanapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185723'
+                    - vname: करमैनी तप्पा कस्बा
+                      vname_eng: Karmaini
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185724'
+                    - vname: हेमधापुर
+                      vname_eng: Hemdhapur
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185725'
+                    - vname: बरसैनी
+                      vname_eng: Barsaini
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185726'
+                    - vname: बसडीला रौसड़
+                      vname_eng: Basdeela Rausar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185727'
+                    - vname: करमैना
+                      vname_eng: Karmaina
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185728'
+                    - vname: कैथवलिया तप्पा पतरा
+                      vname_eng: Kaithawalia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185729'
+                    - vname: जगपुर
+                      vname_eng: jagpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185730'
+                    - vname: रामूडीहा
+                      vname_eng: Ramudeeha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185731'
+                    - vname: रसूलपुर तप्पा केवटली
+                      vname_eng: Rasoolpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185732'
+                    - vname: सुरसरदेउरी
+                      vname_eng: Sursar Deur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185733'
+                    - vname: शेरगढ़
+                      vname_eng: Sher Garh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185734'
+                    - vname: हरैया
+                      vname_eng: Haraya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185735'
+                    - vname: गुरौली खुर्द
+                      vname_eng: Gurauli Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185736'
+                    - vname: गुरौली बुजुर्ग
+                      vname_eng: Gurauli Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185737'
+                    - vname: भिलौरा खुर्द
+                      vname_eng: Bhilora Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185738'
+                    - vname: भिलौरा बुजुर्ग
+                      vname_eng: Bhilora Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185739'
+                    - vname: एकला
+                      vname_eng: Ekala
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185740'
+                    - vname: पेवनपुर
+                      vname_eng: Pewanpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185741'
+                    - vname: अहिरौली पटखौली
+                      vname_eng: Ahirauli Ptakhroli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185742'
+                    - vname: छपिया
+                      vname_eng: Chhapia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185743'
+                    - vname: ताल नवर
+                      vname_eng: Talnaur
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185744'
+                    - vname: बाघागाड़ा
+                      vname_eng: Bagha Gara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185745'
+                    - vname: पिपरी
+                      vname_eng: Pipari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185746'
+                    - vname: बेतउवा उर्फ चनेउ
+                      vname_eng: Betua Urf Chanau
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185747'
+                    - vname: भाट जोत
+                      vname_eng: Bhant Jot
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185748'
+                    - vname: कलानी बुजुर्ग
+                      vname_eng: Kalanee Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185750'
+                    - vname: धरमपुर
+                      vname_eng: Dharmpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185751'
+                    - vname: भगड़ा पाण्डेय
+                      vname_eng: Bhagra Pandey
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185752'
+                    - vname: जोतफरसही
+                      vname_eng: Pharsahee Jot
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185753'
+                    - vname: भिलोरही
+                      vname_eng: Bhiloraihee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185754'
+                    - vname: अहिरौली तप्पा गौरा
+                      vname_eng: Ahirarulee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185755'
+                    - vname: पिछौरा
+                      vname_eng: Pichhaura
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185756'
+                    - vname: जोतमामापार
+                      vname_eng: Jotmamapar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185757'
+                    - vname: शिवघाट
+                      vname_eng: Shivghat
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185758'
+                    - vname: विजुलिया जोत
+                      vname_eng: Jot Bijulia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185759'
+                    - vname: ब्रहृमा जोत
+                      vname_eng: Brahmajot
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185760'
+                    - vname: ऊॅचगॉव
+                      vname_eng: Unch Gaon
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185761'
+                    - vname: कस्थैया जोत
+                      vname_eng: Kasthaiya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185762'
+                    - vname: भतेहरी
+                      vname_eng: Bhatehari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185763'
+                    - vname: व्यौहरिया
+                      vname_eng: Baywaharia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185764'
+                    - vname: जोत सोझवार
+                      vname_eng: Jot Sojawar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185765'
+                    - vname: जोत डेहरा
+                      vname_eng: Jot Dehra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185766'
+                    - vname: जोतढ़ाढ़ेडीह
+                      vname_eng: Jotdaded Dih
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185767'
+                    - vname: जोत सुकुलही
+                      vname_eng: Jot Sukulhi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185768'
+                    - vname: चक उदैला
+                      vname_eng: Chaku Daila
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185769'
+                    - vname: हरदिया
+                      vname_eng: Hardia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185770'
+                    - vname: गोपलापुर
+                      vname_eng: Gopalpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185771'
+                    - vname: जोत कोड़रा
+                      vname_eng: Jot Kodara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185772'
+                    - vname: कटैयाडाड़
+                      vname_eng: Kataya Dar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185773'
+                    - vname: जोतडड़वा
+                      vname_eng: Jot Darwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185774'
+                    - vname: सेंवई
+                      vname_eng: Sewaie
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185775'
+                    - vname: जं.बुधिरामसिंह
+                      vname_eng: Janglbudhiram Singh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185776'
+                    - vname: चकटेल्हना
+                      vname_eng: Chaktelhana
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185777'
+                    - vname: सिंहोरवा अव्वल
+                      vname_eng: Sihorwa No1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185778'
+                    - vname: सिंहोरवा सानी
+                      vname_eng: Sihorwa Sanee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185779'
+                    - vname: भगड़ा रानी
+                      vname_eng: Bhagraranee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185780'
+                    - vname: जोत मुडि़यारी
+                      vname_eng: Jotmuriari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185781'
+                    - vname: जोत सिकरी
+                      vname_eng: Jot Sikari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185782'
+                    - vname: तेलियाडीह
+                      vname_eng: Telia Deeh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185783'
+                    - vname: शिवचक
+                      vname_eng: Shiv Chak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185784'
+                    - vname: आराजी बंशी जैसवाल
+                      vname_eng: Arazibanshi Jaiswal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185785'
+                    - vname: टोटहा एहतमाली
+                      vname_eng: Totaaha Urfbhauwapar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185786'
+                    - vname: भगड़ा न 010
+                      vname_eng: Jot Bhagra No10
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185788'
+                    - vname: जोत  जरलही
+                      vname_eng: Jot Jarlee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185789'
+                    - vname: केवट कच्छा अव्वल
+                      vname_eng: Keot Kachha Aual
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185790'
+                    - vname: ताल नदौर
+                      vname_eng: Tal Nadaur
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185791'
+                    - vname: जोत खैरा
+                      vname_eng: Jot Khaira
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185792'
+                    - vname: बलुईगाड़ा
+                      vname_eng: Balue Gara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185794'
+                    - vname: चेरिया
+                      vname_eng: Cheria
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185795'
+                    - vname: जोत बगही
+                      vname_eng: Jot Bagahee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185796'
+                    - vname: सेमरा कोल
+                      vname_eng: Semarakol
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185797'
+                    - vname: जोत सरहरी
+                      vname_eng: Jotsarharee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185798'
+                    - vname: जोत बड़हरा
+                      vname_eng: Jot Barahra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185799'
+                    - vname: जोत पटिया
+                      vname_eng: Jot Patia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185800'
+                    - vname: जोत बन्डा
+                      vname_eng: Jot Banda
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185801'
+                    - vname: जोत अरण्डा
+                      vname_eng: Jot Arnda
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185802'
+                    - vname: धस्की खुर्द
+                      vname_eng: Dhaskee Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185803'
+                    - vname: औराटारी
+                      vname_eng: Aura Tari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185804'
+                    - vname: ककराखोर
+                      vname_eng: Kakrakhore
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185805'
+                    - vname: जं.अखलासकुॅवर
+                      vname_eng: Jangl Akhalas Kunar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185806'
+                    - vname: जंगल मोलहू कुंवर
+                      vname_eng: Jangl Molahoo Kunwar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185807'
+                    - vname: केवट कच्छासानी
+                      vname_eng: Keot Kachha Sani
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185808'
+                    - vname: दाहाखाल
+                      vname_eng: Dahakhal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185809'
+                    - vname: डेफरा
+                      vname_eng: Dephara Jot
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185810'
+                    - vname: जंगल विशेषर दयाल
+                      vname_eng: Jangl Bisesar Dayal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185811'
+                    - vname: जं.रानीसोहासकुंवरी
+                      vname_eng: Jangl Ranee Sohas Kunwari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185812'
+                    - vname: जं.दीर्घन सिंह
+                      vname_eng: Jangl Deerghan Singh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185813'
+                    - vname: जंगल विश्रामपुर
+                      vname_eng: Jangl Bishrampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185814'
+                    - vname: चकरा दोयम
+                      vname_eng: Chakara Doim
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185815'
+                    - vname: चकरा सोयम
+                      vname_eng: Chakra Soim
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185816'
+                    - vname: कठवतिया ऊर्फ कठउर
+                      vname_eng: Kathawatia Urf Kathaur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185817'
+                    - vname: पथरा
+                      vname_eng: Pathrara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185818'
+                    - vname: बाघरानी
+                      vname_eng: Bagranee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185819'
+                    - vname: सेन्दुली बेन्दुली
+                      vname_eng: Sendulee Benduli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185820'
+                    - vname: पिपरा
+                      vname_eng: Pipara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185821'
+                    - vname: झरवा
+                      vname_eng: Jharwa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185822'
+                    - vname: सेमरादेवी प्रसाद
+                      vname_eng: Semaradaviparsad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185823'
+                    - vname: खिरवनिया
+                      vname_eng: Khirwania
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185824'
+                    - vname: अजवनिया
+                      vname_eng: Ajawania
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185825'
+                    - vname: बेलघाट
+                      vname_eng: Belghat
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185826'
+                    - vname: मंझरिया बिस्टौल
+                      vname_eng: Manjharia Bistul
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185827'
+                    - vname: भरवलिया बुजुर्ग
+                      vname_eng: Bharwalia Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185828'
+                    - vname: मनहट
+                      vname_eng: Manhat
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185829'
+                    - vname: रामपुर
+                      vname_eng: Rampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185830'
+                    - vname: कजाकपुर
+                      vname_eng: Kajakpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185831'
+                    - vname: गायघाट खुर्द
+                      vname_eng: Gaighat Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185832'
+                    - vname: गायघाट बुजुर्ग
+                      vname_eng: Gaighat Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185833'
+                    - vname: डोमनडाड़
+                      vname_eng: Domandar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185834'
+                    - vname: लहसड़ी एहतमाली
+                      vname_eng: Lahsari Ah.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185835'
+                    - vname: डुहिया तप्पा हवेली
+                      vname_eng: Duhiya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185836'
+                    - vname: डांगीपार
+                      vname_eng: Dangipar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185837'
+                    - vname: उपधौली
+                      vname_eng: Upadhavlee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185838'
+                    - vname: जं.अयोध्या प्रसाद
+                      vname_eng: Jangal Ayodhaya Parsad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185839'
+                    - vname: कोनी तप्पा केवटली
+                      vname_eng: Konee tappa Kewatali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185840'
+                    - vname: सेमराअयोध्याप्रसाद
+                      vname_eng: Semra Ayodhaya Parsad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185841'
+                    - vname: ताल डोहर
+                      vname_eng: Taldohr
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185842'
+                    - vname: हक्काबाद
+                      vname_eng: Hakkabad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185843'
+                    - vname: बिशुनपुर बु0
+                      vname_eng: Bisunpur Buzurg
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185844'
+                    - vname: लालपुर टीकर मुस्तकिल
+                      vname_eng: Lalpur Tikar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185845'
+                    - vname: पटपर
+                      vname_eng: Patpar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185846'
+                    - vname: रानीडीह
+                      vname_eng: Raneedeeh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185847'
+                    - vname: खोराबारउर्फसूबाबाजार
+                      vname_eng: Khorabar Urf Soobabazar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185848'
+                    - vname: जं.सिकरी उर्फ खोराबार
+                      vname_eng: Jangalsikari Urf Khorabar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185849'
+                    - vname: जं.रामगढ़उर्फचंवरी
+                      vname_eng: Jangl Ramgarh Urf Chawri
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185851'
+                    - vname: ताल कन्दला
+                      vname_eng: Tal Kandala
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185852'
+                    - vname: कोडर
+                      vname_eng: Korar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185853'
+                    - vname: चाफा
+                      vname_eng: Chapha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185854'
+                    - vname: महिमाठ
+                      vname_eng: Maheemath
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185855'
+                    - vname: धोबही
+                      vname_eng: Dhobahee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185856'
+                    - vname: छितौना मु.(सर्वे)
+                      vname_eng: Chhitauna
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185857'
+                    - vname: छितौना एहतमाली
+                      vname_eng: Chhitona Ah.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185858'
+                    - vname: साहूकोल मुस्तकिल
+                      vname_eng: Sahookol  Mu.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185859'
+                    - vname: साहूकोल उर्फ मिर्जा़पुर एह.
+                      vname_eng: Sahukol Urf Mirzapur Ah.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185860'
+                    - vname: बभनी
+                      vname_eng: Babhnee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185861'
+                    - vname: उसमानपुर
+                      vname_eng: Usamanpuar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '185862'
+                    - vname: सुग्गाटारी मुस्तकिल
+                      vname_eng: Suggataree
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185863'
+                    - vname: सनहा
+                      vname_eng: Sanaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185864'
+                    - vname: चिउटीजाम
+                      vname_eng: Chhinuteejam
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185865'
+                    - vname: डोमनी
+                      vname_eng: Domanee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185866'
+                    - vname: विशुनपुर खुर्द
+                      vname_eng: Bishunpur Khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185867'
+                    - vname: हथियापरास
+                      vname_eng: Hathiya Paras
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185868'
+                    - vname: डुमरी
+                      vname_eng: Dumaree
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185869'
+                    - vname: नौवा अव्वल
+                      vname_eng: Nauwa Awwal
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185870'
+                    - vname: सोनवे मुस्तकील
+                      vname_eng: Sonawe Mustkeel
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185871'
+                    - vname: सोनवे एहतमाली
+                      vname_eng: Sonva Ah.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185872'
+                    - vname: करहिया त० मराछी चन्दौर
+                      vname_eng: Karhya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185873'
+                    - vname: अकोलही त.हवेली
+                      vname_eng: Akolahee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185874'
+                    - vname: पारकरंजही
+                      vname_eng: Parkarnjahee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185875'
+                    - vname: मोगलहा
+                      vname_eng: Mugalaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185876'
+                    - vname: नौवा दोयम
+                      vname_eng: Nauwa Doem
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185877'
+                    - vname: बरसाइत
+                      vname_eng: Barasit
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185878'
+                    - vname: गौर तप्पा राजधानी
+                      vname_eng: Gaur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185879'
+                    - vname: तरकुलही तप्पा हवेली
+                      vname_eng: Tarkulahee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185880'
+                    - vname: गोपाला
+                      vname_eng: Gopala
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185881'
+                    - vname: छपरा
+                      vname_eng: Chhapara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185882'
+                    - vname: गौरीमंगलपुर
+                      vname_eng: Gauree Manglpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185883'
+                    - vname: दुबौली
+                      vname_eng: Dubaulee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185884'
+                    - vname: प्यासी
+                      vname_eng: Pyasee
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185885'
+                    - vname: सेमरा मानिक चौक
+                      vname_eng: Semara Manik Chauk
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185886'
+                    - vname: कुई
+                      vname_eng: Kooie
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185887'
+                    - vname: समोढी
+                      vname_eng: Samorhee
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185888'
+                    - vname: भूपचक
+                      vname_eng: Bhoopchak
+                      flg_chakbandi: 'Y'
+                      flg_survey: 'N'
+                      village_code_census: '185889'
+                    - vname: चकदेइया
+                      vname_eng: Chakdeiya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185890'
+                    - vname: सिक्टौर तप्पा हवेली
+                      vname_eng: Siktaur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185891'
+                    - vname: रायगंज
+                      vname_eng: Raiganj
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185892'
+                    - vname: जं.रामलखन
+                      vname_eng: Jangl Ram Lakhan
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185893'
+                    - vname: रामपुर तप्पा राजधानी
+                      vname_eng: Rampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185894'
+                    - vname: जं0 केवटलिया
+                      vname_eng: Jangl Keotalia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185895'
+                    - vname: जं.बेलवार
+                      vname_eng: Jangl Belwar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185896'
+                    - vname: पोछिया ब्रम्हस्थान
+                      vname_eng: Pochhiya Brhm Asthan
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185897'
+                    - vname: अड्डा मोतीराम
+                      vname_eng: Moteeram Adda
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185898'
+                    - vname: शिवपुर
+                      vname_eng: Shivpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185899'
+                    - vname: गहिरा
+                      vname_eng: Gahira
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185900'
+                    - vname: हरसेवकपुर नं.2
+                      vname_eng: Harsewakpur No.2 (CT)
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185901'
+                    - vname: जं.हकीम नम्बर 2
+                      vname_eng: Jangl Hakeem No 2 (CT)
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185902'
+                    - vname: बड़गो
+                      vname_eng: Bargo (CT)
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185903'
+                    - vname: लहसड़ी मुस्तकिल
+                      vname_eng: Lahsari (CT)
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '185904'
+                    - vname: अब्बू बाजार
+                      vname_eng: Abbu bazar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217059'
+                    - vname: कलानी खुर्द
+                      vname_eng: Kalani khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217062'
+                    - vname: जोत भगड़ा न .15
+                      vname_eng: Jot bhagada no.15
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217065'
+                    - vname: टोटहा मुस्तकिल
+                      vname_eng: Totaha Mustkeel
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217066'
+                    - vname: बिन्द टोला
+                      vname_eng: Bind Tola
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217075'
+                    - vname: बुलाकीपुर
+                      vname_eng: Bulakipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217076'
+                    - vname: अधियारीबाग
+                      vname_eng: Adhiyaribag
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217077'
+                    - vname: अलहदादपुर
+                      vname_eng: Alahdadpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217078'
+                    - vname: अलिनगरसुमाली
+                      vname_eng: Alinagar Sumali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217082'
+                    - vname: असकरगंज
+                      vname_eng: Asakarganj
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217094'
+                    - vname: इस्लाम चक
+                      vname_eng: Islam Chak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217096'
+                    - vname: केवटलिया
+                      vname_eng: Kewtalia
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217097'
+                    - vname: कल्यानपुर
+                      vname_eng: kalyanpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217098'
+                    - vname: काजीपुर खुर्द
+                      vname_eng: Kajipur khurd
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217099'
+                    - vname: काजीपुर तप्पा गौरा
+                      vname_eng: Kajipur Tappa Gaura
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217100'
+                    - vname: कालेपुर
+                      vname_eng: Kalepur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217240'
+                    - vname: खुर्रमपुर
+                      vname_eng: Khurrampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217242'
+                    - vname: खूनीपुर
+                      vname_eng: Khuneepur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217243'
+                    - vname: खोखरटोला
+                      vname_eng: Khokhartola
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217244'
+                    - vname: गाजी रौजा
+                      vname_eng: Gaji Rauja
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217246'
+                    - vname: गोपालपुरतप्पाकेवटली
+                      vname_eng: Gopalpur Tappa kewatali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217247'
+                    - vname: घासीकटरा
+                      vname_eng: Dhasikatra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217249'
+                    - vname: घोषीपुर
+                      vname_eng: Dhoshipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217250'
+                    - vname: चकजलाल तप्पा पतरा
+                      vname_eng: Chakjalal Tappa patara
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217251'
+                    - vname: चकरा अब्बल
+                      vname_eng: Chakara abbal sarve
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217252'
+                    - vname: चकसा हुसेन
+                      vname_eng: Chaksa husain
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217254'
+                    - vname: चरगांवां
+                      vname_eng: Chargawa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217256'
+                    - vname: चिलमापुर
+                      vname_eng: Chilamapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217257'
+                    - vname: चैनपुर
+                      vname_eng: Chainpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217259'
+                    - vname: चैनपुर उर्फ मेवातीपुर
+                      vname_eng: Chainpur urf Mewatipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217260'
+                    - vname: जं0 जैनुल आबदीन उर्फ सेमरा
+                      vname_eng: J.Jainul Aabadin urf sem
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217261'
+                    - vname: जं.तुलसीराम
+                      vname_eng: J.Tulasi ram
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217262'
+                    - vname: जं.नकहा न.1
+                      vname_eng: J.Nakaha no.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217263'
+                    - vname: जं.बेनीमाधव न. 1
+                      vname_eng: J.Benimadhaw no.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217264'
+                    - vname: जं.बेनीमाधव नं.2
+                      vname_eng: J.Benimadhaw no.2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217265'
+                    - vname: जं. महुअवा उर्फ मुहम्मदपुर
+                      vname_eng: J.Mahuava urf muhammadpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217267'
+                    - vname: जं.मातादीन
+                      vname_eng: J.Matadeen
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217268'
+                    - vname: जं. शिवपुर उर्फ सहबाजगंज
+                      vname_eng: J.Shivpur urf Sahabajganj
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217269'
+                    - vname: जं.सालिकराम
+                      vname_eng: J.Salikram
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217270'
+                    - vname: जंगल नकहा नं.2
+                      vname_eng: Jangel Nakaha no.2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217271'
+                    - vname: जंगल हकीम न.1
+                      vname_eng: Jangal Hakim No.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217272'
+                    - vname: जगरनाथपुर
+                      vname_eng: Jagarnathpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217273'
+                    - vname: जटेपुर
+                      vname_eng: Jatepur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217274'
+                    - vname: जाफरा बाजार
+                      vname_eng: jafra Bajar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217275'
+                    - vname: झुंगियां
+                      vname_eng: Jungiya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217276'
+                    - vname: तकिया कवलदह
+                      vname_eng: Tkiya kawaldah
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217277'
+                    - vname: तालरामगढ़
+                      vname_eng: Talramgadh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217279'
+                    - vname: तिवारीपुर
+                      vname_eng: Tiwaripur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217280'
+                    - vname: तुर्कमानपुर
+                      vname_eng: Turkamanpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217281'
+                    - vname: दरियाचक
+                      vname_eng: Dariyachak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217282'
+                    - vname: दाउदचक
+                      vname_eng: Daudchak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217283'
+                    - vname: दाउदपुर
+                      vname_eng: Daudpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217284'
+                    - vname: दिलेजाकपुर
+                      vname_eng: Dilejakpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217285'
+                    - vname: दीवान दयाराम
+                      vname_eng: Diwan Dyaram
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217286'
+                    - vname: दीवान बाजार
+                      vname_eng: Diwan Bazar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217287'
+                    - vname: धम्माल
+                      vname_eng: Dhammal
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217288'
+                    - vname: नथमलपुर
+                      vname_eng: Nathalampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217289'
+                    - vname: नरसिंहपुर एहतमाली
+                      vname_eng: Narsinghpur Ehatamali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217290'
+                    - vname: नरसिंहपुर मुस्तकिल
+                      vname_eng: Narsinghpur Mustkeel
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217291'
+                    - vname: नसीराबाद
+                      vname_eng: Nasirabad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217292'
+                    - vname: निजामपुर
+                      vname_eng: Nijampur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217293'
+                    - vname: नियामतचक
+                      vname_eng: Niyamatchak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217294'
+                    - vname: नौतन
+                      vname_eng: Nautan
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217295'
+                    - vname: नौसड़
+                      vname_eng: Nausad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217296'
+                    - vname: पट्टन
+                      vname_eng: Pattan
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217297'
+                    - vname: पड़हा
+                      vname_eng: Padaha
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217298'
+                    - vname: पहाड़पुर
+                      vname_eng: Pahadpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217299'
+                    - vname: पुराना गोरखपुर
+                      vname_eng: Purana Gorakhpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217300'
+                    - vname: पुर्दिलपुर
+                      vname_eng: Purdilpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217301'
+                    - vname: पोखरभिन्डा उर्फ करीमनगर
+                      vname_eng: Pokharbhinda karimnagar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217302'
+                    - vname: फत्तेपुर
+                      vname_eng: Pattepur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217303'
+                    - vname: बक्शीपुर
+                      vname_eng: Bakshipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217304'
+                    - vname: बशारतपुर
+                      vname_eng: Basaratpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217305'
+                    - vname: बसन्तपुर एहतमाली
+                      vname_eng: Basantpur Ehatamali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217306'
+                    - vname: बसन्तपुर खास
+                      vname_eng: Basantpur Khas
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217307'
+                    - vname: बसन्तपुर मुतनाजा
+                      vname_eng: Basantpur Mutnaja
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217308'
+                    - vname: बेगपुरउर्फमियां बाजार
+                      vname_eng: Begpur urf MiyaBazar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217309'
+                    - vname: भेडि़यागढ़
+                      vname_eng: Bhediyagadh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217310'
+                    - vname: महादेव झारखण्डी टु. नं.1
+                      vname_eng: Mahadev Jha.tu.no.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217313'
+                    - vname: महादेव झा.टु .3
+                      vname_eng: Mahadev Jha tu.no.3
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217315'
+                    - vname: महादेवझारखण्डी टु.नं2
+                      vname_eng: Mahadev Jha tu.no2
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217316'
+                    - vname: महेवा एहतमाली
+                      vname_eng: Mhewa Ehatmali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217317'
+                    - vname: महेवा मुस्तकिल
+                      vname_eng: Maheva Mustkil
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217319'
+                    - vname: माधोपुर कस्बा शहरी
+                      vname_eng: Madhopur Kasba Shahari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217320'
+                    - vname: मानबेला
+                      vname_eng: Manbela
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217324'
+                    - vname: मिर्जा़पुर कस्बा शहरी
+                      vname_eng: Mirjapur Kasba Shahari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217325'
+                    - vname: मिर्जा़पुर तप्पा हवेली
+                      vname_eng: Mirjapur Tappa Haweli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217327'
+                    - vname: मिर्जा़पुर पचपेड़वा
+                      vname_eng: Mirjapur Pachapedawa
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217329'
+                    - vname: मिर्जा़पुर हाता बेतिया
+                      vname_eng: Mirjapur Hata Betiya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217330'
+                    - vname: मिर्जा़पुर उर्फ बिलन्दपुर
+                      vname_eng: Mirjapur urf Bilandpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217331'
+                    - vname: मुगलानसिरसिया
+                      vname_eng: Muglan Sirsiya
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217333'
+                    - vname: मुण्डेरी चक मु.
+                      vname_eng: Munderi chak Mu.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217336'
+                    - vname: मुन्डेरिचक ए.
+                      vname_eng: Munderi chak Eh.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217337'
+                    - vname: मुफ्तीपुर
+                      vname_eng: Muftipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217338'
+                    - vname: मुहम्मद चक
+                      vname_eng: Muhammadpur Chak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217340'
+                    - vname: मोहद्दीपुर
+                      vname_eng: Mohaddipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217341'
+                    - vname: मोहनलालपुर
+                      vname_eng: Mohanlalpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217343'
+                    - vname: रसूलपुर (तपा कस्बा)
+                      vname_eng: Rasulpur Tappa kasba
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217345'
+                    - vname: रसूलपुर तप्पा हवेली
+                      vname_eng: Rasulpur Tappa haweli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217353'
+                    - vname: रहमतनगर  (कस्बा)
+                      vname_eng: Rahamat Nagar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217354'
+                    - vname: रामदत्तपुर
+                      vname_eng: Ramdattpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217355'
+                    - vname: रामपुर ऊर्फ रामगढ़
+                      vname_eng: Rampur urf Ramghad
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217356'
+                    - vname: रामपुर नयागांव
+                      vname_eng: Rampur Nayagawn
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217357'
+                    - vname: रायगंज जनूबी
+                      vname_eng: Rayganj Janubi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217358'
+                    - vname: रायगंज सुमाली
+                      vname_eng: Rayganj sumali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217359'
+                    - vname: रोस्तमपुर कस्बा शहरी
+                      vname_eng: Rostampur kasba shahari
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217360'
+                    - vname: रोस्तमपुर तप्पा हवेली
+                      vname_eng: Rostampur Haweli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217361'
+                    - vname: लक्ष्मीपुर
+                      vname_eng: Laxmipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217362'
+                    - vname: लच्छीपुर
+                      vname_eng: Laxipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217363'
+                    - vname: शाहपुर
+                      vname_eng: Shahpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217364'
+                    - vname: शाहमारूफ
+                      vname_eng: Shahmaruf
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217365'
+                    - vname: शेरपुर  चमराह
+                      vname_eng: Sherpur Chamarah
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217366'
+                    - vname: शेषपुर
+                      vname_eng: Sheshpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217368'
+                    - vname: सलेमपुर
+                      vname_eng: Salempur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217369'
+                    - vname: सैयद आरिफपुर उर्फ सिधारीपुर
+                      vname_eng: Shai.Arifpur urf sidharipur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217370'
+                    - vname: हजारीपुर
+                      vname_eng: Hajaripur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217371'
+                    - vname: हनुमानचक
+                      vname_eng: Hanumanchak sarve
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217372'
+                    - vname: हमीदपुर
+                      vname_eng: Hamidpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217373'
+                    - vname: हरसेवकपुर न.1
+                      vname_eng: Harsewakpur no.1
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217374'
+                    - vname: हांसूपुर एहतमाली
+                      vname_eng: Hansupur Ehatmali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217375'
+                    - vname: हांसूपुर मुस्तकिल
+                      vname_eng: Hansupur Mustkil
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217376'
+                    - vname: हुमायूपुर
+                      vname_eng: Himayupur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '217377'
+                    - vname: सुग्गाटारी एह0
+                      vname_eng: Suggataari Ah.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220464'
+                    - vname: लालपुर टीकर एह0
+                      vname_eng: Lalpur Teekar Ah.
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220465'
+                    - vname: बरगदवा
+                      vname_eng: Bargadva tappa Kasba
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220471'
+                    - vname: बिलन्दपुर
+                      vname_eng: Bilandur tappa haveli
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220472'
+                    - vname: महुई सुघरपुर
+                      vname_eng: Mahuee Sugharpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220474'
+                    - vname: पिपराइच
+                      vname_eng: Pipraich tappa Patra
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220475'
+                    - vname: सेमरा
+                      vname_eng: Semara tappa khuthan
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220476'
+                    - vname: बनकटीचक
+                      vname_eng: Bankati chak
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220485'
+                    - vname: भरपुरवा तप्पा केवटली
+                      vname_eng: Bharpurwa tappa kevatali
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220488'
+                    - vname: इलाहीबाग
+                      vname_eng: Ilahibag
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220548'
+                    - vname: इस्माईलपुर
+                      vname_eng: Ismailpur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '220549'
+                    - vname: छितौनी सर्वे
+                      vname_eng: Chhitauni Survey
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221506'
+                    - vname: पिपरी एह0
+                      vname_eng: Pipri Survey
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221507'
+                    - vname: बहरामपुर मु0 सर्वे
+                      vname_eng: Behrampur Mu. Survey
+                      flg_chakbandi: 'N'
+                      flg_survey: 'Y'
+                      village_code_census: '221508'
+                    - vname: रुद्रपुर
+                      vname_eng: Rudrapur
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221509'
+                    - vname: जयराम कटकार
+                      vname_eng: Jairam Katkaar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221556'
+                    - vname: जं0 तिकोनिया नं0 3
+                      vname_eng: J. Tikoniya No. 3
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221557'
+                    - vname: आराजी छावनी
+                      vname_eng: Araaji Chhavni
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221558'
+                    - vname: आराजी पल्टन
+                      vname_eng: Araaji Paltan
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221559'
+                    - vname: उर्दू बाजार
+                      vname_eng: Urdu Bajaar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221560'
+                    - vname: रकाबगंज
+                      vname_eng: Rakaabganj
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221561'
+                    - vname: साहबगंज
+                      vname_eng: Sahabganj
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221562'
+                    - vname: अलीनगर जनूबी
+                      vname_eng: Alinagar janoobi
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221563'
+                    - vname: जं0 रामगढ़ सरकार
+                      vname_eng: J. Ramgarh Sarkar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221564'
+                    - vname: जं0 तिकोनिया नं0 3 वन ग्राम
+                      vname_eng: J. Tikoniya No. 3 vangram
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221565'
+                    - vname: जं0 रामगढ़ उर्फ सरकार आजाद नगर
+                      vname_eng: J. Ramgarh Urf Sarkar
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221566'
+                    - vname: जं0 रामगढ़ उर्फ रजही खाले टोला
+                      vname_eng: J. Ramgarh Urf Rajhi Khale Tola
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221567'
+                    - vname: आमबाग रामगढ़
+                      vname_eng: Aambag Ramgarh
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221568'
+                    - vname: चिलबिलवा वनग्राम
+                      vname_eng: Chilbilwa Vangram
+                      flg_chakbandi: 'N'
+                      flg_survey: 'N'
+                      village_code_census: '221569'
+                signature: >-
+                  MGQCMCjN7Eb4rP/LQOHn9aDfn8RaK6Fgcn6bLqlU4yhLmHrcqraxevJlJp94aNl7CL5JdAIwL68Nx1KHOinAMrD8aSjA8iaLn29olpk133X54B4U5zF07IrIUuTPAKPzAcaSLnCn
+                meta:
+                  txncode: Amit99
+                  ver: '1.0'
+                  ts: 2025-08-01T12:18:22+0530
+                hmac: fpp38Lh1oGYgpnzUUsrs0jWcTDq/HWQ6jzckIhHR3rE=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEx4tIZFCEKN7Q5JaoZJxqWBefoeYyKlwlazUux2RtmzhjLrkfmbSbSjQycO66MDqlhHgIl094NVq8NGE3nbW9yVMB75381fKzT8gceqZ3xh/JPCcWKVodcrdSZ8JNeCCF
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E501","status":"failed","info":"Invalid
+                district id
+                value"},"data":{},"signature":"MGUCMQDd1ko3+2v6i6NJfH7fzoNzTUu9FJsCoYre2EH5pzjLAvVzfKw+FXwLelQKD3DyFdkCMAnppAuBHNpvrMWdYIVd22X6FO4NHhviNOFidH9OAVEcJs18eL3fuCQDhh1GmG04sA==","meta":{"txncode":"Amit99","ver":"1.0","ts":"2025-08-01T12:19:11+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEFmiPObOoAPa4yuwlQeMJateSMomQemgQ78rphhwHBtzhAwPAjfF6wUPTADtsztPySglHN2tM456RV0zcCKw21pXVLQwZnqhJOz6zZNaw4KjgDyVvSOF2NZ53O+SrJuVF","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

@@ -1,0 +1,1405 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/rbih/landownerdetails/1.5/en:
+    get:
+      summary: Odisha
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '21'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{randomHeaderValue}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: consent-id
+          in: header
+          description: ''
+          required: true
+          example: 12345abcde
+          schema:
+            type: string
+        - name: scope
+          in: header
+          description: ''
+          required: true
+          example: '1'
+          schema:
+            type: string
+        - name: villageid
+          in: header
+          description: ''
+          required: true
+          example: '243'
+          schema:
+            type: string
+        - name: subdivnum
+          in: header
+          description: ''
+          required: true
+          example: '6908'
+          schema:
+            type: string
+        - name: distid
+          in: header
+          description: ''
+          required: true
+          example: '26'
+          schema:
+            type: string
+        - name: subdistid
+          in: header
+          description: ''
+          required: true
+          example: '2'
+          schema:
+            type: string
+        - name: khatanum
+          in: header
+          description: ''
+          required: true
+          example: 1AB
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      documentDetails:
+                        type: object
+                        properties:
+                          pattano:
+                            type: string
+                          poramboke:
+                            type: string
+                          form8no:
+                            type: string
+                          form6no:
+                            type: string
+                          surveynum:
+                            type: string
+                        required:
+                          - pattano
+                          - poramboke
+                          - form8no
+                          - form6no
+                          - surveynum
+                      farmRiskParams:
+                        type: object
+                        properties:
+                          assessed:
+                            type: string
+                          soiltypepri:
+                            type: string
+                          soilclass:
+                            type: string
+                          landtypeid:
+                            type: string
+                          irrsource:
+                            type: object
+                            properties:
+                              sourceofIrrigation:
+                                type: object
+                                properties:
+                                  source:
+                                    type: string
+                                required:
+                                  - source
+                            required:
+                              - sourceofIrrigation
+                          landrevenue:
+                            type: string
+                          landtypename:
+                            type: string
+                          llandusetype:
+                            type: string
+                          courtcaseremarks:
+                            type: string
+                          mortgageDetails:
+                            type: object
+                            properties:
+                              hypothecation:
+                                type: string
+                              addlremarks:
+                                type: array
+                                items: {}
+                              remarks:
+                                type: object
+                                properties: {}
+                              mortgaged:
+                                type: string
+                            required:
+                              - hypothecation
+                              - addlremarks
+                              - remarks
+                              - mortgaged
+                          soiltypesec:
+                            type: string
+                          courtcase:
+                            type: string
+                          llandtypename:
+                            type: string
+                          irrigated:
+                            type: string
+                          landusetype:
+                            type: string
+                          remarks:
+                            type: object
+                            properties: {}
+                        required:
+                          - assessed
+                          - soiltypepri
+                          - soilclass
+                          - landtypeid
+                          - irrsource
+                          - landrevenue
+                          - landtypename
+                          - llandusetype
+                          - courtcaseremarks
+                          - mortgageDetails
+                          - soiltypesec
+                          - courtcase
+                          - llandtypename
+                          - irrigated
+                          - landusetype
+                          - remarks
+                      landOwnerDetails:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            owner:
+                              type: object
+                              properties:
+                                lfathername:
+                                  type: string
+                                address:
+                                  type: string
+                                lheirtyp:
+                                  type: string
+                                statefarmeriddef:
+                                  type: string
+                                lfullname:
+                                  type: string
+                                caste:
+                                  type: string
+                                hissa:
+                                  type: number
+                                aadhartkn:
+                                  type: string
+                                farmerid:
+                                  type: string
+                                fathername:
+                                  type: string
+                                lcaste:
+                                  type: string
+                                heirpcshr:
+                                  type: number
+                                statefarmerid:
+                                  type: integer
+                                fullname:
+                                  type: string
+                                heirtyp:
+                                  type: string
+                                laddress:
+                                  type: string
+                              required:
+                                - lfathername
+                                - address
+                                - lheirtyp
+                                - statefarmeriddef
+                                - lfullname
+                                - caste
+                                - hissa
+                                - aadhartkn
+                                - farmerid
+                                - fathername
+                                - lcaste
+                                - heirpcshr
+                                - statefarmerid
+                                - fullname
+                                - heirtyp
+                                - laddress
+                            landParcel:
+                              type: object
+                              properties:
+                                extarea:
+                                  type: string
+                                landsubclass:
+                                  type: string
+                                khasrano:
+                                  type: string
+                                talukcode:
+                                  type: string
+                                geocoordinates:
+                                  type: string
+                                uc:
+                                  type: string
+                                parcelid:
+                                  type: string
+                                surveynoarea:
+                                  type: string
+                                districtid:
+                                  type: string
+                                pin:
+                                  type: string
+                                cultiarea:
+                                  type: string
+                                dateofmutation:
+                                  type: string
+                                khatatype:
+                                  type: string
+                                districtcode:
+                                  type: string
+                                landmainclass:
+                                  type: string
+                                otherrightsname:
+                                  type: string
+                                tehsilid:
+                                  type: string
+                                lgdcode:
+                                  type: string
+                                llandsubclass:
+                                  type: string
+                                plotno:
+                                  type: string
+                                khatanum:
+                                  type: string
+                                totarea:
+                                  type: number
+                                khasratype:
+                                  type: string
+                                extares:
+                                  type: string
+                                khatadesc:
+                                  type: string
+                                khatianrevenue:
+                                  type: string
+                                ccode:
+                                  type: string
+                                lkhatadesc:
+                                  type: string
+                                llandmainclass:
+                                  type: string
+                                utofarea:
+                                  type: string
+                                subdivnum:
+                                  type: string
+                                noncultiarea:
+                                  type: string
+                                tenurename:
+                                  type: string
+                                villagecode:
+                                  type: string
+                                ulpin:
+                                  type: string
+                              required:
+                                - extarea
+                                - landsubclass
+                                - khasrano
+                                - talukcode
+                                - geocoordinates
+                                - uc
+                                - parcelid
+                                - surveynoarea
+                                - districtid
+                                - pin
+                                - cultiarea
+                                - dateofmutation
+                                - khatatype
+                                - districtcode
+                                - landmainclass
+                                - otherrightsname
+                                - tehsilid
+                                - lgdcode
+                                - llandsubclass
+                                - plotno
+                                - khatanum
+                                - totarea
+                                - khasratype
+                                - extares
+                                - khatadesc
+                                - khatianrevenue
+                                - ccode
+                                - lkhatadesc
+                                - llandmainclass
+                                - utofarea
+                                - subdivnum
+                                - noncultiarea
+                                - tenurename
+                                - villagecode
+                                - ulpin
+                          required:
+                            - owner
+                            - landParcel
+                      cropYieldDetails:
+                        type: object
+                        properties:
+                          cropDetail:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                croparea:
+                                  type: string
+                                asichitarea:
+                                  type: string
+                                year:
+                                  type: string
+                                cropirrigationsource:
+                                  type: string
+                                seasontype:
+                                  type: string
+                                cropyear:
+                                  type: string
+                                sichitarea:
+                                  type: string
+                                cropirrigatedtype:
+                                  type: string
+                                croptype:
+                                  type: string
+                              required:
+                                - croparea
+                                - asichitarea
+                                - year
+                                - cropirrigationsource
+                                - seasontype
+                                - cropyear
+                                - sichitarea
+                                - cropirrigatedtype
+                                - croptype
+                        required:
+                          - cropDetail
+                    required:
+                      - documentDetails
+                      - farmRiskParams
+                      - landOwnerDetails
+                      - cropYieldDetails
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  documentDetails:
+                    pattano: ''
+                    poramboke: ''
+                    form8no: ''
+                    form6no: ''
+                    surveynum: ''
+                  farmRiskParams:
+                    assessed: ''
+                    soiltypepri: ''
+                    soilclass: ''
+                    landtypeid: ''
+                    irrsource:
+                      sourceofIrrigation:
+                        source: ''
+                    landrevenue: ''
+                    landtypename: ''
+                    llandusetype: ''
+                    courtcaseremarks: ''
+                    mortgageDetails:
+                      hypothecation: ''
+                      addlremarks: []
+                      remarks: {}
+                      mortgaged: ''
+                    soiltypesec: ''
+                    courtcase: ''
+                    llandtypename: ''
+                    irrigated: ''
+                    landusetype: ''
+                    remarks: {}
+                  landOwnerDetails:
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.97
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.97
+                        statefarmerid: 7095433
+                        fullname: CHINMAY MOHANTY
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 19.2685161036413,82.4321485339633
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Thu, 01 Sep 2022 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.4
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.4
+                        statefarmerid: 58
+                        fullname: ESWAR CHANDAL
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Thu, 18 Jul 1996 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.4
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.98
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.98
+                        statefarmerid: 5316664
+                        fullname: GOPINATH JENA
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Wed, 14 Dec 2022 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.2
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.2
+                        statefarmerid: 9173583
+                        fullname: shiv kumar sharma
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Wed, 09 Nov 2022 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.98
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.98
+                        statefarmerid: 7430727
+                        fullname: Bren Kumar Sahu
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Thu, 01 Dec 2022 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.45
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.45
+                        statefarmerid: 8403228
+                        fullname: Deepak Kumar Nanda
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Sat, 01 Jul 2023 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.95
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.95
+                        statefarmerid: 5316693
+                        fullname: Ranjit Kumar Sahu
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Thu, 01 Aug 2024 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.95
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.95
+                        statefarmerid: 9998082
+                        fullname: Brahma Kumar Sahu
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Fri, 02 Aug 2024 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.97
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.97
+                        statefarmerid: 9998082
+                        fullname: Brahma Kumar Sahu
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Fri, 09 Aug 2024 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.94
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.94
+                        statefarmerid: 9998082
+                        fullname: Brahma Kumar Sahu
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Sat, 02 Sep 2017 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.123
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.123
+                        statefarmerid: 5316631
+                        fullname: Mrutunjay Pani
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Sun, 01 Jun 2025 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.23
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.23
+                        statefarmerid: 10056609
+                        fullname: Suchismita panda
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Wed, 02 Jul 2025 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                    - owner:
+                        lfathername: ''
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: krushkId
+                        lfullname: ''
+                        caste: ''
+                        hissa: 0.1
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: ''
+                        lcaste: ''
+                        heirpcshr: 0.1
+                        statefarmerid: 10070270
+                        fullname: samarendra behura
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: ''
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: ''
+                        geocoordinates: 0,0
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '26'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: Thu, 03 Jul 2025 00:00:00 GMT
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: '2'
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: '6908'
+                        khatanum: '159'
+                        totarea: 0.98
+                        khasratype: ''
+                        extares: ''
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        lkhatadesc: ''
+                        llandmainclass: ''
+                        utofarea: acre
+                        subdivnum: '6908'
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '243'
+                        ulpin: ''
+                  cropYieldDetails:
+                    cropDetail:
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Amaranthus,Turmeric
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: kharif
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Jute
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: rabi
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Ground Nut
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Other tuber crops,Paddy,Perennial Fruit crops
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Bitter gourd,Bottle gourd,Jute,Other tuber crops
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Canal or Flood Irrigation
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Amaranthus,Turmeric
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Amaranthus,Turmeric
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Dug well
+                        seasontype: rabi
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Jute
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Dug well
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: >-
+                          Amaranthus,Bitter gourd,Black gram,Bottle
+                          gourd,Brinjal,Jute,Other horticultural crops,Other
+                          tuber crops,Turmeric
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Farm Pond
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Bottle gourd,Cucumber,Other tuber crops
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: ''
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Bottle gourd,Cucumber,Other tuber crops
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Borewell
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Bottle gourd,Cucumber,Other tuber crops
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Lift Irrigation
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Amaranthus,Bitter gourd,Black gram
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Dug well
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Amaranthus
+                      - croparea: ''
+                        asichitarea: ''
+                        year: ''
+                        cropirrigationsource: Lift Irrigation
+                        seasontype: zaid
+                        cropyear: ''
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: Amaranthus,Other horticultural crops
+                signature: >-
+                  MGUCMGRT52XF50dYM6Fj5LkEWLaxGd9slGThzEqPBIva1ew3NNy44Tlb9DNDAzacKiEiTgIxAINT/56ylyihMTqPkURS6Sp5gq9U64iP3weCz5lwvHiSN2rbWxKuX1aU3+d+KC23FA==
+                meta:
+                  txncode: RBIH2025073110263975
+                  ver: '1.5'
+                  ts: 2025-07-31T15:56:04+0530
+                hmac: rvdvxQBMnkmLohtQLB2guYdNFkhQhaVzZm7Fz8EaawE=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEcN3TWp4/f7wxejd/IyBjneYw4EBpVWB/bxiAnvop62LWfTEEfciZlm98lLUsVJA1TGO6dZ0Snk23l4gpH3rfiYBWO+1cmbAZbts6T+Fcqt9UcFyP7c56S6mRdq+KudM2
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E529
+                  status: failed
+                  info: Invalid khata number value
+                data: {}
+                signature: >-
+                  MGYCMQCGuNxtcQI5WkggXBBCd0nGUrN+4A4Ce44t38FlL3CHAMZG9w7TEp9oYckUtsfcgmECMQDb4epc3bjTnJF1kk2qspkbh8w8goAlT78QrDHpJj1YReA6xkcyL9T/itDPU8jjyvI=
+                meta:
+                  txncode: RBIH2025073110405829
+                  ver: '1.5'
+                  ts: 2025-07-31T16:10:07+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAER1P7S9dZ0fCDjLey6DfYtnCO+P4OeBIqu7NqdruvsuLwr/7g4D0OxVxQGSpV9TzXJPrTG0Li3e9pX3OTEo0N7sDeP30TMh3XEsy+2HqCpMr7iiLbkBsAGyt6R5a3L+bh
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

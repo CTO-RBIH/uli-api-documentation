@@ -1,0 +1,425 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /:
+    get:
+      summary: Get Districts
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{txncode}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '{{provider}}'
+          schema:
+            type: string
+        - name: servicename
+          in: header
+          description: ''
+          required: true
+          example: '{{servicename}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      district:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            district_name:
+                              type: string
+                            district_name_hindi:
+                              type: string
+                            district_code_census:
+                              type: string
+                          required:
+                            - district_name
+                            - district_name_hindi
+                            - district_code_census
+                    required:
+                      - district
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  district:
+                    - district_name: Agra
+                      district_name_hindi: आगरा
+                      district_code_census: '146'
+                    - district_name: Aligarh
+                      district_name_hindi: अलीगढ़
+                      district_code_census: '143'
+                    - district_name: Ambedkarnagar
+                      district_name_hindi: अम्बेडकरनगर
+                      district_code_census: '178'
+                    - district_name: Amethi
+                      district_name_hindi: अमेठी
+                      district_code_census: '203'
+                    - district_name: Amroha
+                      district_name_hindi: अमरोहा
+                      district_code_census: '137'
+                    - district_name: Auraya
+                      district_name_hindi: औरैया
+                      district_code_census: '162'
+                    - district_name: Ayodhya
+                      district_name_hindi: अयोध्या
+                      district_code_census: '177'
+                    - district_name: Azamgarh
+                      district_name_hindi: आजमगढ
+                      district_code_census: '191'
+                    - district_name: Badaun
+                      district_name_hindi: बदायूँ
+                      district_code_census: '149'
+                    - district_name: Bagpat
+                      district_name_hindi: बागपत
+                      district_code_census: '139'
+                    - district_name: Ballia
+                      district_name_hindi: बलिया
+                      district_code_census: '193'
+                    - district_name: Balrampur
+                      district_name_hindi: बलरामपुर
+                      district_code_census: '182'
+                    - district_name: Banda
+                      district_name_hindi: बाँदा
+                      district_code_census: '170'
+                    - district_name: Barabanki
+                      district_name_hindi: बाराबंकी
+                      district_code_census: '176'
+                    - district_name: Bareilly
+                      district_name_hindi: बरेली
+                      district_code_census: '150'
+                    - district_name: Basti
+                      district_name_hindi: बस्ती
+                      district_code_census: '185'
+                    - district_name: Behraich
+                      district_name_hindi: बहराइच
+                      district_code_census: '180'
+                    - district_name: Bhadohi
+                      district_name_hindi: भदोही
+                      district_code_census: '198'
+                    - district_name: Bijnor
+                      district_name_hindi: बिजनौर
+                      district_code_census: '134'
+                    - district_name: Bulandshahar
+                      district_name_hindi: बुलन्द शहर
+                      district_code_census: '142'
+                    - district_name: Chandauli
+                      district_name_hindi: चन्दौली
+                      district_code_census: '196'
+                    - district_name: Chitrakoot
+                      district_name_hindi: चित्रकूट
+                      district_code_census: '171'
+                    - district_name: Deoria
+                      district_name_hindi: देवरिया
+                      district_code_census: '190'
+                    - district_name: Etah
+                      district_name_hindi: एटा
+                      district_code_census: '201'
+                    - district_name: Etawah
+                      district_name_hindi: इटावा
+                      district_code_census: '161'
+                    - district_name: Farrukhabad
+                      district_name_hindi: फर्रूखाबाद
+                      district_code_census: '159'
+                    - district_name: Fatehpur
+                      district_name_hindi: फतेहपुर
+                      district_code_census: '172'
+                    - district_name: Firozabad
+                      district_name_hindi: फिरोजाबाद
+                      district_code_census: '147'
+                    - district_name: Gbnagar
+                      district_name_hindi: गौतम बुद्ध नगर
+                      district_code_census: '141'
+                    - district_name: Ghaziabad
+                      district_name_hindi: गाजियाबाद
+                      district_code_census: '140'
+                    - district_name: Ghazipur
+                      district_name_hindi: गाजीपुर
+                      district_code_census: '195'
+                    - district_name: Gonda
+                      district_name_hindi: गोंडा
+                      district_code_census: '183'
+                    - district_name: Gorakhpur
+                      district_name_hindi: गोरखपुर
+                      district_code_census: '188'
+                    - district_name: Hamirpur
+                      district_name_hindi: हमीरपुर
+                      district_code_census: '168'
+                    - district_name: Hapur
+                      district_name_hindi: हापुड़
+                      district_code_census: '204'
+                    - district_name: Hardoi
+                      district_name_hindi: हरदोई
+                      district_code_census: '155'
+                    - district_name: Hathras
+                      district_name_hindi: हाथरस
+                      district_code_census: '144'
+                    - district_name: Jalaun
+                      district_name_hindi: जालौन
+                      district_code_census: '165'
+                    - district_name: Jaunpur
+                      district_name_hindi: जौनपुर
+                      district_code_census: '194'
+                    - district_name: Jhansi
+                      district_name_hindi: झांसी
+                      district_code_census: '166'
+                    - district_name: Kannauj
+                      district_name_hindi: कन्नौज
+                      district_code_census: '160'
+                    - district_name: Kanpurdehat
+                      district_name_hindi: कानपुर देहात
+                      district_code_census: '163'
+                    - district_name: Kanpurnagar
+                      district_name_hindi: कानपुर नगर
+                      district_code_census: '164'
+                    - district_name: Kasganj
+                      district_name_hindi: कासगंज
+                      district_code_census: '202'
+                    - district_name: Kaushambhi
+                      district_name_hindi: कौशाम्बी
+                      district_code_census: '174'
+                    - district_name: Kheri
+                      district_name_hindi: खीरी
+                      district_code_census: '153'
+                    - district_name: Kushinagar
+                      district_name_hindi: कुशीनगर
+                      district_code_census: '189'
+                    - district_name: Lalitpur
+                      district_name_hindi: ललितपुर
+                      district_code_census: '167'
+                    - district_name: Lucknow
+                      district_name_hindi: लखनऊ
+                      district_code_census: '157'
+                    - district_name: Maharajganj
+                      district_name_hindi: महाराजगंज
+                      district_code_census: '187'
+                    - district_name: Mahoba
+                      district_name_hindi: महोबा
+                      district_code_census: '169'
+                    - district_name: Mainpuri
+                      district_name_hindi: मैनपुरी
+                      district_code_census: '148'
+                    - district_name: Mathura
+                      district_name_hindi: मथुरा
+                      district_code_census: '145'
+                    - district_name: Mau
+                      district_name_hindi: मऊ
+                      district_code_census: '192'
+                    - district_name: Meerut
+                      district_name_hindi: मेरठ
+                      district_code_census: '138'
+                    - district_name: Mirzapur
+                      district_name_hindi: मिर्जापुर
+                      district_code_census: '199'
+                    - district_name: Moradabad
+                      district_name_hindi: मुरादाबाद
+                      district_code_census: '135'
+                    - district_name: Muzaffarnagar
+                      district_name_hindi: मुजफफर नगर
+                      district_code_census: '133'
+                    - district_name: Pilibhit
+                      district_name_hindi: पीलीभीत
+                      district_code_census: '151'
+                    - district_name: Pratapgarh
+                      district_name_hindi: प्रतापगढ
+                      district_code_census: '173'
+                    - district_name: Prayagraj
+                      district_name_hindi: प्रयागराज
+                      district_code_census: '175'
+                    - district_name: Raebareli
+                      district_name_hindi: रायबरेली
+                      district_code_census: '158'
+                    - district_name: Rampur
+                      district_name_hindi: रामपुर
+                      district_code_census: '136'
+                    - district_name: Saharanpur
+                      district_name_hindi: सहारनपुर
+                      district_code_census: '132'
+                    - district_name: Sambhal
+                      district_name_hindi: सम्भल
+                      district_code_census: '205'
+                    - district_name: Santkabirnagar
+                      district_name_hindi: सन्तकबीर नगर
+                      district_code_census: '186'
+                    - district_name: Shahjahanpur
+                      district_name_hindi: शाहजहांपुर
+                      district_code_census: '152'
+                    - district_name: Shamli
+                      district_name_hindi: शामली
+                      district_code_census: '206'
+                    - district_name: Shravasti
+                      district_name_hindi: श्रावस्ती
+                      district_code_census: '181'
+                    - district_name: Sidharthnagar
+                      district_name_hindi: सिद्धार्थनगर
+                      district_code_census: '184'
+                    - district_name: Sitapur
+                      district_name_hindi: सीतापुर
+                      district_code_census: '154'
+                    - district_name: Sonbhadra
+                      district_name_hindi: सोनभद्र
+                      district_code_census: '200'
+                    - district_name: Sultanpur
+                      district_name_hindi: सुल्तानपुर
+                      district_code_census: '179'
+                    - district_name: Unnao
+                      district_name_hindi: उन्नाव
+                      district_code_census: '156'
+                    - district_name: Varanasi
+                      district_name_hindi: वाराणसी
+                      district_code_census: '197'
+                signature: >-
+                  MGUCMQDKDbDX9VWqiqq2xWg7F59GoRew14fRYRKHS6pEl8NFS0v4NfXrQU7eMy+KWL6eZMACMHDr01rClI4gaMnVwaQFFUJen41gkExeryQgUHjocCm55u9kUjKXwmc/hC+JLp6g7g==
+                meta:
+                  txncode: Amit99
+                  ver: '1.0'
+                  ts: 2025-08-01T12:00:12+0530
+                hmac: P1XgUxxj48inInVW5IYa3OPEs+150WWMLYJtIK/tabI=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE3CK/RjsjhbLrHWazfK1HOP1RoyqXBbHQz7+saHsIJlG58UdQ3/lipUTIygjV9N9QH6e0n60CFAQ/GTCjNkftLllhxA9Z7SMhHs1YZPTyQ6F7ABY10uPYZ5UnwVptO75K
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E975","status":"failed","info":"Invalid
+                servicename
+                value"},"data":{},"signature":"MGUCMQDd1ko3+2v6i6NJfH7fzoNzTUu9FJsCoYre2EH5pzjLAvVzfKw+FXwLelQKD3DyFdkCMAnppAuBHNpvrMWdYIVd22X6FO4NHhviNOFidH9OAVEcJs18eL3fuCQDhh1GmG04sA==","meta":{"txncode":"Amit99","ver":"1.0","ts":"2025-08-01T12:02:21+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEFmiPObOoAPa4yuwlQeMJateSMomQemgQ78rphhwHBtzhAwPAjfF6wUPTADtsztPySglHN2tM456RV0zcCKw21pXVLQwZnqhJOz6zZNaw4KjgDyVvSOF2NZ53O+SrJuVF","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

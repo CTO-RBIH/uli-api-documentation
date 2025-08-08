@@ -1,0 +1,631 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/rbih/landownerdetails/1.5/en:
+    get:
+      summary: Tamil Nadu
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '33'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{randomHeaderValue}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: consent-id
+          in: header
+          description: ''
+          required: true
+          example: '3123123'
+          schema:
+            type: string
+        - name: scope
+          in: header
+          description: ''
+          required: true
+          example: '1'
+          schema:
+            type: string
+        - name: villageid
+          in: header
+          description: ''
+          required: true
+          example: '642914'
+          schema:
+            type: string
+        - name: subdivnum
+          in: header
+          description: ''
+          required: true
+          example: 4B
+          schema:
+            type: string
+        - name: distid
+          in: header
+          description: ''
+          required: true
+          example: '592'
+          schema:
+            type: string
+        - name: subdistid
+          in: header
+          description: ''
+          required: true
+          example: '5967'
+          schema:
+            type: string
+        - name: surveynum
+          in: header
+          description: ''
+          required: true
+          example: 2ab
+          schema:
+            type: string
+        - name: api-key
+          in: header
+          description: ''
+          required: true
+          example: 434950ee34353tty33463399
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      documentDetails:
+                        type: object
+                        properties:
+                          pattano:
+                            type: integer
+                          form8no:
+                            type: string
+                          poramboke:
+                            type: string
+                          form6no:
+                            type: string
+                          surveynum:
+                            type: string
+                        required:
+                          - pattano
+                          - form8no
+                          - poramboke
+                          - form6no
+                          - surveynum
+                      farmRiskParams:
+                        type: object
+                        properties:
+                          assessed:
+                            type: string
+                          soiltypepri:
+                            type: integer
+                          soilclass:
+                            type: string
+                          landtypeid:
+                            type: string
+                          irrsource:
+                            type: object
+                            properties:
+                              sourceofIrrigation:
+                                type: object
+                                properties:
+                                  source:
+                                    type: string
+                                required:
+                                  - source
+                            required:
+                              - sourceofIrrigation
+                          landrevenue:
+                            type: string
+                          landtypename:
+                            type: string
+                          courtcaseremarks:
+                            type: string
+                          llandusetype:
+                            type: string
+                          mortgageDetails:
+                            type: object
+                            properties:
+                              hypothecation:
+                                type: string
+                              addlremarks:
+                                type: array
+                                items: {}
+                              remarks:
+                                type: object
+                                properties: {}
+                              mortgaged:
+                                type: string
+                            required:
+                              - hypothecation
+                              - addlremarks
+                              - remarks
+                              - mortgaged
+                          soiltypesec:
+                            type: string
+                          courtcase:
+                            type: string
+                          llandtypename:
+                            type: string
+                          irrigated:
+                            type: string
+                          remarks:
+                            type: object
+                            properties: {}
+                          landusetype:
+                            type: string
+                        required:
+                          - assessed
+                          - soiltypepri
+                          - soilclass
+                          - landtypeid
+                          - irrsource
+                          - landrevenue
+                          - landtypename
+                          - courtcaseremarks
+                          - llandusetype
+                          - mortgageDetails
+                          - soiltypesec
+                          - courtcase
+                          - llandtypename
+                          - irrigated
+                          - remarks
+                          - landusetype
+                      landOwnerDetails:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            owner:
+                              type: object
+                              properties:
+                                lfathername:
+                                  type: string
+                                address:
+                                  type: string
+                                lheirtyp:
+                                  type: string
+                                statefarmeriddef:
+                                  type: string
+                                lfullname:
+                                  type: string
+                                caste:
+                                  type: string
+                                hissa:
+                                  type: string
+                                aadhartkn:
+                                  type: string
+                                farmerid:
+                                  type: string
+                                fathername:
+                                  type: string
+                                lcaste:
+                                  type: string
+                                heirpcshr:
+                                  type: integer
+                                statefarmerid:
+                                  type: string
+                                fullname:
+                                  type: string
+                                heirtyp:
+                                  type: string
+                                laddress:
+                                  type: string
+                              required:
+                                - lfathername
+                                - address
+                                - lheirtyp
+                                - statefarmeriddef
+                                - lfullname
+                                - caste
+                                - hissa
+                                - aadhartkn
+                                - farmerid
+                                - fathername
+                                - lcaste
+                                - heirpcshr
+                                - statefarmerid
+                                - fullname
+                                - heirtyp
+                                - laddress
+                            landParcel:
+                              type: object
+                              properties:
+                                extarea:
+                                  type: string
+                                landsubclass:
+                                  type: string
+                                khasrano:
+                                  type: string
+                                talukcode:
+                                  type: string
+                                geocoordinates:
+                                  type: string
+                                uc:
+                                  type: string
+                                parcelid:
+                                  type: string
+                                surveynoarea:
+                                  type: string
+                                districtid:
+                                  type: string
+                                pin:
+                                  type: string
+                                cultiarea:
+                                  type: string
+                                dateofmutation:
+                                  type: string
+                                khatatype:
+                                  type: string
+                                districtcode:
+                                  type: string
+                                landmainclass:
+                                  type: string
+                                otherrightsname:
+                                  type: string
+                                tehsilid:
+                                  type: string
+                                lgdcode:
+                                  type: string
+                                llandsubclass:
+                                  type: string
+                                plotno:
+                                  type: string
+                                khatanum:
+                                  type: string
+                                extares:
+                                  type: integer
+                                khasratype:
+                                  type: string
+                                totarea:
+                                  type: string
+                                khatadesc:
+                                  type: string
+                                khatianrevenue:
+                                  type: string
+                                ccode:
+                                  type: string
+                                utofarea:
+                                  type: string
+                                llandmainclass:
+                                  type: string
+                                lkhatadesc:
+                                  type: string
+                                subdivnum:
+                                  type: string
+                                noncultiarea:
+                                  type: string
+                                tenurename:
+                                  type: string
+                                villagecode:
+                                  type: string
+                                ulpin:
+                                  type: string
+                              required:
+                                - extarea
+                                - landsubclass
+                                - khasrano
+                                - talukcode
+                                - geocoordinates
+                                - uc
+                                - parcelid
+                                - surveynoarea
+                                - districtid
+                                - pin
+                                - cultiarea
+                                - dateofmutation
+                                - khatatype
+                                - districtcode
+                                - landmainclass
+                                - otherrightsname
+                                - tehsilid
+                                - lgdcode
+                                - llandsubclass
+                                - plotno
+                                - khatanum
+                                - extares
+                                - khasratype
+                                - totarea
+                                - khatadesc
+                                - khatianrevenue
+                                - ccode
+                                - utofarea
+                                - llandmainclass
+                                - lkhatadesc
+                                - subdivnum
+                                - noncultiarea
+                                - tenurename
+                                - villagecode
+                                - ulpin
+                      cropYieldDetails:
+                        type: object
+                        properties:
+                          cropDetail:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                croparea:
+                                  type: string
+                                asichitarea:
+                                  type: string
+                                year:
+                                  type: integer
+                                cropirrigationsource:
+                                  type: 'null'
+                                seasontype:
+                                  type: string
+                                sichitarea:
+                                  type: string
+                                cropirrigatedtype:
+                                  type: string
+                                croptype:
+                                  type: 'null'
+                        required:
+                          - cropDetail
+                    required:
+                      - documentDetails
+                      - farmRiskParams
+                      - landOwnerDetails
+                      - cropYieldDetails
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  documentDetails:
+                    pattano: 1346
+                    form8no: ''
+                    poramboke: ''
+                    form6no: 2021/0103/29/279145
+                    surveynum: '225   '
+                  farmRiskParams:
+                    assessed: ''
+                    soiltypepri: 4
+                    soilclass: '7 '
+                    landtypeid: ''
+                    irrsource:
+                      sourceofIrrigation:
+                        source: ''
+                    landrevenue: ''
+                    landtypename: ''
+                    courtcaseremarks: ''
+                    llandusetype: ''
+                    mortgageDetails:
+                      hypothecation: ''
+                      addlremarks: []
+                      remarks: {}
+                      mortgaged: ''
+                    soiltypesec: '2'
+                    courtcase: ''
+                    llandtypename: ''
+                    irrigated: ''
+                    remarks: {}
+                    landusetype: ''
+                  landOwnerDetails:
+                    - owner:
+                        lfathername: சண்முகவேல்
+                        address: ''
+                        lheirtyp: ''
+                        statefarmeriddef: ''
+                        lfullname: கருப்பசாமி
+                        caste: ''
+                        hissa: ''
+                        aadhartkn: ''
+                        farmerid: ''
+                        fathername: shanmugavel
+                        lcaste: ''
+                        heirpcshr: 0
+                        statefarmerid: ''
+                        fullname: karuppasaami
+                        heirtyp: ''
+                        laddress: ''
+                      landParcel:
+                        extarea: '8.0000'
+                        landsubclass: ''
+                        khasrano: ''
+                        talukcode: '5967'
+                        geocoordinates: ''
+                        uc: ''
+                        parcelid: ''
+                        surveynoarea: ''
+                        districtid: '592'
+                        pin: ''
+                        cultiarea: ''
+                        dateofmutation: ''
+                        khatatype: ''
+                        districtcode: ''
+                        landmainclass: ''
+                        otherrightsname: ''
+                        tehsilid: ''
+                        lgdcode: ''
+                        llandsubclass: ''
+                        plotno: ''
+                        khatanum: ''
+                        extares: 8
+                        khasratype: ''
+                        totarea: '8.0000'
+                        khatadesc: ''
+                        khatianrevenue: ''
+                        ccode: ''
+                        utofarea: ares
+                        llandmainclass: ''
+                        lkhatadesc: ''
+                        subdivnum: 4B
+                        noncultiarea: ''
+                        tenurename: ''
+                        villagecode: '642914'
+                        ulpin: ''
+                  cropYieldDetails:
+                    cropDetail:
+                      - croparea: '0.016'
+                        asichitarea: ''
+                        year: 2024
+                        cropirrigationsource: null
+                        seasontype: Rabi
+                        sichitarea: ''
+                        cropirrigatedtype: ''
+                        croptype: null
+                signature: >-
+                  MGUCMDMo9/32zl0l0qsHDV0p64ojSakojsHupdMKkNAWcHrrBKR+6MCD1Dbo3Vs/2UXkUwIxAO2EkoT27DEeuTuiL5v/uNF47HehIe7FYr000UDsBrsyO314FgJfOeTzfb/2Wq/0yg==
+                meta:
+                  txncode: RBIH2025073110278644
+                  ver: '1.5'
+                  ts: 2025-07-31T15:57:31+0530
+                hmac: z0ROFr4NewyDj48Smu9n4nhXUeqKZhYN4d+PTGopE2o=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAERY6ZRst8LeojWXIjOA1sEFWBU2WC2GGIu2boYHlNiWeT9yle3SjiuSMQit3DJJdFvYvl3k8ipTjrFhtKBiuR6YaSjBELNZrDlNVV1XcLNLO0D1Rf01c4p6SPqMiT5ujv
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E504
+                  status: failed
+                  info: Owner data not found
+                data: {}
+                signature: >-
+                  MGYCMQCGuNxtcQI5WkggXBBCd0nGUrN+4A4Ce44t38FlL3CHAMZG9w7TEp9oYckUtsfcgmECMQDb4epc3bjTnJF1kk2qspkbh8w8goAlT78QrDHpJj1YReA6xkcyL9T/itDPU8jjyvI=
+                meta:
+                  txncode: RBIH2025073110437293
+                  ver: '1.5'
+                  ts: 2025-07-31T16:13:07+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAER1P7S9dZ0fCDjLey6DfYtnCO+P4OeBIqu7NqdruvsuLwr/7g4D0OxVxQGSpV9TzXJPrTG0Li3e9pX3OTEo0N7sDeP30TMh3XEsy+2HqCpMr7iiLbkBsAGyt6R5a3L+bh
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

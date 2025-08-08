@@ -1,0 +1,302 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/lrsmasterdata/1.0/en:
+    get:
+      summary: Get Districts
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{txncode}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '{{provider}}'
+          schema:
+            type: string
+        - name: servicename
+          in: header
+          description: ''
+          required: true
+          example: '{{servicename}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      response:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            distname:
+                              type: string
+                            Dist_lgcode:
+                              type: string
+                            distname_Eng:
+                              type: string
+                          required:
+                            - distname
+                            - Dist_lgcode
+                            - distname_Eng
+                    required:
+                      - response
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  response:
+                    - distname: अजमेर
+                      Dist_lgcode: '86'
+                      distname_Eng: Ajmer
+                    - distname: अलवर
+                      Dist_lgcode: '87'
+                      distname_Eng: Alwar
+                    - distname: उदयपुर
+                      Dist_lgcode: '117'
+                      distname_Eng: Udaipur
+                    - distname: करौली
+                      Dist_lgcode: '108'
+                      distname_Eng: Karauli
+                    - distname: कोटा
+                      Dist_lgcode: '109'
+                      distname_Eng: Kota
+                    - distname: गंगानगर
+                      Dist_lgcode: '100'
+                      distname_Eng: Ganganagar
+                    - distname: चूरू
+                      Dist_lgcode: '96'
+                      distname_Eng: Churu
+                    - distname: चित्तौड़गढ़
+                      Dist_lgcode: '95'
+                      distname_Eng: Chittorgarh
+                    - distname: जयपुर
+                      Dist_lgcode: '102'
+                      distname_Eng: Jaipur
+                    - distname: जैसलमेर
+                      Dist_lgcode: '103'
+                      distname_Eng: Jaisalmer
+                    - distname: जालोर
+                      Dist_lgcode: '104'
+                      distname_Eng: Jalore
+                    - distname: जोधपुर
+                      Dist_lgcode: '107'
+                      distname_Eng: Jodhpur
+                    - distname: झूंझुनू
+                      Dist_lgcode: '106'
+                      distname_Eng: Jhunjhunu
+                    - distname: झालावाड़
+                      Dist_lgcode: '105'
+                      distname_Eng: Jhalawar
+                    - distname: टोंक
+                      Dist_lgcode: '116'
+                      distname_Eng: tonk
+                    - distname: डूँगरपुर
+                      Dist_lgcode: '99'
+                      distname_Eng: Dungarpur
+                    - distname: दौसा
+                      Dist_lgcode: '97'
+                      distname_Eng: Dausa
+                    - distname: धौलपुर
+                      Dist_lgcode: '98'
+                      distname_Eng: Dholpur
+                    - distname: नागौर
+                      Dist_lgcode: '110'
+                      distname_Eng: Nagaur
+                    - distname: नीमकाथाना
+                      Dist_lgcode: '0022'
+                      distname_Eng: Neem Ka Thana
+                    - distname: प्रतापगढ
+                      Dist_lgcode: '629'
+                      distname_Eng: Pratapgarh
+                    - distname: पाली
+                      Dist_lgcode: '111'
+                      distname_Eng: Pali
+                    - distname: बूँदी
+                      Dist_lgcode: '94'
+                      distname_Eng: Bundi
+                    - distname: बाड़मेर
+                      Dist_lgcode: '90'
+                      distname_Eng: barmer
+                    - distname: बाराँ
+                      Dist_lgcode: '89'
+                      distname_Eng: Baran
+                    - distname: बाँसवाड़ा
+                      Dist_lgcode: '88'
+                      distname_Eng: Banswara
+                    - distname: बीकानेर
+                      Dist_lgcode: '93'
+                      distname_Eng: Bikaner
+                    - distname: भरतपुर
+                      Dist_lgcode: '91'
+                      distname_Eng: Bharatpur
+                    - distname: भीलवाड़ा
+                      Dist_lgcode: '92'
+                      distname_Eng: Bhilwara
+                    - distname: राजसमन्द
+                      Dist_lgcode: '112'
+                      distname_Eng: Rajsamanad
+                    - distname: सवाईमाधोपुर
+                      Dist_lgcode: '113'
+                      distname_Eng: Sawai Madhopur
+                    - distname: सिरोही
+                      Dist_lgcode: '115'
+                      distname_Eng: sirohi
+                    - distname: सीकर
+                      Dist_lgcode: '114'
+                      distname_Eng: Sikar
+                    - distname: हनुमानगढ़
+                      Dist_lgcode: '101'
+                      distname_Eng: Hanumangarh
+                signature: >-
+                  MGYCMQDxvKmyuyphQLVehT5jJMpsyMnfiHpBJWo+OLFOU1WnjefBDqkmr+oLOeIXJP59oLICMQCUJ8RkYEAH5oYQmJv2102xzVp9CxPZ0RgL/YNAMkaG20SlVDot71Rjhiedt24KoUk=
+                meta:
+                  txncode: Amit99
+                  ver: '1.0'
+                  ts: 2025-08-01T11:28:33+0530
+                hmac: eOALsGnl784trfN2JhNEQZ99xhGrVQmnQncJR+29teo=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE3TI6R9mBlMvMXtFD3RrR+yMEDpD8BXMZmhIbgrmvJWB8IblGCQC9jdiprHLfJu6jiYX8T8WaZHpxUxe5bO8IKOs9I/9ljcQeMtBlTOFQz8Na6/VevwfMSPj5OHCdmpQZ
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E975","status":"failed","info":"Invalid
+                servicename
+                value"},"data":{},"signature":"MGUCMQDd1ko3+2v6i6NJfH7fzoNzTUu9FJsCoYre2EH5pzjLAvVzfKw+FXwLelQKD3DyFdkCMAnppAuBHNpvrMWdYIVd22X6FO4NHhviNOFidH9OAVEcJs18eL3fuCQDhh1GmG04sA==","meta":{"txncode":"Amit99","ver":"1.0","ts":"2025-08-01T11:29:29+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEFmiPObOoAPa4yuwlQeMJateSMomQemgQ78rphhwHBtzhAwPAjfF6wUPTADtsztPySglHN2tM456RV0zcCKw21pXVLQwZnqhJOz6zZNaw4KjgDyVvSOF2NZ53O+SrJuVF","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

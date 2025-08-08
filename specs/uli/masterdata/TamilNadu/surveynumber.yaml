@@ -1,0 +1,507 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /:
+    get:
+      summary: Get Surveynumber
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{txncode}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '{{provider}}'
+          schema:
+            type: string
+        - name: servicename
+          in: header
+          description: ''
+          required: true
+          example: '{{servicename}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: lgdcode
+          in: header
+          description: ''
+          required: true
+          example: '{{lgdcode}}'
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          example: >-
+            Bearer
+            eyJ4NXQiOiJNR1JasdfasdkfjdahskfjsdhfkljasdfhdjfsadfdfsdfsdqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJCaGFrdGkuS2FoYW5kYWwiLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IkNZYUxtRENiS0JrRHRlYTRaTEYxeTFvbW80UWEiLCJuYmYiOjE3MTk5ODEyOTMsImF6cCI6IkNZYUxtRENiS0JrRHRlYTRaTEYxeTFvbW80UWEiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3MjAwMjQ0OTMsImlhdCI6MTcxOTk4MTI5MywianRpIjoiMzljZGYxYjktMGQzMC00NzQ4LWJlNGQtN2YxNjdkNGI0MTk5In0.cX1tJW8M-x2N_rSGMUPI02MXGARm5S48_WuEULX0yQzA48n9IY3Xf7dljF0a0bK4NSQ60kC0C2aFv721BhjnImgAJf1YT6pqDKCbH3LnE_qlWsu2oUUNN_KNWbVnAzKhX-8lW3IvfRR1YR9APgm5tiT_Ru1Np2skZ1YWrEs9XiI-V2wGIDUKQg6BuJceKjxlj5dOb0UgwPMc-dCJ36OtseLwcTuVrC6V6a9njJOHAWtTe8l2-HdmoPk7ohseYeIuEES32LdJvoWIS8G6zevmApYQKJ-N7tDVubsETm1qLPBveZI79ErAZzHBcePzA5-x3YlzfoG8o1XU6yhQDDBKEg
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      survey_numbers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            survey_number:
+                              type: string
+                          required:
+                            - survey_number
+                    required:
+                      - survey_numbers
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  survey_numbers:
+                    - survey_number: '121'
+                    - survey_number: 310a
+                    - survey_number: '124'
+                    - survey_number: '165'
+                    - survey_number: '28'
+                    - survey_number: '6'
+                    - survey_number: '404'
+                    - survey_number: '151'
+                    - survey_number: '256'
+                    - survey_number: '160'
+                    - survey_number: 342B
+                    - survey_number: '104'
+                    - survey_number: 350a
+                    - survey_number: 310A
+                    - survey_number: '74'
+                    - survey_number: '140'
+                    - survey_number: '132'
+                    - survey_number: '351'
+                    - survey_number: '195'
+                    - survey_number: '88'
+                    - survey_number: '78'
+                    - survey_number: '205'
+                    - survey_number: '371'
+                    - survey_number: 350A
+                    - survey_number: '213'
+                    - survey_number: '251'
+                    - survey_number: '204'
+                    - survey_number: '102'
+                    - survey_number: '92'
+                    - survey_number: '149'
+                    - survey_number: '200'
+                    - survey_number: '164'
+                    - survey_number: '184'
+                    - survey_number: '332'
+                    - survey_number: 342A
+                    - survey_number: '325'
+                    - survey_number: '223'
+                    - survey_number: '146'
+                    - survey_number: '45'
+                    - survey_number: '69'
+                    - survey_number: '52'
+                    - survey_number: '56'
+                    - survey_number: '22'
+                    - survey_number: '63'
+                    - survey_number: '221'
+                    - survey_number: '58'
+                    - survey_number: '101'
+                    - survey_number: '244'
+                    - survey_number: '239'
+                    - survey_number: '59'
+                    - survey_number: '360'
+                    - survey_number: '196'
+                    - survey_number: '11'
+                    - survey_number: 331a
+                    - survey_number: 331A
+                    - survey_number: '298'
+                    - survey_number: '202'
+                    - survey_number: 334A
+                    - survey_number: 331B
+                    - survey_number: '236'
+                    - survey_number: '259'
+                    - survey_number: '30'
+                    - survey_number: '289'
+                    - survey_number: '91'
+                    - survey_number: '171'
+                    - survey_number: '87'
+                    - survey_number: '210'
+                    - survey_number: '354'
+                    - survey_number: '75'
+                    - survey_number: '13'
+                    - survey_number: '182'
+                    - survey_number: '199'
+                    - survey_number: '114'
+                    - survey_number: '139'
+                    - survey_number: '241'
+                    - survey_number: '324'
+                    - survey_number: '281'
+                    - survey_number: '89'
+                    - survey_number: '72'
+                    - survey_number: '155'
+                    - survey_number: '206'
+                    - survey_number: '197'
+                    - survey_number: '211'
+                    - survey_number: '175'
+                    - survey_number: '233'
+                    - survey_number: '142'
+                    - survey_number: '338'
+                    - survey_number: '35'
+                    - survey_number: '265'
+                    - survey_number: '219'
+                    - survey_number: '76'
+                    - survey_number: '201'
+                    - survey_number: '154'
+                    - survey_number: '381'
+                    - survey_number: '361'
+                    - survey_number: '84'
+                    - survey_number: '208'
+                    - survey_number: '38'
+                    - survey_number: '125'
+                    - survey_number: '192'
+                    - survey_number: '163'
+                    - survey_number: '67'
+                    - survey_number: '283'
+                    - survey_number: '47'
+                    - survey_number: '253'
+                    - survey_number: '216'
+                    - survey_number: 351a
+                    - survey_number: '147'
+                    - survey_number: '304'
+                    - survey_number: '144'
+                    - survey_number: '183'
+                    - survey_number: '180'
+                    - survey_number: '172'
+                    - survey_number: '254'
+                    - survey_number: '306'
+                    - survey_number: '119'
+                    - survey_number: '108'
+                    - survey_number: '248'
+                    - survey_number: '279'
+                    - survey_number: '277'
+                    - survey_number: '46'
+                    - survey_number: '81'
+                    - survey_number: '250'
+                    - survey_number: '228'
+                    - survey_number: '138'
+                    - survey_number: '168'
+                    - survey_number: '177'
+                    - survey_number: '303'
+                    - survey_number: '292'
+                    - survey_number: 313A
+                    - survey_number: '166'
+                    - survey_number: '27'
+                    - survey_number: 350B
+                    - survey_number: '249'
+                    - survey_number: '71'
+                    - survey_number: '94'
+                    - survey_number: '2'
+                    - survey_number: '37'
+                    - survey_number: '285'
+                    - survey_number: '190'
+                    - survey_number: '203'
+                    - survey_number: '264'
+                    - survey_number: '29'
+                    - survey_number: '167'
+                    - survey_number: 351B
+                    - survey_number: '23'
+                    - survey_number: '300'
+                    - survey_number: '214'
+                    - survey_number: '267'
+                    - survey_number: '85'
+                    - survey_number: '86'
+                    - survey_number: '137'
+                    - survey_number: '103'
+                    - survey_number: '118'
+                    - survey_number: '286'
+                    - survey_number: '8'
+                    - survey_number: '356'
+                    - survey_number: '129'
+                    - survey_number: '32'
+                    - survey_number: '4'
+                    - survey_number: '9'
+                    - survey_number: 351c
+                    - survey_number: '311'
+                    - survey_number: '3'
+                    - survey_number: '384'
+                    - survey_number: '353'
+                    - survey_number: '150'
+                    - survey_number: '225'
+                    - survey_number: '275'
+                    - survey_number: 350b
+                    - survey_number: '373'
+                    - survey_number: '240'
+                    - survey_number: '136'
+                    - survey_number: '141'
+                    - survey_number: '237'
+                    - survey_number: '363'
+                    - survey_number: '209'
+                    - survey_number: '207'
+                    - survey_number: '305'
+                    - survey_number: '53'
+                    - survey_number: '217'
+                    - survey_number: '329'
+                    - survey_number: '50'
+                    - survey_number: '198'
+                    - survey_number: 342a
+                    - survey_number: '173'
+                    - survey_number: '218'
+                    - survey_number: '60'
+                    - survey_number: '15'
+                    - survey_number: '73'
+                    - survey_number: 334b
+                    - survey_number: '368'
+                    - survey_number: '21'
+                    - survey_number: '284'
+                    - survey_number: '162'
+                    - survey_number: '319'
+                    - survey_number: '133'
+                    - survey_number: '252'
+                    - survey_number: '370'
+                    - survey_number: '280'
+                    - survey_number: '174'
+                    - survey_number: '322'
+                    - survey_number: '316'
+                    - survey_number: '16'
+                    - survey_number: '90'
+                    - survey_number: '383'
+                    - survey_number: '93'
+                    - survey_number: '18'
+                    - survey_number: '282'
+                    - survey_number: 37A
+                    - survey_number: '31'
+                    - survey_number: '309'
+                    - survey_number: '348'
+                    - survey_number: '230'
+                    - survey_number: '290'
+                    - survey_number: '185'
+                    - survey_number: '287'
+                    - survey_number: '359'
+                    - survey_number: '14'
+                    - survey_number: '158'
+                    - survey_number: '231'
+                    - survey_number: '99'
+                    - survey_number: '131'
+                    - survey_number: '355'
+                    - survey_number: '270'
+                    - survey_number: '148'
+                    - survey_number: '65'
+                    - survey_number: '176'
+                    - survey_number: '327'
+                    - survey_number: '36'
+                    - survey_number: '130'
+                    - survey_number: 313a
+                    - survey_number: '49'
+                    - survey_number: '143'
+                    - survey_number: '226'
+                    - survey_number: '297'
+                    - survey_number: '347'
+                    - survey_number: '215'
+                    - survey_number: '79'
+                    - survey_number: 342b
+                    - survey_number: '51'
+                    - survey_number: 310B
+                    - survey_number: '80'
+                    - survey_number: '242'
+                    - survey_number: '345'
+                    - survey_number: '98'
+                    - survey_number: 334B
+                    - survey_number: '122'
+                    - survey_number: '222'
+                    - survey_number: '291'
+                    - survey_number: '145'
+                    - survey_number: '126'
+                    - survey_number: '301'
+                    - survey_number: '68'
+                    - survey_number: '232'
+                    - survey_number: '294'
+                    - survey_number: '161'
+                    - survey_number: '367'
+                    - survey_number: '117'
+                    - survey_number: '235'
+                    - survey_number: '42'
+                    - survey_number: '243'
+                    - survey_number: '127'
+                    - survey_number: 75B
+                    - survey_number: '358'
+                    - survey_number: '191'
+                    - survey_number: '95'
+                    - survey_number: '246'
+                    - survey_number: '181'
+                    - survey_number: 351b
+                    - survey_number: '12'
+                    - survey_number: '376'
+                    - survey_number: '288'
+                    - survey_number: '234'
+                    - survey_number: '135'
+                    - survey_number: '39'
+                    - survey_number: '109'
+                    - survey_number: '20'
+                    - survey_number: '33'
+                    - survey_number: '178'
+                    - survey_number: '179'
+                    - survey_number: '212'
+                    - survey_number: '255'
+                    - survey_number: '48'
+                    - survey_number: '382'
+                signature: >-
+                  MGUCME8MmukjbFJM4a0PHbE98rvy9e5gbwKFNsVj9vyl6Duf66KMSb6bL0Nlvt5JvmdosAIxANAS4QuTgw4RUDeJuK5CmNSaMIKey/JP0IHqO7EUURUMDUo6xxB1pb3Bhj99clUDHg==
+                meta:
+                  txncode: '34456'
+                  ver: '1.0'
+                  ts: 2025-01-29T11:16:03+0530
+                hmac: a1wZGF7PiRm7BfrJHC694C6cgUS4lVIuNjOqU/VH/3g=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEu3oedHYrCOAvZhqa2G2pnRtbyNS/vcMaTZObE/ZjrKxhX/0EIsSM1yUViUpCC9LzjvQiGEVb4Xlyi6PxDsm0/lJKK4RJl4DpB+VFvnaUN1cuMUymiDGlsRzV2OUXqQrQ
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E975
+                  status: failed
+                  info: Invalid servicename value
+                data: {}
+                signature: >-
+                  MGUCMQDd1ko3+2v6i6NJfH7fzoNzTUu9FJsCoYre2EH5pzjLAvVzfKw+FXwLelQKD3DyFdkCMAnppAuBHNpvrMWdYIVd22X6FO4NHhviNOFidH9OAVEcJs18eL3fuCQDhh1GmG04sA==
+                meta:
+                  txncode: '34456'
+                  ver: '1.0'
+                  ts: 2025-08-01T12:35:23+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEFmiPObOoAPa4yuwlQeMJateSMomQemgQ78rphhwHBtzhAwPAjfF6wUPTADtsztPySglHN2tM456RV0zcCKw21pXVLQwZnqhJOz6zZNaw4KjgDyVvSOF2NZ53O+SrJuVF
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

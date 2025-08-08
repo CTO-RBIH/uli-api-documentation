@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /:
+    get:
+      summary: Get Subdistrict
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{txncode}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '{{provider}}'
+          schema:
+            type: string
+        - name: servicename
+          in: header
+          description: ''
+          required: true
+          example: '{{servicename}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: distid
+          in: header
+          description: ''
+          required: true
+          example: '{{distid}}'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      tehsil:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            tname_eng:
+                              type: string
+                            tname:
+                              type: string
+                            tehsil_code_census:
+                              type: string
+                          required:
+                            - tname_eng
+                            - tname
+                            - tehsil_code_census
+                    required:
+                      - tehsil
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  tehsil:
+                    - tname_eng: Campierganj
+                      tname: कैम्पियरगंज
+                      tehsil_code_census: '00948'
+                    - tname_eng: Khajni
+                      tname: खजनी
+                      tehsil_code_census: '00953'
+                    - tname_eng: 'Gola '
+                      tname: गोला
+                      tehsil_code_census: '00954'
+                    - tname_eng: Chauri Chaura
+                      tname: चौरीचौरा
+                      tehsil_code_census: '00951'
+                    - tname_eng: Bansgaon
+                      tname: बाँसगांव
+                      tehsil_code_census: '00952'
+                    - tname_eng: Gorakhpur
+                      tname: सदर
+                      tehsil_code_census: '00950'
+                    - tname_eng: Sahjanwa
+                      tname: सहजनवां
+                      tehsil_code_census: '00949'
+                signature: >-
+                  MGUCMDlnZnFZWST1Qp4tF9mGl8Jh2zlUzdyV/fn/ILRHIxuD5qxfmY/lkTG1Dh/dtwoWZwIxAP0d/u6wpDJCZ1oatG/R61LfYWL63mODKlEaTOwJgvS533Xx1FRHAlfs9YjJ7uk4fg==
+                meta:
+                  txncode: Amit99
+                  ver: '1.0'
+                  ts: 2025-08-01T12:04:27+0530
+                hmac: dG2/vjGOFczoSIwanmV/vyOP7B++/I8XG2g72EgxCuY=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEwavOnO5OoL3LY27vbKSiUM9SAjMfZ3bkZ+ilPoqyuUVtGyIZHqkIr2Rr9x7QZcjGAMnnEwAcUK009S6Johwd+P46dfht0CB+w+KnPQdKcB1/XFGG8c4gVR+zP+WBDl5t
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E501","status":"failed","info":"Invalid
+                district id
+                value"},"data":{},"signature":"MGUCMQDd1ko3+2v6i6NJfH7fzoNzTUu9FJsCoYre2EH5pzjLAvVzfKw+FXwLelQKD3DyFdkCMAnppAuBHNpvrMWdYIVd22X6FO4NHhviNOFidH9OAVEcJs18eL3fuCQDhh1GmG04sA==","meta":{"txncode":"Amit99","ver":"1.0","ts":"2025-08-01T12:08:18+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEFmiPObOoAPa4yuwlQeMJateSMomQemgQ78rphhwHBtzhAwPAjfF6wUPTADtsztPySglHN2tM456RV0zcCKw21pXVLQwZnqhJOz6zZNaw4KjgDyVvSOF2NZ53O+SrJuVF","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

@@ -28,6 +28,15 @@ const farmYieldMultilandSidebar = require("./docs/farm-yield-multiland/sidebar.t
 const panProteanSidebar = require("./docs/pan-protean/sidebar.ts");
 const dgvSidebar = require("./docs/dgv/sidebar.ts");
 const esignProteanSidebar = require("./docs/esign-protean/sidebar.ts");
+// const accountAggregatorSidebar = require("./docs/account-aggregator/sidebar.ts");
+const lrsSidebar = require("./docs/LRS/sidebar.ts");
+const masterdataRJSidebar = require("./docs/Masterdata/Rajasthan/sidebar.ts");
+const masterdataUPSidebar = require("./docs/Masterdata/UttarPradesh/sidebar.ts");
+const masterdataTNSidebar = require("./docs/Masterdata/TamilNadu/sidebar.ts");
+const ibdicSidebar = require("./docs/IBDIC/sidebar.ts");
+
+
+
 
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
@@ -78,7 +87,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Identity & Verification Services",
-          collapsed: false,
+          collapsed: true,
           items: [
             ...documentVerificationSidebar,
             ...aadhaarRedactSidebar,
@@ -91,7 +100,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "category", 
           label: "Financial Services",
-          collapsed: false,
+          collapsed: true,
           items: [
             ...bankAccountVerificationSidebar,
             ...gstnServiceSidebar,
@@ -101,7 +110,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Land Records Services", 
-          collapsed: false,
+          collapsed: true,
           items: [
             ...lrsOwnerDetailsSidebar,
             ...lrsLienMarkingSidebar
@@ -110,7 +119,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Agricultural Services",
-          collapsed: false,
+          collapsed: true,
           items: [
             ...farmYieldMultilandSidebar
           ]
@@ -118,7 +127,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "Other Services",
-          collapsed: false,
+          collapsed: true,
           items: [
             ...translationTransliterationSidebar,
             ...legalVerificationSidebar
@@ -127,11 +136,19 @@ const sidebars: SidebarsConfig = {
         {
           type: "category",
           label: "ULI Services",
-          collapsed: false,
+          collapsed: true,
           items: [
             ...panProteanSidebar,
             ...dgvSidebar,
-            ...esignProteanSidebar
+            ...esignProteanSidebar,
+            ...lrsSidebar,
+            ...accountAggregatorSidebar,
+            ...bankAccountVerificationSidebar,
+            ...panVerificationSidebar,
+            ...masterdataRJSidebar,
+            ...masterdataUPSidebar,
+            ...masterdataTNSidebar,
+            ...ibdicSidebar
           ]
         }
       ]

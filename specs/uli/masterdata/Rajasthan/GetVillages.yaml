@@ -1,0 +1,244 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /:
+    get:
+      summary: Get Villages
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '{{txncode}}'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '{{provider}}'
+          schema:
+            type: string
+        - name: distid
+          in: header
+          description: ''
+          required: true
+          example: '{{distid}}'
+          schema:
+            type: string
+        - name: subdistid
+          in: header
+          description: ''
+          required: true
+          example: '{{subdistid}}'
+          schema:
+            type: string
+        - name: servicename
+          in: header
+          description: ''
+          required: true
+          example: '{{servicename}}'
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      response:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            villname:
+                              type: string
+                            Village_lgcode:
+                              type: string
+                            villname_Eng:
+                              type: string
+                          required:
+                            - villname
+                            - Village_lgcode
+                            - villname_Eng
+                    required:
+                      - response
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  response:
+                    - villname: अचाऩचूक्या
+                      Village_lgcode: '068717'
+                      villname_Eng: Achanchukya
+                    - villname: कापङियावास
+                      Village_lgcode: '068584'
+                      villname_Eng: Kapariyawas
+                    - villname: गांधीग्राम
+                      Village_lgcode: '069896'
+                      villname_Eng: Gadhigram
+                    - villname: चक-उखलाना
+                      Village_lgcode: '093534'
+                      villname_Eng: Chak Ukhlana
+                    - villname: चक़मोज्या
+                      Village_lgcode: '068636'
+                      villname_Eng: Laxmipura @ Chak Mauja
+                    - villname: नटलालपुरा
+                      Village_lgcode: '068664'
+                      villname_Eng: Natlalpura
+                    - villname: फतहगंज
+                      Village_lgcode: '093548'
+                      villname_Eng: Fatehganj
+                    - villname: बून्दी
+                      Village_lgcode: '093467'
+                      villname_Eng: Bundi
+                    - villname: सूंथड़ा
+                      Village_lgcode: '093496'
+                      villname_Eng: Soothra
+                    - villname: हडमतियाकला
+                      Village_lgcode: '099747'
+                      villname_Eng: ''
+                signature: >-
+                  MGQCMDkX3XH+g/NLhbUk/1VO11laugYhZ5yn6mR8YHD4cc2eryD+kurBKWcuTjHMOyAnMgIwPtHpxi92kuG5vl6Nu8xi1OPY7K6i4SQotEKY8W2vLsg8F1eIQlPJR99frDgNlu0I
+                meta:
+                  txncode: Amit99
+                  ver: '1.0'
+                  ts: 2025-08-01T11:35:48+0530
+                hmac: /cKyMZKP9NY15ZC5N48pAg1rQcK30gCBlBVogzKnQ04=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEbkVw7NG+39b6+er1m73z2WDirWdHZpSil7SIqi3cUc35KRebzPAGQ6PmTp34PTBExV/C6V+4NCYrOR4cCTDP1cN6Y0NTxl0UCANRuUGMoGvzFtp3vWTXqCS+lCw/j8GR
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E502","status":"failed","info":"Invalid
+                tehsil or taluk id
+                value"},"data":{},"signature":"MGUCMQDd1ko3+2v6i6NJfH7fzoNzTUu9FJsCoYre2EH5pzjLAvVzfKw+FXwLelQKD3DyFdkCMAnppAuBHNpvrMWdYIVd22X6FO4NHhviNOFidH9OAVEcJs18eL3fuCQDhh1GmG04sA==","meta":{"txncode":"Amit99","ver":"1.0","ts":"2025-08-01T11:36:35+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEFmiPObOoAPa4yuwlQeMJateSMomQemgQ78rphhwHBtzhAwPAjfF6wUPTADtsztPySglHN2tM456RV0zcCKw21pXVLQwZnqhJOz6zZNaw4KjgDyVvSOF2NZ53O+SrJuVF","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

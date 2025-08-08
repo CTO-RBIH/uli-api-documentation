@@ -446,6 +446,46 @@ const config: Config = {
               categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
+          "LRS": {
+            specPath: "specs/uli/LRS/",
+            outputDir: "docs/LRS",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+            "MasterdataRJ": {
+              specPath: "specs/uli/masterdata/Rajasthan/",
+              outputDir: "docs/Masterdata/Rajasthan",
+              sidebarOptions: {
+                groupPathsBy: "tag",
+                categoryLinkSource: "tag",
+              },
+            } satisfies OpenApiPlugin.Options,
+            "MasterdataUP": {
+            specPath: "specs/uli/masterdata/UttarPradesh/",
+            outputDir: "docs/Masterdata/UttarPradesh/",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "MasterdataTN": {
+            specPath: "specs/uli/masterdata/TamilNadu/",
+            outputDir: "docs/Masterdata/TamilNadu/",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "IBDIC": {
+            specPath: "specs/uli/ibdic.yaml",
+            outputDir: "docs/IBDIC",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
         } satisfies Plugin.PluginOptions,
       },
     ],
