@@ -1,0 +1,295 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/lender-loan-record/1.0/en:
+    post:
+      summary: Accept Loan
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: ZDhOYnUzbFNCVDFmYkRLOGIyamh0VUdrSnJVYQ==
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          example: >-
+            Bearer
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IkNwTGlWaHpfRWdFRkJBeHhhSmZIeml1WGdNb2EiLCJuYmYiOjE3MTM1MTAwNzAsImF6cCI6IkNwTGlWaHpfRWdFRkJBeHhhSmZIeml1WGdNb2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3MTM1NTMyNzAsImlhdCI6MTcxMzUxMDA3MCwianRpIjoiNjgzMDQ5YjQtMjM3Ny00ZDBjLTk2OGYtZGEzNDdiNzkyYTUzIn0.brTm_UQle5TsSN9rspK-S2NC6DVepzPrhyBHL-dQ9emo8o1ijn0fW2XRyNKVzVY-a1JxOJcVEPtA6UtrUo8BMI7WQNt2-Wnt9UDI-drNnVgl_r8q77MgwAx1LKkY-VvFqHgacxBtmdEH5Eie-pVNsVMLVrDJMX7v1CfZ5wID95HlQzgrve3U3Vw56m6lXjDOvwAlPMxDBh79UHJuVY2Zt886RZ_sYtUZwGTBm8b3G4bxns_FnqBWaKHjQQL583D6UigZh6DNODwwXM_1k7zcJp-CoQLaTdP-BrNQsZqbIj7fiZ7Xm-WeNYmBziR5v1QD-dwWWS8jg_dy8di6SjVafw
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: false
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    txncode:
+                      type: string
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                  required:
+                    - txncode
+                    - ver
+                    - ts
+                data:
+                  type: object
+                  properties:
+                    loan_id:
+                      type: string
+                    loan_type:
+                      type: integer
+                    is_entity:
+                      type: boolean
+                    product_name:
+                      type: string
+                    sanctioned_amount:
+                      type: string
+                    loan_channel:
+                      type: string
+                    branch_pincode:
+                      type: string
+                    ifsc_code:
+                      type: string
+                    state_code:
+                      type: string
+                    district_code:
+                      type: string
+                    sub_district_code:
+                      type: string
+                    borrower_pin_code:
+                      type: string
+                    borrower_city_town_or_village_lgd_code:
+                      type: string
+                    borrower_city_town_or_village_name:
+                      type: string
+                    geo_latitude:
+                      type: number
+                    geo_longitude:
+                      type: number
+                    annual_profit:
+                      type: string
+                    date_of_incorporation:
+                      type: string
+                    constitution_type:
+                      type: integer
+                    journey_start_time:
+                      type: string
+                    loan_sanction_time:
+                      type: string
+                    device_type:
+                      type: string
+                    services_used:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                    - loan_id
+                    - loan_type
+                    - is_entity
+                    - product_name
+                    - sanctioned_amount
+                    - loan_channel
+                    - branch_pincode
+                    - ifsc_code
+                    - state_code
+                    - district_code
+                    - sub_district_code
+                    - borrower_pin_code
+                    - borrower_city_town_or_village_lgd_code
+                    - borrower_city_town_or_village_name
+                    - geo_latitude
+                    - geo_longitude
+                    - annual_profit
+                    - date_of_incorporation
+                    - constitution_type
+                    - journey_start_time
+                    - loan_sanction_time
+                    - device_type
+                    - services_used
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example: "{\r\n    \"meta\": {\r\n        \"txncode\": \"Abc7\",\r\n        \"ver\": \"1.0\",\r\n        \"ts\": \"{{currentdate}}\"\r\n    },\r\n    \"data\": {\r\n        \"loan_id\": \"3073\",\r\n        \"loan_type\": 13,\r\n        \"is_entity\": true,\r\n        \"product_name\": \"LP-1\",\r\n        \"sanctioned_amount\": \"100.00\",\r\n        \"loan_channel\": \"1\",\r\n        \"branch_pincode\": \"412305\",\r\n        \"ifsc_code\": \"IFSC0000000\",\r\n        \"state_code\": \"1\", // 2 digits\r\n        \"district_code\": \"466\", // 3 digits\r\n        \"sub_district_code\": \"4196\", // 4 digits\r\n        \"borrower_pin_code\": \"412123\",\r\n        \"borrower_city_town_or_village_lgd_code\": \"0000\",\r\n        \"borrower_city_town_or_village_name\": \"Daundaj\",\r\n        \"geo_latitude\": 9.903129,\r\n        \"geo_longitude\": 71.904494,\r\n    //     \"gender\": \"M\",\r\n    //     \"age\": \"18\",\r\n    //     \"marital_status\": \"M\",\r\n    //    \"annual_income\": 1,\r\n    //     \"edu_background\": 7,\r\n    //     \"professional_background\": \"S\",\r\n        \"annual_profit\": \"200000000\",\r\n        \"date_of_incorporation\": \"2025-06-28\",\r\n        \"constitution_type\": 1,\r\n        \"journey_start_time\": \"2024-12-02 16:30:00\",\r\n        \"loan_sanction_time\": \"2025-01-01 16:30:00\",\r\n        \"device_type\": \"U\",\r\n        \"services_used\": [\r\n            \"qa/gstn/authenticate/1.0/en\"\r\n        ]\r\n    },\r\n    \"hmac\": \"uG5JkM3H9Zj2DrF6qD9N2F2L6QxUjY8j63zY57u0Pd9=\"\r\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  message: Loan record processed successfully.
+                signature: >-
+                  MGQCMEn68G2t1J2fja5RPHKLyCCdgFnncXjEPmGARun1bwZd0RhVWZnxf/XW9UoZ6+0MDwIwI0qyNBEtYfGRvYy2OKgkeOwJ8zP0bcj4nwIO5e5XUQ1D+Bm/0zvaC4XjlXJyf5f1
+                meta:
+                  txncode: Abc7
+                  ver: '1.0'
+                  ts: 2025-08-01T13:02:20+0530
+                hmac: ZjrbB8tq9Mq/8kDmeW09AHjRWIrU0RnUqFZoTs+FHxA=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEJOYTX0CODFewQJ4VsbLj3OwoDT8f5SMzK3U74Mp9C0u2S9J07OZCtDXEVIpgcMm572gqOlDQE5y7McXeIyYGMdewf2b7b8t9m2f8PapXhFV/6zNJbvP41JkhhL6Eh7Yy
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E201
+                  status: failed
+                  info: Loan ID/Sanction Reference Number must not be null
+                data: {}
+                signature: >-
+                  MGYCMQCa5vdoihJ6stLIqHmtvrOFwIwdmEImiXCVpeKw5dGggtR+sw7W2YVXyuEoT61rppoCMQCHintbA18oOHIvJfhvSEqmPrgkdvWwR749KDERXpUhP8HE+/fCEGj12qY+jujdFHU=
+                meta:
+                  txncode: Abc7
+                  ver: '1.0'
+                  ts: 2025-08-01T13:03:01+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEO6XtYa16tg9WlqyIrm+04KbXQWVWm4C3e884D1sizUAC9jnVZzIYLM7ybbPck38fmSnPfLyUPqED9i3PBxnLyl291H++Gf9Ki8Ppstjx3+OwbSt+H6xvUSyUktePSnNj
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

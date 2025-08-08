@@ -486,6 +486,54 @@ const config: Config = {
               categoryLinkSource: "tag",
             },
           } satisfies OpenApiPlugin.Options,
+          "Zoop": {
+            specPath: "specs/uli/Zoop.openapi.yaml",
+            outputDir: "docs/Zoop",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "ScoreMe": {
+            specPath: "specs/uli/ScoreMe.openapi.yaml",
+            outputDir: "docs/ScoreMe",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          // "Teal": {
+          //   specPath: "specs/uli/TEAL_india.openapi.yaml",
+          //   outputDir: "docs/Teal",
+          //   sidebarOptions: {
+          //     groupPathsBy: "tag",
+          //     categoryLinkSource: "tag",
+          //   },
+          // } satisfies OpenApiPlugin.Options,
+          "SatsureBatch": {
+            specPath: "specs/uli/Satsure_Batch_Service.openapi.yaml",
+            outputDir: "docs/SatsureBatch",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "LenderLoanJourney": {
+            specPath: "specs/uli/LenderLoanJourney/",
+            outputDir: "docs/LenderLoanJourney",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+          "Probe42": {
+            specPath: "specs/uli/Probe42/",
+            outputDir: "docs/Probe42",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
         } satisfies Plugin.PluginOptions,
       },
     ],

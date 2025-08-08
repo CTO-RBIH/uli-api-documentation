@@ -1,0 +1,198 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/farmyieldreportmultiland/1.5/en:
+    post:
+      summary: Multilad
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '104'
+          schema:
+            type: string
+        - name: x-sp-memberId
+          in: header
+          description: ''
+          required: true
+          example: 1234fsff
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: true
+          example: '{{access_token}}'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    landRecordData:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          state:
+                            type: string
+                          village_lgd_code:
+                            type: string
+                          khasara:
+                            type: string
+                        required:
+                          - state
+                          - village_lgd_code
+                          - khasara
+                  required:
+                    - landRecordData
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.5'
+                ts: 2025-06-11T16:11:26+0530
+                txncode: RameshwarRBIH05
+              data:
+                landRecordData:
+                  - state: '23'
+                    village_lgd_code: '340902'
+                    khasara: 6 (S)
+                  - state: '23'
+                    village_lgd_code: '340902'
+                    khasara: 100 (S)
+                  - state: '23'
+                    village_lgd_code: '340902'
+                    khasara: 100 (S)
+                  - state: '23'
+                    village_lgd_code: '340902'
+                    khasara: 100 (S)
+                  - state: '23'
+                    village_lgd_code: '340902'
+                    khasara: 100 (S)
+              hmac: '{{hmac}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      response:
+                        type: string
+                    required:
+                      - response
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  response: Satsource Report Requested Successfully
+                signature: >-
+                  MGUCME7sOMHodNL3C8IsydGZtMtXS2rUcJc4VAG6BsubQHPZcb+EbJ1e5lPjOpxay+LgSwIxAKNH/N6k3vBBrctV/PsFX4WHaCe7vzS8RZ0R08oml0LZa3Grkypljk9Do3LRA80HPA==
+                meta:
+                  txncode: RameshwarRBIH05
+                  ver: '1.5'
+                  ts: 2025-08-05T12:40:40+0530
+                hmac: 9QZf+8mocJ0M284XNw/OW8bdUihfq+3sLjAWfc6Q7PU=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

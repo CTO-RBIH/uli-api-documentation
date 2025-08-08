@@ -1,0 +1,934 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/propsearchteal/1.4/en:
+    post:
+      summary: Request CERSAI DPSR LDDR
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '114'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: api-key
+          in: header
+          description: ''
+          required: true
+          example: '{{api-key}}'
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: true
+          example: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlJTaDRBWklxbkkzSkNPaDBLYUxYVlVkMnpPb2EiLCJuYmYiOjE3NTQzNzE1NzMsImF6cCI6IlJTaDRBWklxbkkzSkNPaDBLYUxYVlVkMnpPb2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3NTQ0MTQ3NzMsImlhdCI6MTc1NDM3MTU3MywianRpIjoiM2M4ZDRmZDAtYTEzOS00MTE0LWFmYTAtNDJjNWNkN2JmZDBlIn0.JmxV629_rgN0QBVExZMb7mWYwSLV04xinrwTxOtdrFxui28WC4HmroSd7-OO08C9zmRsSG0cNiSguGK5NSu7LUTSMz7K8c2xMAnKROb8l7l5hfMFDvKQMzydu2OXtyQcLrObLy-T_UDqTdMoXdDAqrjo2YiH44-NHOGwq1usbdebokM4uyjc3ZDOJ8LmzD93UWHNtPmumwo5jZ37NN8oqM1T04gQDlBIu8YYRcPrzwVN7Hcp6SjfK5rx3GhUAhvsUlMw5hbpe0uDc4WSsEtWKUZdLiOWfXzKhbYXbdu3I02hOG_V_RbEg4xbWzN03CbqYdnKiteZbBnSWtuh4191pw
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    applicant-details:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          pan:
+                            type: string
+                    mortgager-seller-details:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          pan:
+                            type: string
+                    property-details:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        state:
+                          type: string
+                        district:
+                          type: string
+                        pincode:
+                          type: string
+                        address:
+                          type: string
+                        city-town-village:
+                          type: string
+                        survey-number:
+                          type: string
+                        locality:
+                          type: string
+                        project:
+                          type: string
+                        unit-number:
+                          type: string
+                        floor-tower-block:
+                          type: string
+                      required:
+                        - type
+                        - state
+                        - district
+                        - pincode
+                        - address
+                        - city-town-village
+                        - survey-number
+                        - locality
+                        - project
+                        - unit-number
+                        - floor-tower-block
+                    reports-requested:
+                      type: array
+                      items:
+                        type: string
+                    reference-data:
+                      type: object
+                      properties:
+                        case-number:
+                          type: string
+                        lender-code:
+                          type: string
+                      required:
+                        - case-number
+                        - lender-code
+                  required:
+                    - applicant-details
+                    - mortgager-seller-details
+                    - property-details
+                    - reports-requested
+                    - reference-data
+                meta:
+                  type: object
+                  properties:
+                    txncode:
+                      type: string
+                    ts:
+                      type: string
+                    ver:
+                      type: string
+                  required:
+                    - txncode
+                    - ts
+                    - ver
+                hmac:
+                  type: string
+              required:
+                - data
+                - meta
+                - hmac
+            example:
+              data:
+                applicant-details:
+                  - name: RameshwarTestRBIH
+                    pan: ''
+                mortgager-seller-details:
+                  - name: Shivaji Rao
+                    pan: ''
+                property-details:
+                  type: Residential
+                  state: Maharashtra
+                  district: Mumbai
+                  pincode: '400008'
+                  address: shanti bhavan
+                  city-town-village: ''
+                  survey-number: ''
+                  locality: ''
+                  project: ''
+                  unit-number: ''
+                  floor-tower-block: ''
+                reports-requested:
+                  - Digital Property Search Report
+                  - CERSAI Search Report
+                  - Legal Due Diligence Report
+                reference-data:
+                  case-number: '200'
+                  lender-code: Rameshwar@RBIHUB538
+              meta:
+                txncode: Rameshwar23june2025T442
+                ts: 2025-08-05T11:23:39+0530
+                ver: '1.4'
+              hmac: '1234'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      query_id:
+                        type: string
+                      report_id:
+                        type: string
+                      expected_delivery_timestamp:
+                        type: object
+                        properties:
+                          digital_property_search_report:
+                            type: string
+                          legal_due_diligence_report:
+                            type: string
+                          cersai_search_report:
+                            type: string
+                        required:
+                          - digital_property_search_report
+                          - legal_due_diligence_report
+                          - cersai_search_report
+                    required:
+                      - query_id
+                      - report_id
+                      - expected_delivery_timestamp
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  query_id: 68919c78b86b1888f81ff0f0
+                  report_id: '1310882'
+                  expected_delivery_timestamp:
+                    digital_property_search_report: 2025-08-05T15:24:00+0530
+                    legal_due_diligence_report: 2025-08-07T17:24:00+0530
+                    cersai_search_report: 2025-08-05T11:54:00+0530
+                signature: >-
+                  MGQCMAeGn4r1Ezz2PzfJ9Jrf9atWfntgfstFk/E6rn4m9vVf2O4FARoqQZeSxFqvvD6ihgIwL7JsE1rKcazNsw7EI4ZDN2pplLwW4lysbkkMKLvMzV27kzwc2npjVdEjGc46NxLG
+                meta:
+                  txncode: Rameshwar23june2025T442
+                  ver: '1.4'
+                  ts: 2025-08-05T11:24:00+0530
+                hmac: t8riwzbtQFcXN2s+0jpT82Tq0PAzPJ15PqUNSVFTnVs=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE6rtSy8F0Yd3+IuNfcbNzzSIMscBHDBrRaG87YCbBRXDi4v99YdD0+ou9E0uYSPZ2y9/aRsqW2yIJAhVf0XGJjC3BE1XpD3QMd1h5xSa9Ajcdv4CjpX5iXCfsa4hFK4ZI
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/propsearchcallbackteal/1.0/en:
+    post:
+      summary: Callback_LDDR
+      deprecated: false
+      description: ''
+      tags: []
+      parameters: []
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: |-
+              { 
+                    "query_id": "68919c78b86b1888f81ff0f0",
+                    "legal_due_diligence_report": {
+                       "file_size_mb": "0.200",
+                       "file_link": "https://LDDR report",
+                       "report_name": "Legal Due Diligence Report",
+                       "is_first_upload":"true",
+                       "update_timestamp": "{{currentdate}}",
+                       //"status": "Fulfilled"
+                       "status": "Fulfilled"
+                    }
+              }
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example: ok
+          headers: {}
+        '412':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example: >-
+                {"result":{"errcode":"E641","status":"failed","info":"Invalid or
+                missing query
+                ID"},"data":{},"signature":"MGQCMCtvqiSyKVjOKubhToKihbbSyfy+wxKzganged+FjMg7UthLrEg2rZf1qDzRYN1ykAIwE/770wAdXmlAaf7rhGK70pQjv7B4iHvw5m2cei6hqc00MZ65ELm7JBi+oRFrIBxQ","meta":{"txncode":"","ver":"1.0","ts":"2025-08-05T11:29:18+0530"},"hmac":"WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=","publickey":"MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE1sorncj17PJLerVYW3+1PRTg8JwrJcAaswh3IQQHmU2DMdJwniLXB+K02858k7Frjx/QpVoP617x3bAUbM3il+83JBjathR1VxR1RN3n84x2O3UXBZAsBmsar2szGR8x","sig-algo":"SHA256withECDSA"}
+          headers: {}
+      security: []
+  /qa/propsearchtealdocupload/1.4/en:
+    post:
+      summary: docupload
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '114'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: api-key
+          in: header
+          description: ''
+          required: true
+          example: '{{api-key}}'
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: false
+          example: '{{access_token}}'
+          schema:
+            type: string
+        - name: query-id
+          in: header
+          description: 67af22d5eabf277ca64b818f
+          required: true
+          example: 67c1420b35c5d39b7ac1a05c
+          schema:
+            type: string
+        - name: id
+          in: header
+          description: zqt2JHx7wxpzT88oNGGkhcGY
+          required: false
+          example: ''
+          schema:
+            type: string
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: "{\r\n\t\"data\": {\r\n        //J9AG0XGymFU0vUQbm9NKDmCC\r\n       //  HmTnXqsNUeOx7vYFMQwCJtEP\r\n       // xGnEoQursBS434MkjqLjLFrc\r\n       //\r\n        \"id\": \"UVTRa4uhQgtALZma2b8pqTIQ\",\r\n    \"name\": \"sale deed Rameshwar\",\r\n    \"file-type\": \"application/pdf\",\r\n    \"base64\": \"VGVzdCBkb2N1bWVudA==\"\r\n    },\r\n\t\"meta\": {\r\n\t\t\"txncode\": \"Rameshwar18Feb556\",\r\n\t\t\"ts\": \"2025-08-05T11:38:15+0530\",\r\n\t\t\"ver\": \"1.4\"\r\n\t},\r\n\t\"hmac\": \"1234\"\r\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  message: document added successfully
+                signature: >-
+                  MGUCMQCAi22OgGnMRNoHFoRRq5kKofPKcRR2IlZUunHenGB07ZtjeGVvO4t1/qmjr1yiaNgCMCuyefLtmzq2D5ws8X1kTxebf+orGexxuhpgfUm5tm6dsJpVKbBxHNH9Fub/5QAr9Q==
+                meta:
+                  txncode: Rameshwar18Feb556
+                  ver: '1.4'
+                  ts: 2025-08-05T11:39:09+0530
+                hmac: swCGRoGTnBJIxtb0EunNqGTBE9FQPecJ4A+9Mjwswkc=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAED8eKMHh8LIj9grl/tKbFZB6RB73MbBjQhSVHbK/QcPpauos7q/kIwsUc2xLanVuq7mD//SUWplkY+ZaYfbrEqx8WjU3TqvLOMxtoYb+8H5K9izqRcmw3zC7y1Ar8vGji
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/propsearchtealdocrequestcallback/1.4/en:
+    post:
+      summary: doc callback
+      deprecated: false
+      description: "Generated from cURL: curl --location 'https://extgw.nonprod.rbihub.io/qa/propsearchtealdocrequestcallback/1.4/en' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n    \"query_id\": \"68919c78b86b1888f81ff0f0\",\r\n    \"documents_requested\": [\r\n        {\r\n            \"name\": \"Sale Deed\",\r\n            \"id\": \"Phnte9k6p7qsO91Mgx2xaHw2akhi28\",\r\n            \"remarks\": \"Previously uploaded deed has 4 pages missing\"\r\n        },\r\n        {\r\n            \"name\": \"Sale Deed Form 2023\",\r\n            \"id\": \"Phnte9k6p7qsO91Mgx2xaHw2akhi29\",\r\n            \"remarks\": \"Previously uploaded deed has 2 pages missing\"\r\n        },\r\n        {\r\n            \"name\": \"Sale Deed Form 2023\",\r\n            \"id\": \"Phnte9k6p7qsO91Mgx2xaHw2akhi30\",\r\n            \"remarks\": \"Previously uploaded deed has 2 pages missing\"\r\n        }\r\n    ]\r\n}'"
+      tags: []
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query_id:
+                  type: string
+                documents_requested:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      id:
+                        type: string
+                      remarks:
+                        type: string
+                    required:
+                      - name
+                      - id
+                      - remarks
+              required:
+                - query_id
+                - documents_requested
+            example:
+              query_id: 68919c78b86b1888f81ff0f0
+              documents_requested:
+                - name: Sale Deed
+                  id: Phnte9k6p7qsO91Mgx2xaHw2akhi28
+                  remarks: Previously uploaded deed has 4 pages missing
+                - name: Sale Deed Form 2023
+                  id: Phnte9k6p7qsO91Mgx2xaHw2akhi29
+                  remarks: Previously uploaded deed has 2 pages missing
+                - name: Sale Deed Form 2023
+                  id: Phnte9k6p7qsO91Mgx2xaHw2akhi30
+                  remarks: Previously uploaded deed has 2 pages missing
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example: ok
+          headers: {}
+        '412':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+              example: Invalid or missing query ID
+          headers: {}
+      security: []
+  /qa/propsearchtealdocstatus/1.4/en:
+    post:
+      summary: propsearchtealstatus
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '114'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: '{{api-key}}'
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: false
+          example: '{{access_token}}'
+          schema:
+            type: string
+        - name: query-id
+          in: header
+          description: ''
+          required: true
+          example: 6891a66cb86b1888f81ff153
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    status:
+                      type: string
+                    remarks:
+                      type: string
+                  required:
+                    - id
+                    - status
+                    - remarks
+                meta:
+                  type: object
+                  properties:
+                    txncode:
+                      type: string
+                    ts:
+                      type: string
+                    ver:
+                      type: string
+                  required:
+                    - txncode
+                    - ts
+                    - ver
+                hmac:
+                  type: string
+              required:
+                - data
+                - meta
+                - hmac
+            example:
+              data:
+                id: Phnte9k6p7qsO91Mgx2xaHw2akhi30
+                status: waived
+                remarks: Documentation requirement waived as per internal guidelines.
+              meta:
+                txncode: Rameshwar14Feb2025
+                ts: 2025-08-05T12:08:16+0530
+                ver: '1.4'
+              hmac: '123'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E043
+                  status: failed
+                  info: >-
+                    406 Not Acceptable on PATCH request for
+                    "https://outgw.nonprod.rbihub.io/teal/status/1.0/68919c78b86b1888f81ff0f0/documents":
+                    "{"message":"resource could not be modified","info":"No
+                    document found to update"}"
+                data: {}
+                signature: >-
+                  MGQCMCtvqiSyKVjOKubhToKihbbSyfy+wxKzganged+FjMg7UthLrEg2rZf1qDzRYN1ykAIwE/770wAdXmlAaf7rhGK70pQjv7B4iHvw5m2cei6hqc00MZ65ELm7JBi+oRFrIBxQ
+                meta:
+                  txncode: Rameshwar14Feb2025
+                  ver: '1.4'
+                  ts: 2025-08-05T12:03:31+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE1sorncj17PJLerVYW3+1PRTg8JwrJcAaswh3IQQHmU2DMdJwniLXB+K02858k7Frjx/QpVoP617x3bAUbM3il+83JBjathR1VxR1RN3n84x2O3UXBZAsBmsar2szGR8x
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+  /qa/propsearchtealcomment/1.4/en:
+    post:
+      summary: tealcomment
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '114'
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: api-key
+          in: header
+          description: ''
+          required: true
+          example: '{{api-key}}'
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: false
+          example: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlJTaDRBWklxbkkzSkNPaDBLYUxYVlVkMnpPb2EiLCJuYmYiOjE3NTQzNzQzNDcsImF6cCI6IlJTaDRBWklxbkkzSkNPaDBLYUxYVlVkMnpPb2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3NTQ0MTc1NDcsImlhdCI6MTc1NDM3NDM0NywianRpIjoiZWNiZGE3MjEtMzljZi00MjRjLTg5YzAtMWJmMTVmMjU4OGFmIn0.DR2oajo11sJr8Xqk9S5VWHA5apBi9LvnVoUSxSefNovs737mAr8yJxFfgbsvv0S3Mae2JxG7bbV6CRQDHtxe23qpZSZqpj2jhVFidP_gBhfXPEpU_HbJJ8dXLO2rXXIo-fCh5iUxbURzz7TG6swlVjWz_lXv7hjWIttzB5Nfeu-VHsMtQoLemg1842z_plZQ2vr-T4BUg1J8vip7BB-FCm8T0ZW1hKSdTi6Bc0Npm3V4gF9ZCROfzGtYR29syJm4JpJBUbYUT_IWYNXGUAtIY00DJjQW3Rf2E5idoaIfVeYtF2FUzSNGb-OtM36EyZj76tDWUwQ5aimiU5xhvGcA6w
+          schema:
+            type: string
+        - name: query-id
+          in: header
+          description: ''
+          required: true
+          example: 6891a66cb86b1888f81ff153
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                  required:
+                    - comment
+                meta:
+                  type: object
+                  properties:
+                    txncode:
+                      type: string
+                    ts:
+                      type: string
+                    ver:
+                      type: string
+                  required:
+                    - txncode
+                    - ts
+                    - ver
+                hmac:
+                  type: string
+              required:
+                - data
+                - meta
+                - hmac
+            example:
+              data:
+                comment: verify lender response
+              meta:
+                txncode: Rameshwar31Jan2025
+                ts: 2025-04-09T11:31:28+0530
+                ver: '1.4'
+              hmac: '{{hmac}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  message: Query added successfully
+                signature: >-
+                  MGQCMB/lDn852XK1SWNDkpQG4gn2HNq+ELPBvdha8upVKnZTsyh88TwLmTgjt3n3jBdtswIwXsJBHVlr5w7XuOherbjsRCWS4YoYqiUKyXIvtXLBHAYWl9K/RqXDROXRJ7VKkGAy
+                meta:
+                  txncode: Rameshwar31Jan2025
+                  ver: '1.4'
+                  ts: 2025-08-05T12:12:06+0530
+                hmac: PJ9dwmKEAEC4PvZIGH+JFLxdcsEWPQgz7HnpdijwfQw=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEpTznoJYrzMaoHBYjVraQZ7Z+UlXmotoXJYTdSnKUcoYdEJhJvAtnEij0i5KjZGYOMNEa0u8nMKaLKUuGcf+Njvc4d/OMkrEKgdl1pLi5QWh+XveOLaUCaHMKzPbM1SJS
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []

@@ -34,6 +34,12 @@ const masterdataRJSidebar = require("./docs/Masterdata/Rajasthan/sidebar.ts");
 const masterdataUPSidebar = require("./docs/Masterdata/UttarPradesh/sidebar.ts");
 const masterdataTNSidebar = require("./docs/Masterdata/TamilNadu/sidebar.ts");
 const ibdicSidebar = require("./docs/IBDIC/sidebar.ts");
+const SatsureBatchSideBar = require("./docs/SatsureBatch/sidebar.ts");
+const ScoreMeSideBar = require("./docs/ScoreMe/sidebar.ts");
+// const TealSideBar= require("./docs/Teal/sidebar.ts");
+const zoopsidebar= require("./docs/Zoop/sidebar.ts");
+const probe42sidebar = require("./docs/Probe42/sidebar.ts")
+const lljsidebar = require("./docs/LenderLoanJourney/sidebar")
 
 
 
@@ -148,7 +154,14 @@ const sidebars: SidebarsConfig = {
             ...masterdataRJSidebar,
             ...masterdataUPSidebar,
             ...masterdataTNSidebar,
-            ...ibdicSidebar
+            ...ibdicSidebar,
+            ...SatsureBatchSideBar,
+            ...ScoreMeSideBar,
+            // ...TealSideBar,
+            ...zoopsidebar,
+            ...lljsidebar,
+            // ...probe42sidebar
+            ...lrsLienMarkingSidebar
           ]
         }
       ]

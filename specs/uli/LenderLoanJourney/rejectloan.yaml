@@ -1,0 +1,222 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/reject-loan-application/1.0/en:
+    post:
+      summary: Reject Loan
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: ZDhOYnUzbFNCVDFmYkRLOGIyamh0VUdrSnJVYQ==
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    txncode:
+                      type: string
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                  required:
+                    - txncode
+                    - ver
+                    - ts
+                data:
+                  type: object
+                  properties:
+                    loan_id:
+                      type: string
+                    rejection_reason:
+                      type: string
+                  required:
+                    - loan_id
+                    - rejection_reason
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                txncode: Abc9
+                ver: '1.0'
+                ts: '{{currentdate}}'
+              data:
+                loan_id: '3053'
+                rejection_reason: '5'
+              hmac: uG5JkM3H9Zj2DrF6qD9N2F2L6QxUjY8j63zY57u0Pd9=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  message: Loan record updated successfully.
+                signature: >-
+                  MGYCMQCvwHCZfnD0Tn9RYdXBUAfvReKh9NzNwqBgNm+KpYJtkyvIaQsykQck4HTAyL4QKrYCMQDzaixxqk++bhjBgFTJv835LYft7jZ5V42kQmTgISxhhAbzlCG2gMpXCYV5cDYoUnM=
+                meta:
+                  txncode: Abc9
+                  ver: '1.0'
+                  ts: 2025-08-01T13:07:47+0530
+                hmac: uGhDWmHqFxctpyql4uAYSRlQIDvusUzQJb+tQI/MaJw=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE64GVmDuvc0tRQDDaL7oWh5v3ijM6cX0oZIAdwPEhB2dQpnOWz/ihwbWnyI+UUzvHWzrEdrwB++6JjHHmDmZZ0TpMlVMzOGsVds2014VqPanpupDGpTwy+ced7lqq2dGm
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:reject_loan:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E978
+                  status: failed
+                  info: The Loan has already been withdrawn and cannot be rejected.
+                data: {}
+                signature: >-
+                  MGYCMQCa5vdoihJ6stLIqHmtvrOFwIwdmEImiXCVpeKw5dGggtR+sw7W2YVXyuEoT61rppoCMQCHintbA18oOHIvJfhvSEqmPrgkdvWwR749KDERXpUhP8HE+/fCEGj12qY+jujdFHU=
+                meta:
+                  txncode: Abc9
+                  ver: '1.0'
+                  ts: 2025-08-01T13:09:50+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEO6XtYa16tg9WlqyIrm+04KbXQWVWm4C3e884D1sizUAC9jnVZzIYLM7ybbPck38fmSnPfLyUPqED9i3PBxnLyl291H++Gf9Ki8Ppstjx3+OwbSt+H6xvUSyUktePSnNj
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

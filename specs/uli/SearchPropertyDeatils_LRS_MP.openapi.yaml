@@ -1,0 +1,153 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/searchpropertydetails/1.2/en:
+    get:
+      summary: Search Property Details
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: api-key
+          in: header
+          description: ''
+          required: false
+          example: <api-key>
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: RAMRBiHD02042025T1222
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: 2025-07-22T16:35:18+0530
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '23'
+          schema:
+            type: string
+        - name: lgdcode
+          in: header
+          description: ''
+          required: true
+          example: '471745'
+          schema:
+            type: string
+        - name: sub-service-name
+          in: header
+          description: ''
+          required: true
+          example: khasra-list
+          schema:
+            type: string
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E028
+                  status: failed
+                  info: Provider service is down or not reachable
+                data: {}
+                signature: >-
+                  MGYCMQDchIASEAs30dAW38O6kgziZhgvoDcUZg26FGpL8VVND3VsDiSiJiRv/Kqu9P2MDeoCMQCk1/RTr+ReeBeneW0RAxO2+7scfflhDfIPgWtwoSOp0kUwuA8F0S6kabtLW4kBpdI=
+                meta:
+                  txncode: RAMRBiHD02042025T1222
+                  ver: '1.2'
+                  ts: 2025-08-05T13:03:03+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEVg7CxUGUkqXvoCQH0i5/eLDV6WOZEfXZdK34h0ErYhF5uhMb/d1VOHEu6R/i3C4j/NFgnPgDb3gRWqMAn6gpaXvBuKtB7nbtGc7iHadjnxGHSUHYAlqOJrXcpfZURkWB
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

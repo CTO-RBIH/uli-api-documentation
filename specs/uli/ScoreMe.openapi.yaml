@@ -1,0 +1,653 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/scoreme/individual-legal-verifier/1.0/en:
+    post:
+      summary: Individual Legal Verifier
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '137'
+          schema:
+            type: string
+        - name: sp-client-id
+          in: header
+          description: ''
+          required: true
+          example: >-
+            LgDwLt1Q/gzY3XjiccnVpmjmapL4JvjnyydMqcv2Rjhsvo6dgHXwCZ4fnGlqbZu7GcKu/A7Z/HHdqaTxaYdSPd2tgmcg/VzTwGUPPg3UIlh/zUf6hE8bsFICmppl4JEK5myrmSpCpYgJBh7r9vZ29g==
+          schema:
+            type: string
+        - name: x-lender-auth-token
+          in: header
+          description: ''
+          required: true
+          example: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJBa2hpbC5rIiwiYXV0IjoiQVBQTElDQVRJT04iLCJhdWQiOiJMbHU3WHNLUHF0R1BzTUZnV2x1WGZoX1JNZ2dhIiwibmJmIjoxNzA1NTY4NzQ4LCJhenAiOiJMbHU3WHNLUHF0R1BzTUZnV2x1WGZoX1JNZ2dhIiwic2NvcGUiOiJkZWZhdWx0IiwiaXNzIjoiaHR0cHM6XC9cL2lkZW50aXR5Lm5vbnByb2QucmJpaHViLmlvXC9vYXV0aDJcL3Rva2VuIiwiZXhwIjoxNzA1NjExOTQ4LCJpYXQiOjE3MDU1Njg3NDgsImp0aSI6IjNhMGViOTg4LTVjZDQtNDNiMS1iMDkwLTc4NWM0NGFkMTg1ZCJ9.Tqdne4ItKhyXxEY-Am7oFEe6N4kgFodYIxlrcAZoBd4xXkUyiOLPJPYuHdfAP_HuHLnDdRY7Uc04lehVi2N0CTLgnuxysB_MclK0DrJysMSL7Pl2QvLpGR0DnXkobR1HPPR2tEnL7l0l7pCsZGrz20KEPNA0_Cete5y-CPTgWz53jDFUPtCfIIsBI9kiDbvN39GfAm5TMyER2nGeRHwNxkG_9uS_U75Ix4F4UGKGBwHoY-6N9RFsvbrdmNJp9ZHGRgLg8ind-tw38pCTD_kh4LVeY7EDmVVYxUL5_KJ0sidMZ98FGaCJkeNkN0uBiihxvh6lfCIdY95bz7N1zCyDPw
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    searchType:
+                      type: array
+                      items:
+                        type: string
+                    name:
+                      type: array
+                      items:
+                        type: string
+                    source:
+                      type: array
+                      items:
+                        type: string
+                    partyType:
+                      type: array
+                      items: {}
+                    stateName:
+                      type: array
+                      items: {}
+                    caseCategory:
+                      type: array
+                      items:
+                        type: string
+                    matchType:
+                      type: array
+                      items:
+                        type: string
+                    caseYear:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                    - searchType
+                    - name
+                    - source
+                    - partyType
+                    - stateName
+                    - caseCategory
+                    - matchType
+                    - caseYear
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example: "{\r\n    \"meta\": {\r\n        \"ver\": \"1.0\",\r\n        \"ts\": \"{{currentdate}}\",\r\n        \"txncode\": \"24062025RameshwarRBIH530\"\r\n    },\r\n    \"data\": {\r\n        \"searchType\": [\r\n            \"Individual\"\r\n        ],\r\n        \"name\": [\r\n            \"Avinash Kanchan\"\r\n        ],\r\n        \"source\": [\"high court\"],\r\n        \"partyType\": [],\r\n        \"stateName\": [],\r\n        \"caseCategory\": [\"criminal\"],\r\n        \"matchType\": [\"contains\"],\r\n        \"caseYear\": [\"2015-2020\"]\r\n       // \"userApplicationId\": []\r\n    },\r\n    \"hmac\": \"aFFJS1BUaU9MNzNfZzdoV080OXVwWnZGYUJzYQ==\"\r\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      responseMessage:
+                        type: string
+                      referenceId:
+                        type: string
+                      responseCode:
+                        type: string
+                    required:
+                      - responseMessage
+                      - referenceId
+                      - responseCode
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  responseMessage: Successfully Submitted.
+                  referenceId: ad7d26ec-fde7-4168-abf8-16acea101587
+                  responseCode: SRS016
+                signature: >-
+                  MGQCMAm0sW8Ec1Ura+RAY9a/lLR/Zcg7iyETnEoYYfg/F3sKTSPtIS0SEYPwiSHVfLr3wAIwD3d2NtpU/dGhoKNirzVXm3+p2LcBWdKkDeAKCFQIIp2pNphUunxxE3TzSJGaAg8V
+                meta:
+                  txncode: 24062025RameshwarRBIH530
+                  ver: '1.0'
+                  ts: 2025-08-05T14:38:40+0530
+                hmac: ZSBTVLW+DZLWIWSUbnSpzGe7OG/dRUpVzBC8bTc7nQs=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEDsA6vHD2SmZwwF6Fzdy/U0SO+c7bnagmu1thJvZoJUSEnIwoLwK12CG8+BoViz3L7B8aHySHwirMbrtTe/x8E4ftaPGoK+q3KCuQB5yh5FLe24Kzi1eu1/2KyDVxWT0F
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/scoreme/individual-legal-verifier/callback/1.0/en:
+    post:
+      summary: Individual Verifier callback
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: isBillable
+          in: header
+          description: ''
+          required: true
+          example: 'true'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    jsonUrl:
+                      type: string
+                    fileUrl:
+                      type: string
+                    referenceId:
+                      type: string
+                  required:
+                    - jsonUrl
+                    - fileUrl
+                    - referenceId
+                responseMessage:
+                  type: string
+                responseCode:
+                  type: string
+              required:
+                - data
+                - responseMessage
+                - responseCode
+            example:
+              data:
+                jsonUrl: >-
+                  https://sm-legal-quality.scoreme.in/legal/app/legalJsonReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.json
+                fileUrl: >-
+                  https://sm-legal-quality.scoreme.in/legal/app/legalReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.xlsx
+                referenceId: bcf47d57-f36e-4779-acd1-d08fca1e638f
+              responseMessage: Successfully Completed.
+              responseCode: SRC001
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      jsonUrl:
+                        type: string
+                      fileUrl:
+                        type: string
+                      referenceId:
+                        type: string
+                    required:
+                      - jsonUrl
+                      - fileUrl
+                      - referenceId
+                  responseMessage:
+                    type: string
+                  responseCode:
+                    type: string
+                required:
+                  - data
+                  - responseMessage
+                  - responseCode
+              example:
+                data:
+                  jsonUrl: >-
+                    https://sm-legal-quality.scoreme.in/legal/app/legalJsonReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.json
+                  fileUrl: >-
+                    https://sm-legal-quality.scoreme.in/legal/app/legalReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.xlsx
+                  referenceId: ad7d26ec-fde7-4168-abf8-16acea101587
+                responseMessage: Successfully Completed.
+                responseCode: SRC001
+          headers: {}
+      security:
+        - basic: []
+  /qa/scoreme/entity-legal-verifier/1.0/en:
+    post:
+      summary: Entity Legal Verifier
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '137'
+          schema:
+            type: string
+        - name: sp-client-id
+          in: header
+          description: ''
+          required: true
+          example: >-
+            h1VpxkxKzkpff3ZaJiUprCpPxkijcZ6SqJkzmn6Qxnc3DJS0kbWZuDCPvLcenfYA6HYLqPO6QdPsEUZT8sLRQukrd4XY+1babqRrVCfkgdSHgG3HA8KfzpGVkEwpL/jTd3wDObSp/CO2x/c0LjymAg==
+          schema:
+            type: string
+        - name: x-lender-auth-token
+          in: header
+          description: ''
+          required: true
+          example: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJBa2hpbC5rIiwiYXV0IjoiQVBQTElDQVRJT04iLCJhdWQiOiJMbHU3WHNLUHF0R1BzTUZnV2x1WGZoX1JNZ2dhIiwibmJmIjoxNzA1NTY4NzQ4LCJhenAiOiJMbHU3WHNLUHF0R1BzTUZnV2x1WGZoX1JNZ2dhIiwic2NvcGUiOiJkZWZhdWx0IiwiaXNzIjoiaHR0cHM6XC9cL2lkZW50aXR5Lm5vbnByb2QucmJpaHViLmlvXC9vYXV0aDJcL3Rva2VuIiwiZXhwIjoxNzA1NjExOTQ4LCJpYXQiOjE3MDU1Njg3NDgsImp0aSI6IjNhMGViOTg4LTVjZDQtNDNiMS1iMDkwLTc4NWM0NGFkMTg1ZCJ9.Tqdne4ItKhyXxEY-Am7oFEe6N4kgFodYIxlrcAZoBd4xXkUyiOLPJPYuHdfAP_HuHLnDdRY7Uc04lehVi2N0CTLgnuxysB_MclK0DrJysMSL7Pl2QvLpGR0DnXkobR1HPPR2tEnL7l0l7pCsZGrz20KEPNA0_Cete5y-CPTgWz53jDFUPtCfIIsBI9kiDbvN39GfAm5TMyER2nGeRHwNxkG_9uS_U75Ix4F4UGKGBwHoY-6N9RFsvbrdmNJp9ZHGRgLg8ind-tw38pCTD_kh4LVeY7EDmVVYxUL5_KJ0sidMZ98FGaCJkeNkN0uBiihxvh6lfCIdY95bz7N1zCyDPw
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    searchType:
+                      type: array
+                      items:
+                        type: string
+                    name:
+                      type: array
+                      items:
+                        type: string
+                    source:
+                      type: array
+                      items: {}
+                    partyType:
+                      type: array
+                      items: {}
+                    stateName:
+                      type: array
+                      items: {}
+                    caseCategory:
+                      type: array
+                      items: {}
+                    matchType:
+                      type: array
+                      items: {}
+                    caseYear:
+                      type: array
+                      items: {}
+                    userApplicationId:
+                      type: array
+                      items: {}
+                  required:
+                    - searchType
+                    - name
+                    - source
+                    - partyType
+                    - stateName
+                    - caseCategory
+                    - matchType
+                    - caseYear
+                    - userApplicationId
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.0'
+                ts: '{{currentdate}}'
+                txncode: 25062025Rameshwar550
+              data:
+                searchType:
+                  - Entity
+                name:
+                  - Rohit shetty
+                source: []
+                partyType: []
+                stateName: []
+                caseCategory: []
+                matchType: []
+                caseYear: []
+                userApplicationId: []
+              hmac: aFFJS1BUaU9MNzNfZzdoV080OXVwWnZGYUJzYQ==
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      responseMessage:
+                        type: string
+                      referenceId:
+                        type: string
+                      responseCode:
+                        type: string
+                    required:
+                      - responseMessage
+                      - referenceId
+                      - responseCode
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  responseMessage: Successfully Submitted.
+                  referenceId: abb73324-9cda-4fb6-9db8-858c57ac0495
+                  responseCode: SRS016
+                signature: >-
+                  MGYCMQDDmiWffUc20Q2S3kXQUyvXcywruJN8Jnc5o5XBn9ISkkDAorSEO3bXOD6cewOAJE4CMQCgW33UC6jRNWe2VwYFIjnAW6v4xbPDefOUALFdEADWUzxC8wK3hJwHb/YL5jVva7U=
+                meta:
+                  txncode: 25062025Rameshwar550
+                  ver: '1.0'
+                  ts: 2025-08-05T14:42:06+0530
+                hmac: Twsye1WC2FtlVBL31u5G77TfnJFuU/rem6J7W5UuaA8=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEHPHk4v/a462KC5hSVG/t96jdj95b3YuvvaBqucvgeymGIQvIadd/Fr/8RrujAk4w5auLqWBY6R26E2SCbsGG6frb2V5P1wHRqGXBap7FTCVsRltlAlpBekFYiTLlr+Wk
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/scoreme/entity-legal-verifier/callback/1.0/en:
+    post:
+      summary: Entity Verifier callback
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: isBillable
+          in: header
+          description: ''
+          required: true
+          example: 'true'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    jsonUrl:
+                      type: string
+                    fileUrl:
+                      type: string
+                    referenceId:
+                      type: string
+                  required:
+                    - jsonUrl
+                    - fileUrl
+                    - referenceId
+                responseMessage:
+                  type: string
+                responseCode:
+                  type: string
+              required:
+                - data
+                - responseMessage
+                - responseCode
+            example:
+              data:
+                jsonUrl: >-
+                  https://sm-legal-quality.scoreme.in/legal/app/legalJsonReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.json
+                fileUrl: >-
+                  https://sm-legal-quality.scoreme.in/legal/app/legalReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.xlsx
+                referenceId: a0383366-9bbe-42f6-b03b-8c3b2a41501b
+              responseMessage: Successfully Completed.
+              responseCode: SRC001
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      jsonUrl:
+                        type: string
+                      fileUrl:
+                        type: string
+                      referenceId:
+                        type: string
+                    required:
+                      - jsonUrl
+                      - fileUrl
+                      - referenceId
+                  responseMessage:
+                    type: string
+                  responseCode:
+                    type: string
+                required:
+                  - data
+                  - responseMessage
+                  - responseCode
+              example:
+                data:
+                  jsonUrl: >-
+                    https://sm-legal-quality.scoreme.in/legal/app/legalJsonReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.json
+                  fileUrl: >-
+                    https://sm-legal-quality.scoreme.in/legal/app/legalReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.xlsx
+                  referenceId: a0383366-9bbe-42f6-b03b-8c3b2a41501b
+                responseMessage: Successfully Completed.
+                responseCode: SRC001
+          headers: {}
+      security:
+        - basic: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+    basic:
+      type: http
+      scheme: basic
+servers: []
+security: []

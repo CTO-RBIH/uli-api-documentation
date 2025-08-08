@@ -1,0 +1,71 @@
+---
+id: satsure-call-back
+title: "satsure-CallBack"
+description: ""
+sidebar_label: "satsure-CallBack"
+hide_title: true
+hide_table_of_contents: true
+api: eJzNVW1v2zYQ/isGga1AF1ovlmzZmBe46bpkwZa2drGhcWCcKMpmK4kKSeWlhv/7jpIcC272hn2ZPwjm8Xh3fO7hc1uS8FJxBoYnZJJCpvkJmjRTojRCFmRCyAkxsNZkcn1zQkpQkHPDlV1vSYELdAFmxJ0wjxcJOgt7aMMh4Yo8E0vx20qoTjb+AHmZ2TBe4IV+6KOTZhueA5lsiXks7ZY2ShRrstudPCU9k4XhhaEL6/Ff0kJZZgIRQF8HjMy/e8izv6zhpgnHtXklk0frwZpa7N9uNBsITV9FkvEnzgzmKJUsuTKCI5xbvNyhqi1JwNRn2lQrgbWT2ONR4EURTV3PpUHqxRSiMdBgHHPPHXowDNw6LtdiXfBkVanM4mJMqSeOU1JYK0E1rDlVvOD3kPX1oA85fJEF3Os+k7mjsd14USeR90UmIdHOiKcDNh4PaRSFIQ38JKGRF4c0TVIeQThKWBg4oigrs1Jw32f67vR3Osu/0Fm2lkqYTT6d/TYP6PkvszM6P5/54fDbxuEMW4LACcims8uL2ce379+9O5/9NFpcvh5cLUbf+G981w/dgR/gXyiplpXZUA8XemAt9zpYtQC1EV8jlaf7Qws3GPju8GO79+NDiRzQUy9yXbe1zWuczmvi6OlGPgWyG2AqxaejIIlGwzDyUrw+AIvAZ7EbsJTxAXC0eJCmmHLIEpeHLPHHGD4dWnRGY99PsSE51xZ0bAW2nOECAV6JYtWukFQ7234srpSFrulAfNeteXBM5Q7ZXjov/wXBiK5Yne3gGEuZcSjIrlPiM4+u83yun6Icjtx0mUu2y73LkkyMqvjJcu+Jhs7mrg7dvNn9Awg8/+8u3X1hn7R1+J8h0EnTis2h/RfFHWQi6f08v/p10ntxeNwvekL3clEzoydVTzSOZHeMES41ZxU+q8dGk1GPN9KKQ4nktTcGs8GVcwuOBqORwQ7qAW0EgTLIshjYZ8fruw4vrNBxddcI+s0h9NwC2mAWc1AoqgdUrJrsBbKGsHGwlYkilbWnMDUXLiFPNryonpNkm7RZYCl913bA3iCHuqOtyrc3oGdY9iss+zhQR3vrSdVUaPiDccoMRN3XWgO3LS7X5BZs8U3cRiuPsUErloRfxAcxsaJgD263MWj+QWW7nTVj51TbgjtQAmJ74+ubp3bVEzIR2m78yXD9J9V/5o/HIxaZUVlHYsdhs380Dfcex9PocGCGDC1Nx9Vqya5Lp7dX8wXux+2My2Vi3VDg7TjF74R8f4oxe20fp0sL2pL0eMFkgixGw4fFGxotyekPS0s0Wd+65lR9fksyKNZV8zDq6uzvD2QM2vU=
+sidebar_class_name: "post api-method"
+info_path: docs/SatsureBatch/kamdhenu
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"satsure-CallBack"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/qa/satsure/pre-signed-callback/1.0/en"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"activityId","in":"header","description":"","required":false,"example":"1415252","schema":{"type":"string"}},{"name":"Content-Type","in":"header","description":"","required":false,"example":"application/atom+xml","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/xml":{"schema":{"type":"object","properties":{}},"example":{"data":{"request_id":"b1e84188-f010-4f1b-a89a-49be1061a640","presigned_url":"https://p-agri-sage-renewal.s3.amazonaws.com/staging/downloads/7ef3c996-8855-42dd-81b5-fdfe8a57dc54/input_raw.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZPRQQHAG7TKD3OT7%2F20250324%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250324T043206Z&X-Amz-Expires=18000&X-Amz-SignedHeaders=host&X-Amz-Signature=74d876581f855aac8a2cb04cfce3ae5aa1aff2026cd0e5cd29000f6fdfe7922f","message":"processing_in_process"}}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"","content":{"*/*":{"schema":{"type":"object","properties":{"success":{"type":"boolean"},"message":{"type":"string"}},"required":["success","message"]},"example":"{\"success\":true,\"message\":\"success\"}"}},"headers":{}},"412":{"description":"","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean"},"message":{"type":"string"}},"required":["success","message"]},"example":{"success":false,"message":"Invalid JSON: 'request_id' is missing or invalid"}}},"headers":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

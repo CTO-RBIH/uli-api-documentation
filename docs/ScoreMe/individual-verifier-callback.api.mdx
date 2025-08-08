@@ -1,0 +1,71 @@
+---
+id: individual-verifier-callback
+title: "Individual Verifier callback"
+description: ""
+sidebar_label: "Individual Verifier callback"
+hide_title: true
+hide_table_of_contents: true
+api: eJztVttu2zgQ/ZWAT7uAZclOYrsGikWb7kP3gi2Sdl+CoBiRI5spLSkk5cQw/O87Q8my4kt3sS1QFOiLYZJz4zlnxFkLhaVFCR6VmGZgHPZoy0mrS6+LXEyF6AkPMyemt3c9UYKFBXq0vF6LnBZkclXkHnMfvV+VSOaa3eYICq04Es3iQ6Ut5/O2onT4BIvScBwoS6OpFjKN7x3Z94STc1yAmK6F5+BT4bzV+UxsNr02/SspsfTfILF2r7UxkJovujWvP5vwrvZG518XasUWsgac/x6UTnsHoYr0HiUjVNqiROs1Oj5V4P+DFUf9YM2Rynoi0wZPnVnM0GIu8a06CmMHkts2yS7k8wB3wd6VRe7wT3QOZngiaW1zVahjBntZAwCHgffCcO6Wrh1qLS5i7n3ppnHsFpHBGZjooQKj/arvZGFxgX2dx+EgJrbqf7+R8zWWhfVvisfcFKB+4Yu/PL9Q6VAOIHoh00l0MVYvIlCQRcnlEM+HMs3kZfLxD45Qe/cbubZE/J9ivkohT8Y97ZE2FanMyPVyHGXnI6QoY4oi1SBSySSTMMDR+SQTx6gVNxV1tXNZZczq7Kpg8Okb1d/nhgyvr5JkQNRuOnGCcIdJEvjab8Uf3fOje76L7gE1VsMRyihTOI4uBqNJBGk2iQYjkAiDZHA5GX+17uk1jxerNiwdysrS1cNLn4LTkmcAfo1oApgXXGBZuKB48HNaxQ8QNzDFOld6qRWB1+C4RKszjTaWYEwK8lM86CcxhqcW7bKeKO52WW+4C+sWShEsPao7PTJJ2xeT140B1dyUedoynPPt7oOE2lf1188ptNF/Vyft1nPGDltpx0nH5RkFOx+dZ0UoXvswGfwOCzXHvDo2TzBi9YJw7CfszmwsIHzDmgHlbcvC2d8N/mdb/PeDdqaKMPPVAHp88nFpgKYbylDVH6ua71vxAAHbwHiYgE5wzt/cXVaql36JeWJ7zgKiSOs1McPQbja8TbTYVa2HJVgdJizW3lajQZJKOz44Mbd2r/PTdfPV+vns1M0+4Wp/oFuCqdhQ8MRXn+8NuluLg1dk59HOpqdtuw317q+b92ScNnPeolaIhUeWDf0GaopwxdAaYW8tDOSzqlZZHZMVDhWz1LZCLf22RW7bA8hXnfoCE1q+IucP1JgsJOJkC1DVbIUb/pv/O3DusbCq4182W3RrqvEfGKpHKA==
+sidebar_class_name: "post api-method"
+info_path: docs/ScoreMe/kamdhenu
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Individual Verifier callback"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/qa/scoreme/individual-legal-verifier/callback/1.0/en"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"Content-Type","in":"header","description":"","required":true,"example":"application/json","schema":{"type":"string"}},{"name":"Accept","in":"header","description":"","required":true,"example":"application/json","schema":{"type":"string"}},{"name":"isBillable","in":"header","description":"","required":true,"example":"true","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"content":{"application/json":{"schema":{"type":"object","properties":{"data":{"type":"object","properties":{"jsonUrl":{"type":"string"},"fileUrl":{"type":"string"},"referenceId":{"type":"string"}},"required":["jsonUrl","fileUrl","referenceId"]},"responseMessage":{"type":"string"},"responseCode":{"type":"string"}},"required":["data","responseMessage","responseCode"]},"example":{"data":{"jsonUrl":"https://sm-legal-quality.scoreme.in/legal/app/legalJsonReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.json","fileUrl":"https://sm-legal-quality.scoreme.in/legal/app/legalReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.xlsx","referenceId":"bcf47d57-f36e-4779-acd1-d08fca1e638f"},"responseMessage":"Successfully Completed.","responseCode":"SRC001"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"","content":{"application/json":{"schema":{"type":"object","properties":{"data":{"type":"object","properties":{"jsonUrl":{"type":"string"},"fileUrl":{"type":"string"},"referenceId":{"type":"string"}},"required":["jsonUrl","fileUrl","referenceId"]},"responseMessage":{"type":"string"},"responseCode":{"type":"string"}},"required":["data","responseMessage","responseCode"]},"example":{"data":{"jsonUrl":"https://sm-legal-quality.scoreme.in/legal/app/legalJsonReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.json","fileUrl":"https://sm-legal-quality.scoreme.in/legal/app/legalReportDownload?file=34db2c1a-9cb8-47d9-adaf-052e32cbfc50_LegalReport.xlsx","referenceId":"ad7d26ec-fde7-4168-abf8-16acea101587"},"responseMessage":"Successfully Completed.","responseCode":"SRC001"}}},"headers":{}}}}
+>
+  
+</StatusCodes>
+
+
+      

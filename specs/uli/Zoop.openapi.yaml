@@ -1,0 +1,1677 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/zoop/dl/1.0/en:
+    post:
+      summary: DL
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '134'
+          schema:
+            type: string
+        - name: x-sp-memberId
+          in: header
+          description: ''
+          required: false
+          example: '{{x-sp-memberId}}'
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: false
+          example: '{{x-sp-auth-token}}'
+          schema:
+            type: string
+        - name: x-zoop-app-id
+          in: header
+          description: ''
+          required: true
+          example: 682b14f67175d30028be534b
+          schema:
+            type: string
+        - name: x-zoop-api-key
+          in: header
+          description: ''
+          required: true
+          example: 8346FVM-0CM47WZ-QYK5SA6-4WSHZ99
+          schema:
+            type: string
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: "{\r\n    \"meta\": {\r\n        \"ver\": \"1.0\",\r\n        \"ts\": \"2025-08-05T10:58:59+0530\",\r\n        \"txncode\": \"1234abcdef\"\r\n    },\r\n    \"data\": {\r\n        \"customer_dl_number\": \"UP3720240011626\",\r\n       // \"name_to_match \": \"Ash\",\r\n        \"customer_dob\": \"10-08-2002\",\r\n        \"consent\": \"Y\",\r\n        \"consent_text\": \"Approve the values here\",\r\n        \"task_id\": \"4cbc07d7-985081cd6e38\"\r\n    },\r\n    \"hmac\": \"123vcde\"\r\n}"
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: EZP009
+                  status: failed
+                  info: Please provide customer DOB
+                data: {}
+                signature: >-
+                  MGYCMQCOb8ArJvyCFxsiAr5m+to6JdGw5edilw+v/3dTzPB7pF19OY9s/2sf/3rNCxMwG0UCMQDOiI1ZcTxllFirG+3mZ5gUwYc5Gy/Nl1XSQfRJEO3QlY6pWuUcr/r0o4HpBPKxVrs=
+                meta:
+                  txncode: 1234abcdef
+                  ver: '1.0'
+                  ts: 2025-08-05T10:58:08+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE67ni2kpZET+TPrWU4F1taE43Iw9N7F+auWLDv0pe3pL+kzG9CFaZPtl1wOluYizKOswHCIiRlqLsyC+uwrYq9CMqqPGm1qo4MXiLpKpVOESfxF3tuzF4CJKIsk2ynjPM
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/zoop/voter/1.0/en:
+    post:
+      summary: Voter
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '134'
+          schema:
+            type: string
+        - name: x-sp-memberId
+          in: header
+          description: ''
+          required: false
+          example: '{{x-sp-memberId}}'
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: false
+          example: '{{x-sp-auth-token}}'
+          schema:
+            type: string
+        - name: x-zoop-app-id
+          in: header
+          description: ''
+          required: true
+          example: 682b14f67175d30028be534b
+          schema:
+            type: string
+        - name: x-zoop-api-key
+          in: header
+          description: ''
+          required: true
+          example: 8346FVM-0CM47WZ-QYK5SA6-4WSHZ99
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    customer_epic_number:
+                      type: string
+                    name_to_match:
+                      type: string
+                    consent:
+                      type: string
+                    consent_text:
+                      type: string
+                    task_id:
+                      type: string
+                  required:
+                    - customer_epic_number
+                    - name_to_match
+                    - consent
+                    - consent_text
+                    - task_id
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.0'
+                ts: 2025-08-05T11:00:11+0530
+                txncode: 1234sdf
+              data:
+                customer_epic_number: MKG1708619
+                name_to_match: ashish
+                consent: 'Y'
+                consent_text: Approve the values here
+                task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+              hmac: '123'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      result:
+                        type: object
+                        properties:
+                          constituency_part_number:
+                            type: integer
+                          parliamentary_constituency_name_vernacular:
+                            type: string
+                          polling_booth:
+                            type: object
+                            properties:
+                              number:
+                                type: integer
+                              name_vernacular:
+                                type: string
+                              lat_long:
+                                type: string
+                              name:
+                                type: string
+                            required:
+                              - number
+                              - name_vernacular
+                              - lat_long
+                              - name
+                          address:
+                            type: object
+                            properties:
+                              district_name:
+                                type: string
+                              district_name_vernacular:
+                                type: string
+                              district_code:
+                                type: integer
+                              state:
+                                type: string
+                              state_code:
+                                type: string
+                            required:
+                              - district_name
+                              - district_name_vernacular
+                              - district_code
+                              - state
+                              - state_code
+                          assembly_constituency_number:
+                            type: integer
+                          relative_name_english:
+                            type: string
+                          user_name_english:
+                            type: string
+                          parliamentary_constituency_number:
+                            type: string
+                          user_age:
+                            type: integer
+                          constituency_section_number:
+                            type: integer
+                          epic_number:
+                            type: string
+                          user_gender:
+                            type: string
+                          relative_relation:
+                            type: string
+                          name_match_score:
+                            type: string
+                          parliamentary_constituency_name:
+                            type: string
+                          voter_last_updated_date:
+                            type: string
+                          serial_number_applicable_part:
+                            type: integer
+                          assembly_constituency_name:
+                            type: string
+                          assembly_constituency_name_vernacular:
+                            type: string
+                          user_name_vernacular:
+                            type: string
+                          constituency_part_name:
+                            type: string
+                          relative_name_vernacular:
+                            type: string
+                          constituency_part_name_vernacular:
+                            type: string
+                          status:
+                            type: string
+                        required:
+                          - constituency_part_number
+                          - parliamentary_constituency_name_vernacular
+                          - polling_booth
+                          - address
+                          - assembly_constituency_number
+                          - relative_name_english
+                          - user_name_english
+                          - parliamentary_constituency_number
+                          - user_age
+                          - constituency_section_number
+                          - epic_number
+                          - user_gender
+                          - relative_relation
+                          - name_match_score
+                          - parliamentary_constituency_name
+                          - voter_last_updated_date
+                          - serial_number_applicable_part
+                          - assembly_constituency_name
+                          - assembly_constituency_name_vernacular
+                          - user_name_vernacular
+                          - constituency_part_name
+                          - relative_name_vernacular
+                          - constituency_part_name_vernacular
+                          - status
+                      response_timestamp:
+                        type: string
+                      response_code:
+                        type: string
+                      metadata:
+                        type: object
+                        properties:
+                          billable:
+                            type: string
+                        required:
+                          - billable
+                      response_message:
+                        type: string
+                      request_timestamp:
+                        type: string
+                      group_id:
+                        type: string
+                      success:
+                        type: boolean
+                      task_id:
+                        type: string
+                      request_id:
+                        type: string
+                    required:
+                      - result
+                      - response_timestamp
+                      - response_code
+                      - metadata
+                      - response_message
+                      - request_timestamp
+                      - group_id
+                      - success
+                      - task_id
+                      - request_id
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  result:
+                    constituency_part_number: 55
+                    parliamentary_constituency_name_vernacular: ''
+                    polling_booth:
+                      number: 55
+                      name_vernacular: ''
+                      lat_long: 8.49531059,76.93457961
+                      name: Govt.BHS, Pettah
+                    address:
+                      district_name: THIRUVANANTHAPURAM
+                      district_name_vernacular: തിരുവനന്തപുരം
+                      district_code: 14
+                      state: Kerala
+                      state_code: S11
+                    assembly_constituency_number: 134
+                    relative_name_english: V**********r
+                    user_name_english: p******j
+                    parliamentary_constituency_number: '20'
+                    user_age: 39
+                    constituency_section_number: 1
+                    epic_number: MKG1708619
+                    user_gender: M
+                    relative_relation: FTHR
+                    name_match_score: '29.00'
+                    parliamentary_constituency_name: Thiruvananthapuram
+                    voter_last_updated_date: '2024-12-28T08:13:51.290+00:00'
+                    serial_number_applicable_part: 659
+                    assembly_constituency_name: THIRUVANANTHAPURAM
+                    assembly_constituency_name_vernacular: തിരുവനന്തപുരം
+                    user_name_vernacular: പ********്
+                    constituency_part_name: >-
+                      Govt.Boys High School Pettah(Western portion of South
+                      Building)
+                    relative_name_vernacular: വ***********‍
+                    constituency_part_name_vernacular: >-
+                      ഗവ. ബോയ്സ് ഹൈസ്കൂള്‍ പേട്ട (തെക്കേ കെട്ടിടത്തിന്റെ
+                      പടിഞ്ഞാറു ഭാഗം)
+                    status: 'N'
+                  response_timestamp: '2025-08-05T05:30:26.366Z'
+                  response_code: '100'
+                  metadata:
+                    billable: 'Y'
+                  response_message: Valid Authentication
+                  request_timestamp: '2025-08-05T05:30:26.204Z'
+                  group_id: e96be27f-819d-45ea-bbf2-807c9d35899b
+                  success: true
+                  task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+                  request_id: 1844390d-1081-4a92-8e24-b53bb8f7eee5
+                signature: >-
+                  MGQCMHED+rasZAVsA/PalHUODeKV3F2NiG6/cZtKdDEPa+4NuOKIX+PT2gBCotbsJZf/qAIwKJEr12WELv3q2V1gLrpDFfSiESejrwkbzdsnLjKrLFmiKAu2zkZ2GqObjmrd/yW6
+                meta:
+                  txncode: 1234sdf
+                  ver: '1.0'
+                  ts: 2025-08-05T11:00:26+0530
+                hmac: VPa1jkvRN5yUZ3of+b7w8beaO40UC6my1J2lz8zCBfo=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE4qI52YuVavWqzjw+jRXpLF0HZ1T+ndihMHegyaVlX5smkPVfGOsAl4W2ks7P7+9dNwX+GKhY0oQpa8yFJdqJRuhLKN5f+R4lRVsy/JGsUcUKzT7DblGBPESMAdCSlK8c
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/zoop/vehicle/rc/1.0/en:
+    post:
+      summary: Vehicle_RC
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '134'
+          schema:
+            type: string
+        - name: x-zoop-app-id
+          in: header
+          description: ''
+          required: true
+          example: 682b14f67175d30028be534b
+          schema:
+            type: string
+        - name: x-zoop-api-key
+          in: header
+          description: ''
+          required: true
+          example: 8346FVM-0CM47WZ-QYK5SA6-4WSHZ99
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    vehicle_registration_number:
+                      type: string
+                    consent:
+                      type: string
+                    consent_text:
+                      type: string
+                    task_id:
+                      type: string
+                  required:
+                    - vehicle_registration_number
+                    - consent
+                    - consent_text
+                    - task_id
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.0'
+                ts: 2025-08-05T11:01:55+0530
+                txncode: 1234cdefgh
+              data:
+                vehicle_registration_number: UP12WZ1673
+                consent: 'Y'
+                consent_text: Approve the values here
+                task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+              hmac: '12345'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      result:
+                        type: 'null'
+                      response_timestamp:
+                        type: string
+                      response_code:
+                        type: string
+                      metadata:
+                        type: object
+                        properties:
+                          billable:
+                            type: string
+                        required:
+                          - billable
+                      response_message:
+                        type: string
+                      request_timestamp:
+                        type: string
+                      group_id:
+                        type: string
+                      success:
+                        type: boolean
+                      task_id:
+                        type: string
+                      request_id:
+                        type: string
+                    required:
+                      - result
+                      - response_timestamp
+                      - response_code
+                      - metadata
+                      - response_message
+                      - request_timestamp
+                      - group_id
+                      - success
+                      - task_id
+                      - request_id
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  result: null
+                  response_timestamp: '2025-08-05T05:32:26.361Z'
+                  response_code: '101'
+                  metadata:
+                    billable: 'N'
+                  response_message: No Record Found
+                  request_timestamp: '2025-08-05T05:32:25.496Z'
+                  group_id: 489c3edc-ccb2-4b1d-8104-165e258bdd3a
+                  success: false
+                  task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+                  request_id: a3d8322f-47f2-4f70-89f8-1589ee9cceb4
+                signature: >-
+                  MGUCMQDLITCiMaAkpUzs772Jcc1hnelvQzG7aFSqZYUJpqkEjB4LYOKQppGC+tysAe1prOcCMBaz+tHiE/0m0o6qCgybasUahbpn/kOTH+wyYGG6WtA7kdUyL4jcZiWTXNXMX/hNRw==
+                meta:
+                  txncode: 1234cdefgh
+                  ver: '1.0'
+                  ts: 2025-08-05T11:02:26+0530
+                hmac: O0Sp2RQ6UDVjHHXW7dmJ3s0Aweas/srHYcSf1tqtxBs=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEgNPQf/TS/2vgiLom9RuKgTT6cjarm7TmQ+oQLERS19TYkY2NXZFkWXC6+cBuWfQRbhlIZbWoUNVlCE5MzFFz9eYGBFxt8VMjmDzy5/RkpiFeSo8vViE/Ar5pj+5kJXQ4
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /QA/zoop/vehicle/rcchallan/1.0/en:
+    post:
+      summary: Vehicle_RC_Challan
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '134'
+          schema:
+            type: string
+        - name: x-zoop-app-id
+          in: header
+          description: ''
+          required: true
+          example: 682b14f67175d30028be534b
+          schema:
+            type: string
+        - name: x-zoop-api-key
+          in: header
+          description: ''
+          required: true
+          example: 8346FVM-0CM47WZ-QYK5SA6-4WSHZ99
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    vehicle_registration_number:
+                      type: string
+                    consent:
+                      type: string
+                    consent_text:
+                      type: string
+                    task_id:
+                      type: string
+                  required:
+                    - vehicle_registration_number
+                    - consent
+                    - consent_text
+                    - task_id
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.0'
+                ts: '{{currentdate}}'
+                txncode: '{{txncode}}'
+              data:
+                vehicle_registration_number: MH12WZ1673
+                consent: 'Y'
+                consent_text: Approve the values here
+                task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+              hmac: '{{hmac}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      result:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            challan_number:
+                              type: string
+                            user_name:
+                              type: string
+                            rc_registration_number:
+                              type: string
+                            challan_date:
+                              type: string
+                            challan_id:
+                              type: integer
+                            challan_payment_date:
+                              type: string
+                            challan_amount:
+                              type: string
+                            challan_receipt_url:
+                              type: string
+                            accused_name:
+                              type: string
+                            accused_father_name:
+                              type: string
+                            rto_office_name:
+                              type: string
+                            challan_payment_source:
+                              type: string
+                            offences:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  offence_fine:
+                                    type: string
+                                  offence_name:
+                                    type: string
+                                  motor_vehicle_act:
+                                    type: string
+                                required:
+                                  - offence_fine
+                                  - offence_name
+                                  - motor_vehicle_act
+                            challan_status:
+                              type: string
+                            rc_state_code:
+                              type: string
+                          required:
+                            - challan_number
+                            - user_name
+                            - rc_registration_number
+                            - challan_date
+                            - challan_id
+                            - challan_payment_date
+                            - challan_amount
+                            - challan_receipt_url
+                            - accused_name
+                            - accused_father_name
+                            - rto_office_name
+                            - challan_payment_source
+                            - offences
+                            - challan_status
+                            - rc_state_code
+                      response_timestamp:
+                        type: string
+                      response_code:
+                        type: string
+                      metadata:
+                        type: object
+                        properties:
+                          billable:
+                            type: string
+                        required:
+                          - billable
+                      response_message:
+                        type: string
+                      request_timestamp:
+                        type: string
+                      group_id:
+                        type: string
+                      success:
+                        type: boolean
+                      task_id:
+                        type: string
+                      request_id:
+                        type: string
+                    required:
+                      - result
+                      - response_timestamp
+                      - response_code
+                      - metadata
+                      - response_message
+                      - request_timestamp
+                      - group_id
+                      - success
+                      - task_id
+                      - request_id
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  result:
+                    - challan_number: MH4228234250730032120
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-07-25'
+                      challan_id: 1
+                      challan_payment_date: NA
+                      challan_amount: '1000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: Safety belts/ seatbelt not weared by passengers
+                          motor_vehicle_act: 194(B)(1)
+                      challan_status: Pending
+                      rc_state_code: MH
+                    - challan_number: MH4228234250504010850
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-05-04'
+                      challan_id: 2
+                      challan_payment_date: '2025-07-28'
+                      challan_amount: '2000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: >-
+                            Driving with excessive / overspeed than prescribed
+                            LMV, owners responsibility
+                          motor_vehicle_act: 112/183(1)
+                      challan_status: Cash
+                      rc_state_code: MH
+                    - challan_number: MH4228234250504120063
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-05-04'
+                      challan_id: 3
+                      challan_payment_date: '2025-07-31'
+                      challan_amount: '2000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: >-
+                            Driving with excessive / overspeed than prescribed
+                            LMV, owners responsibility
+                          motor_vehicle_act: 112/183(1)
+                      challan_status: Cash
+                      rc_state_code: MH
+                    - challan_number: MH4228234250501104492
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-04-22'
+                      challan_id: 4
+                      challan_payment_date: NA
+                      challan_amount: '2000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: >-
+                            Driving with excessive / overspeed than prescribed
+                            LMV, owners responsibility
+                          motor_vehicle_act: 112/183(1)
+                      challan_status: Pending
+                      rc_state_code: MH
+                    - challan_number: MH4228234250424101958
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-04-22'
+                      challan_id: 5
+                      challan_payment_date: NA
+                      challan_amount: '2000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: >-
+                            Driving with excessive / overspeed than prescribed
+                            LMV, owners responsibility
+                          motor_vehicle_act: 112/183(1)
+                      challan_status: Pending
+                      rc_state_code: MH
+                    - challan_number: MH4228234250423111984
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-01-01'
+                      challan_id: 6
+                      challan_payment_date: '2025-06-04'
+                      challan_amount: '2000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: >-
+                            Driving with excessive / overspeed than prescribed
+                            LMV, owners responsibility
+                          motor_vehicle_act: 112/183(1)
+                      challan_status: Cash
+                      rc_state_code: MH
+                    - challan_number: MH4228234250109113520
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-01-01'
+                      challan_id: 7
+                      challan_payment_date: '2025-06-03'
+                      challan_amount: '2000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: >-
+                            Driving with excessive / overspeed than prescribed
+                            LMV, owners responsibility
+                          motor_vehicle_act: 112/183(1)
+                      challan_status: Cash
+                      rc_state_code: MH
+                    - challan_number: MH4228234250107062213
+                      user_name: NA
+                      rc_registration_number: MH12WZ1673
+                      challan_date: '2025-01-01'
+                      challan_id: 8
+                      challan_payment_date: '2025-06-04'
+                      challan_amount: '2000'
+                      challan_receipt_url: NA
+                      accused_name: M****I B*****R D****E
+                      accused_father_name: M**A
+                      rto_office_name: PIMPRI-CHINCHWAD
+                      challan_payment_source: NA
+                      offences:
+                        - offence_fine: NA
+                          offence_name: >-
+                            Driving with excessive / overspeed than prescribed
+                            LMV, owners responsibility
+                          motor_vehicle_act: 112/183(1)
+                      challan_status: Cash
+                      rc_state_code: MH
+                  response_timestamp: '2025-08-05T05:34:44.857Z'
+                  response_code: '100'
+                  metadata:
+                    billable: 'Y'
+                  response_message: Valid Authentication
+                  request_timestamp: '2025-08-05T05:34:43.448Z'
+                  group_id: 74a56199-f4b1-468f-a4f1-87d3e66f023a
+                  success: true
+                  task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+                  request_id: 7d79ac1d-4856-4c3a-a42b-7d412f67216e
+                signature: >-
+                  MGQCMBsKKznPeaBjVEPj7VwaR2AbN18O5XV72KAkixylrElstzbd7tPytE56x7MWH4KXLQIwNahRtSY2PwR/VmmDNFg+RgTR0fCsEs3G0U0GfVEf5AzPHQVHUnkWrDKd5oR+9KPu
+                meta:
+                  txncode: rosh21jul7828
+                  ver: '1.0'
+                  ts: 2025-08-05T11:04:44+0530
+                hmac: 7ciH/vUtQdEzNduq4KffJ79gHSmhz/XxdBhLrE6wyAA=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEYgvhEIAYhf+ZPklZdk+JuJN9WFafMHC9rA35uQOF2DByCqAJSXAu0pBnB6j/UuZ+MmSeNE9/cFT/ZCp59KviUds+WbRwpnU1qp+LQXt2qp6vGkUu6DETmArumfgc9fnt
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/zoop/rcreverse/1.0/en:
+    post:
+      summary: RC_Reverse
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '134'
+          schema:
+            type: string
+        - name: x-zoop-app-id
+          in: header
+          description: ''
+          required: true
+          example: 682b14f67175d30028be534b
+          schema:
+            type: string
+        - name: x-zoop-api-key
+          in: header
+          description: ''
+          required: true
+          example: 8346FVM-0CM47WZ-QYK5SA6-4WSHZ99
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                    txncode:
+                      type: string
+                  required:
+                    - ver
+                    - ts
+                    - txncode
+                data:
+                  type: object
+                  properties:
+                    chassis_number:
+                      type: string
+                    engine_number:
+                      type: string
+                    consent:
+                      type: string
+                    consent_text:
+                      type: string
+                    task_id:
+                      type: string
+                  required:
+                    - chassis_number
+                    - engine_number
+                    - consent
+                    - consent_text
+                    - task_id
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                ver: '1.0'
+                ts: 2025-07-22T10:49:48+0530
+                txncode: 1234asdfg
+              data:
+                chassis_number: MB8DP12PER8900712
+                engine_number: '1234567890'
+                consent: 'Y'
+                consent_text: Approve the values here
+                task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+              hmac: '{{hmac}}'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      result:
+                        type: object
+                        properties:
+                          insurance:
+                            type: object
+                            properties:
+                              policy_number:
+                                type: string
+                              expiry_date:
+                                type: string
+                              company:
+                                type: string
+                            required:
+                              - policy_number
+                              - expiry_date
+                              - company
+                          vehicle_color:
+                            type: string
+                          vehicle_category:
+                            type: string
+                          rc_registration_number:
+                            type: string
+                          vehicle_unladen_weight:
+                            type: string
+                          rc_status:
+                            type: string
+                          rc_status_as_on:
+                            type: string
+                          vehicle_fuel_description:
+                            type: string
+                          rc_commercial_status:
+                            type: string
+                          rc_engine_number:
+                            type: string
+                          rc_expiry_date:
+                            type: string
+                          body_type_description:
+                            type: string
+                          state:
+                            type: string
+                          rc_permit_expiry_date:
+                            type: string
+                          rc_tax_upto:
+                            type: string
+                          norms_description:
+                            type: string
+                          vehicle_gross_weight:
+                            type: string
+                          vehicle_number_of_cylinders:
+                            type: string
+                          rc_pucc_no:
+                            type: string
+                          father_name:
+                            type: string
+                          national_permit_expiry_date:
+                            type: string
+                          rc_registration_date:
+                            type: string
+                          vehicle_sleeper_capacity:
+                            type: string
+                          vehicle_stand_capacity:
+                            type: string
+                          financer:
+                            type: string
+                          rc_fit_upto:
+                            type: string
+                          rc_rto_code:
+                            type: string
+                          challan:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                amount:
+                                  type: string
+                                date_time:
+                                  type: string
+                                challan_no:
+                                  type: string
+                                payment_date:
+                                  type: string
+                                status:
+                                  type: string
+                          vehicle_class_description:
+                            type: string
+                          vehicle_manufactured_date:
+                            type: string
+                          vehicle_owner_number:
+                            type: string
+                          rc_registration_location:
+                            type: string
+                          city:
+                            type: string
+                          user_name:
+                            type: string
+                          rc_pucc_expiry_date:
+                            type: string
+                          national_permit_number:
+                            type: string
+                          national_permit_issued_by:
+                            type: string
+                          invoice_info:
+                            type: object
+                            properties:
+                              purchase_amount:
+                                type: string
+                              dealer_address:
+                                type: string
+                              dealer_name:
+                                type: string
+                              purchase_date:
+                                type: string
+                            required:
+                              - purchase_amount
+                              - dealer_address
+                              - dealer_name
+                              - purchase_date
+                          rc_permit_issued_date:
+                            type: string
+                          rc_chassis_number:
+                            type: string
+                          rc_permit_number:
+                            type: string
+                          vehicle_maker_description:
+                            type: string
+                          rc_permit_type:
+                            type: string
+                          vehicle_seating_capacity:
+                            type: string
+                          insurance_expired:
+                            type: string
+                          vehicle_cubic_capacity:
+                            type: string
+                          rc_source:
+                            type: string
+                          rc_permit_start_date:
+                            type: string
+                          vehicle_type:
+                            type: string
+                          vehicle_financed:
+                            type: string
+                          rc_blacklist_status:
+                            type: string
+                          month_year_remaining_for_insurance_exp:
+                            type: string
+                          rc_noc_details:
+                            type: string
+                          user_permanent_address:
+                            type: string
+                          vehicle_age:
+                            type: string
+                          vehicle_make_model:
+                            type: string
+                          user_present_address:
+                            type: string
+                          vehicle_fitness_expired:
+                            type: string
+                          rc_state_code:
+                            type: string
+                          vehicle_wheelbase:
+                            type: string
+                        required:
+                          - insurance
+                          - vehicle_color
+                          - vehicle_category
+                          - rc_registration_number
+                          - vehicle_unladen_weight
+                          - rc_status
+                          - rc_status_as_on
+                          - vehicle_fuel_description
+                          - rc_commercial_status
+                          - rc_engine_number
+                          - rc_expiry_date
+                          - body_type_description
+                          - state
+                          - rc_permit_expiry_date
+                          - rc_tax_upto
+                          - norms_description
+                          - vehicle_gross_weight
+                          - vehicle_number_of_cylinders
+                          - rc_pucc_no
+                          - father_name
+                          - national_permit_expiry_date
+                          - rc_registration_date
+                          - vehicle_sleeper_capacity
+                          - vehicle_stand_capacity
+                          - financer
+                          - rc_fit_upto
+                          - rc_rto_code
+                          - challan
+                          - vehicle_class_description
+                          - vehicle_manufactured_date
+                          - vehicle_owner_number
+                          - rc_registration_location
+                          - city
+                          - user_name
+                          - rc_pucc_expiry_date
+                          - national_permit_number
+                          - national_permit_issued_by
+                          - invoice_info
+                          - rc_permit_issued_date
+                          - rc_chassis_number
+                          - rc_permit_number
+                          - vehicle_maker_description
+                          - rc_permit_type
+                          - vehicle_seating_capacity
+                          - insurance_expired
+                          - vehicle_cubic_capacity
+                          - rc_source
+                          - rc_permit_start_date
+                          - vehicle_type
+                          - vehicle_financed
+                          - rc_blacklist_status
+                          - month_year_remaining_for_insurance_exp
+                          - rc_noc_details
+                          - user_permanent_address
+                          - vehicle_age
+                          - vehicle_make_model
+                          - user_present_address
+                          - vehicle_fitness_expired
+                          - rc_state_code
+                          - vehicle_wheelbase
+                      response_timestamp:
+                        type: string
+                      response_code:
+                        type: string
+                      metadata:
+                        type: object
+                        properties:
+                          billable:
+                            type: string
+                        required:
+                          - billable
+                      response_message:
+                        type: string
+                      request_timestamp:
+                        type: string
+                      group_id:
+                        type: string
+                      success:
+                        type: boolean
+                      task_id:
+                        type: string
+                      request_id:
+                        type: string
+                    required:
+                      - result
+                      - response_timestamp
+                      - response_code
+                      - metadata
+                      - response_message
+                      - request_timestamp
+                      - group_id
+                      - success
+                      - task_id
+                      - request_id
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  result:
+                    insurance:
+                      policy_number: D150012374
+                      expiry_date: 30-May-2029
+                      company: GoDigit General Insurance Ltd.
+                    vehicle_color: MET ROYAL BRONZE
+                    vehicle_category: 2WN
+                    rc_registration_number: GJ10EB0534
+                    vehicle_unladen_weight: '103'
+                    rc_status: ACTIVE
+                    rc_status_as_on: 04-Jul-2025
+                    vehicle_fuel_description: PETROL
+                    rc_commercial_status: 'NO'
+                    rc_engine_number: AF2136*****
+                    rc_expiry_date: 05-Jun-2039
+                    body_type_description: TWO WHEELER-SOLO WITH PILLION
+                    state: GUJARAT
+                    rc_permit_expiry_date: NA
+                    rc_tax_upto: 05-06-2039
+                    norms_description: BHARAT STAGE VI
+                    vehicle_gross_weight: '253'
+                    vehicle_number_of_cylinders: '1'
+                    rc_pucc_no: Newv4
+                    father_name: NA
+                    national_permit_expiry_date: NA
+                    rc_registration_date: 06-Jun-2024
+                    vehicle_sleeper_capacity: '0'
+                    vehicle_stand_capacity: '0'
+                    financer: BAJAJ FINANCE LTD
+                    rc_fit_upto: 05-Jun-2039
+                    rc_rto_code: GJ-10
+                    challan:
+                      - amount: ''
+                        date_time: ''
+                        challan_no: ''
+                        payment_date: ''
+                        status: ''
+                    vehicle_class_description: M-Cycle/Scooter(2WN)
+                    vehicle_manufactured_date: 05/2024
+                    vehicle_owner_number: '1'
+                    rc_registration_location: JAMNAGAR, Gujarat
+                    city: Jamnagar
+                    user_name: S****H
+                    rc_pucc_expiry_date: 05-Jun-2025
+                    national_permit_number: NA
+                    national_permit_issued_by: NA
+                    invoice_info:
+                      purchase_amount: NA
+                      dealer_address: NA
+                      dealer_name: NA
+                      purchase_date: NA
+                    rc_permit_issued_date: NA
+                    rc_chassis_number: MB8DP12PER89*****
+                    rc_permit_number: NA
+                    vehicle_maker_description: SUZUKI MOTORCYCLE INDIA PVT LTD
+                    rc_permit_type: NA
+                    vehicle_seating_capacity: '2'
+                    insurance_expired: 'N'
+                    vehicle_cubic_capacity: '124.00'
+                    rc_source: B
+                    rc_permit_start_date: NA
+                    vehicle_type: 2W
+                    vehicle_financed: 'Y'
+                    rc_blacklist_status: NA
+                    month_year_remaining_for_insurance_exp: NA
+                    rc_noc_details: NA
+                    user_permanent_address: Jamnagar, 361008
+                    vehicle_age: 1 years 1 months
+                    vehicle_make_model: ACCESS 125 DISC BT
+                    user_present_address: Jamnagar, 361008
+                    vehicle_fitness_expired: 'N'
+                    rc_state_code: GJ
+                    vehicle_wheelbase: '1265'
+                  response_timestamp: '2025-08-05T05:37:27.085Z'
+                  response_code: '100'
+                  metadata:
+                    billable: 'Y'
+                  response_message: Valid Authentication
+                  request_timestamp: '2025-08-05T05:37:26.546Z'
+                  group_id: 7218cb1d-a932-475a-9979-3cab94fa8623
+                  success: true
+                  task_id: 4cbc07d7-9884-4d18-bd08-be5081cd6e38
+                  request_id: 9dd9cb49-b6d8-4bae-9365-a7ba8d0e61f0
+                signature: >-
+                  MGUCMC3CtgUWcQNf5/avN+RK02Lc+poWMYgQ+7m6Q8eAVQ5epDiJQf3flt7M2D/I3B+bawIxAItoH/BMDVH9O7LiVTJp95ynUQyx/swhr8e0dCvHFPZbjhAX5AYFH4ABMXCaDbCv+g==
+                meta:
+                  txncode: 1234asdfg
+                  ver: '1.0'
+                  ts: 2025-08-05T11:07:27+0530
+                hmac: cppAn4knq7CmRTXlfGoWXB+HnwN+G+tyWqxA0LxwFi4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEHfrejCV7ieMgASSgkhSPojML0+MIPG1lvhdLHe59VJoWsAFg5fQNdkPAb0zgxdCPyjyIOIOX0ZFigMaJqLx3zNHQn4Jsqq+b1UmP841HOCoafuX2aFx5klxN5iAr8/Kg
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []

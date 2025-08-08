@@ -1,0 +1,302 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/lienmarking/1.5/en:
+    post:
+      summary: Verify bank loan or land mortgage
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '23'
+          schema:
+            type: string
+        - name: x-sp-auth-token
+          in: header
+          description: ''
+          required: true
+          example: '{{access_token}}'
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    bank-application-no:
+                      type: string
+                    distId:
+                      type: string
+                    tehId:
+                      type: string
+                    lgdcode:
+                      type: string
+                    khasraId:
+                      type: string
+                    bankname:
+                      type: string
+                    branchname:
+                      type: string
+                    branchaddress:
+                      type: string
+                    ifsc:
+                      type: string
+                    mortgage-open-date:
+                      type: string
+                    mortgage-close-date:
+                      type: string
+                    mortgage-amount:
+                      type: string
+                    cifno:
+                      type: string
+                    mortgage-type-id:
+                      type: string
+                    lien-type:
+                      type: string
+                  required:
+                    - bank-application-no
+                    - distId
+                    - tehId
+                    - lgdcode
+                    - khasraId
+                    - bankname
+                    - branchname
+                    - branchaddress
+                    - ifsc
+                    - mortgage-open-date
+                    - mortgage-close-date
+                    - mortgage-amount
+                    - cifno
+                    - mortgage-type-id
+                    - lien-type
+                meta:
+                  type: object
+                  properties:
+                    txncode:
+                      type: string
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                  required:
+                    - txncode
+                    - ver
+                    - ts
+                hmac:
+                  type: string
+              required:
+                - data
+                - meta
+                - hmac
+            example:
+              data:
+                bank-application-no: '12345684'
+                distId: '18'
+                tehId: '04'
+                lgdcode: '471745'
+                khasraId: '118040200067136000604'
+                bankname: UNION BANK OF INDIA
+                branchname: BHOPAL
+                branchaddress: BHOPAL
+                ifsc: UBIN0030090
+                mortgage-open-date: 3/8/2025
+                mortgage-close-date: ''
+                mortgage-amount: '160000'
+                cifno: '81114512633'
+                mortgage-type-id: '3'
+                lien-type: M
+              meta:
+                txncode: rs1002
+                ver: '1.5'
+                ts: 2025-08-05T12:48:21+0530
+              hmac: '1234'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E028
+                  status: failed
+                  info: Provider service is down or not reachable
+                data: {}
+                signature: >-
+                  MGUCMGWoBK0id6Gefh8PDCwnHCUFwDWmhKMsKXhCDyCZUrDsaAeDHyFCKQCVHVQ38OtIiwIxAJFXuZGam6qcPLcEDitBiidk6dR8zlJgig0eEhFt06sHJ9xJoVmORqP6DlkUEqno+w==
+                meta:
+                  txncode: rs1002
+                  ver: '1.5'
+                  ts: 2025-08-05T12:48:52+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEuat2jhK+poHM1JZ5e0tG7ytVWrm86V1eH3sVM4jAC9LR1BUFmdO/shF4G7Xw6/y3DJCes57wIqaX1JabD1epUjOFpE2myzIgUQGC3sTyZH+kFZylDDr/5SZC0dKIr3Pd
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/lienmarkingcallback/1.0/en:
+    post:
+      summary: LienMarking Callback
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: x-env-route
+          in: header
+          description: ''
+          required: false
+          example: /qa
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                chargeCreationDate:
+                  type: string
+                KHASRAID:
+                  type: string
+                requestID:
+                  type: string
+                LGDCODE:
+                  type: string
+                BANKAPPLICATIONNO:
+                  type: string
+                type:
+                  type: string
+                pdf_type:
+                  type: string
+                amount:
+                  type: string
+                docData:
+                  type: object
+                  properties:
+                    doc1:
+                      type: string
+                  required:
+                    - doc1
+              required:
+                - chargeCreationDate
+                - KHASRAID
+                - requestID
+                - LGDCODE
+                - BANKAPPLICATIONNO
+                - type
+                - pdf_type
+                - amount
+                - docData
+            example:
+              chargeCreationDate: '2023-09-14'
+              KHASRAID: '118050100015021000016'
+              requestID: '24100026563'
+              LGDCODE: '484074'
+              BANKAPPLICATIONNO: '12345684'
+              type: rbihpfmp
+              pdf_type: '3'
+              amount: '45'
+              docData:
+                doc1: cmFtZXNod2FyCg==
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                required:
+                  - success
+                  - message
+              example:
+                success: true
+                message: success
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []

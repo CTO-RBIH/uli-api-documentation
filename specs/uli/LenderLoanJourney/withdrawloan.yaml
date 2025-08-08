@@ -1,0 +1,238 @@
+openapi: 3.0.1
+info:
+  title: postman api rbih
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/withdraw-loan-record/1.0/en:
+    post:
+      summary: Withdraw Loan
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: false
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: ZDhOYnUzbFNCVDFmYkRLOGIyamh0VUdrSnJVYQ==
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: ''
+          required: false
+          example: >-
+            Bearer
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IkNwTGlWaHpfRWdFRkJBeHhhSmZIeml1WGdNb2EiLCJuYmYiOjE3MTM1MTAwNzAsImF6cCI6IkNwTGlWaHpfRWdFRkJBeHhhSmZIeml1WGdNb2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3MTM1NTMyNzAsImlhdCI6MTcxMzUxMDA3MCwianRpIjoiNjgzMDQ5YjQtMjM3Ny00ZDBjLTk2OGYtZGEzNDdiNzkyYTUzIn0.brTm_UQle5TsSN9rspK-S2NC6DVepzPrhyBHL-dQ9emo8o1ijn0fW2XRyNKVzVY-a1JxOJcVEPtA6UtrUo8BMI7WQNt2-Wnt9UDI-drNnVgl_r8q77MgwAx1LKkY-VvFqHgacxBtmdEH5Eie-pVNsVMLVrDJMX7v1CfZ5wID95HlQzgrve3U3Vw56m6lXjDOvwAlPMxDBh79UHJuVY2Zt886RZ_sYtUZwGTBm8b3G4bxns_FnqBWaKHjQQL583D6UigZh6DNODwwXM_1k7zcJp-CoQLaTdP-BrNQsZqbIj7fiZ7Xm-WeNYmBziR5v1QD-dwWWS8jg_dy8di6SjVafw
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                meta:
+                  type: object
+                  properties:
+                    txncode:
+                      type: string
+                    ver:
+                      type: string
+                    ts:
+                      type: string
+                  required:
+                    - txncode
+                    - ver
+                    - ts
+                data:
+                  type: object
+                  properties:
+                    loan_id:
+                      type: string
+                    withdrawal_reason:
+                      type: string
+                  required:
+                    - loan_id
+                    - withdrawal_reason
+                hmac:
+                  type: string
+              required:
+                - meta
+                - data
+                - hmac
+            example:
+              meta:
+                txncode: Abc8
+                ver: '1.0'
+                ts: '{{currentdate}}'
+              data:
+                loan_id: '3056'
+                withdrawal_reason: '6'
+              hmac: uG5JkM3H9Zj2DrF6qD9N2F2L6QxUjY8j63zY57u0Pd9=
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                    required:
+                      - message
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  message: Loan record updated successfully.
+                signature: >-
+                  MGUCMQCFaLtRZ08n4Xa/YwmF/PO/gntR2SNa+vKzKmAl3lItKKDceJfq6UtlK9rwV3ZmKKYCMFNAy5NYYgzqz2rqIjor+FcFbw2nS+41oX2iHKEYbrRrp8SujbR/nOa8ZVrVUuJzyw==
+                meta:
+                  txncode: Abc8
+                  ver: '1.0'
+                  ts: 2025-08-01T13:04:40+0530
+                hmac: uGhDWmHqFxctpyql4uAYSRlQIDvusUzQJb+tQI/MaJw=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEWcC5QZsf4sVxFxL5cwlLDrcHXDu5B04tT9HTgaFgukf24FfEhF+ouFy7yBKxOS6K6Y4L9Cx2N2LGAYuWMuB5hYpp1ei/B6VBqjQ+kmRo4ozM5T6C/5VlgY7A0QqU0+AF
+                sig-algo: SHA256withECDSA
+          headers: {}
+        x-200:Failed:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties: {}
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E226
+                  status: failed
+                  info: Loan ID/Sanction Reference Number not found
+                data: {}
+                signature: >-
+                  MGYCMQCa5vdoihJ6stLIqHmtvrOFwIwdmEImiXCVpeKw5dGggtR+sw7W2YVXyuEoT61rppoCMQCHintbA18oOHIvJfhvSEqmPrgkdvWwR749KDERXpUhP8HE+/fCEGj12qY+jujdFHU=
+                meta:
+                  txncode: Abc8
+                  ver: '1.0'
+                  ts: 2025-08-01T13:05:14+0530
+                hmac: WKljGvYklRgU3reW7KNmUGa2W55zRF/8b/bnw/JWYo4=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEO6XtYa16tg9WlqyIrm+04KbXQWVWm4C3e884D1sizUAC9jnVZzIYLM7ybbPck38fmSnPfLyUPqED9i3PBxnLyl291H++Gf9Ki8Ppstjx3+OwbSt+H6xvUSyUktePSnNj
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes: {}
+servers: []
+security: []

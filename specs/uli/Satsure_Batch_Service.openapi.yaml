@@ -1,0 +1,510 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/satsure/upload/1.0/en:
+    get:
+      summary: Upload
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '104'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: 28042025T1209
+          schema:
+            type: string
+        - name: x-sp-memberid
+          in: header
+          description: ''
+          required: true
+          example: satsure
+          schema:
+            type: string
+        - name: x-lender-auth-token
+          in: header
+          description: >-
+            eyJ4NXQiOiJNR1JqTWpSaVlqVTBNVEpqWVRsaU1tSmpNMlUxT0RWbU56UmxOamN4WkRZeFptWXlNRFUwWWciLCJraWQiOiJOVFJoT0RkallqazNNR1UzTldGaU9EYzBaREppTmpsbE9URmtPVGt6TkRBME1tSXpNV1l4TkdNd05qazFaak5pTWpsaU4yTTFOMlpoTnpOalkyTTJPQV9SUzI1NiIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJyYmloaW50YWRtaW4iLCJhdXQiOiJBUFBMSUNBVElPTiIsImF1ZCI6IlJTaDRBWklxbkkzSkNPaDBLYUxYVlVkMnpPb2EiLCJuYmYiOjE3NDI4OTQ5MjEsImF6cCI6IlJTaDRBWklxbkkzSkNPaDBLYUxYVlVkMnpPb2EiLCJzY29wZSI6ImRlZmF1bHQiLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkubm9ucHJvZC5yYmlodWIuaW9cL29hdXRoMlwvdG9rZW4iLCJleHAiOjE3NDI5MzgxMjEsImlhdCI6MTc0Mjg5NDkyMSwianRpIjoiMWYwMzAyYjMtZmI0ZS00MGZhLThkOGQtMjRiZGIwNjBiYjZmIn0.n9O0v8W2N3u5yxQDBL5KxzISDPs8CBTIR51LGB6tDiV-3uLuEnV_tYZAa-SpTOG4JtJD2c6wUx_4W3Bvw6L-H-jHDAuGLe3fCFv2bLnhgcIhi2I4LuLlXuz95lUjfmNaFYzvm77T7j76XxA6QT2doQfs5OK1STs1CgAGjAbOuVPSIVQsten2_2-k9J5ifuQzj7dzKWg8Pl9Dqj0oeRTuuYFxqj7wHdHKte7O69KPmcYXoSz0qYxfwzXtw-jO1wQvFPM3hyFsdP_3bvwpF4ORyoLENlYvE1OF66obDOSDRljg1VAaUNamr_5why1Jm7Ncrx794KpSjCrG6jcf6LmMNg
+          required: true
+          example: ''
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      member_id:
+                        type: string
+                      presigned_url:
+                        type: string
+                      request_id:
+                        type: string
+                    required:
+                      - member_id
+                      - presigned_url
+                      - request_id
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  member_id: satsure
+                  presigned_url: >-
+                    https://p-agri-sage-renewal.s3.amazonaws.com/staging/uploads/b1e84188-f010-4f1b-a89a-49be1061a640/input_raw.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZPRQQHAGX2WXUSP4%2F20250805%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250805T050937Z&X-Amz-Expires=18000&X-Amz-SignedHeaders=host&X-Amz-Signature=62927de184e46cd2482ca4a8ff590f00e8d76b15a870d23e008eed453eefbadc
+                  request_id: b1e84188-f010-4f1b-a89a-49be1061a640
+                signature: >-
+                  MGQCMAhdOJ/+qmDOrlCP7rBg7E7E9FPqQJEYK4DjluhEa5PNWciqmP0XxXnmGDn9tms1ZQIwMUQuwxhBZ2rjK0OB9UnjrCvBx0hyrKHEzcxOW7Ul9eON0/Z5ppeyab8PZM+k2Ymp
+                meta:
+                  txncode: 28042025T1209
+                  ver: '1.0'
+                  ts: 2025-08-05T10:39:37+0530
+                hmac: +84kNKXzg0evfEi3FHhvC7kidH36x51kDdXJL+G7J+Q=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEEKsWmA5soNc5CufejI1A9h9MqdHJLjKuv0lTGhGj6AAVtanjzeD2e4VVShh+92sMKaZ1AGbNO8OlZye+9/jhqj96nxEpb/yRIDCA02YyH8RIkiMvcIElvT8UzWBqUF9c
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/satsure/download/1.0/en:
+    get:
+      summary: Download
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '104'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: 2832025T1148
+          schema:
+            type: string
+        - name: x-sp-memberid
+          in: header
+          description: ''
+          required: false
+          example: '{{x-sp-memberId}}'
+          schema:
+            type: string
+        - name: x-lender-auth-token
+          in: header
+          description: ''
+          required: false
+          example: '{{access_token}}'
+          schema:
+            type: string
+        - name: x-sp-requestid
+          in: header
+          description: ''
+          required: true
+          example: bf3fe782-bcef-4308-a154-1b2742e5dcea
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      presigned_url:
+                        type: string
+                      message:
+                        type: string
+                      request_id:
+                        type: string
+                    required:
+                      - presigned_url
+                      - message
+                      - request_id
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  presigned_url: >-
+                    https://p-agri-sage-renewal.s3.amazonaws.com/staging/uploads/bf3fe782-bcef-4308-a154-1b2742e5dcea/output.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZPRQQHAGX2WXUSP4%2F20250805%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250805T051657Z&X-Amz-Expires=18000&X-Amz-SignedHeaders=host&X-Amz-Signature=b0b57b4c796642f22d107cd65b34f7b3ae24d3245482e23a7a68d9ae9f4563b7
+                  message: URL generated successfully
+                  request_id: bf3fe782-bcef-4308-a154-1b2742e5dcea
+                signature: >-
+                  MGYCMQCETI5FtEqH1TZoY1NC4ZzYSCdURLceshiWnm2TpyEhd35rmjIC9OgkcNq99VK68agCMQDKYOAcCWc71pHLJrPINiWkMhepNEsjsOHorsCHAJ3RGUBrJVhQqddJJH39eOBPuyA=
+                meta:
+                  txncode: 2832025T1148
+                  ver: '1.0'
+                  ts: 2025-08-05T10:46:57+0530
+                hmac: iGKX9L1S/KGsW27lllDyBUeqmW8GF4CZghqGxIlTHFo=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEsKdYm8d/JdUcUnAOLrXg71qkgysdsk7rHPJrLK1uTS+OavKfC7cvIXSzZCUUsxHyv66LD7KqwmC85uYLivXRjcqomAm8wT+9RbdeB30Qk55m1FJrdPB/AKqAdEGIB+pV
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/satsure/status/1.0/en:
+    get:
+      summary: Status
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: UlNoNEFaSXFuSTNKQ09oMEthTFhWVWQyek9vYQ==
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '104'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: '{{currentdate}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: 2832025T1256
+          schema:
+            type: string
+        - name: x-sp-memberid
+          in: header
+          description: ''
+          required: false
+          example: '{{x-sp-memberId}}'
+          schema:
+            type: string
+        - name: x-lender-auth-token
+          in: header
+          description: ''
+          required: false
+          example: '{{access_token}}'
+          schema:
+            type: string
+        - name: x-sp-requestid
+          in: header
+          description: bf3fe782-bcef-4308-a154-1b2742e5dcea
+          required: true
+          example: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      status_code:
+                        type: string
+                      message:
+                        type: string
+                      status:
+                        type: string
+                    required:
+                      - status_code
+                      - message
+                      - status
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  status_code: ''
+                  message: 'Request status: completed'
+                  status: completed
+                signature: >-
+                  MGUCMQCCFYvGEQ4m7WDOORjBUlIcRP1wBBtVZMT7Col8+m1PB5kZtO3OceqJXsrESo+WQCQCMDfSIbkWKCk0FSETXGiAIYKvln+uKV+rvO8UkwglaDwgh2nlEPYeopADiPwxnnY4Bw==
+                meta:
+                  txncode: 2832025T1256
+                  ver: '1.0'
+                  ts: 2025-08-05T10:47:36+0530
+                hmac: NUUyUXiotBCKD0SE9qBwwKc2/T+rnMv+PCylxFqZ0fU=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEj4k9HhVL4VAw5E/OKLX6Gjgpe3GsbUwa9DJgVRisBuZm+D+TkgjhiunSOTYDTf0lnXJdzgZjjKPwJnwa4QAbWvuP2Vgi0LQZFeKkXfrkPYmQP/vxR8GqAy2B57za7Vx6
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+  /qa/satsure/pre-signed-callback/1.0/en:
+    post:
+      summary: satsure-CallBack
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: activityId
+          in: header
+          description: ''
+          required: false
+          example: '1415252'
+          schema:
+            type: string
+        - name: Content-Type
+          in: header
+          description: ''
+          required: false
+          example: application/atom+xml
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+            example:
+              data:
+                request_id: b1e84188-f010-4f1b-a89a-49be1061a640
+                presigned_url: >-
+                  https://p-agri-sage-renewal.s3.amazonaws.com/staging/downloads/7ef3c996-8855-42dd-81b5-fdfe8a57dc54/input_raw.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAZPRQQHAG7TKD3OT7%2F20250324%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250324T043206Z&X-Amz-Expires=18000&X-Amz-SignedHeaders=host&X-Amz-Signature=74d876581f855aac8a2cb04cfce3ae5aa1aff2026cd0e5cd29000f6fdfe7922f
+                message: processing_in_process
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                required:
+                  - success
+                  - message
+              example: '{"success":true,"message":"success"}'
+          headers: {}
+        '412':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                required:
+                  - success
+                  - message
+              example:
+                success: false
+                message: 'Invalid JSON: ''request_id'' is missing or invalid'
+          headers: {}
+      security: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []

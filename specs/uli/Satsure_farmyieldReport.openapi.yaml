@@ -1,0 +1,640 @@
+openapi: 3.0.1
+info:
+  title: Kamdhenu
+  description: ''
+  version: 1.0.0
+tags: []
+paths:
+  /qa/farmyieldreport/1.4/en:
+    get:
+      summary: Farm Yield Report
+      deprecated: false
+      description: ''
+      tags: []
+      parameters:
+        - name: Accept
+          in: header
+          description: ''
+          required: true
+          example: application/json
+          schema:
+            type: string
+        - name: client-id
+          in: header
+          description: ''
+          required: true
+          example: '{{Client_id}}'
+          schema:
+            type: string
+        - name: txncode
+          in: header
+          description: ''
+          required: true
+          example: '345657'
+          schema:
+            type: string
+        - name: ts
+          in: header
+          description: ''
+          required: true
+          example: 2025-08-05T12:35:32+0530
+          schema:
+            type: string
+        - name: provider
+          in: header
+          description: ''
+          required: true
+          example: '104'
+          schema:
+            type: string
+        - name: statelrc
+          in: header
+          description: ''
+          required: true
+          example: '23'
+          schema:
+            type: string
+        - name: vilglrc
+          in: header
+          description: ''
+          required: true
+          example: '472421'
+          schema:
+            type: string
+        - name: khasraid
+          in: header
+          description: ''
+          required: true
+          example: 10/3 (S)
+          schema:
+            type: string
+        - name: x-sp-memberId
+          in: header
+          description: ''
+          required: true
+          example: 1234fsff
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      errcode:
+                        type: string
+                      status:
+                        type: string
+                      info:
+                        type: string
+                    required:
+                      - errcode
+                      - status
+                      - info
+                  data:
+                    type: object
+                    properties:
+                      farmGeometry:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            farmImage:
+                              type: string
+                            geometryLabel:
+                              type: string
+                            subGeometry:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  centroid:
+                                    type: object
+                                    properties:
+                                      lon:
+                                        type: object
+                                        properties:
+                                          label:
+                                            type: string
+                                          value:
+                                            type: number
+                                        required:
+                                          - label
+                                          - value
+                                      lat:
+                                        type: object
+                                        properties:
+                                          label:
+                                            type: string
+                                          value:
+                                            type: number
+                                        required:
+                                          - label
+                                          - value
+                                    required:
+                                      - lon
+                                      - lat
+                            geometryDetails:
+                              type: string
+                      farmDetails:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            surveyDetails:
+                              type: string
+                            surveyLabel:
+                              type: string
+                            surveyArea:
+                              type: number
+                            regionDetails:
+                              type: string
+                      farmerCroppingHistory:
+                        type: object
+                        properties:
+                          K023:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                performance:
+                                  type: string
+                                price:
+                                  type: integer
+                                farmPotentialYield:
+                                  type: integer
+                                cropName:
+                                  type: string
+                                districtThresholdYield:
+                                  type: number
+                          K024:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                performance:
+                                  type: string
+                                price:
+                                  type: integer
+                                farmPotentialYield:
+                                  type: integer
+                                cropName:
+                                  type: string
+                                districtThresholdYield:
+                                  type: number
+                          R024:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                performance:
+                                  type: string
+                                price:
+                                  type: integer
+                                farmPotentialYield:
+                                  type: integer
+                                cropName:
+                                  type: string
+                                districtThresholdYield:
+                                  type: number
+                              required:
+                                - performance
+                                - price
+                                - farmPotentialYield
+                                - cropName
+                                - districtThresholdYield
+                          K022:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                performance:
+                                  type: string
+                                price:
+                                  type: integer
+                                farmPotentialYield:
+                                  type: integer
+                                cropName:
+                                  type: string
+                                districtThresholdYield:
+                                  type: number
+                          R025:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                performance:
+                                  type: string
+                                price:
+                                  type: integer
+                                farmPotentialYield:
+                                  type: integer
+                                cropName:
+                                  type: string
+                                districtThresholdYield:
+                                  type: number
+                          R023:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                performance:
+                                  type: string
+                                price:
+                                  type: integer
+                                farmPotentialYield:
+                                  type: integer
+                                cropName:
+                                  type: string
+                                districtThresholdYield:
+                                  type: number
+                        required:
+                          - K023
+                          - K024
+                          - R024
+                          - K022
+                          - R025
+                          - R023
+                      baseScoreParameters:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            landUseType:
+                              type: string
+                            croppingIntensity:
+                              type: integer
+                            irrigationCondition:
+                              type: boolean
+                      satScore:
+                        type: object
+                        properties:
+                          overallScore:
+                            type: integer
+                          rabiScore:
+                            type: integer
+                          kharifScore:
+                            type: integer
+                          baseScore:
+                            type: integer
+                        required:
+                          - overallScore
+                          - rabiScore
+                          - kharifScore
+                          - baseScore
+                      units:
+                        type: object
+                        properties:
+                          area:
+                            type: string
+                          distance:
+                            type: string
+                          yield:
+                            type: string
+                          temperature:
+                            type: string
+                        required:
+                          - area
+                          - distance
+                          - yield
+                          - temperature
+                      neighboringGeometry:
+                        type: array
+                        items:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              centroid:
+                                type: object
+                                properties:
+                                  coordinates:
+                                    type: array
+                                    items:
+                                      type: number
+                                  type:
+                                    type: string
+                                required:
+                                  - coordinates
+                                  - type
+                              details:
+                                type: string
+                              geometryId:
+                                type: string
+                              id:
+                                type: string
+                              direction:
+                                type: string
+                            required:
+                              - centroid
+                              - details
+                              - geometryId
+                              - id
+                              - direction
+                      regionalParameters:
+                        type: object
+                        properties:
+                          nearestRoadRail:
+                            type: object
+                            properties:
+                              distance:
+                                type: number
+                              name:
+                                type: 'null'
+                            required:
+                              - distance
+                              - name
+                          soilType:
+                            type: string
+                          temperature:
+                            type: object
+                            properties:
+                              min:
+                                type: number
+                              max:
+                                type: number
+                            required:
+                              - min
+                              - max
+                          villagePopulation:
+                            type: object
+                            properties:
+                              totalPopulation:
+                                type: 'null'
+                              name:
+                                type: string
+                              femalePopulation:
+                                type: 'null'
+                              malePopulation:
+                                type: 'null'
+                            required:
+                              - totalPopulation
+                              - name
+                              - femalePopulation
+                              - malePopulation
+                          nearestWaterBody:
+                            type: object
+                            properties:
+                              distance:
+                                type: number
+                              name:
+                                type: string
+                            required:
+                              - distance
+                              - name
+                          droughtInstances:
+                            type: array
+                            items:
+                              type: integer
+                          nearestMandi:
+                            type: object
+                            properties:
+                              distance:
+                                type: number
+                              name:
+                                type: string
+                            required:
+                              - distance
+                              - name
+                          regionalProsperity:
+                            type: number
+                          agroEcologicalSubZone:
+                            type: string
+                        required:
+                          - nearestRoadRail
+                          - soilType
+                          - temperature
+                          - villagePopulation
+                          - nearestWaterBody
+                          - droughtInstances
+                          - nearestMandi
+                          - regionalProsperity
+                          - agroEcologicalSubZone
+                    required:
+                      - farmGeometry
+                      - farmDetails
+                      - farmerCroppingHistory
+                      - baseScoreParameters
+                      - satScore
+                      - units
+                      - neighboringGeometry
+                      - regionalParameters
+                  signature:
+                    type: string
+                  meta:
+                    type: object
+                    properties:
+                      txncode:
+                        type: string
+                      ver:
+                        type: string
+                      ts:
+                        type: string
+                    required:
+                      - txncode
+                      - ver
+                      - ts
+                  hmac:
+                    type: string
+                  publickey:
+                    type: string
+                  sig-algo:
+                    type: string
+                required:
+                  - result
+                  - data
+                  - signature
+                  - meta
+                  - hmac
+                  - publickey
+                  - sig-algo
+              example:
+                result:
+                  errcode: E000
+                  status: success
+                  info: ''
+                data:
+                  farmGeometry:
+                    - farmImage: >-
+                        https://media.satsure.co/sage/satsource-report/fa57e6bb-e604-48ea-b83b-4b70ab1f5148/35b682c4-1aa1-48b8-8bb6-8c395deebed4/1-A.jpg
+                      geometryLabel: '1'
+                      subGeometry:
+                        - centroid:
+                            lon:
+                              label: E
+                              value: 75.87898688099466
+                            lat:
+                              label: 'N'
+                              value: 23.859351330561186
+                      geometryDetails: ' 10/3'
+                  farmDetails:
+                    - surveyDetails: ' 10/3 (S)'
+                      surveyLabel: BNone
+                      surveyArea: 0.43
+                      regionDetails: Madhya Pradesh, Agar-Malwa, Badod, Amba Badod
+                  farmerCroppingHistory:
+                    K023:
+                      - performance: Below Average
+                        price: 4300
+                        farmPotentialYield: 622
+                        cropName: Soybean
+                        districtThresholdYield: 835.51
+                    K024:
+                      - performance: Good
+                        price: 4600
+                        farmPotentialYield: 744
+                        cropName: Soybean
+                        districtThresholdYield: 694.44
+                    R024:
+                      - performance: Average
+                        price: 2275
+                        farmPotentialYield: 3168
+                        cropName: Wheat
+                        districtThresholdYield: 1859.72
+                      - performance: Average
+                        price: 5440
+                        farmPotentialYield: 920
+                        cropName: Gram
+                        districtThresholdYield: 1116.33
+                    K022:
+                      - performance: Good
+                        price: 3950
+                        farmPotentialYield: 719
+                        cropName: Soybean
+                        districtThresholdYield: 903.87
+                    R025:
+                      - performance: Below Average
+                        price: 2425
+                        farmPotentialYield: 3472
+                        cropName: Wheat
+                        districtThresholdYield: 3864.3
+                    R023:
+                      - performance: Below Average
+                        price: 2125
+                        farmPotentialYield: 3342
+                        cropName: Wheat
+                        districtThresholdYield: 2157.34
+                  baseScoreParameters:
+                    - landUseType: Agricultural
+                      croppingIntensity: 2
+                      irrigationCondition: true
+                  satScore:
+                    overallScore: 743
+                    rabiScore: 254
+                    kharifScore: 289
+                    baseScore: 200
+                  units:
+                    area: ha
+                    distance: km
+                    yield: kg/ha
+                    temperature: celsius
+                  neighboringGeometry:
+                    - - centroid:
+                          coordinates:
+                            - 75.87965613949955
+                            - 23.859051454917658
+                          type: Point
+                        details: ' Khasra - 12/3'
+                        geometryId: 53ef0d75-6646-49b5-acd0-9fbd9e56de44
+                        id: '1'
+                        direction: Southeast
+                      - centroid:
+                          coordinates:
+                            - 75.87831472960318
+                            - 23.859315927103317
+                          type: Point
+                        details: ' Khasra - 10/1'
+                        geometryId: 53ef0d75-6646-49b5-acd0-9fbd9e56de44
+                        id: '2'
+                        direction: West
+                      - centroid:
+                          coordinates:
+                            - 75.87859851784611
+                            - 23.85880818092093
+                          type: Point
+                        details: ' Khasra - 10/2'
+                        geometryId: 53ef0d75-6646-49b5-acd0-9fbd9e56de44
+                        id: '3'
+                        direction: Southwest
+                      - centroid:
+                          coordinates:
+                            - 75.87863775371277
+                            - 23.85979055854665
+                          type: Point
+                        details: ' Khasra - 1126/1'
+                        geometryId: 53ef0d75-6646-49b5-acd0-9fbd9e56de44
+                        id: '4'
+                        direction: Northwest
+                      - centroid:
+                          coordinates:
+                            - 75.87925095158788
+                            - 23.859834199698824
+                          type: Point
+                        details: ' Khasra - 1126/2'
+                        geometryId: 53ef0d75-6646-49b5-acd0-9fbd9e56de44
+                        id: '5'
+                        direction: Northeast
+                      - centroid:
+                          coordinates:
+                            - 75.88021561422593
+                            - 23.85957062110151
+                          type: Point
+                        details: ' Khasra - 11'
+                        geometryId: 53ef0d75-6646-49b5-acd0-9fbd9e56de44
+                        id: '6'
+                        direction: East
+                  regionalParameters:
+                    nearestRoadRail:
+                      distance: 0.5
+                      name: null
+                    soilType: >-
+                      Deep Black soils (with shallow and medium Black Soils as
+                      inclusion)
+                    temperature:
+                      min: 6.9
+                      max: 42.6
+                    villagePopulation:
+                      totalPopulation: null
+                      name: Amba Badod
+                      femalePopulation: null
+                      malePopulation: null
+                    nearestWaterBody:
+                      distance: 1.2
+                      name: ''
+                    droughtInstances:
+                      - 2015
+                      - 2015
+                      - 2016
+                    nearestMandi:
+                      distance: 20.9
+                      name: Agar
+                    regionalProsperity: 0.53
+                    agroEcologicalSubZone: >-
+                      Central Highlands ( Malwa )  Gujarat Plain And Kathiawar
+                      Peninsula  Semi-Arid Eco-Region
+                signature: >-
+                  MGYCMQCA/oG88VpTCkhcy1t/0JcnVGTNSj4Mo7BcXmr2Hymw+hxubTEUxa/SmEIf5KaIeiACMQDitC7iU1Px+k7audfX6Xbh7zChHkiTATgxzDa6QVYMIcdQEAb8cSln0Sjn1i5pQqE=
+                meta:
+                  txncode: '345657'
+                  ver: '1.4'
+                  ts: 2025-08-05T12:36:15+0530
+                hmac: gnAL8bOZRSMk5fXi4M+pHrqQa4xW1vduv7p61iAGAhM=
+                publickey: >-
+                  MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEKulxpinET1WoqVhiCpEQCNQQBtMRgVvjnvxfTINwr1ST7s+KoJuEp/ciPAnYZHZ5soGMZtLBZRRhEJnvvhlXClUiojiwLnpE0jxBhrLO+5wwUTRLFHLpsoA45/p5B0Hz
+                sig-algo: SHA256withECDSA
+          headers: {}
+      security:
+        - bearer: []
+components:
+  schemas: {}
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+servers: []
+security: []
